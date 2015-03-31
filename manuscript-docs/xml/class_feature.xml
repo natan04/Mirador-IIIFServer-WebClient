@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_feature" kind="class" prot="public" abstract="yes">
+    <compoundname>Feature</compoundname>
+    <derivedcompoundref refid="class_gabor_blob_feature" prot="public" virt="non-virtual">GaborBlobFeature</derivedcompoundref>
+    <derivedcompoundref refid="class_int_feature" prot="public" virt="non-virtual">IntFeature</derivedcompoundref>
+    <derivedcompoundref refid="class_scalar_feature" prot="public" virt="non-virtual">ScalarFeature&lt; T &gt;</derivedcompoundref>
+    <includes refid="_feature_8h" local="no">Feature.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_feature_1a0a781cf57089800686f88e27c50cb313" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Feature::Feature</definition>
+        <argsstring>(void)</argsstring>
+        <name>Feature</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" line="6" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" bodystart="6" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="class_feature_1ab6dfcfe22cc71c7b45a61d991b4ff775" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Feature::~Feature</definition>
+        <argsstring>(void)</argsstring>
+        <name>~Feature</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" line="7" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="class_feature_1a7dbbdc860cdc97bcd31584ae10dab3b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double Feature::distance</definition>
+        <argsstring>(Feature *a)=0</argsstring>
+        <name>distance</name>
+        <reimplementedby refid="class_int_feature_1a629ca66179636f0e1e673b017fdbd95e">distance</reimplementedby>
+        <reimplementedby refid="class_scalar_feature_1a5b95859a0d7409d7d9306a0c262e8e17">distance</reimplementedby>
+        <reimplementedby refid="class_gabor_blob_feature_1ac9dd690e58da5a3a1c1f1964c2949a7c">distance</reimplementedby>
+        <param>
+          <type><ref refid="class_feature" kindref="compound">Feature</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" line="9" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="26">
+        <label>IntFeature</label>
+        <link refid="class_int_feature"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>GaborBlobFeature</label>
+        <link refid="class_gabor_blob_feature"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Feature</label>
+        <link refid="class_feature"/>
+      </node>
+      <node id="27">
+        <label>ScalarFeature&lt; T &gt;</label>
+        <link refid="class_scalar_feature"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" line="4" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Feature.h" bodystart="4" bodyend="10"/>
+    <listofallmembers>
+      <member refid="class_feature_1a7dbbdc860cdc97bcd31584ae10dab3b1" prot="public" virt="pure-virtual"><scope>Feature</scope><name>distance</name></member>
+      <member refid="class_feature_1a0a781cf57089800686f88e27c50cb313" prot="public" virt="non-virtual"><scope>Feature</scope><name>Feature</name></member>
+      <member refid="class_feature_1ab6dfcfe22cc71c7b45a61d991b4ff775" prot="public" virt="non-virtual"><scope>Feature</scope><name>~Feature</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,597 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_d_image" kind="class" prot="public">
+    <compoundname>DImage</compoundname>
+    <derivedcompoundref refid="class_page_image" prot="private" virt="non-virtual">PageImage</derivedcompoundref>
+    <includes refid="_d_image_8h" local="no">DImage.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_d_image_1ae4e4d795855744470cdf9cc88388ca1c" prot="private" static="no" mutable="no">
+        <type>Mat</type>
+        <definition>Mat DImage::_mat</definition>
+        <argsstring></argsstring>
+        <name>_mat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="20" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1abb7f86ad7e9c3c627f67d96a6e3520c6" prot="private" static="no" mutable="no">
+        <type>Point2f</type>
+        <definition>Point2f DImage::_com</definition>
+        <argsstring></argsstring>
+        <name>_com</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="21" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1a39f33182b5ac11ef84360a03893d0b3e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int DImage::_format</definition>
+        <argsstring></argsstring>
+        <name>_format</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="23" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1ad0578c5009caec19335a61aa7f0f1489" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int DImage::_type</definition>
+        <argsstring></argsstring>
+        <name>_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="24" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_d_image_1a5329679c0199806b9951d0442ec292f5" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DIFORMAT_UNSET</definition>
+        <argsstring></argsstring>
+        <name>DIFORMAT_UNSET</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="27" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1a16e31de8a97ada87e8a077f72ff297d1" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DIFORMAT_RGB</definition>
+        <argsstring></argsstring>
+        <name>DIFORMAT_RGB</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="28" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1ac2aef108a618db6d3e04924510ba9f35" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DIFORMAT_GRAY</definition>
+        <argsstring></argsstring>
+        <name>DIFORMAT_GRAY</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="29" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1adf32af60452b52eb59922c9bb5f87119" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DIFORMAT_BINARY</definition>
+        <argsstring></argsstring>
+        <name>DIFORMAT_BINARY</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="30" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1abf8ff1b3f61e5a15641bc672eaa9922e" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_UNSET</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_UNSET</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="32" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1a6a2aac0adab6d13d6efadcd4c29de570" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_TEXT</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_TEXT</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="33" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1ad447450c2077063fe5b87dc8c8ca4737" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_DRAW</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_DRAW</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="34" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1aad14d2a044d95e2aa71709c3c8e60379" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_IMAGE</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_IMAGE</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="35" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1a64f62a4c2bfc5b73f14bbb32975353b4" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_PARAGRAPH</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_PARAGRAPH</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="36" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1ad7dc702b7df0b1929a0e36c6999d0f67" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_PAGE_MAIN</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_PAGE_MAIN</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="37" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_image_1adc0266fb6c72fad279ae7cef80c278dd" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int DImage::DITYPE_PAGE_MARGIN</definition>
+        <argsstring></argsstring>
+        <name>DITYPE_PAGE_MARGIN</name>
+        <initializer>= 6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="38" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_d_image_1ab276c7e2458e697fbff3366a27f9bf93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DImage::DImage</definition>
+        <argsstring>()</argsstring>
+        <name>DImage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="41" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="41" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a7d7c1b9cf26cf48c81b9d5cd424ab788" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DImage::DImage</definition>
+        <argsstring>(Mat mat)</argsstring>
+        <name>DImage</name>
+        <param>
+          <type>Mat</type>
+          <declname>mat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="48" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="48" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1aa86a9aa92905deb0d8aab5f1298c6b9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DImage::~DImage</definition>
+        <argsstring>(void)</argsstring>
+        <name>~DImage</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="56" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a4c4ee0a9910a21d200a469f945060fbe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DImage::setType</definition>
+        <argsstring>(int itype)</argsstring>
+        <name>setType</name>
+        <param>
+          <type>int</type>
+          <declname>itype</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="60" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a7673f3ca0b1703a3401e7a953e7464e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DImage::setFormat</definition>
+        <argsstring>(int iformat)</argsstring>
+        <name>setFormat</name>
+        <param>
+          <type>int</type>
+          <declname>iformat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="64" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="64" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a80065ac2ff9eb49a68adde1f24494087" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int DImage::getFormat</definition>
+        <argsstring>()</argsstring>
+        <name>getFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="68" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="68" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1aad98497ac69ada8d00e14d1aadf11406" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int DImage::getType</definition>
+        <argsstring>()</argsstring>
+        <name>getType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="72" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="72" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1af7605a6d9d5bd6ca117507bd9fd00c2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DImage::setMat</definition>
+        <argsstring>(Mat mat)</argsstring>
+        <name>setMat</name>
+        <param>
+          <type>Mat</type>
+          <declname>mat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="76" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="76" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Mat &amp;</type>
+        <definition>Mat&amp; DImage::getMat</definition>
+        <argsstring>()</argsstring>
+        <name>getMat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="80" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="80" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a8127b81bd1bcafa719c8c39f868a61e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Point2f</type>
+        <definition>Point2f DImage::setCOM</definition>
+        <argsstring>()</argsstring>
+        <name>setCOM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="84" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.cpp" bodystart="21" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a391b874fbd441d759a68582c5a1c65ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Point2f</type>
+        <definition>Point2f DImage::getCOM</definition>
+        <argsstring>()</argsstring>
+        <name>getCOM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="85" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1af91df7fb4ff6ee2ff5d040bd5ae4356c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage * DImage::convert</definition>
+        <argsstring>(int to_type)</argsstring>
+        <name>convert</name>
+        <param>
+          <type>int</type>
+          <declname>to_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="89" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.cpp" bodystart="6" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1abbd42491c1788bab34a871e5674e0ad4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* DImage::convert</definition>
+        <argsstring>(ImageConverter &amp;ic)</argsstring>
+        <name>convert</name>
+        <param>
+          <type><ref refid="class_image_converter" kindref="compound">ImageConverter</ref> &amp;</type>
+          <declname>ic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="90" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a62f8f2c9cd22264f31c94f352c2fb620" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* DImage::enhance</definition>
+        <argsstring>(ImageEnhancer &amp;ih)</argsstring>
+        <name>enhance</name>
+        <param>
+          <type><ref refid="class_image_enhancer" kindref="compound">ImageEnhancer</ref> &amp;</type>
+          <declname>ih</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="95" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="95" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a30853028d3eee069389660a20178e57c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* DImage::project</definition>
+        <argsstring>(ImageProjector &amp;ip)</argsstring>
+        <name>project</name>
+        <param>
+          <type><ref refid="class_image_projector" kindref="compound">ImageProjector</ref> &amp;</type>
+          <declname>ip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="100" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="100" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1aabf5c54bbdfdfb7cde2aca18452d5ef1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* DImage::binarize</definition>
+        <argsstring>(ImageBinarizer &amp;ib)</argsstring>
+        <name>binarize</name>
+        <param>
+          <type><ref refid="class_image_binarizer" kindref="compound">ImageBinarizer</ref> &amp;</type>
+          <declname>ib</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="105" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="105" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1ae3bb096400bf85dc02ee93578696471b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* DImage::filter</definition>
+        <argsstring>(ImageFilter &amp;io)</argsstring>
+        <name>filter</name>
+        <param>
+          <type><ref refid="class_image_filter" kindref="compound">ImageFilter</ref> &amp;</type>
+          <declname>io</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="112" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="112" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a644022c2f892f2087e2345faf9219930" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DImage::extractFeatures</definition>
+        <argsstring>(FeatureExtractor &amp;feature_extractor, vector&lt; Feature * &gt; &amp;feature_list)</argsstring>
+        <name>extractFeatures</name>
+        <param>
+          <type><ref refid="class_feature_extractor" kindref="compound">FeatureExtractor</ref> &amp;</type>
+          <declname>feature_extractor</declname>
+        </param>
+        <param>
+          <type>vector&lt; <ref refid="class_feature" kindref="compound">Feature</ref> * &gt; &amp;</type>
+          <declname>feature_list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="118" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a4a60efb2e91c9a07a4d8f37b9bc4d086" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DImage::extractComponents</definition>
+        <argsstring>(ComponentExtractor &amp;ex, vector&lt; ConnectedComponent * &gt; &amp;v)</argsstring>
+        <name>extractComponents</name>
+        <param>
+          <type><ref refid="class_component_extractor" kindref="compound">ComponentExtractor</ref> &amp;</type>
+          <declname>ex</declname>
+        </param>
+        <param>
+          <type>vector&lt; <ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref> * &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="123" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="123" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_image_1a56a11350bd9375dfe95a62abc2f4f8f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DImage::display</definition>
+        <argsstring>(String win)</argsstring>
+        <name>display</name>
+        <param>
+          <type>String</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="129" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="129" bodyend="132"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="22">
+        <label>PageImage</label>
+        <link refid="class_page_image"/>
+        <childnode refid="21" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>DImage</label>
+        <link refid="class_d_image"/>
+      </node>
+    </inheritancegraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" line="19" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h" bodystart="19" bodyend="133"/>
+    <listofallmembers>
+      <member refid="class_d_image_1abb7f86ad7e9c3c627f67d96a6e3520c6" prot="private" virt="non-virtual"><scope>DImage</scope><name>_com</name></member>
+      <member refid="class_d_image_1a39f33182b5ac11ef84360a03893d0b3e" prot="private" virt="non-virtual"><scope>DImage</scope><name>_format</name></member>
+      <member refid="class_d_image_1ae4e4d795855744470cdf9cc88388ca1c" prot="private" virt="non-virtual"><scope>DImage</scope><name>_mat</name></member>
+      <member refid="class_d_image_1ad0578c5009caec19335a61aa7f0f1489" prot="private" virt="non-virtual"><scope>DImage</scope><name>_type</name></member>
+      <member refid="class_d_image_1aabf5c54bbdfdfb7cde2aca18452d5ef1" prot="public" virt="non-virtual"><scope>DImage</scope><name>binarize</name></member>
+      <member refid="class_d_image_1af91df7fb4ff6ee2ff5d040bd5ae4356c" prot="public" virt="non-virtual"><scope>DImage</scope><name>convert</name></member>
+      <member refid="class_d_image_1abbd42491c1788bab34a871e5674e0ad4" prot="public" virt="non-virtual"><scope>DImage</scope><name>convert</name></member>
+      <member refid="class_d_image_1adf32af60452b52eb59922c9bb5f87119" prot="public" virt="non-virtual"><scope>DImage</scope><name>DIFORMAT_BINARY</name></member>
+      <member refid="class_d_image_1ac2aef108a618db6d3e04924510ba9f35" prot="public" virt="non-virtual"><scope>DImage</scope><name>DIFORMAT_GRAY</name></member>
+      <member refid="class_d_image_1a16e31de8a97ada87e8a077f72ff297d1" prot="public" virt="non-virtual"><scope>DImage</scope><name>DIFORMAT_RGB</name></member>
+      <member refid="class_d_image_1a5329679c0199806b9951d0442ec292f5" prot="public" virt="non-virtual"><scope>DImage</scope><name>DIFORMAT_UNSET</name></member>
+      <member refid="class_d_image_1ab276c7e2458e697fbff3366a27f9bf93" prot="public" virt="non-virtual"><scope>DImage</scope><name>DImage</name></member>
+      <member refid="class_d_image_1a7d7c1b9cf26cf48c81b9d5cd424ab788" prot="public" virt="non-virtual"><scope>DImage</scope><name>DImage</name></member>
+      <member refid="class_d_image_1a56a11350bd9375dfe95a62abc2f4f8f8" prot="public" virt="non-virtual"><scope>DImage</scope><name>display</name></member>
+      <member refid="class_d_image_1ad447450c2077063fe5b87dc8c8ca4737" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_DRAW</name></member>
+      <member refid="class_d_image_1aad14d2a044d95e2aa71709c3c8e60379" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_IMAGE</name></member>
+      <member refid="class_d_image_1ad7dc702b7df0b1929a0e36c6999d0f67" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_PAGE_MAIN</name></member>
+      <member refid="class_d_image_1adc0266fb6c72fad279ae7cef80c278dd" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_PAGE_MARGIN</name></member>
+      <member refid="class_d_image_1a64f62a4c2bfc5b73f14bbb32975353b4" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_PARAGRAPH</name></member>
+      <member refid="class_d_image_1a6a2aac0adab6d13d6efadcd4c29de570" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_TEXT</name></member>
+      <member refid="class_d_image_1abf8ff1b3f61e5a15641bc672eaa9922e" prot="public" virt="non-virtual"><scope>DImage</scope><name>DITYPE_UNSET</name></member>
+      <member refid="class_d_image_1a62f8f2c9cd22264f31c94f352c2fb620" prot="public" virt="non-virtual"><scope>DImage</scope><name>enhance</name></member>
+      <member refid="class_d_image_1a4a60efb2e91c9a07a4d8f37b9bc4d086" prot="public" virt="non-virtual"><scope>DImage</scope><name>extractComponents</name></member>
+      <member refid="class_d_image_1a644022c2f892f2087e2345faf9219930" prot="public" virt="non-virtual"><scope>DImage</scope><name>extractFeatures</name></member>
+      <member refid="class_d_image_1ae3bb096400bf85dc02ee93578696471b" prot="public" virt="non-virtual"><scope>DImage</scope><name>filter</name></member>
+      <member refid="class_d_image_1a391b874fbd441d759a68582c5a1c65ff" prot="public" virt="non-virtual"><scope>DImage</scope><name>getCOM</name></member>
+      <member refid="class_d_image_1a80065ac2ff9eb49a68adde1f24494087" prot="public" virt="non-virtual"><scope>DImage</scope><name>getFormat</name></member>
+      <member refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" prot="public" virt="non-virtual"><scope>DImage</scope><name>getMat</name></member>
+      <member refid="class_d_image_1aad98497ac69ada8d00e14d1aadf11406" prot="public" virt="non-virtual"><scope>DImage</scope><name>getType</name></member>
+      <member refid="class_d_image_1a30853028d3eee069389660a20178e57c" prot="public" virt="non-virtual"><scope>DImage</scope><name>project</name></member>
+      <member refid="class_d_image_1a8127b81bd1bcafa719c8c39f868a61e8" prot="public" virt="non-virtual"><scope>DImage</scope><name>setCOM</name></member>
+      <member refid="class_d_image_1a7673f3ca0b1703a3401e7a953e7464e2" prot="public" virt="non-virtual"><scope>DImage</scope><name>setFormat</name></member>
+      <member refid="class_d_image_1af7605a6d9d5bd6ca117507bd9fd00c2b" prot="public" virt="non-virtual"><scope>DImage</scope><name>setMat</name></member>
+      <member refid="class_d_image_1a4c4ee0a9910a21d200a469f945060fbe" prot="public" virt="non-virtual"><scope>DImage</scope><name>setType</name></member>
+      <member refid="class_d_image_1aa86a9aa92905deb0d8aab5f1298c6b9b" prot="public" virt="non-virtual"><scope>DImage</scope><name>~DImage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

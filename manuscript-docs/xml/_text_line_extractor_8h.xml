@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_text_line_extractor_8h" kind="file">
+    <compoundname>TextLineExtractor.h</compoundname>
+    <includes local="no">opencv/cv.h</includes>
+    <includes local="no">opencv2/core/core.hpp</includes>
+    <includedby refid="_profile_seam_text_line_extractor_8h" local="yes">ManuscriptApp/ProfileSeamTextLineExtractor.h</includedby>
+    <includedby refid="_rafi_text_line_extractor_8h" local="yes">ManuscriptApp/RafiTextLineExtractor.h</includedby>
+    <incdepgraph>
+      <node id="1190">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="1191">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="1189">
+        <label>ManuscriptApp/TextLineExtractor.h</label>
+        <link refid="TextLineExtractor.h"/>
+        <childnode refid="1190" relation="include">
+        </childnode>
+        <childnode refid="1191" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1196">
+        <label>ManuscriptApp/RafiTextLineExtractor.h</label>
+        <link refid="_rafi_text_line_extractor_8h"/>
+        <childnode refid="1194" relation="include">
+        </childnode>
+        <childnode refid="1197" relation="include">
+        </childnode>
+      </node>
+      <node id="1192">
+        <label>ManuscriptApp/TextLineExtractor.h</label>
+        <link refid="TextLineExtractor.h"/>
+        <childnode refid="1193" relation="include">
+        </childnode>
+        <childnode refid="1196" relation="include">
+        </childnode>
+      </node>
+      <node id="1194">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="1193">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.h</label>
+        <link refid="_profile_seam_text_line_extractor_8h"/>
+        <childnode refid="1194" relation="include">
+        </childnode>
+        <childnode refid="1195" relation="include">
+        </childnode>
+      </node>
+      <node id="1197">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+      <node id="1195">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.cpp</label>
+        <link refid="_profile_seam_text_line_extractor_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_text_line_extractor" prot="public">TextLineExtractor</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_TEXTLINEEXTRACTOR_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_TEXTLINEEXTRACTOR_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv/cv.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv2/core/core.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacecv" kindref="compound">cv</ref><sp/>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TextLine<sp/>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="class_text_line_extractor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_text_line_extractor" kindref="compound">TextLineExtractor</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/>:</highlight></codeline>
+<codeline lineno="20" refid="class_text_line_extractor_1acc518adbefc6a211ce84f5124da31709" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/><ref refid="class_text_line_extractor_1acc518adbefc6a211ce84f5124da31709" kindref="member">_image</ref><sp/>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23" refid="class_text_line_extractor_1a5f0c3627efd8b25b82e747a191b21d54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_text_line_extractor_1a5f0c3627efd8b25b82e747a191b21d54" kindref="member">TextLineExtractor</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/><sp/>{;}</highlight></codeline>
+<codeline lineno="24" refid="class_text_line_extractor_1a220ed917eeb0ded278f9a08539149623" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_text_line_extractor_1a220ed917eeb0ded278f9a08539149623" kindref="member">~TextLineExtractor</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{;}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="class_text_line_extractor_1a67f7e8bdb62bff99de9816b55de4c6d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_text_line_extractor_1a67f7e8bdb62bff99de9816b55de4c6d0" kindref="member">setImage</ref>(Mat<sp/>img)<sp/>{<sp/>_image<sp/>=<sp/>img<sp/>;}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>extract()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/TextLineExtractor.h"/>
+  </compounddef>
+</doxygen>

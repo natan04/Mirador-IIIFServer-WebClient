@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_gabor_blob_feature_8cpp" kind="file">
+    <compoundname>GaborBlobFeature.cpp</compoundname>
+    <includes refid="stdafx_8h" local="yes">stdafx.h</includes>
+    <includes refid="_gabor_blob_feature_8h" local="yes">GaborBlobFeature.h</includes>
+    <incdepgraph>
+      <node id="419">
+        <label>SDKDDKVer.h</label>
+      </node>
+      <node id="422">
+        <label>GaborBlobFeature.h</label>
+        <link refid="_gabor_blob_feature_8h"/>
+        <childnode refid="423" relation="include">
+        </childnode>
+        <childnode refid="424" relation="include">
+        </childnode>
+        <childnode refid="425" relation="include">
+        </childnode>
+      </node>
+      <node id="423">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="417">
+        <label>stdafx.h</label>
+        <link refid="stdafx_8h"/>
+        <childnode refid="418" relation="include">
+        </childnode>
+        <childnode refid="420" relation="include">
+        </childnode>
+        <childnode refid="421" relation="include">
+        </childnode>
+      </node>
+      <node id="425">
+        <label>feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="424">
+        <label>opencv\ml.h</label>
+      </node>
+      <node id="421">
+        <label>tchar.h</label>
+      </node>
+      <node id="418">
+        <label>targetver.h</label>
+        <link refid="targetver_8h"/>
+        <childnode refid="419" relation="include">
+        </childnode>
+      </node>
+      <node id="416">
+        <label>ManuscriptApp/GaborBlobFeature.cpp</label>
+        <link refid="GaborBlobFeature.cpp"/>
+        <childnode refid="417" relation="include">
+        </childnode>
+        <childnode refid="422" relation="include">
+        </childnode>
+      </node>
+      <node id="420">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8h" kindref="compound">stdafx.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_gabor_blob_feature_8h" kindref="compound">GaborBlobFeature.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gabor_blob_feature_1a918d4aaee8cd2eda328d848f74431112" kindref="member">GaborBlobFeature::setSamples</ref>(Mat&amp;<sp/>samples){</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>0<sp/>;<sp/>row<sp/>&lt;<sp/>_blob.rows;<sp/>row++)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0<sp/>;<sp/>col<sp/>&lt;<sp/>_blob.cols;<sp/>col++<sp/>){</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(idx,<sp/>0)<sp/>=<sp/>row<sp/>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(idx,<sp/>1)<sp/>=<sp/>col<sp/>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>samples.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(idx,<sp/>2)<sp/>=<sp/>_blob.at&lt;uchar&gt;(row,<sp/>col)<sp/>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx++<sp/>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Fit<sp/>a<sp/>gussian<sp/>and<sp/>extract<sp/>the<sp/>parameters<sp/>from<sp/>it<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gabor_blob_feature_1abe712f318a256f12d18a15ebf3fdf125" kindref="member">GaborBlobFeature::computeParams</ref>(){</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nsamples<sp/>=<sp/>_blob.rows<sp/>*<sp/>_blob.cols<sp/>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>samples(nsamples,<sp/>3,<sp/>CV_64F);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>cov(3,3,CV_64F);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>mean(3,3,CV_64F);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>value(3,3,<sp/>CV_64F);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>vects(3,3,<sp/>CV_64F);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_gabor_blob_feature_1a918d4aaee8cd2eda328d848f74431112" kindref="member">setSamples</ref>(samples);<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>calcCovarMatrix(samples,<sp/>cov,<sp/>mean,<sp/>CV_COVAR_NORMAL|CV_COVAR_ROWS);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>eigen(cov,<sp/>value,<sp/>vects);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>_majorDirection<sp/>=<sp/>Point2f(vects.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(0,0),<sp/>vects.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(0,1))<sp/>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>_minorDirection<sp/>=<sp/>Point2f(vects.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(1,0),<sp/>vects.at&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(1,1))<sp/>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_gabor_blob_feature_1ac9dd690e58da5a3a1c1f1964c2949a7c" kindref="member">GaborBlobFeature::distance</ref>(<ref refid="class_feature" kindref="compound">Feature</ref>*<sp/>a){</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.cpp"/>
+  </compounddef>
+</doxygen>

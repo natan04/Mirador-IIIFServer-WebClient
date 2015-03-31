@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_feature_extractor" kind="class" prot="public" abstract="yes">
+    <compoundname>FeatureExtractor</compoundname>
+    <derivedcompoundref refid="class_gabor_blob_extractor" prot="public" virt="non-virtual">GaborBlobExtractor</derivedcompoundref>
+    <includes refid="_feature_extractor_8h" local="no">FeatureExtractor.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_feature_extractor_1a56fefb5d4a1d14aef973442b4bf47a62" prot="protected" static="no" mutable="no">
+        <type>Mat</type>
+        <definition>Mat FeatureExtractor::_image</definition>
+        <argsstring></argsstring>
+        <name>_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="12" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_feature_extractor_1a20fdc922c648855f2d6e4ba98377c2c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FeatureExtractor::FeatureExtractor</definition>
+        <argsstring>(void)</argsstring>
+        <name>FeatureExtractor</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="15" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_feature_extractor_1a69618427765f959e239836106f33dc61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FeatureExtractor::FeatureExtractor</definition>
+        <argsstring>(Mat &amp;img)</argsstring>
+        <name>FeatureExtractor</name>
+        <param>
+          <type>Mat &amp;</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="16" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" bodystart="16" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_feature_extractor_1ab659cba0f7ca31313ebf80544400dfae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FeatureExtractor::~FeatureExtractor</definition>
+        <argsstring>(void)</argsstring>
+        <name>~FeatureExtractor</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="19" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_feature_extractor_1a2f56319a663c984edce8b3c977bf8b89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void FeatureExtractor::setImage</definition>
+        <argsstring>(Mat &amp;img)</argsstring>
+        <name>setImage</name>
+        <param>
+          <type>Mat &amp;</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="21" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_feature_extractor_1a34507279297dcc1bc8a7ba9422da4abf" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void FeatureExtractor::extract</definition>
+        <argsstring>(vector&lt; Feature * &gt; &amp;)=0</argsstring>
+        <name>extract</name>
+        <reimplementedby refid="class_gabor_blob_extractor_1aff19b47162d8d4244ac9325b82f1de4f">extract</reimplementedby>
+        <param>
+          <type>vector&lt; <ref refid="class_feature" kindref="compound">Feature</ref> * &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="22" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="30">
+        <label>GaborBlobExtractor</label>
+        <link refid="class_gabor_blob_extractor"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>FeatureExtractor</label>
+        <link refid="class_feature_extractor"/>
+      </node>
+    </inheritancegraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/FeatureExtractor.h" bodystart="10" bodyend="23"/>
+    <listofallmembers>
+      <member refid="class_feature_extractor_1a56fefb5d4a1d14aef973442b4bf47a62" prot="protected" virt="non-virtual"><scope>FeatureExtractor</scope><name>_image</name></member>
+      <member refid="class_feature_extractor_1a34507279297dcc1bc8a7ba9422da4abf" prot="public" virt="pure-virtual"><scope>FeatureExtractor</scope><name>extract</name></member>
+      <member refid="class_feature_extractor_1a20fdc922c648855f2d6e4ba98377c2c0" prot="public" virt="non-virtual"><scope>FeatureExtractor</scope><name>FeatureExtractor</name></member>
+      <member refid="class_feature_extractor_1a69618427765f959e239836106f33dc61" prot="public" virt="non-virtual"><scope>FeatureExtractor</scope><name>FeatureExtractor</name></member>
+      <member refid="class_feature_extractor_1a2f56319a663c984edce8b3c977bf8b89" prot="public" virt="non-virtual"><scope>FeatureExtractor</scope><name>setImage</name></member>
+      <member refid="class_feature_extractor_1ab659cba0f7ca31313ebf80544400dfae" prot="public" virt="non-virtual"><scope>FeatureExtractor</scope><name>~FeatureExtractor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

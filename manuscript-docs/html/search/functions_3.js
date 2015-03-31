@@ -1,0 +1,11 @@
+var searchData=
+[
+  ['dimage',['DImage',['../class_d_image.html#ab276c7e2458e697fbff3366a27f9bf93',1,'DImage::DImage()'],['../class_d_image.html#a7d7c1b9cf26cf48c81b9d5cd424ab788',1,'DImage::DImage(Mat mat)']]],
+  ['display',['display',['../class_d_image.html#a56a11350bd9375dfe95a62abc2f4f8f8',1,'DImage::display()'],['../namespace_image_tools.html#a45492e740afde5d3482a71d5cee9842b',1,'ImageTools::display(String win, DImage &amp;img)'],['../namespace_image_tools.html#a00f243162ed9b7c3dc16d105425e473d',1,'ImageTools::display(String win, Mat &amp;img)'],['../_manuscript_app_8cpp.html#a6adf8b0b3ed88b7cdb41aba7aa53eb9e',1,'display(String win, DImage &amp;img):&#160;ManuscriptApp.cpp'],['../_manuscript_app_8cpp.html#a3c44ed80f6715624f3f9385afc4bdbc6',1,'display(String win, Mat img):&#160;ManuscriptApp.cpp']]],
+  ['distance',['distance',['../class_feature.html#a7dbbdc860cdc97bcd31584ae10dab3b1',1,'Feature::distance()'],['../class_gabor_blob_feature.html#ac9dd690e58da5a3a1c1f1964c2949a7c',1,'GaborBlobFeature::distance()'],['../class_int_feature.html#a629ca66179636f0e1e673b017fdbd95e',1,'IntFeature::distance()'],['../class_metric.html#a0609682cc98cbd0a5e94df800ff18145',1,'Metric::distance(Feature *a, Feature *b)=0'],['../class_metric.html#aeffee7c23f39f51669c4ce8cd7551cdd',1,'Metric::distance(vector&lt; Feature * &gt; &amp;a, vector&lt; Feature * &gt; &amp;b)=0'],['../class_metric_d_t_w.html#a39e2011060167764d3c7e65e5072fbb5',1,'MetricDTW::distance(Feature *a, Feature *b)'],['../class_metric_d_t_w.html#a7343dcb7bd4d654959e12bfb672622a2',1,'MetricDTW::distance(vector&lt; Feature * &gt; &amp;a, vector&lt; Feature * &gt; &amp;b)'],['../class_scalar_feature.html#a5b95859a0d7409d7d9306a0c262e8e17',1,'ScalarFeature::distance()']]],
+  ['distancefromdiagonal',['distanceFromDiagonal',['../class_metric_d_t_w.html#addd6e64c5742481e13bccf48daf62248',1,'MetricDTW']]],
+  ['dllmain',['DllMain',['../dllmain_8cpp.html#a26e64fb39b69bcd9d1274d279f1561b9',1,'dllmain.cpp']]],
+  ['draw',['draw',['../class_connected_component.html#acf50ca5ed3d677faaff0b160b1e2a136',1,'ConnectedComponent']]],
+  ['drawonimage',['drawOnImage',['../class_contour.html#ac36273da0f11bf3095087f26ca3c6440',1,'Contour']]],
+  ['drawprofile',['drawProfile',['../class_projection_profile.html#a8bb3b2db0312483fc39ea60cb0067612',1,'ProjectionProfile']]]
+];

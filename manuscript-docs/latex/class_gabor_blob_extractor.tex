@@ -1,0 +1,100 @@
+\hypertarget{class_gabor_blob_extractor}{\section{Gabor\+Blob\+Extractor Class Reference}
+\label{class_gabor_blob_extractor}\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+}
+
+
+{\ttfamily \#include $<$Gabor\+Blob\+Extractor.\+h$>$}
+
+Inheritance diagram for Gabor\+Blob\+Extractor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_gabor_blob_extractor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_gabor_blob_extractor_a7f3a5a4c61cd515fbae56fdfefe3d004}{Gabor\+Blob\+Extractor} ()
+\item 
+\hyperlink{class_gabor_blob_extractor_a5c911de75dbda420e572cf1715440bb1}{Gabor\+Blob\+Extractor} (int n, int r, double sigma, double lambda)
+\item 
+\hyperlink{class_gabor_blob_extractor_ac13442f2a5ca9d980efb4ed93c6576f6}{$\sim$\+Gabor\+Blob\+Extractor} ()
+\item 
+void \hyperlink{class_gabor_blob_extractor_a033c00368027417ff74d14ce98e12108}{set\+Num\+Orientation} (int n)
+\item 
+\hyperlink{class_gabor_blob_feature}{Gabor\+Blob\+Feature} $\ast$ \hyperlink{class_gabor_blob_extractor_a9f332a64eaa87a97cd48fbc34a5a58da}{get\+Component\+Feature} (\hyperlink{class_connected_component}{Connected\+Component} $\ast$component)
+\item 
+void \hyperlink{class_gabor_blob_extractor_a8111b21c0587c91e53267bdcef9b1882}{process\+Response} (Mat \&response, vector$<$ \hyperlink{class_feature}{Feature} $\ast$ $>$ \&list)
+\item 
+void \hyperlink{class_gabor_blob_extractor_aff19b47162d8d4244ac9325b82f1de4f}{extract} (vector$<$ \hyperlink{class_feature}{Feature} $\ast$ $>$ \&)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_gabor_blob_extractor_a7f3a5a4c61cd515fbae56fdfefe3d004}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{Gabor\+Blob\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Gabor\+Blob\+Extractor\+::\+Gabor\+Blob\+Extractor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_gabor_blob_extractor_a7f3a5a4c61cd515fbae56fdfefe3d004}
+\hypertarget{class_gabor_blob_extractor_a5c911de75dbda420e572cf1715440bb1}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{Gabor\+Blob\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Gabor\+Blob\+Extractor\+::\+Gabor\+Blob\+Extractor (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{int}]{r, }
+\item[{double}]{sigma, }
+\item[{double}]{lambda}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_gabor_blob_extractor_a5c911de75dbda420e572cf1715440bb1}
+\hypertarget{class_gabor_blob_extractor_ac13442f2a5ca9d980efb4ed93c6576f6}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!````~Gabor\+Blob\+Extractor@{$\sim$\+Gabor\+Blob\+Extractor}}
+\index{````~Gabor\+Blob\+Extractor@{$\sim$\+Gabor\+Blob\+Extractor}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{$\sim$\+Gabor\+Blob\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Gabor\+Blob\+Extractor\+::$\sim$\+Gabor\+Blob\+Extractor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_gabor_blob_extractor_ac13442f2a5ca9d980efb4ed93c6576f6}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_gabor_blob_extractor_aff19b47162d8d4244ac9325b82f1de4f}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!extract@{extract}}
+\index{extract@{extract}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{extract}]{\setlength{\rightskip}{0pt plus 5cm}void Gabor\+Blob\+Extractor\+::extract (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Feature} $\ast$ $>$ \&}]{list}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_gabor_blob_extractor_aff19b47162d8d4244ac9325b82f1de4f}
+
+
+Implements \hyperlink{class_feature_extractor_a34507279297dcc1bc8a7ba9422da4abf}{Feature\+Extractor}.
+
+\hypertarget{class_gabor_blob_extractor_a9f332a64eaa87a97cd48fbc34a5a58da}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!get\+Component\+Feature@{get\+Component\+Feature}}
+\index{get\+Component\+Feature@{get\+Component\+Feature}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{get\+Component\+Feature}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gabor\+Blob\+Feature} $\ast$ Gabor\+Blob\+Extractor\+::get\+Component\+Feature (
+\begin{DoxyParamCaption}
+\item[{{\bf Connected\+Component} $\ast$}]{component}
+\end{DoxyParamCaption}
+)}}\label{class_gabor_blob_extractor_a9f332a64eaa87a97cd48fbc34a5a58da}
+\hypertarget{class_gabor_blob_extractor_a8111b21c0587c91e53267bdcef9b1882}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!process\+Response@{process\+Response}}
+\index{process\+Response@{process\+Response}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{process\+Response}]{\setlength{\rightskip}{0pt plus 5cm}void Gabor\+Blob\+Extractor\+::process\+Response (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{response, }
+\item[{vector$<$ {\bf Feature} $\ast$ $>$ \&}]{list}
+\end{DoxyParamCaption}
+)}}\label{class_gabor_blob_extractor_a8111b21c0587c91e53267bdcef9b1882}
+\hypertarget{class_gabor_blob_extractor_a033c00368027417ff74d14ce98e12108}{\index{Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}!set\+Num\+Orientation@{set\+Num\+Orientation}}
+\index{set\+Num\+Orientation@{set\+Num\+Orientation}!Gabor\+Blob\+Extractor@{Gabor\+Blob\+Extractor}}
+\subsubsection[{set\+Num\+Orientation}]{\setlength{\rightskip}{0pt plus 5cm}void Gabor\+Blob\+Extractor\+::set\+Num\+Orientation (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_gabor_blob_extractor_a033c00368027417ff74d14ce98e12108}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Manuscript\+App/\hyperlink{_gabor_blob_extractor_8h}{Gabor\+Blob\+Extractor.\+h}\item 
+Manuscript\+App/\hyperlink{_gabor_blob_extractor_8cpp}{Gabor\+Blob\+Extractor.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_int_feature_8h" kind="file">
+    <compoundname>IntFeature.h</compoundname>
+    <includes local="no">math.h</includes>
+    <includes refid="_feature_8h" local="yes">feature.h</includes>
+    <includedby refid="_int_feature_8cpp" local="yes">ManuscriptApp/IntFeature.cpp</includedby>
+    <includedby refid="_manuscript_app_8cpp" local="yes">ManuscriptApp/ManuscriptApp.cpp</includedby>
+    <incdepgraph>
+      <node id="732">
+        <label>feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="731">
+        <label>math.h</label>
+      </node>
+      <node id="730">
+        <label>ManuscriptApp/IntFeature.h</label>
+        <link refid="IntFeature.h"/>
+        <childnode refid="731" relation="include">
+        </childnode>
+        <childnode refid="732" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="734">
+        <label>ManuscriptApp/IntFeature.cpp</label>
+        <link refid="_int_feature_8cpp"/>
+      </node>
+      <node id="735">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="733">
+        <label>ManuscriptApp/IntFeature.h</label>
+        <link refid="IntFeature.h"/>
+        <childnode refid="734" relation="include">
+        </childnode>
+        <childnode refid="735" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_int_feature" prot="public">IntFeature</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_INT_FEATURE_H_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_INT_FEATURE_H_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_feature_8h" kindref="compound">feature.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="class_int_feature" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_int_feature" kindref="compound">IntFeature</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_feature" kindref="compound">Feature</ref><sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_val<sp/>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="9" refid="class_int_feature_1accb2be99097e153df7abfde70894a9d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_int_feature_1accb2be99097e153df7abfde70894a9d2" kindref="member">IntFeature</ref>(){;}</highlight></codeline>
+<codeline lineno="10" refid="class_int_feature_1aef75cf64b6b58c3b40b9ec607b8444f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_int_feature_1aef75cf64b6b58c3b40b9ec607b8444f3" kindref="member">IntFeature</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>a){</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_val<sp/>=<sp/>a<sp/>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="class_int_feature_1aab965223e7190c970442ab059f8702ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_int_feature_1aab965223e7190c970442ab059f8702ee" kindref="member">val</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>a){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_val<sp/>=<sp/>a<sp/>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="class_int_feature_1a0293bade02b37e96c75e04b58b9b7146" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_int_feature_1a0293bade02b37e96c75e04b58b9b7146" kindref="member">val</ref>(){</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_val<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="class_int_feature_1a629ca66179636f0e1e673b017fdbd95e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_int_feature_1a629ca66179636f0e1e673b017fdbd95e" kindref="member">distance</ref>(<ref refid="class_feature" kindref="compound">Feature</ref>*<sp/>a)<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>abs(_val<sp/>-<sp/>((<ref refid="class_int_feature" kindref="compound">IntFeature</ref>&amp;)a).<ref refid="class_int_feature_1a0293bade02b37e96c75e04b58b9b7146" kindref="member">val</ref>());</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/IntFeature.h"/>
+  </compounddef>
+</doxygen>

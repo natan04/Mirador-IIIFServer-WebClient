@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_rafi_text_line_extractor" kind="class" prot="public">
+    <compoundname>RafiTextLineExtractor</compoundname>
+    <basecompoundref refid="class_text_line_extractor" prot="public" virt="non-virtual">TextLineExtractor</basecompoundref>
+    <includes refid="_rafi_text_line_extractor_8h" local="no">RafiTextLineExtractor.h</includes>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_rafi_text_line_extractor_1a4a5f293ba87e2c80d9e02b38050351ea" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Mat</type>
+        <definition>Mat RafiTextLineExtractor::filterDocument</definition>
+        <argsstring>()</argsstring>
+        <name>filterDocument</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h" line="6" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.cpp" bodystart="46" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_rafi_text_line_extractor_1a96292e5e16014f1e48cf4754bf130d1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RafiTextLineExtractor::TraverseTree</definition>
+        <argsstring>()</argsstring>
+        <name>TraverseTree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h" line="8" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.cpp" bodystart="11" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rafi_text_line_extractor_1a7bbeb76ff90b68710376be91fddb95c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RafiTextLineExtractor::RafiTextLineExtractor</definition>
+        <argsstring>()</argsstring>
+        <name>RafiTextLineExtractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h" line="9" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.cpp" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rafi_text_line_extractor_1aec2e65306e243dfdf0675fb6987ff730" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void RafiTextLineExtractor::extract</definition>
+        <argsstring>()</argsstring>
+        <name>extract</name>
+        <reimplements refid="class_text_line_extractor_1ae3e60f7dfccd378b6144510b5b85104f">extract</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.cpp" bodystart="57" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="143">
+        <label>RafiTextLineExtractor</label>
+        <link refid="class_rafi_text_line_extractor"/>
+        <childnode refid="144" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="144">
+        <label>TextLineExtractor</label>
+        <link refid="class_text_line_extractor"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="145">
+        <label>RafiTextLineExtractor</label>
+        <link refid="class_rafi_text_line_extractor"/>
+        <childnode refid="146" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="146">
+        <label>TextLineExtractor</label>
+        <link refid="class_text_line_extractor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h" line="3" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h" bodystart="3" bodyend="11"/>
+    <listofallmembers>
+      <member refid="class_text_line_extractor_1acc518adbefc6a211ce84f5124da31709" prot="protected" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>_image</name></member>
+      <member refid="class_rafi_text_line_extractor_1aec2e65306e243dfdf0675fb6987ff730" prot="public" virt="virtual"><scope>RafiTextLineExtractor</scope><name>extract</name></member>
+      <member refid="class_rafi_text_line_extractor_1a4a5f293ba87e2c80d9e02b38050351ea" prot="protected" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>filterDocument</name></member>
+      <member refid="class_rafi_text_line_extractor_1a7bbeb76ff90b68710376be91fddb95c9" prot="public" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>RafiTextLineExtractor</name></member>
+      <member refid="class_text_line_extractor_1a67f7e8bdb62bff99de9816b55de4c6d0" prot="public" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>setImage</name></member>
+      <member refid="class_text_line_extractor_1a5f0c3627efd8b25b82e747a191b21d54" prot="public" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>TextLineExtractor</name></member>
+      <member refid="class_rafi_text_line_extractor_1a96292e5e16014f1e48cf4754bf130d1f" prot="public" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>TraverseTree</name></member>
+      <member refid="class_text_line_extractor_1a220ed917eeb0ded278f9a08539149623" prot="public" virt="non-virtual"><scope>RafiTextLineExtractor</scope><name>~TextLineExtractor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_otsul_binarizer_8h" kind="file">
+    <compoundname>OtsulBinarizer.h</compoundname>
+    <includes refid="_image_binarizer_8h" local="yes">ImageBinarizer.h</includes>
+    <includedby refid="_otsul_binarizer_8cpp" local="yes">ManuscriptApp/OtsulBinarizer.cpp</includedby>
+    <incdepgraph>
+      <node id="914">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="912">
+        <label>ManuscriptApp/OtsulBinarizer.h</label>
+        <link refid="OtsulBinarizer.h"/>
+        <childnode refid="913" relation="include">
+        </childnode>
+      </node>
+      <node id="915">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="914" relation="include">
+        </childnode>
+      </node>
+      <node id="913">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="914" relation="include">
+        </childnode>
+        <childnode refid="915" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="917">
+        <label>ManuscriptApp/OtsulBinarizer.cpp</label>
+        <link refid="_otsul_binarizer_8cpp"/>
+      </node>
+      <node id="916">
+        <label>ManuscriptApp/OtsulBinarizer.h</label>
+        <link refid="OtsulBinarizer.h"/>
+        <childnode refid="917" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_otsul_binarizer" prot="public">OtsulBinarizer</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_OTSUBINARIZER_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_OTSUBINARIZER_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_binarizer_8h" kindref="compound">ImageBinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="class_otsul_binarizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_otsul_binarizer" kindref="compound">OtsulBinarizer</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_image_binarizer" kindref="compound">ImageBinarizer</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_otsul_binarizer_1a14064c86e424c1e68625b7fbc07195d5" kindref="member">binarize</ref>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/OtsulBinarizer.h"/>
+  </compounddef>
+</doxygen>

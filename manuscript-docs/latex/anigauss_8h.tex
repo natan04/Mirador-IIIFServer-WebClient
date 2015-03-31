@@ -1,0 +1,69 @@
+\hypertarget{anigauss_8h}{\section{Manuscript\+App/anigauss.h File Reference}
+\label{anigauss_8h}\index{Manuscript\+App/anigauss.\+h@{Manuscript\+App/anigauss.\+h}}
+}
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{anigauss_8h_a598a3330b3c21701223ee0ca14316eca}{P\+I}~3.\+14159265358979323846
+\item 
+\#define \hyperlink{anigauss_8h_af6cd02292ac5596aabfe6f66d3758aac}{S\+R\+C\+T\+Y\+P\+E}~double
+\item 
+\#define \hyperlink{anigauss_8h_a1eefe9e8a78002dee3e956f6a42a2015}{D\+S\+T\+T\+Y\+P\+E}~double
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{anigauss_8h_add0518151a7f774aae955a21358f1496}{Yv\+Vfilter\+Coef} (double sigma, double $\ast$filter)
+\item 
+void \hyperlink{anigauss_8h_a922a1e9ec611998813439d7ea7c28d3f}{Triggs\+M} (double $\ast$filter, double $\ast$M)
+\item 
+void \hyperlink{anigauss_8h_ae97e45541e212872609d2ad24f0672b8}{anigauss} (\hyperlink{anigauss_8h_af6cd02292ac5596aabfe6f66d3758aac}{S\+R\+C\+T\+Y\+P\+E} $\ast$input, \hyperlink{anigauss_8h_a1eefe9e8a78002dee3e956f6a42a2015}{D\+S\+T\+T\+Y\+P\+E} $\ast$output, int sizex, int sizey, double sigmav, double sigmau, double phi, int orderv, int orderu)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{anigauss_8h_a1eefe9e8a78002dee3e956f6a42a2015}{\index{anigauss.\+h@{anigauss.\+h}!D\+S\+T\+T\+Y\+P\+E@{D\+S\+T\+T\+Y\+P\+E}}
+\index{D\+S\+T\+T\+Y\+P\+E@{D\+S\+T\+T\+Y\+P\+E}!anigauss.\+h@{anigauss.\+h}}
+\subsubsection[{D\+S\+T\+T\+Y\+P\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+S\+T\+T\+Y\+P\+E~double}}\label{anigauss_8h_a1eefe9e8a78002dee3e956f6a42a2015}
+\hypertarget{anigauss_8h_a598a3330b3c21701223ee0ca14316eca}{\index{anigauss.\+h@{anigauss.\+h}!P\+I@{P\+I}}
+\index{P\+I@{P\+I}!anigauss.\+h@{anigauss.\+h}}
+\subsubsection[{P\+I}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+I~3.\+14159265358979323846}}\label{anigauss_8h_a598a3330b3c21701223ee0ca14316eca}
+\hypertarget{anigauss_8h_af6cd02292ac5596aabfe6f66d3758aac}{\index{anigauss.\+h@{anigauss.\+h}!S\+R\+C\+T\+Y\+P\+E@{S\+R\+C\+T\+Y\+P\+E}}
+\index{S\+R\+C\+T\+Y\+P\+E@{S\+R\+C\+T\+Y\+P\+E}!anigauss.\+h@{anigauss.\+h}}
+\subsubsection[{S\+R\+C\+T\+Y\+P\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+R\+C\+T\+Y\+P\+E~double}}\label{anigauss_8h_af6cd02292ac5596aabfe6f66d3758aac}
+
+
+\subsection{Function Documentation}
+\hypertarget{anigauss_8h_ae97e45541e212872609d2ad24f0672b8}{\index{anigauss.\+h@{anigauss.\+h}!anigauss@{anigauss}}
+\index{anigauss@{anigauss}!anigauss.\+h@{anigauss.\+h}}
+\subsubsection[{anigauss}]{\setlength{\rightskip}{0pt plus 5cm}void anigauss (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+R\+C\+T\+Y\+P\+E} $\ast$}]{input, }
+\item[{{\bf D\+S\+T\+T\+Y\+P\+E} $\ast$}]{output, }
+\item[{int}]{sizex, }
+\item[{int}]{sizey, }
+\item[{double}]{sigmav, }
+\item[{double}]{sigmau, }
+\item[{double}]{phi, }
+\item[{int}]{orderv, }
+\item[{int}]{orderu}
+\end{DoxyParamCaption}
+)}}\label{anigauss_8h_ae97e45541e212872609d2ad24f0672b8}
+\hypertarget{anigauss_8h_a922a1e9ec611998813439d7ea7c28d3f}{\index{anigauss.\+h@{anigauss.\+h}!Triggs\+M@{Triggs\+M}}
+\index{Triggs\+M@{Triggs\+M}!anigauss.\+h@{anigauss.\+h}}
+\subsubsection[{Triggs\+M}]{\setlength{\rightskip}{0pt plus 5cm}void Triggs\+M (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{filter, }
+\item[{double $\ast$}]{M}
+\end{DoxyParamCaption}
+)}}\label{anigauss_8h_a922a1e9ec611998813439d7ea7c28d3f}
+\hypertarget{anigauss_8h_add0518151a7f774aae955a21358f1496}{\index{anigauss.\+h@{anigauss.\+h}!Yv\+Vfilter\+Coef@{Yv\+Vfilter\+Coef}}
+\index{Yv\+Vfilter\+Coef@{Yv\+Vfilter\+Coef}!anigauss.\+h@{anigauss.\+h}}
+\subsubsection[{Yv\+Vfilter\+Coef}]{\setlength{\rightskip}{0pt plus 5cm}void Yv\+Vfilter\+Coef (
+\begin{DoxyParamCaption}
+\item[{double}]{sigma, }
+\item[{double $\ast$}]{filter}
+\end{DoxyParamCaption}
+)}}\label{anigauss_8h_add0518151a7f774aae955a21358f1496}

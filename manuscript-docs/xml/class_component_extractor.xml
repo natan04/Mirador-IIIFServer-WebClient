@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_component_extractor" kind="class" prot="public" abstract="yes">
+    <compoundname>ComponentExtractor</compoundname>
+    <derivedcompoundref refid="class_binary_component_extractor" prot="public" virt="non-virtual">BinaryComponentExtractor</derivedcompoundref>
+    <includes refid="_component_extractor_8h" local="no">ComponentExtractor.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_component_extractor_1a57494f356e871fc5216eb13fbdb76f0b" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* ComponentExtractor::_image</definition>
+        <argsstring></argsstring>
+        <name>_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" line="14" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_component_extractor_1adccc457807e0b48696f94d3c6d28e88f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ComponentExtractor::ComponentExtractor</definition>
+        <argsstring>(void)</argsstring>
+        <name>ComponentExtractor</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" line="17" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_component_extractor_1a4e079014da28395a14fb63babf10e1c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ComponentExtractor::~ComponentExtractor</definition>
+        <argsstring>(void)</argsstring>
+        <name>~ComponentExtractor</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" line="18" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_component_extractor_1a3ef66896076dc20816fd656b8aeb1f96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ComponentExtractor::setImage</definition>
+        <argsstring>(DImage *img)</argsstring>
+        <name>setImage</name>
+        <param>
+          <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" line="20" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_component_extractor_1ac26bd7eec0e6caa7312f603bf2368d84" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void ComponentExtractor::extract</definition>
+        <argsstring>(vector&lt; ConnectedComponent * &gt; &amp;)=0</argsstring>
+        <name>extract</name>
+        <reimplementedby refid="class_binary_component_extractor_1a16232815f3a3e8e28fd80a733ff71383">extract</reimplementedby>
+        <param>
+          <type>vector&lt; <ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref> * &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" line="22" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>ComponentExtractor</label>
+        <link refid="class_component_extractor"/>
+      </node>
+      <node id="13">
+        <label>BinaryComponentExtractor</label>
+        <link refid="class_binary_component_extractor"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="14">
+        <label>ComponentExtractor</label>
+        <link refid="class_component_extractor"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>_image</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>DImage</label>
+        <link refid="class_d_image"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" line="12" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h" bodystart="12" bodyend="23"/>
+    <listofallmembers>
+      <member refid="class_component_extractor_1a57494f356e871fc5216eb13fbdb76f0b" prot="protected" virt="non-virtual"><scope>ComponentExtractor</scope><name>_image</name></member>
+      <member refid="class_component_extractor_1adccc457807e0b48696f94d3c6d28e88f" prot="public" virt="non-virtual"><scope>ComponentExtractor</scope><name>ComponentExtractor</name></member>
+      <member refid="class_component_extractor_1ac26bd7eec0e6caa7312f603bf2368d84" prot="public" virt="pure-virtual"><scope>ComponentExtractor</scope><name>extract</name></member>
+      <member refid="class_component_extractor_1a3ef66896076dc20816fd656b8aeb1f96" prot="public" virt="non-virtual"><scope>ComponentExtractor</scope><name>setImage</name></member>
+      <member refid="class_component_extractor_1a4e079014da28395a14fb63babf10e1c6" prot="public" virt="non-virtual"><scope>ComponentExtractor</scope><name>~ComponentExtractor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_histogram_8h" kind="file">
+    <compoundname>Histogram.h</compoundname>
+    <includes local="no">opencv/cv.h</includes>
+    <includedby refid="_histogram_8cpp" local="yes">ManuscriptApp/Histogram.cpp</includedby>
+    <incdepgraph>
+      <node id="479">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="478">
+        <label>ManuscriptApp/Histogram.h</label>
+        <link refid="Histogram.h"/>
+        <childnode refid="479" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="480">
+        <label>ManuscriptApp/Histogram.h</label>
+        <link refid="Histogram.h"/>
+        <childnode refid="481" relation="include">
+        </childnode>
+      </node>
+      <node id="481">
+        <label>ManuscriptApp/Histogram.cpp</label>
+        <link refid="_histogram_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_histogram" prot="public">Histogram</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_HISTOGRAM_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_HISTOGRAM_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv/cv.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacecv" kindref="compound">cv</ref><sp/>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="class_histogram" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_histogram" kindref="compound">Histogram</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>_mat<sp/>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_histogram" kindref="compound">Histogram</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="class_histogram" kindref="compound">Histogram</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="class_histogram_1a46645826dac5764fa12488acf77fbc5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_histogram_1a46645826dac5764fa12488acf77fbc5f" kindref="member">set</ref>(Mat<sp/>mat){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mat<sp/>=<sp/>mat<sp/>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="class_histogram_1a182b34a7f9a0a23725029f4be34cea0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">(){</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_mat<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h"/>
+  </compounddef>
+</doxygen>

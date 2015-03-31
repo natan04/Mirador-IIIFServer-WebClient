@@ -1,0 +1,108 @@
+\hypertarget{_manuscript_app_8cpp}{\section{Manuscript\+App/\+Manuscript\+App.cpp File Reference}
+\label{_manuscript_app_8cpp}\index{Manuscript\+App/\+Manuscript\+App.\+cpp@{Manuscript\+App/\+Manuscript\+App.\+cpp}}
+}
+{\ttfamily \#include \char`\"{}stdafx.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$opencv/cv.\+h$>$}\\*
+{\ttfamily \#include $<$opencv2/core/core.\+hpp$>$}\\*
+{\ttfamily \#include $<$opencv2/highgui/highgui.\+hpp$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}D\+Image.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Int\+Feature.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Scalar\+Feature.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Metric\+D\+T\+W.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Projection\+Profile.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Profile\+Seam\+Text\+Line\+Extractor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Gabor\+Blob\+Feature.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Gabor\+Blob\+Extractor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Rafi\+Text\+Line\+Extractor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Anisotropic\+Filter.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Otsu\+Binarizer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Binary\+Component\+Extractor.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_manuscript_app_8cpp_a6adf8b0b3ed88b7cdb41aba7aa53eb9e}{display} (String win, \hyperlink{class_d_image}{D\+Image} \&img)
+\item 
+void \hyperlink{_manuscript_app_8cpp_a3c44ed80f6715624f3f9385afc4bdbc6}{display} (String win, Mat img)
+\item 
+void \hyperlink{_manuscript_app_8cpp_a41735df986ae4115fdd69e30bdd2b178}{test\+D\+T\+W} ()
+\item 
+void \hyperlink{_manuscript_app_8cpp_a1d8d25e26990f41c53aa22717c315bb5}{Test\+Gabor\+Features} (\hyperlink{class_d_image}{D\+Image} $\ast$img, int n, int r, double sigma, double lambda)
+\item 
+void \hyperlink{_manuscript_app_8cpp_a427f82c128b5d7728cbc37834fb90d9f}{Test\+Rafi\+Alg} (\hyperlink{class_d_image}{D\+Image} $\ast$img)
+\item 
+void \hyperlink{_manuscript_app_8cpp_a177afe71722ac091241a9e672f2f5940}{Test\+Projection} (\hyperlink{class_d_image}{D\+Image} $\ast$img)
+\item 
+int \hyperlink{_manuscript_app_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{_manuscript_app_8cpp_ad3eaaa2080aad3470dce85656e011ed9}{Image\+Path}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_manuscript_app_8cpp_a6adf8b0b3ed88b7cdb41aba7aa53eb9e}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!display@{display}}
+\index{display@{display}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{display}]{\setlength{\rightskip}{0pt plus 5cm}void display (
+\begin{DoxyParamCaption}
+\item[{String}]{win, }
+\item[{{\bf D\+Image} \&}]{img}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a6adf8b0b3ed88b7cdb41aba7aa53eb9e}
+\hypertarget{_manuscript_app_8cpp_a3c44ed80f6715624f3f9385afc4bdbc6}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!display@{display}}
+\index{display@{display}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{display}]{\setlength{\rightskip}{0pt plus 5cm}void display (
+\begin{DoxyParamCaption}
+\item[{String}]{win, }
+\item[{Mat}]{img}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a3c44ed80f6715624f3f9385afc4bdbc6}
+\hypertarget{_manuscript_app_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!main@{main}}
+\index{main@{main}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+\hypertarget{_manuscript_app_8cpp_a41735df986ae4115fdd69e30bdd2b178}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!test\+D\+T\+W@{test\+D\+T\+W}}
+\index{test\+D\+T\+W@{test\+D\+T\+W}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{test\+D\+T\+W}]{\setlength{\rightskip}{0pt plus 5cm}void test\+D\+T\+W (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a41735df986ae4115fdd69e30bdd2b178}
+\hypertarget{_manuscript_app_8cpp_a1d8d25e26990f41c53aa22717c315bb5}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!Test\+Gabor\+Features@{Test\+Gabor\+Features}}
+\index{Test\+Gabor\+Features@{Test\+Gabor\+Features}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{Test\+Gabor\+Features}]{\setlength{\rightskip}{0pt plus 5cm}void Test\+Gabor\+Features (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+Image} $\ast$}]{img, }
+\item[{int}]{n, }
+\item[{int}]{r, }
+\item[{double}]{sigma, }
+\item[{double}]{lambda}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a1d8d25e26990f41c53aa22717c315bb5}
+\hypertarget{_manuscript_app_8cpp_a177afe71722ac091241a9e672f2f5940}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!Test\+Projection@{Test\+Projection}}
+\index{Test\+Projection@{Test\+Projection}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{Test\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Test\+Projection (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+Image} $\ast$}]{img}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a177afe71722ac091241a9e672f2f5940}
+\hypertarget{_manuscript_app_8cpp_a427f82c128b5d7728cbc37834fb90d9f}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!Test\+Rafi\+Alg@{Test\+Rafi\+Alg}}
+\index{Test\+Rafi\+Alg@{Test\+Rafi\+Alg}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{Test\+Rafi\+Alg}]{\setlength{\rightskip}{0pt plus 5cm}void Test\+Rafi\+Alg (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+Image} $\ast$}]{img}
+\end{DoxyParamCaption}
+)}}\label{_manuscript_app_8cpp_a427f82c128b5d7728cbc37834fb90d9f}
+
+
+\subsection{Variable Documentation}
+\hypertarget{_manuscript_app_8cpp_ad3eaaa2080aad3470dce85656e011ed9}{\index{Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}!Image\+Path@{Image\+Path}}
+\index{Image\+Path@{Image\+Path}!Manuscript\+App.\+cpp@{Manuscript\+App.\+cpp}}
+\subsubsection[{Image\+Path}]{\setlength{\rightskip}{0pt plus 5cm}string Image\+Path}}\label{_manuscript_app_8cpp_ad3eaaa2080aad3470dce85656e011ed9}

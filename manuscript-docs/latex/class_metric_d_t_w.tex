@@ -1,0 +1,111 @@
+\hypertarget{class_metric_d_t_w}{\section{Metric\+D\+T\+W Class Reference}
+\label{class_metric_d_t_w}\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+}
+
+
+{\ttfamily \#include $<$Metric\+D\+T\+W.\+h$>$}
+
+Inheritance diagram for Metric\+D\+T\+W\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_metric_d_t_w}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_metric_d_t_w_af3d7712e07808d281e8884432db40cf0}{Metric\+D\+T\+W} (void)
+\item 
+\hyperlink{class_metric_d_t_w_a1a84f60596f8517bb360f362e82b277a}{$\sim$\+Metric\+D\+T\+W} (void)
+\item 
+void \hyperlink{class_metric_d_t_w_ae10fb8483b49695918429f3cb960a063}{init\+Distance\+Map} (vector$<$ \hyperlink{class_feature}{Feature} $\ast$ $>$ \&a, vector$<$ \hyperlink{class_feature}{Feature} $\ast$ $>$ \&b)
+\item 
+double \hyperlink{class_metric_d_t_w_a39e2011060167764d3c7e65e5072fbb5}{distance} (\hyperlink{class_feature}{Feature} $\ast$a, \hyperlink{class_feature}{Feature} $\ast$b)
+\item 
+double \hyperlink{class_metric_d_t_w_a7343dcb7bd4d654959e12bfb672622a2}{distance} (vector$<$ \hyperlink{class_feature}{Feature} $\ast$ $>$ \&a, vector$<$ \hyperlink{class_feature}{Feature} $\ast$ $>$ \&b)
+\item 
+void \hyperlink{class_metric_d_t_w_a37af163866e5922fccc8676ca236a6f2}{find\+Minimal\+Path} (vector$<$ cv\+::\+Point2i $>$ \&path)
+\item 
+double \hyperlink{class_metric_d_t_w_addd6e64c5742481e13bccf48daf62248}{distance\+From\+Diagonal} (vector$<$ cv\+::\+Point2i $>$ \&path)
+\item 
+void \hyperlink{class_metric_d_t_w_ac5a4922e152fad12a7e91ab5884b4e86}{print} (vector$<$ cv\+::\+Point2i $>$ \&path)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_metric_d_t_w_af3d7712e07808d281e8884432db40cf0}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{Metric\+D\+T\+W}]{\setlength{\rightskip}{0pt plus 5cm}Metric\+D\+T\+W\+::\+Metric\+D\+T\+W (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_metric_d_t_w_af3d7712e07808d281e8884432db40cf0}
+\hypertarget{class_metric_d_t_w_a1a84f60596f8517bb360f362e82b277a}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!````~Metric\+D\+T\+W@{$\sim$\+Metric\+D\+T\+W}}
+\index{````~Metric\+D\+T\+W@{$\sim$\+Metric\+D\+T\+W}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{$\sim$\+Metric\+D\+T\+W}]{\setlength{\rightskip}{0pt plus 5cm}Metric\+D\+T\+W\+::$\sim$\+Metric\+D\+T\+W (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_metric_d_t_w_a1a84f60596f8517bb360f362e82b277a}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_metric_d_t_w_a39e2011060167764d3c7e65e5072fbb5}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!distance@{distance}}
+\index{distance@{distance}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}double Metric\+D\+T\+W\+::distance (
+\begin{DoxyParamCaption}
+\item[{{\bf Feature} $\ast$}]{a, }
+\item[{{\bf Feature} $\ast$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_metric_d_t_w_a39e2011060167764d3c7e65e5072fbb5}
+
+
+Implements \hyperlink{class_metric_a0609682cc98cbd0a5e94df800ff18145}{Metric}.
+
+\hypertarget{class_metric_d_t_w_a7343dcb7bd4d654959e12bfb672622a2}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!distance@{distance}}
+\index{distance@{distance}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}double Metric\+D\+T\+W\+::distance (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Feature} $\ast$ $>$ \&}]{a, }
+\item[{vector$<$ {\bf Feature} $\ast$ $>$ \&}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_metric_d_t_w_a7343dcb7bd4d654959e12bfb672622a2}
+
+
+Implements \hyperlink{class_metric_aeffee7c23f39f51669c4ce8cd7551cdd}{Metric}.
+
+\hypertarget{class_metric_d_t_w_addd6e64c5742481e13bccf48daf62248}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!distance\+From\+Diagonal@{distance\+From\+Diagonal}}
+\index{distance\+From\+Diagonal@{distance\+From\+Diagonal}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{distance\+From\+Diagonal}]{\setlength{\rightskip}{0pt plus 5cm}double Metric\+D\+T\+W\+::distance\+From\+Diagonal (
+\begin{DoxyParamCaption}
+\item[{vector$<$ cv\+::\+Point2i $>$ \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{class_metric_d_t_w_addd6e64c5742481e13bccf48daf62248}
+\hypertarget{class_metric_d_t_w_a37af163866e5922fccc8676ca236a6f2}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!find\+Minimal\+Path@{find\+Minimal\+Path}}
+\index{find\+Minimal\+Path@{find\+Minimal\+Path}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{find\+Minimal\+Path}]{\setlength{\rightskip}{0pt plus 5cm}void Metric\+D\+T\+W\+::find\+Minimal\+Path (
+\begin{DoxyParamCaption}
+\item[{vector$<$ cv\+::\+Point2i $>$ \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{class_metric_d_t_w_a37af163866e5922fccc8676ca236a6f2}
+\hypertarget{class_metric_d_t_w_ae10fb8483b49695918429f3cb960a063}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!init\+Distance\+Map@{init\+Distance\+Map}}
+\index{init\+Distance\+Map@{init\+Distance\+Map}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{init\+Distance\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void Metric\+D\+T\+W\+::init\+Distance\+Map (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Feature} $\ast$ $>$ \&}]{a, }
+\item[{vector$<$ {\bf Feature} $\ast$ $>$ \&}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_metric_d_t_w_ae10fb8483b49695918429f3cb960a063}
+\hypertarget{class_metric_d_t_w_ac5a4922e152fad12a7e91ab5884b4e86}{\index{Metric\+D\+T\+W@{Metric\+D\+T\+W}!print@{print}}
+\index{print@{print}!Metric\+D\+T\+W@{Metric\+D\+T\+W}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void Metric\+D\+T\+W\+::print (
+\begin{DoxyParamCaption}
+\item[{vector$<$ cv\+::\+Point2i $>$ \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{class_metric_d_t_w_ac5a4922e152fad12a7e91ab5884b4e86}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Manuscript\+App/\hyperlink{_metric_d_t_w_8h}{Metric\+D\+T\+W.\+h}\item 
+Manuscript\+App/\hyperlink{_metric_d_t_w_8cpp}{Metric\+D\+T\+W.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['_7ebinarycomponentextractor',['~BinaryComponentExtractor',['../class_binary_component_extractor.html#aa1be60410fd2e11b1bedfeac3bb44519',1,'BinaryComponentExtractor']]],
+  ['_7ecomponentextractor',['~ComponentExtractor',['../class_component_extractor.html#a4e079014da28395a14fb63babf10e1c6',1,'ComponentExtractor']]],
+  ['_7econnectedcomponent',['~ConnectedComponent',['../class_connected_component.html#a91f368cd2b9c725ba1ef610c0d18e223',1,'ConnectedComponent']]],
+  ['_7econtour',['~Contour',['../class_contour.html#ae8f5b046ccf380b396f54de0d01e731f',1,'Contour']]],
+  ['_7edimage',['~DImage',['../class_d_image.html#aa86a9aa92905deb0d8aab5f1298c6b9b',1,'DImage']]],
+  ['_7efeature',['~Feature',['../class_feature.html#ab6dfcfe22cc71c7b45a61d991b4ff775',1,'Feature']]],
+  ['_7efeatureextractor',['~FeatureExtractor',['../class_feature_extractor.html#ab659cba0f7ca31313ebf80544400dfae',1,'FeatureExtractor']]],
+  ['_7egaborblobextractor',['~GaborBlobExtractor',['../class_gabor_blob_extractor.html#ac13442f2a5ca9d980efb4ed93c6576f6',1,'GaborBlobExtractor']]],
+  ['_7egaborblobfeature',['~GaborBlobFeature',['../class_gabor_blob_feature.html#a4e9516cce87a10ac9ae8094d6b00215f',1,'GaborBlobFeature']]],
+  ['_7eglobalbinarizer',['~GlobalBinarizer',['../class_global_binarizer.html#ad5f62437210fb6c174db58456b09c632',1,'GlobalBinarizer']]],
+  ['_7ehistogram',['~Histogram',['../class_histogram.html#a6be99bbd12f2dfe12c38739166f37db2',1,'Histogram']]],
+  ['_7eimageconverter',['~ImageConverter',['../class_image_converter.html#a2f005d8140352d4a0befbef455e35e34',1,'ImageConverter']]],
+  ['_7eimagefilter',['~ImageFilter',['../class_image_filter.html#a8d04f3e5a04c9b93cdbb004519161936',1,'ImageFilter']]],
+  ['_7eimageoperator',['~ImageOperator',['../class_image_operator.html#a381d5ddd708a43730d9b0545b5fedff5',1,'ImageOperator']]],
+  ['_7eitaybinarizer',['~ItayBinarizer',['../class_itay_binarizer.html#ab4d858630f5efb4ee0506fe5b53d6629',1,'ItayBinarizer']]],
+  ['_7emetric',['~Metric',['../class_metric.html#a68ec53fa39cba9520dd20dceab1668fa',1,'Metric']]],
+  ['_7emetricdtw',['~MetricDTW',['../class_metric_d_t_w.html#a1a84f60596f8517bb360f362e82b277a',1,'MetricDTW']]],
+  ['_7epageimage',['~PageImage',['../class_page_image.html#a3a5b95965ac1d84f71c5ba3ee4890558',1,'PageImage']]],
+  ['_7eprofileseamtextlineextractor',['~ProfileSeamTextLineExtractor',['../class_profile_seam_text_line_extractor.html#a96e8293704190d08a00afb7fc0127f98',1,'ProfileSeamTextLineExtractor']]],
+  ['_7eprojectionprofile',['~ProjectionProfile',['../class_projection_profile.html#ab901ba9a5572288f36e23f926ec85028',1,'ProjectionProfile']]],
+  ['_7etextlineextractor',['~TextLineExtractor',['../class_text_line_extractor.html#a220ed917eeb0ded278f9a08539149623',1,'TextLineExtractor']]]
+];

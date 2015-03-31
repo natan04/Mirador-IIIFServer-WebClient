@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_profile_seam_text_line_extractor" kind="class" prot="public">
+    <compoundname>ProfileSeamTextLineExtractor</compoundname>
+    <basecompoundref refid="class_text_line_extractor" prot="public" virt="non-virtual">TextLineExtractor</basecompoundref>
+    <includes refid="_profile_seam_text_line_extractor_8h" local="no">ProfileSeamTextLineExtractor.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_profile_seam_text_line_extractor_1a4daf16c7aa397efb0adbdc52c736aa2a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_projection_profile" kindref="compound">ProjectionProfile</ref></type>
+        <definition>ProjectionProfile ProfileSeamTextLineExtractor::_projector</definition>
+        <argsstring></argsstring>
+        <name>_projector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_profile_seam_text_line_extractor_1a9d6cdb53b09d5f0c06707c08365e4f12" prot="private" static="no" mutable="no">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* ProfileSeamTextLineExtractor::_profile</definition>
+        <argsstring></argsstring>
+        <name>_profile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="11" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1aea5ea9e8b85bad21c0ac387412c1621d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_d_image" kindref="compound">DImage</ref> &gt;</type>
+        <definition>std::vector&lt; DImage &gt; ProfileSeamTextLineExtractor::createVerticalDevision</definition>
+        <argsstring>(int k, int projectionMethod)</argsstring>
+        <name>createVerticalDevision</name>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>projectionMethod</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="12" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.cpp" bodystart="17" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1a56244257e724e00c57014604c7961ab6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Mat</type>
+        <definition>Mat ProfileSeamTextLineExtractor::computeDerivative</definition>
+        <argsstring>()</argsstring>
+        <name>computeDerivative</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Total Gradient (approximate) </para>        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="13" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.cpp" bodystart="48" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1a8221b34c948ac11481e2b8c8658ca4c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; vector&lt; int &gt; &gt;</type>
+        <definition>vector&lt; vector&lt; int &gt; &gt; ProfileSeamTextLineExtractor::computeSeperatingSeams</definition>
+        <argsstring>()</argsstring>
+        <name>computeSeperatingSeams</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="16" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.cpp" bodystart="77" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1adf05463fd596d059da9669d3f8e43fed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProfileSeamTextLineExtractor::MedialSeamDrawing</definition>
+        <argsstring>()</argsstring>
+        <name>MedialSeamDrawing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="17" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.cpp" bodystart="34" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1ab20c9e4368b7f767e14dc96715bb6567" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ProfileSeamTextLineExtractor::ProfileSeamTextLineExtractor</definition>
+        <argsstring>(ProjectionProfile proj, DImage *prof, Mat img)</argsstring>
+        <name>ProfileSeamTextLineExtractor</name>
+        <param>
+          <type><ref refid="class_projection_profile" kindref="compound">ProjectionProfile</ref></type>
+          <declname>proj</declname>
+        </param>
+        <param>
+          <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+          <declname>prof</declname>
+        </param>
+        <param>
+          <type>Mat</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="18" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.cpp" bodystart="8" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1a96e8293704190d08a00afb7fc0127f98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ProfileSeamTextLineExtractor::~ProfileSeamTextLineExtractor</definition>
+        <argsstring>()</argsstring>
+        <name>~ProfileSeamTextLineExtractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="19" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_profile_seam_text_line_extractor_1a67017476e961c0531524d3f52cf70e23" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ProfileSeamTextLineExtractor::extract</definition>
+        <argsstring>()</argsstring>
+        <name>extract</name>
+        <reimplements refid="class_text_line_extractor_1ae3e60f7dfccd378b6144510b5b85104f">extract</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="20" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.cpp" bodystart="146" bodyend="190"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="132">
+        <label>ProfileSeamTextLineExtractor</label>
+        <link refid="class_profile_seam_text_line_extractor"/>
+        <childnode refid="133" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="133">
+        <label>TextLineExtractor</label>
+        <link refid="class_text_line_extractor"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="134">
+        <label>ProfileSeamTextLineExtractor</label>
+        <link refid="class_profile_seam_text_line_extractor"/>
+        <childnode refid="135" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="135">
+        <label>TextLineExtractor</label>
+        <link refid="class_text_line_extractor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" line="9" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ProfileSeamTextLineExtractor.h" bodystart="9" bodyend="21"/>
+    <listofallmembers>
+      <member refid="class_text_line_extractor_1acc518adbefc6a211ce84f5124da31709" prot="protected" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>_image</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1a9d6cdb53b09d5f0c06707c08365e4f12" prot="private" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>_profile</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1a4daf16c7aa397efb0adbdc52c736aa2a" prot="private" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>_projector</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1a56244257e724e00c57014604c7961ab6" prot="private" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>computeDerivative</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1a8221b34c948ac11481e2b8c8658ca4c6" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>computeSeperatingSeams</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1aea5ea9e8b85bad21c0ac387412c1621d" prot="private" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>createVerticalDevision</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1a67017476e961c0531524d3f52cf70e23" prot="public" virt="virtual"><scope>ProfileSeamTextLineExtractor</scope><name>extract</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1adf05463fd596d059da9669d3f8e43fed" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>MedialSeamDrawing</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1ab20c9e4368b7f767e14dc96715bb6567" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>ProfileSeamTextLineExtractor</name></member>
+      <member refid="class_text_line_extractor_1a67f7e8bdb62bff99de9816b55de4c6d0" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>setImage</name></member>
+      <member refid="class_text_line_extractor_1a5f0c3627efd8b25b82e747a191b21d54" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>TextLineExtractor</name></member>
+      <member refid="class_profile_seam_text_line_extractor_1a96e8293704190d08a00afb7fc0127f98" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>~ProfileSeamTextLineExtractor</name></member>
+      <member refid="class_text_line_extractor_1a220ed917eeb0ded278f9a08539149623" prot="public" virt="non-virtual"><scope>ProfileSeamTextLineExtractor</scope><name>~TextLineExtractor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

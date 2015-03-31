@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_gabor_blob_feature" kind="class" prot="public">
+    <compoundname>GaborBlobFeature</compoundname>
+    <basecompoundref refid="class_feature" prot="public" virt="non-virtual">Feature</basecompoundref>
+    <includes refid="_gabor_blob_feature_8h" local="no">GaborBlobFeature.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_gabor_blob_feature_1a57399d55db28962bd1db087bc89e63a4" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float GaborBlobFeature::_angle</definition>
+        <argsstring></argsstring>
+        <name>_angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="12" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_feature_1a364a85d04deb64609edd6cf5d04589ff" prot="private" static="no" mutable="no">
+        <type>Point2f</type>
+        <definition>Point2f GaborBlobFeature::_majorDirection</definition>
+        <argsstring></argsstring>
+        <name>_majorDirection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="13" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_feature_1aa0a3bff3d5b1cae2b9ae8edfab4b0114" prot="private" static="no" mutable="no">
+        <type>Point2f</type>
+        <definition>Point2f GaborBlobFeature::_minorDirection</definition>
+        <argsstring></argsstring>
+        <name>_minorDirection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="14" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_feature_1a5262a11ae471a9dfb5a16cddfba72b9e" prot="private" static="no" mutable="no">
+        <type>Mat</type>
+        <definition>Mat GaborBlobFeature::_blob</definition>
+        <argsstring></argsstring>
+        <name>_blob</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="15" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_gabor_blob_feature_1a69e3ae10ed6cdd4d2a1263eccadf9c43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GaborBlobFeature::GaborBlobFeature</definition>
+        <argsstring>()</argsstring>
+        <name>GaborBlobFeature</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="18" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1a3622476f0e482a1bae9efd0fe886f43b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GaborBlobFeature::GaborBlobFeature</definition>
+        <argsstring>(float angle)</argsstring>
+        <name>GaborBlobFeature</name>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="22" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1a4e9516cce87a10ac9ae8094d6b00215f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GaborBlobFeature::~GaborBlobFeature</definition>
+        <argsstring>()</argsstring>
+        <name>~GaborBlobFeature</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="26" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1aeccf061ebe315eae8d9371cb0f80d3ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobFeature::angle</definition>
+        <argsstring>(float angle)</argsstring>
+        <name>angle</name>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="28" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="28" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1aab6f437b09cb5bb2788ea84dcb25ea9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float GaborBlobFeature::angle</definition>
+        <argsstring>()</argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="32" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="32" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1ad3781ba28ee46dc9ee95481413d8f56a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobFeature::majorDirection</definition>
+        <argsstring>(Point2f dir)</argsstring>
+        <name>majorDirection</name>
+        <param>
+          <type>Point2f</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="36" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1a0e060ac23a33cc1edb3db7616c4ab818" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Point2f</type>
+        <definition>Point2f GaborBlobFeature::majorDirection</definition>
+        <argsstring>()</argsstring>
+        <name>majorDirection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="40" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="40" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1ac77bb0d685ec358947d98f2045950170" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobFeature::minorDirection</definition>
+        <argsstring>(Point2f dir)</argsstring>
+        <name>minorDirection</name>
+        <param>
+          <type>Point2f</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="44" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="44" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1ac68c416b9eb54df0e47421e86abd5bb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Point2f</type>
+        <definition>Point2f GaborBlobFeature::minorDirection</definition>
+        <argsstring>()</argsstring>
+        <name>minorDirection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="48" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1a9494cf854702bf93ef07f169cbd65b01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobFeature::setBlob</definition>
+        <argsstring>(Mat &amp;mat)</argsstring>
+        <name>setBlob</name>
+        <param>
+          <type>Mat &amp;</type>
+          <declname>mat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="52" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="52" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1aa501e837abb44fecf85e731147c97350" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Mat &amp;</type>
+        <definition>Mat&amp; GaborBlobFeature::getBlob</definition>
+        <argsstring>()</argsstring>
+        <name>getBlob</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="57" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1a918d4aaee8cd2eda328d848f74431112" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobFeature::setSamples</definition>
+        <argsstring>(Mat &amp;samples)</argsstring>
+        <name>setSamples</name>
+        <param>
+          <type>Mat &amp;</type>
+          <declname>samples</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="61" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.cpp" bodystart="4" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1abe712f318a256f12d18a15ebf3fdf125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobFeature::computeParams</definition>
+        <argsstring>()</argsstring>
+        <name>computeParams</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="62" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.cpp" bodystart="16" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_feature_1ac9dd690e58da5a3a1c1f1964c2949a7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GaborBlobFeature::distance</definition>
+        <argsstring>(Feature *a)</argsstring>
+        <name>distance</name>
+        <reimplements refid="class_feature_1a7dbbdc860cdc97bcd31584ae10dab3b1">distance</reimplements>
+        <param>
+          <type><ref refid="class_feature" kindref="compound">Feature</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="63" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.cpp" bodystart="31" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="36">
+        <label>GaborBlobFeature</label>
+        <link refid="class_gabor_blob_feature"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>Feature</label>
+        <link refid="class_feature"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="38">
+        <label>GaborBlobFeature</label>
+        <link refid="class_gabor_blob_feature"/>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>Feature</label>
+        <link refid="class_feature"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" line="11" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobFeature.h" bodystart="11" bodyend="64"/>
+    <listofallmembers>
+      <member refid="class_gabor_blob_feature_1a57399d55db28962bd1db087bc89e63a4" prot="private" virt="non-virtual"><scope>GaborBlobFeature</scope><name>_angle</name></member>
+      <member refid="class_gabor_blob_feature_1a5262a11ae471a9dfb5a16cddfba72b9e" prot="private" virt="non-virtual"><scope>GaborBlobFeature</scope><name>_blob</name></member>
+      <member refid="class_gabor_blob_feature_1a364a85d04deb64609edd6cf5d04589ff" prot="private" virt="non-virtual"><scope>GaborBlobFeature</scope><name>_majorDirection</name></member>
+      <member refid="class_gabor_blob_feature_1aa0a3bff3d5b1cae2b9ae8edfab4b0114" prot="private" virt="non-virtual"><scope>GaborBlobFeature</scope><name>_minorDirection</name></member>
+      <member refid="class_gabor_blob_feature_1aeccf061ebe315eae8d9371cb0f80d3ed" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>angle</name></member>
+      <member refid="class_gabor_blob_feature_1aab6f437b09cb5bb2788ea84dcb25ea9a" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>angle</name></member>
+      <member refid="class_gabor_blob_feature_1abe712f318a256f12d18a15ebf3fdf125" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>computeParams</name></member>
+      <member refid="class_gabor_blob_feature_1ac9dd690e58da5a3a1c1f1964c2949a7c" prot="public" virt="virtual"><scope>GaborBlobFeature</scope><name>distance</name></member>
+      <member refid="class_feature_1a0a781cf57089800686f88e27c50cb313" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>Feature</name></member>
+      <member refid="class_gabor_blob_feature_1a69e3ae10ed6cdd4d2a1263eccadf9c43" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>GaborBlobFeature</name></member>
+      <member refid="class_gabor_blob_feature_1a3622476f0e482a1bae9efd0fe886f43b" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>GaborBlobFeature</name></member>
+      <member refid="class_gabor_blob_feature_1aa501e837abb44fecf85e731147c97350" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>getBlob</name></member>
+      <member refid="class_gabor_blob_feature_1ad3781ba28ee46dc9ee95481413d8f56a" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>majorDirection</name></member>
+      <member refid="class_gabor_blob_feature_1a0e060ac23a33cc1edb3db7616c4ab818" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>majorDirection</name></member>
+      <member refid="class_gabor_blob_feature_1ac77bb0d685ec358947d98f2045950170" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>minorDirection</name></member>
+      <member refid="class_gabor_blob_feature_1ac68c416b9eb54df0e47421e86abd5bb6" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>minorDirection</name></member>
+      <member refid="class_gabor_blob_feature_1a9494cf854702bf93ef07f169cbd65b01" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>setBlob</name></member>
+      <member refid="class_gabor_blob_feature_1a918d4aaee8cd2eda328d848f74431112" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>setSamples</name></member>
+      <member refid="class_feature_1ab6dfcfe22cc71c7b45a61d991b4ff775" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>~Feature</name></member>
+      <member refid="class_gabor_blob_feature_1a4e9516cce87a10ac9ae8094d6b00215f" prot="public" virt="non-virtual"><scope>GaborBlobFeature</scope><name>~GaborBlobFeature</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

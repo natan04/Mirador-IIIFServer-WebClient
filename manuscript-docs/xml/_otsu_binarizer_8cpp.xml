@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_otsu_binarizer_8cpp" kind="file">
+    <compoundname>OtsuBinarizer.cpp</compoundname>
+    <includes refid="stdafx_8h" local="yes">stdafx.h</includes>
+    <includes refid="_otsu_binarizer_8h" local="yes">OtsuBinarizer.h</includes>
+    <includes refid="_d_image_8h" local="yes">DImage.h</includes>
+    <incdepgraph>
+      <node id="868">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="870">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="862" relation="include">
+        </childnode>
+        <childnode refid="871" relation="include">
+        </childnode>
+        <childnode refid="872" relation="include">
+        </childnode>
+      </node>
+      <node id="853">
+        <label>SDKDDKVer.h</label>
+      </node>
+      <node id="869">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="865">
+        <label>ImageConverter.h</label>
+        <link refid="_image_converter_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="859" relation="include">
+        </childnode>
+      </node>
+      <node id="871">
+        <label>string</label>
+      </node>
+      <node id="867">
+        <label>ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="868" relation="include">
+        </childnode>
+        <childnode refid="869" relation="include">
+        </childnode>
+        <childnode refid="870" relation="include">
+        </childnode>
+      </node>
+      <node id="872">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="862" relation="include">
+        </childnode>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="873" relation="include">
+        </childnode>
+      </node>
+      <node id="858">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="864">
+        <label>ImageEnhancer.h</label>
+        <link refid="_image_enhancer_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="859" relation="include">
+        </childnode>
+      </node>
+      <node id="851">
+        <label>stdafx.h</label>
+        <link refid="stdafx_8h"/>
+        <childnode refid="852" relation="include">
+        </childnode>
+        <childnode refid="854" relation="include">
+        </childnode>
+        <childnode refid="855" relation="include">
+        </childnode>
+      </node>
+      <node id="875">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="856">
+        <label>OtsuBinarizer.h</label>
+        <link refid="_otsu_binarizer_8h"/>
+        <childnode refid="857" relation="include">
+        </childnode>
+      </node>
+      <node id="862">
+        <label>vector</label>
+      </node>
+      <node id="874">
+        <label>FeatureExtractor.h</label>
+        <link refid="_feature_extractor_8h"/>
+        <childnode refid="868" relation="include">
+        </childnode>
+        <childnode refid="869" relation="include">
+        </childnode>
+        <childnode refid="875" relation="include">
+        </childnode>
+      </node>
+      <node id="866">
+        <label>ImageProjector.h</label>
+        <link refid="_image_projector_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="859" relation="include">
+        </childnode>
+      </node>
+      <node id="861">
+        <label>opencv2/highgui/highgui.hpp</label>
+      </node>
+      <node id="850">
+        <label>ManuscriptApp/OtsuBinarizer.cpp</label>
+        <link refid="OtsuBinarizer.cpp"/>
+        <childnode refid="851" relation="include">
+        </childnode>
+        <childnode refid="856" relation="include">
+        </childnode>
+        <childnode refid="860" relation="include">
+        </childnode>
+      </node>
+      <node id="860">
+        <label>DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="861" relation="include">
+        </childnode>
+        <childnode refid="862" relation="include">
+        </childnode>
+        <childnode refid="863" relation="include">
+        </childnode>
+        <childnode refid="857" relation="include">
+        </childnode>
+        <childnode refid="864" relation="include">
+        </childnode>
+        <childnode refid="865" relation="include">
+        </childnode>
+        <childnode refid="866" relation="include">
+        </childnode>
+        <childnode refid="867" relation="include">
+        </childnode>
+        <childnode refid="874" relation="include">
+        </childnode>
+      </node>
+      <node id="855">
+        <label>tchar.h</label>
+      </node>
+      <node id="863">
+        <label>ImageFilter.h</label>
+        <link refid="_image_filter_8h"/>
+        <childnode refid="859" relation="include">
+        </childnode>
+      </node>
+      <node id="852">
+        <label>targetver.h</label>
+        <link refid="targetver_8h"/>
+        <childnode refid="853" relation="include">
+        </childnode>
+      </node>
+      <node id="854">
+        <label>stdio.h</label>
+      </node>
+      <node id="859">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+      </node>
+      <node id="873">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+      <node id="857">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="859" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8h" kindref="compound">stdafx.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_otsu_binarizer_8h" kindref="compound">OtsuBinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_d_image_8h" kindref="compound">DImage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_otsu_binarizer_1a4219a9f9e72d1d0eceee30402bf2afd5" kindref="member">OtsuBinarizer::binarize</ref>(){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>bin_image;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>img<sp/>=<sp/><ref refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" kindref="member">_image</ref>-&gt;<ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>bin_image.create(img.rows,<sp/>img.cols,<sp/>CV_8U);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::threshold(img,<sp/>bin_image,0<sp/>,255,cv::THRESH_BINARY|cv::THRESH_OTSU);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>(bin_image)<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/OtsuBinarizer.cpp"/>
+  </compounddef>
+</doxygen>

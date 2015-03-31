@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_histogram" kind="class" prot="public">
+    <compoundname>Histogram</compoundname>
+    <includes refid="_histogram_8h" local="no">Histogram.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_histogram_1a977d24c28dea32b37fd9d2c06fab89dd" prot="private" static="no" mutable="no">
+        <type>Mat</type>
+        <definition>Mat Histogram::_mat</definition>
+        <argsstring></argsstring>
+        <name>_mat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" line="8" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_histogram_1af7f6bdea94a9e6a44ca389d2a0f2cae2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Histogram::Histogram</definition>
+        <argsstring>(void)</argsstring>
+        <name>Histogram</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" line="11" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.cpp" bodystart="5" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="class_histogram_1a6be99bbd12f2dfe12c38739166f37db2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Histogram::~Histogram</definition>
+        <argsstring>(void)</argsstring>
+        <name>~Histogram</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" line="12" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.cpp" bodystart="10" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_histogram_1a46645826dac5764fa12488acf77fbc5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Histogram::set</definition>
+        <argsstring>(Mat mat)</argsstring>
+        <name>set</name>
+        <param>
+          <type>Mat</type>
+          <declname>mat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" line="14" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" bodystart="14" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="class_histogram_1a182b34a7f9a0a23725029f4be34cea0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Mat</type>
+        <definition>Mat Histogram::get</definition>
+        <argsstring>()</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" line="18" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" bodystart="18" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" line="7" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Histogram.h" bodystart="7" bodyend="22"/>
+    <listofallmembers>
+      <member refid="class_histogram_1a977d24c28dea32b37fd9d2c06fab89dd" prot="private" virt="non-virtual"><scope>Histogram</scope><name>_mat</name></member>
+      <member refid="class_histogram_1a182b34a7f9a0a23725029f4be34cea0f" prot="public" virt="non-virtual"><scope>Histogram</scope><name>get</name></member>
+      <member refid="class_histogram_1af7f6bdea94a9e6a44ca389d2a0f2cae2" prot="public" virt="non-virtual"><scope>Histogram</scope><name>Histogram</name></member>
+      <member refid="class_histogram_1a46645826dac5764fa12488acf77fbc5f" prot="public" virt="non-virtual"><scope>Histogram</scope><name>set</name></member>
+      <member refid="class_histogram_1a6be99bbd12f2dfe12c38739166f37db2" prot="public" virt="non-virtual"><scope>Histogram</scope><name>~Histogram</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,25 @@
+var class_contour =
+[
+    [ "Contour", "class_contour.html#ac31a122f91e1a4a2462ecb802ed7170f", null ],
+    [ "~Contour", "class_contour.html#ae8f5b046ccf380b396f54de0d01e731f", null ],
+    [ "drawOnImage", "class_contour.html#ac36273da0f11bf3095087f26ca3c6440", null ],
+    [ "getArea", "class_contour.html#a6c162802a4123888526f43561e7584f5", null ],
+    [ "getBoundRect", "class_contour.html#a6a0a7792ef282071a7bbde523ec0e96d", null ],
+    [ "getCenter", "class_contour.html#a7efb5a9005069c53af5fd291dc17d902", null ],
+    [ "getImportance", "class_contour.html#a29fab9bc4b308e3230172bda77650a72", null ],
+    [ "getLeastImportant", "class_contour.html#a89afece7e3b513654cee39410ed57e86", null ],
+    [ "getMat", "class_contour.html#af6da2b9bb1d742b35fb9c2c11f7b1dbe", null ],
+    [ "getOrientation", "class_contour.html#a16c54703d99650fcca6752da59deaab7", null ],
+    [ "getPoints", "class_contour.html#abc363aff3d9b7642daa6cf3496b7bea0", null ],
+    [ "removeLeastImportant", "class_contour.html#a3f30ccff7776c7aacae37145df5da467", null ],
+    [ "removeVertex", "class_contour.html#a1d45bb2a1ca97b4fa9418f9c43318f2a", null ],
+    [ "setBoundRect", "class_contour.html#ac3b85c445a9a648ebec59fdd2413194d", null ],
+    [ "setCenter", "class_contour.html#a866591bd98e4ebdbd511eb43ef511fd3", null ],
+    [ "setOrientation", "class_contour.html#ad07917ec771f6c5df764fdeac7841613", null ],
+    [ "setPoints", "class_contour.html#a2064d4cd92143ab0e466ecba4eeb3b75", null ],
+    [ "_brect", "class_contour.html#aefe73b0c7479e0a6bca7c76e5cc4aa6d", null ],
+    [ "_center", "class_contour.html#a60351d0013e44e0ea12b8c2f227b2d74", null ],
+    [ "_heap", "class_contour.html#a7a26f7919fa25f04975ab3949152437b", null ],
+    [ "_orientation", "class_contour.html#a946768dfb1a6b340165360db2bf279db", null ],
+    [ "_points", "class_contour.html#a5fe5723655cd3e3a1e40a433565ed9f7", null ]
+];

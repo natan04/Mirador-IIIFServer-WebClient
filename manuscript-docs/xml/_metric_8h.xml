@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_metric_8h" kind="file">
+    <compoundname>Metric.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes refid="_feature_8h" local="yes">Feature.h</includes>
+    <includedby refid="_metric_d_t_w_8h" local="yes">ManuscriptApp/MetricDTW.h</includedby>
+    <incdepgraph>
+      <node id="820">
+        <label>ManuscriptApp/Metric.h</label>
+        <link refid="Metric.h"/>
+        <childnode refid="821" relation="include">
+        </childnode>
+        <childnode refid="822" relation="include">
+        </childnode>
+      </node>
+      <node id="822">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="821">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="824">
+        <label>ManuscriptApp/MetricDTW.h</label>
+        <link refid="_metric_d_t_w_8h"/>
+        <childnode refid="825" relation="include">
+        </childnode>
+        <childnode refid="826" relation="include">
+        </childnode>
+      </node>
+      <node id="823">
+        <label>ManuscriptApp/Metric.h</label>
+        <link refid="Metric.h"/>
+        <childnode refid="824" relation="include">
+        </childnode>
+      </node>
+      <node id="825">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="826">
+        <label>ManuscriptApp/MetricDTW.cpp</label>
+        <link refid="_metric_d_t_w_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_metric" prot="public">Metric</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_METRIC_H_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_METRIC_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_feature_8h" kindref="compound">Feature.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref><sp/>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="class_metric" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_metric" kindref="compound">Metric</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="9" refid="class_metric_1ade0443abd5c6080f406288ee650b416b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_metric_1ade0443abd5c6080f406288ee650b416b" kindref="member">Metric</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){};</highlight></codeline>
+<codeline lineno="10" refid="class_metric_1a68ec53fa39cba9520dd20dceab1668fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_metric_1a68ec53fa39cba9520dd20dceab1668fa" kindref="member">~Metric</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){;}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distance(<ref refid="class_feature" kindref="compound">Feature</ref>*<sp/>a,<sp/><ref refid="class_feature" kindref="compound">Feature</ref>*<sp/>b)<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distance(vector&lt;Feature*&gt;&amp;<sp/>a,<sp/>vector&lt;Feature*&gt;&amp;<sp/>b)<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/Metric.h"/>
+  </compounddef>
+</doxygen>

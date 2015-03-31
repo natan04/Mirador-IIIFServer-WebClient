@@ -1,0 +1,254 @@
+\hypertarget{class_connected_component}{\section{Connected\+Component Class Reference}
+\label{class_connected_component}\index{Connected\+Component@{Connected\+Component}}
+}
+
+
+Connected component.  
+
+
+
+
+{\ttfamily \#include $<$Connected\+Component.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_connected_component_a80f5acb7e4c10b17ab1d9dd1e5bbe308}{Connected\+Component} (vector$<$ Point $>$ \&contour)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_connected_component_af69288c391283d9ca4d017d435c840c9}{Connected\+Component} (void)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_connected_component_a91f368cd2b9c725ba1ef610c0d18e223}{$\sim$\+Connected\+Component} (void)
+\item 
+void \hyperlink{class_connected_component_ac13a32125f8c05e118dcaa1fd57eacfb}{set\+Image} (Mat img)
+\item 
+void \hyperlink{class_connected_component_abd451aa4596f6e4bfb2c4b74b1764789}{set\+Image} (Mat img, Rect \&rect)
+\item 
+Mat \hyperlink{class_connected_component_ad25f944f3627225427501c1a1cd7dc45}{get\+Image} ()
+\item 
+\hyperlink{class_contour}{Contour} \& \hyperlink{class_connected_component_ae2272acc6e94fc8e2fa7f87e4e17c944}{get\+Contour} ()
+\item 
+void \hyperlink{class_connected_component_a391767f0886946771bf138e3d136b192}{add\+Child} (\hyperlink{class_connected_component}{Connected\+Component} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Adds a child component. A child component is a component inside the current one \end{DoxyCompactList}\item 
+Rect \hyperlink{class_connected_component_a7be353a1c50182b97b4f4e36d1bb5275}{get\+Bound\+Rect} ()
+\item 
+\hyperlink{class_connected_component}{Connected\+Component} $\ast$ \hyperlink{class_connected_component_a9ac344dd99b73e26ba9f12e632db9a81}{get\+Parent} ()
+\item 
+vector$<$ \hyperlink{class_connected_component}{Connected\+Component} $\ast$ $>$ \& \hyperlink{class_connected_component_a3d061e6cd4e5bf337b084a3463ea8bb0}{get\+Children} ()
+\item 
+int \hyperlink{class_connected_component_acca10d6015b6dbbf07fd111b07b5dee9}{border\+Type} (Mat mat, int row, int col, char mask, int \&trace)
+\item 
+void \hyperlink{class_connected_component_afbf7969c6c69fa5c603ca819d809c820}{set\+Parent} (\hyperlink{class_connected_component}{Connected\+Component} $\ast$parent)
+\item 
+void \hyperlink{class_connected_component_a9cbcbbd6f27b0d5981522da5aa63ddac}{fill\+Component\+On\+Mat} (Mat mat, char mask, char filler)
+\item 
+void \hyperlink{class_connected_component_acf50ca5ed3d677faaff0b160b1e2a136}{draw} (Mat img, Scalar clr, bool isclosed, int thickness, int line\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Draws. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{class_connected_component_aeffe49ad736a5be430f40ffe2816234b}{\+\_\+image}
+\item 
+\hyperlink{class_connected_component}{Connected\+Component} $\ast$ \hyperlink{class_connected_component_a802edcad018e25fbf4398d3c1eaad926}{\+\_\+parent}
+\item 
+\hyperlink{class_contour}{Contour} \hyperlink{class_connected_component_ac41ea811b504bd7b57ed2cfaf6a73e04}{\+\_\+contour}
+\item 
+String \hyperlink{class_connected_component_a3d7c59ca80f6304b1f07a0e196a45bc1}{\+\_\+string}
+\item 
+vector$<$ \hyperlink{class_connected_component}{Connected\+Component} $\ast$ $>$ \hyperlink{class_connected_component_a68dde04250c15d018d774d55b8dc521c}{\+\_\+children}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Connected component. 
+
+El Sana, 2/9/2012. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_connected_component_a80f5acb7e4c10b17ab1d9dd1e5bbe308}{\index{Connected\+Component@{Connected\+Component}!Connected\+Component@{Connected\+Component}}
+\index{Connected\+Component@{Connected\+Component}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{Connected\+Component}]{\setlength{\rightskip}{0pt plus 5cm}Connected\+Component\+::\+Connected\+Component (
+\begin{DoxyParamCaption}
+\item[{vector$<$ Point $>$ \&}]{contour}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_a80f5acb7e4c10b17ab1d9dd1e5bbe308}
+
+
+Constructor. 
+
+El Sana, 2/9/2012. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contour} & \mbox{[}in\mbox{]} The contour of the connected component. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_connected_component_af69288c391283d9ca4d017d435c840c9}{\index{Connected\+Component@{Connected\+Component}!Connected\+Component@{Connected\+Component}}
+\index{Connected\+Component@{Connected\+Component}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{Connected\+Component}]{\setlength{\rightskip}{0pt plus 5cm}Connected\+Component\+::\+Connected\+Component (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_af69288c391283d9ca4d017d435c840c9}
+
+
+Default constructor. 
+
+El Sana, 2/9/2012. \hypertarget{class_connected_component_a91f368cd2b9c725ba1ef610c0d18e223}{\index{Connected\+Component@{Connected\+Component}!````~Connected\+Component@{$\sim$\+Connected\+Component}}
+\index{````~Connected\+Component@{$\sim$\+Connected\+Component}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{$\sim$\+Connected\+Component}]{\setlength{\rightskip}{0pt plus 5cm}Connected\+Component\+::$\sim$\+Connected\+Component (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_a91f368cd2b9c725ba1ef610c0d18e223}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_connected_component_a391767f0886946771bf138e3d136b192}{\index{Connected\+Component@{Connected\+Component}!add\+Child@{add\+Child}}
+\index{add\+Child@{add\+Child}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{add\+Child}]{\setlength{\rightskip}{0pt plus 5cm}void Connected\+Component\+::add\+Child (
+\begin{DoxyParamCaption}
+\item[{{\bf Connected\+Component} $\ast$}]{component}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_a391767f0886946771bf138e3d136b192}
+
+
+Adds a child component. A child component is a component inside the current one 
+
+El Sana, 2/9/2012. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & \mbox{[}in\mbox{]} the component. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_connected_component_acca10d6015b6dbbf07fd111b07b5dee9}{\index{Connected\+Component@{Connected\+Component}!border\+Type@{border\+Type}}
+\index{border\+Type@{border\+Type}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{border\+Type}]{\setlength{\rightskip}{0pt plus 5cm}int Connected\+Component\+::border\+Type (
+\begin{DoxyParamCaption}
+\item[{Mat}]{mat, }
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{char}]{mask, }
+\item[{int \&}]{trace}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_acca10d6015b6dbbf07fd111b07b5dee9}
+\hypertarget{class_connected_component_acf50ca5ed3d677faaff0b160b1e2a136}{\index{Connected\+Component@{Connected\+Component}!draw@{draw}}
+\index{draw@{draw}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void Connected\+Component\+::draw (
+\begin{DoxyParamCaption}
+\item[{Mat}]{img, }
+\item[{Scalar}]{clr, }
+\item[{bool}]{isclosed, }
+\item[{int}]{thickness, }
+\item[{int}]{line\+\_\+type}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_acf50ca5ed3d677faaff0b160b1e2a136}
+
+
+Draws. 
+
+El Sana, 2/9/2012. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & The image. \\
+\hline
+{\em clr} & The colour. \\
+\hline
+{\em isclosed} & true if isclosed. \\
+\hline
+{\em thickness} & The thickness. \\
+\hline
+{\em line\+\_\+type} & Type of the line. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_connected_component_a9cbcbbd6f27b0d5981522da5aa63ddac}{\index{Connected\+Component@{Connected\+Component}!fill\+Component\+On\+Mat@{fill\+Component\+On\+Mat}}
+\index{fill\+Component\+On\+Mat@{fill\+Component\+On\+Mat}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{fill\+Component\+On\+Mat}]{\setlength{\rightskip}{0pt plus 5cm}void Connected\+Component\+::fill\+Component\+On\+Mat (
+\begin{DoxyParamCaption}
+\item[{Mat}]{mat, }
+\item[{char}]{mask, }
+\item[{char}]{filler}
+\end{DoxyParamCaption}
+)}}\label{class_connected_component_a9cbcbbd6f27b0d5981522da5aa63ddac}
+\hypertarget{class_connected_component_a7be353a1c50182b97b4f4e36d1bb5275}{\index{Connected\+Component@{Connected\+Component}!get\+Bound\+Rect@{get\+Bound\+Rect}}
+\index{get\+Bound\+Rect@{get\+Bound\+Rect}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{get\+Bound\+Rect}]{\setlength{\rightskip}{0pt plus 5cm}Rect Connected\+Component\+::get\+Bound\+Rect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_a7be353a1c50182b97b4f4e36d1bb5275}
+\hypertarget{class_connected_component_a3d061e6cd4e5bf337b084a3463ea8bb0}{\index{Connected\+Component@{Connected\+Component}!get\+Children@{get\+Children}}
+\index{get\+Children@{get\+Children}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{get\+Children}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Connected\+Component}$\ast$$>$\& Connected\+Component\+::get\+Children (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_a3d061e6cd4e5bf337b084a3463ea8bb0}
+\hypertarget{class_connected_component_ae2272acc6e94fc8e2fa7f87e4e17c944}{\index{Connected\+Component@{Connected\+Component}!get\+Contour@{get\+Contour}}
+\index{get\+Contour@{get\+Contour}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{get\+Contour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contour}\& Connected\+Component\+::get\+Contour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_ae2272acc6e94fc8e2fa7f87e4e17c944}
+\hypertarget{class_connected_component_ad25f944f3627225427501c1a1cd7dc45}{\index{Connected\+Component@{Connected\+Component}!get\+Image@{get\+Image}}
+\index{get\+Image@{get\+Image}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{get\+Image}]{\setlength{\rightskip}{0pt plus 5cm}Mat Connected\+Component\+::get\+Image (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_ad25f944f3627225427501c1a1cd7dc45}
+\hypertarget{class_connected_component_a9ac344dd99b73e26ba9f12e632db9a81}{\index{Connected\+Component@{Connected\+Component}!get\+Parent@{get\+Parent}}
+\index{get\+Parent@{get\+Parent}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{get\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Connected\+Component}$\ast$ Connected\+Component\+::get\+Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_a9ac344dd99b73e26ba9f12e632db9a81}
+\hypertarget{class_connected_component_ac13a32125f8c05e118dcaa1fd57eacfb}{\index{Connected\+Component@{Connected\+Component}!set\+Image@{set\+Image}}
+\index{set\+Image@{set\+Image}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{set\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void Connected\+Component\+::set\+Image (
+\begin{DoxyParamCaption}
+\item[{Mat}]{img}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_ac13a32125f8c05e118dcaa1fd57eacfb}
+\hypertarget{class_connected_component_abd451aa4596f6e4bfb2c4b74b1764789}{\index{Connected\+Component@{Connected\+Component}!set\+Image@{set\+Image}}
+\index{set\+Image@{set\+Image}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{set\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void Connected\+Component\+::set\+Image (
+\begin{DoxyParamCaption}
+\item[{Mat}]{img, }
+\item[{Rect \&}]{rect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_abd451aa4596f6e4bfb2c4b74b1764789}
+\hypertarget{class_connected_component_afbf7969c6c69fa5c603ca819d809c820}{\index{Connected\+Component@{Connected\+Component}!set\+Parent@{set\+Parent}}
+\index{set\+Parent@{set\+Parent}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{set\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}void Connected\+Component\+::set\+Parent (
+\begin{DoxyParamCaption}
+\item[{{\bf Connected\+Component} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_connected_component_afbf7969c6c69fa5c603ca819d809c820}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_connected_component_a68dde04250c15d018d774d55b8dc521c}{\index{Connected\+Component@{Connected\+Component}!\+\_\+children@{\+\_\+children}}
+\index{\+\_\+children@{\+\_\+children}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{\+\_\+children}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Connected\+Component}$\ast$$>$ Connected\+Component\+::\+\_\+children\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_connected_component_a68dde04250c15d018d774d55b8dc521c}
+\hypertarget{class_connected_component_ac41ea811b504bd7b57ed2cfaf6a73e04}{\index{Connected\+Component@{Connected\+Component}!\+\_\+contour@{\+\_\+contour}}
+\index{\+\_\+contour@{\+\_\+contour}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{\+\_\+contour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contour} Connected\+Component\+::\+\_\+contour\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_connected_component_ac41ea811b504bd7b57ed2cfaf6a73e04}
+\hypertarget{class_connected_component_aeffe49ad736a5be430f40ffe2816234b}{\index{Connected\+Component@{Connected\+Component}!\+\_\+image@{\+\_\+image}}
+\index{\+\_\+image@{\+\_\+image}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{\+\_\+image}]{\setlength{\rightskip}{0pt plus 5cm}Mat Connected\+Component\+::\+\_\+image\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_connected_component_aeffe49ad736a5be430f40ffe2816234b}
+\hypertarget{class_connected_component_a802edcad018e25fbf4398d3c1eaad926}{\index{Connected\+Component@{Connected\+Component}!\+\_\+parent@{\+\_\+parent}}
+\index{\+\_\+parent@{\+\_\+parent}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{\+\_\+parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Connected\+Component}$\ast$ Connected\+Component\+::\+\_\+parent\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_connected_component_a802edcad018e25fbf4398d3c1eaad926}
+\hypertarget{class_connected_component_a3d7c59ca80f6304b1f07a0e196a45bc1}{\index{Connected\+Component@{Connected\+Component}!\+\_\+string@{\+\_\+string}}
+\index{\+\_\+string@{\+\_\+string}!Connected\+Component@{Connected\+Component}}
+\subsubsection[{\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}String Connected\+Component\+::\+\_\+string\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_connected_component_a3d7c59ca80f6304b1f07a0e196a45bc1}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Manuscript\+App/\hyperlink{_connected_component_8h}{Connected\+Component.\+h}\item 
+Manuscript\+App/\hyperlink{_connected_component_8cpp}{Connected\+Component.\+cpp}\end{DoxyCompactItemize}

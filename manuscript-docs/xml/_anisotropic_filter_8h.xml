@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_anisotropic_filter_8h" kind="file">
+    <compoundname>AnisotropicFilter.h</compoundname>
+    <includes refid="_d_image_8h" local="yes">DImage.h</includes>
+    <includes refid="_image_filter_8h" local="yes">ImageFilter.h</includes>
+    <includedby refid="_anisotropic_filter_8cpp" local="yes">ManuscriptApp/AnisotropicFilter.cpp</includedby>
+    <includedby refid="_manuscript_app_8cpp" local="yes">ManuscriptApp/ManuscriptApp.cpp</includedby>
+    <includedby refid="_rafi_text_line_extractor_8cpp" local="yes">ManuscriptApp/RafiTextLineExtractor.cpp</includedby>
+    <incdepgraph>
+      <node id="48">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="50">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="45">
+        <label>ImageConverter.h</label>
+        <link refid="_image_converter_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>string</label>
+      </node>
+      <node id="47">
+        <label>ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="44">
+        <label>ImageEnhancer.h</label>
+        <link refid="_image_enhancer_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>ManuscriptApp/AnisotropicFilter.h</label>
+        <link refid="AnisotropicFilter.h"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="40">
+        <label>vector</label>
+      </node>
+      <node id="54">
+        <label>FeatureExtractor.h</label>
+        <link refid="_feature_extractor_8h"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>ImageProjector.h</label>
+        <link refid="_image_projector_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>opencv2/highgui/highgui.hpp</label>
+      </node>
+      <node id="37">
+        <label>DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>ImageFilter.h</label>
+        <link refid="_image_filter_8h"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>imageoperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+      <node id="43">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="57">
+        <label>ManuscriptApp/AnisotropicFilter.cpp</label>
+        <link refid="_anisotropic_filter_8cpp"/>
+      </node>
+      <node id="56">
+        <label>ManuscriptApp/AnisotropicFilter.h</label>
+        <link refid="AnisotropicFilter.h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="59">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_anisotropic_filter" prot="public">AnisotropicFilter</innerclass>
+    <innernamespace refid="namespacecv">cv</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="_anisotropic_filter_8h_1add7587fa768b74eff9a321002fac911b" prot="public" static="no">
+        <name>_ANISOTROPIC_FILTER_H_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="2" column="9" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_ANISOTROPIC_FILTER_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="_anisotropic_filter_8h_1add7587fa768b74eff9a321002fac911b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_ANISOTROPIC_FILTER_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_d_image_8h" kindref="compound">DImage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_filter_8h" kindref="compound">ImageFilter.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacecv" kindref="compound">cv</ref>;</highlight></codeline>
+<codeline lineno="6" refid="class_anisotropic_filter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_anisotropic_filter" kindref="compound">AnisotropicFilter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_image_filter" kindref="compound">ImageFilter</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>findMaxResponse();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/>lineSizeEstimation();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>eraseMargins(Mat<sp/>im);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>applyFilter(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>I,<sp/>Size<sp/>sz,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>theta,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scale,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>eta);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_anisotropic_filter" kindref="compound">AnisotropicFilter</ref>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/>filter();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h"/>
+  </compounddef>
+</doxygen>

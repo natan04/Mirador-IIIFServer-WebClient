@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_page_image_8cpp" kind="file">
+    <compoundname>PageImage.cpp</compoundname>
+    <includes refid="stdafx_8h" local="yes">stdafx.h</includes>
+    <includes refid="_page_image_8h" local="yes">PageImage.h</includes>
+    <incdepgraph>
+      <node id="937">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="939">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="926" relation="include">
+        </childnode>
+        <childnode refid="940" relation="include">
+        </childnode>
+        <childnode refid="941" relation="include">
+        </childnode>
+      </node>
+      <node id="921">
+        <label>SDKDDKVer.h</label>
+      </node>
+      <node id="918">
+        <label>ManuscriptApp/PageImage.cpp</label>
+        <link refid="PageImage.cpp"/>
+        <childnode refid="919" relation="include">
+        </childnode>
+        <childnode refid="924" relation="include">
+        </childnode>
+      </node>
+      <node id="938">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="934">
+        <label>ImageConverter.h</label>
+        <link refid="_image_converter_8h"/>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+      </node>
+      <node id="940">
+        <label>string</label>
+      </node>
+      <node id="936">
+        <label>ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="937" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="939" relation="include">
+        </childnode>
+      </node>
+      <node id="941">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="926" relation="include">
+        </childnode>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="942" relation="include">
+        </childnode>
+      </node>
+      <node id="928">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="933">
+        <label>ImageEnhancer.h</label>
+        <link refid="_image_enhancer_8h"/>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+      </node>
+      <node id="919">
+        <label>stdafx.h</label>
+        <link refid="stdafx_8h"/>
+        <childnode refid="920" relation="include">
+        </childnode>
+        <childnode refid="922" relation="include">
+        </childnode>
+        <childnode refid="923" relation="include">
+        </childnode>
+      </node>
+      <node id="944">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="926">
+        <label>vector</label>
+      </node>
+      <node id="943">
+        <label>FeatureExtractor.h</label>
+        <link refid="_feature_extractor_8h"/>
+        <childnode refid="937" relation="include">
+        </childnode>
+        <childnode refid="938" relation="include">
+        </childnode>
+        <childnode refid="944" relation="include">
+        </childnode>
+      </node>
+      <node id="924">
+        <label>PageImage.h</label>
+        <link refid="_page_image_8h"/>
+        <childnode refid="925" relation="include">
+        </childnode>
+        <childnode refid="926" relation="include">
+        </childnode>
+        <childnode refid="927" relation="include">
+        </childnode>
+      </node>
+      <node id="935">
+        <label>ImageProjector.h</label>
+        <link refid="_image_projector_8h"/>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+      </node>
+      <node id="929">
+        <label>opencv2/highgui/highgui.hpp</label>
+      </node>
+      <node id="925">
+        <label>iostream</label>
+      </node>
+      <node id="927">
+        <label>DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="929" relation="include">
+        </childnode>
+        <childnode refid="926" relation="include">
+        </childnode>
+        <childnode refid="930" relation="include">
+        </childnode>
+        <childnode refid="932" relation="include">
+        </childnode>
+        <childnode refid="933" relation="include">
+        </childnode>
+        <childnode refid="934" relation="include">
+        </childnode>
+        <childnode refid="935" relation="include">
+        </childnode>
+        <childnode refid="936" relation="include">
+        </childnode>
+        <childnode refid="943" relation="include">
+        </childnode>
+      </node>
+      <node id="923">
+        <label>tchar.h</label>
+      </node>
+      <node id="930">
+        <label>ImageFilter.h</label>
+        <link refid="_image_filter_8h"/>
+        <childnode refid="931" relation="include">
+        </childnode>
+      </node>
+      <node id="920">
+        <label>targetver.h</label>
+        <link refid="targetver_8h"/>
+        <childnode refid="921" relation="include">
+        </childnode>
+      </node>
+      <node id="922">
+        <label>stdio.h</label>
+      </node>
+      <node id="931">
+        <label>imageoperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="928" relation="include">
+        </childnode>
+      </node>
+      <node id="942">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+      <node id="932">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="928" relation="include">
+        </childnode>
+        <childnode refid="931" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8h" kindref="compound">stdafx.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_page_image_8h" kindref="compound">PageImage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><ref refid="class_page_image_1acd6291149a801930fe85801780a480a1" kindref="member">PageImage::PageImage</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><ref refid="class_page_image_1a3a5b95965ac1d84f71c5ba3ee4890558" kindref="member">PageImage::~PageImage</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/PageImage.cpp"/>
+  </compounddef>
+</doxygen>

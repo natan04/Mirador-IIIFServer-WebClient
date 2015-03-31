@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_itay_binarizer_8h" kind="file">
+    <compoundname>ItayBinarizer.h</compoundname>
+    <includes refid="_image_binarizer_8h" local="yes">ImageBinarizer.h</includes>
+    <includedby refid="_itay_binarizer_8cpp" local="yes">ManuscriptApp/ItayBinarizer.cpp</includedby>
+    <incdepgraph>
+      <node id="763">
+        <label>ManuscriptApp/ItayBinarizer.h</label>
+        <link refid="ItayBinarizer.h"/>
+        <childnode refid="764" relation="include">
+        </childnode>
+      </node>
+      <node id="765">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="766">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="765" relation="include">
+        </childnode>
+      </node>
+      <node id="764">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="765" relation="include">
+        </childnode>
+        <childnode refid="766" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="767">
+        <label>ManuscriptApp/ItayBinarizer.h</label>
+        <link refid="ItayBinarizer.h"/>
+        <childnode refid="768" relation="include">
+        </childnode>
+      </node>
+      <node id="768">
+        <label>ManuscriptApp/ItayBinarizer.cpp</label>
+        <link refid="_itay_binarizer_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_itay_binarizer" prot="public">ItayBinarizer</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_ITAYBINARIZER_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_ITAYBINARIZER_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_binarizer_8h" kindref="compound">ImageBinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="class_itay_binarizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_itay_binarizer" kindref="compound">ItayBinarizer</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_image_binarizer" kindref="compound">ImageBinarizer</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_itay_binarizer_1acdebbcdfb59f5d226d85aafe9eefd0de" kindref="member">ItayBinarizer</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_itay_binarizer_1ab4d858630f5efb4ee0506fe5b53d6629" kindref="member">~ItayBinarizer</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_itay_binarizer_1ad0093e357fe07cc4b42dcc2f0f416832" kindref="member">binarize</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ItayBinarizer.h"/>
+  </compounddef>
+</doxygen>

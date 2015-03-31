@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_image_converter_8h" kind="file">
+    <compoundname>ImageConverter.h</compoundname>
+    <includes local="no">opencv\cv.h</includes>
+    <includes refid="_image_operator_8h" local="yes">ImageOperator.h</includes>
+    <includedby refid="_d_image_8h" local="yes">ManuscriptApp/DImage.h</includedby>
+    <includedby refid="_image_converter_8cpp" local="yes">ManuscriptApp/ImageConverter.cpp</includedby>
+    <incdepgraph>
+      <node id="523">
+        <label>ManuscriptApp/ImageConverter.h</label>
+        <link refid="ImageConverter.h"/>
+        <childnode refid="524" relation="include">
+        </childnode>
+        <childnode refid="525" relation="include">
+        </childnode>
+      </node>
+      <node id="524">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="525">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="524" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="548">
+        <label>ManuscriptApp/ThresholdBinarizer.cpp</label>
+        <link refid="_threshold_binarizer_8cpp"/>
+      </node>
+      <node id="545">
+        <label>ManuscriptApp/OtsulBinarizer.cpp</label>
+        <link refid="_otsul_binarizer_8cpp"/>
+      </node>
+      <node id="536">
+        <label>ManuscriptApp/GaborBlobExtractor.cpp</label>
+        <link refid="_gabor_blob_extractor_8cpp"/>
+      </node>
+      <node id="547">
+        <label>ManuscriptApp/PageImage.cpp</label>
+        <link refid="_page_image_8cpp"/>
+      </node>
+      <node id="529">
+        <label>ManuscriptApp/AnisotropicFilter.cpp</label>
+        <link refid="_anisotropic_filter_8cpp"/>
+      </node>
+      <node id="535">
+        <label>ManuscriptApp/GaborBlobExtractor.h</label>
+        <link refid="_gabor_blob_extractor_8h"/>
+        <childnode refid="536" relation="include">
+        </childnode>
+        <childnode refid="530" relation="include">
+        </childnode>
+      </node>
+      <node id="526">
+        <label>ManuscriptApp/ImageConverter.h</label>
+        <link refid="ImageConverter.h"/>
+        <childnode refid="527" relation="include">
+        </childnode>
+        <childnode refid="549" relation="include">
+        </childnode>
+      </node>
+      <node id="528">
+        <label>ManuscriptApp/AnisotropicFilter.h</label>
+        <link refid="_anisotropic_filter_8h"/>
+        <childnode refid="529" relation="include">
+        </childnode>
+        <childnode refid="530" relation="include">
+        </childnode>
+        <childnode refid="531" relation="include">
+        </childnode>
+      </node>
+      <node id="532">
+        <label>ManuscriptApp/BinaryComponentExtractor.cpp</label>
+        <link refid="_binary_component_extractor_8cpp"/>
+      </node>
+      <node id="542">
+        <label>ManuscriptApp/GlobalBinarizer.cpp</label>
+        <link refid="_global_binarizer_8cpp"/>
+      </node>
+      <node id="530">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="533">
+        <label>ManuscriptApp/DImage.cpp</label>
+        <link refid="_d_image_8cpp"/>
+      </node>
+      <node id="539">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.h</label>
+        <link refid="_profile_seam_text_line_extractor_8h"/>
+        <childnode refid="530" relation="include">
+        </childnode>
+        <childnode refid="540" relation="include">
+        </childnode>
+      </node>
+      <node id="537">
+        <label>ManuscriptApp/ImageTools.cpp</label>
+        <link refid="_image_tools_8cpp"/>
+      </node>
+      <node id="531">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+      <node id="546">
+        <label>ManuscriptApp/PageImage.h</label>
+        <link refid="_page_image_8h"/>
+        <childnode refid="547" relation="include">
+        </childnode>
+      </node>
+      <node id="538">
+        <label>ManuscriptApp/ProjectionProfile.h</label>
+        <link refid="_projection_profile_8h"/>
+        <childnode refid="530" relation="include">
+        </childnode>
+        <childnode refid="539" relation="include">
+        </childnode>
+        <childnode refid="540" relation="include">
+        </childnode>
+        <childnode refid="541" relation="include">
+        </childnode>
+      </node>
+      <node id="549">
+        <label>ManuscriptApp/ImageConverter.cpp</label>
+        <link refid="_image_converter_8cpp"/>
+      </node>
+      <node id="544">
+        <label>ManuscriptApp/OtsuBinarizer.cpp</label>
+        <link refid="_otsu_binarizer_8cpp"/>
+      </node>
+      <node id="527">
+        <label>ManuscriptApp/DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="528" relation="include">
+        </childnode>
+        <childnode refid="532" relation="include">
+        </childnode>
+        <childnode refid="533" relation="include">
+        </childnode>
+        <childnode refid="534" relation="include">
+        </childnode>
+        <childnode refid="536" relation="include">
+        </childnode>
+        <childnode refid="542" relation="include">
+        </childnode>
+        <childnode refid="543" relation="include">
+        </childnode>
+        <childnode refid="530" relation="include">
+        </childnode>
+        <childnode refid="544" relation="include">
+        </childnode>
+        <childnode refid="545" relation="include">
+        </childnode>
+        <childnode refid="546" relation="include">
+        </childnode>
+        <childnode refid="540" relation="include">
+        </childnode>
+        <childnode refid="541" relation="include">
+        </childnode>
+        <childnode refid="531" relation="include">
+        </childnode>
+        <childnode refid="548" relation="include">
+        </childnode>
+      </node>
+      <node id="534">
+        <label>ManuscriptApp/ImageTools.h</label>
+        <link refid="_image_tools_8h"/>
+        <childnode refid="535" relation="include">
+        </childnode>
+        <childnode refid="537" relation="include">
+        </childnode>
+        <childnode refid="538" relation="include">
+        </childnode>
+      </node>
+      <node id="541">
+        <label>ManuscriptApp/ProjectionProfile.cpp</label>
+        <link refid="_projection_profile_8cpp"/>
+      </node>
+      <node id="543">
+        <label>ManuscriptApp/ItayBinarizer.cpp</label>
+        <link refid="_itay_binarizer_8cpp"/>
+      </node>
+      <node id="540">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.cpp</label>
+        <link refid="_profile_seam_text_line_extractor_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_image_converter" prot="public">ImageConverter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_IMAGE_CONVERTER_H_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_IMAGE_CONVERTER_H_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv\cv.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_operator_8h" kindref="compound">ImageOperator.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_operator_8h" kindref="compound">ImageOperator.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="class_image_converter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_image_converter" kindref="compound">ImageConverter</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_image_operator" kindref="compound">ImageOperator</ref><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_image_converter_1abf8ca3f9d0c1f6eb86263086bbfdd54f" kindref="member">ImageConverter</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_image_converter_1a2f005d8140352d4a0befbef455e35e34" kindref="member">~ImageConverter</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_image_converter_1ae318e984b77d5db5e3c37bbfd121b9dc" kindref="member">convert</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageConverter.h"/>
+  </compounddef>
+</doxygen>

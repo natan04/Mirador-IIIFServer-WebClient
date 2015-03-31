@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['gaborblobextractor',['GaborBlobExtractor',['../class_gabor_blob_extractor.html#a7f3a5a4c61cd515fbae56fdfefe3d004',1,'GaborBlobExtractor::GaborBlobExtractor()'],['../class_gabor_blob_extractor.html#a5c911de75dbda420e572cf1715440bb1',1,'GaborBlobExtractor::GaborBlobExtractor(int n, int r, double sigma, double lambda)']]],
+  ['gaborblobfeature',['GaborBlobFeature',['../class_gabor_blob_feature.html#a69e3ae10ed6cdd4d2a1263eccadf9c43',1,'GaborBlobFeature::GaborBlobFeature()'],['../class_gabor_blob_feature.html#a3622476f0e482a1bae9efd0fe886f43b',1,'GaborBlobFeature::GaborBlobFeature(float angle)']]],
+  ['get',['get',['../class_histogram.html#a182b34a7f9a0a23725029f4be34cea0f',1,'Histogram']]],
+  ['getarea',['getArea',['../class_contour.html#a6c162802a4123888526f43561e7584f5',1,'Contour']]],
+  ['getblob',['getBlob',['../class_gabor_blob_feature.html#aa501e837abb44fecf85e731147c97350',1,'GaborBlobFeature']]],
+  ['getboundrect',['getBoundRect',['../class_connected_component.html#a7be353a1c50182b97b4f4e36d1bb5275',1,'ConnectedComponent::getBoundRect()'],['../class_contour.html#a6a0a7792ef282071a7bbde523ec0e96d',1,'Contour::getBoundRect()']]],
+  ['getcenter',['getCenter',['../class_contour.html#a7efb5a9005069c53af5fd291dc17d902',1,'Contour']]],
+  ['getchildren',['getChildren',['../class_connected_component.html#a3d061e6cd4e5bf337b084a3463ea8bb0',1,'ConnectedComponent']]],
+  ['getcom',['getCOM',['../class_d_image.html#a391b874fbd441d759a68582c5a1c65ff',1,'DImage']]],
+  ['getcomponentfeature',['getComponentFeature',['../class_gabor_blob_extractor.html#a9f332a64eaa87a97cd48fbc34a5a58da',1,'GaborBlobExtractor']]],
+  ['getcontour',['getContour',['../class_connected_component.html#ae2272acc6e94fc8e2fa7f87e4e17c944',1,'ConnectedComponent']]],
+  ['getformat',['getFormat',['../class_d_image.html#a80065ac2ff9eb49a68adde1f24494087',1,'DImage']]],
+  ['getimage',['getImage',['../class_connected_component.html#ad25f944f3627225427501c1a1cd7dc45',1,'ConnectedComponent::getImage()'],['../class_image_operator.html#a71271114184aa4d9fe21c903687b55a5',1,'ImageOperator::getImage()']]],
+  ['getimportance',['getImportance',['../class_contour.html#a29fab9bc4b308e3230172bda77650a72',1,'Contour']]],
+  ['getleastimportant',['getLeastImportant',['../class_contour.html#a89afece7e3b513654cee39410ed57e86',1,'Contour']]],
+  ['getmainfragment',['getMainFragment',['../class_page_image.html#ae865d0cb7d4c1f51ed70180bd2e9894f',1,'PageImage']]],
+  ['getmat',['getMat',['../class_contour.html#af6da2b9bb1d742b35fb9c2c11f7b1dbe',1,'Contour::getMat()'],['../class_d_image.html#a1f875d1a50eff52cbd1ca119f5293c8d',1,'DImage::getMat()']]],
+  ['getorientation',['getOrientation',['../class_contour.html#a16c54703d99650fcca6752da59deaab7',1,'Contour']]],
+  ['getparent',['getParent',['../class_connected_component.html#a9ac344dd99b73e26ba9f12e632db9a81',1,'ConnectedComponent']]],
+  ['getpeakvalleysum',['getPeakValleySum',['../class_projection_profile.html#ae7f19afd842e2989b7642d4de8f7f334',1,'ProjectionProfile']]],
+  ['getpoints',['getPoints',['../class_contour.html#abc363aff3d9b7642daa6cf3496b7bea0',1,'Contour']]],
+  ['getprofilesum',['getProfileSum',['../class_projection_profile.html#a021b58fa03665d59cf6a21827a4c514c',1,'ProjectionProfile']]],
+  ['gettype',['getType',['../class_d_image.html#aad98497ac69ada8d00e14d1aadf11406',1,'DImage']]],
+  ['getweight',['getWeight',['../class_projection_profile.html#a558047469b18ba1fa1ae3ffd98e3c491',1,'ProjectionProfile']]],
+  ['globalbinarizer',['GlobalBinarizer',['../class_global_binarizer.html#a50bbd8c67da42e27dcecfcbacfa1189d',1,'GlobalBinarizer::GlobalBinarizer(void)'],['../class_global_binarizer.html#a737f40337f87b8dc84f75aff325ee748',1,'GlobalBinarizer::GlobalBinarizer(float thershold)']]]
+];

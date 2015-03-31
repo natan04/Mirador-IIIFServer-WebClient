@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_component_extractor_8h" kind="file">
+    <compoundname>ComponentExtractor.h</compoundname>
+    <includes local="no">opencv/cv.h</includes>
+    <includes local="no">opencv2/core/core.hpp</includes>
+    <includes refid="_connected_component_8h" local="yes">ConnectedComponent.h</includes>
+    <includedby refid="_d_image_8h" local="yes">ManuscriptApp/DImage.h</includedby>
+    <includedby refid="_binary_component_extractor_8h" local="yes">ManuscriptApp/BinaryComponentExtractor.h</includedby>
+    <incdepgraph>
+      <node id="104">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="106">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+      </node>
+      <node id="105">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="108">
+        <label>string</label>
+      </node>
+      <node id="103">
+        <label>ManuscriptApp/ComponentExtractor.h</label>
+        <link refid="ComponentExtractor.h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+      </node>
+      <node id="109">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+      </node>
+      <node id="110">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="107">
+        <label>vector</label>
+      </node>
+      <node id="111">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="134">
+        <label>ManuscriptApp/ThresholdBinarizer.cpp</label>
+        <link refid="_threshold_binarizer_8cpp"/>
+      </node>
+      <node id="131">
+        <label>ManuscriptApp/OtsulBinarizer.cpp</label>
+        <link refid="_otsul_binarizer_8cpp"/>
+      </node>
+      <node id="135">
+        <label>ManuscriptApp/BinaryComponentExtractor.h</label>
+        <link refid="_binary_component_extractor_8h"/>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>ManuscriptApp/GaborBlobExtractor.cpp</label>
+        <link refid="_gabor_blob_extractor_8cpp"/>
+      </node>
+      <node id="133">
+        <label>ManuscriptApp/PageImage.cpp</label>
+        <link refid="_page_image_8cpp"/>
+      </node>
+      <node id="115">
+        <label>ManuscriptApp/AnisotropicFilter.cpp</label>
+        <link refid="_anisotropic_filter_8cpp"/>
+      </node>
+      <node id="121">
+        <label>ManuscriptApp/GaborBlobExtractor.h</label>
+        <link refid="_gabor_blob_extractor_8h"/>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+      </node>
+      <node id="112">
+        <label>ManuscriptApp/ComponentExtractor.h</label>
+        <link refid="ComponentExtractor.h"/>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+      </node>
+      <node id="114">
+        <label>ManuscriptApp/AnisotropicFilter.h</label>
+        <link refid="_anisotropic_filter_8h"/>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>ManuscriptApp/BinaryComponentExtractor.cpp</label>
+        <link refid="_binary_component_extractor_8cpp"/>
+      </node>
+      <node id="128">
+        <label>ManuscriptApp/GlobalBinarizer.cpp</label>
+        <link refid="_global_binarizer_8cpp"/>
+      </node>
+      <node id="116">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="119">
+        <label>ManuscriptApp/DImage.cpp</label>
+        <link refid="_d_image_8cpp"/>
+      </node>
+      <node id="125">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.h</label>
+        <link refid="_profile_seam_text_line_extractor_8h"/>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>ManuscriptApp/ImageTools.cpp</label>
+        <link refid="_image_tools_8cpp"/>
+      </node>
+      <node id="117">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+      <node id="132">
+        <label>ManuscriptApp/PageImage.h</label>
+        <link refid="_page_image_8h"/>
+        <childnode refid="133" relation="include">
+        </childnode>
+      </node>
+      <node id="124">
+        <label>ManuscriptApp/ProjectionProfile.h</label>
+        <link refid="_projection_profile_8h"/>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
+        <label>ManuscriptApp/OtsuBinarizer.cpp</label>
+        <link refid="_otsu_binarizer_8cpp"/>
+      </node>
+      <node id="113">
+        <label>ManuscriptApp/DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+      </node>
+      <node id="120">
+        <label>ManuscriptApp/ImageTools.h</label>
+        <link refid="_image_tools_8h"/>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>ManuscriptApp/ProjectionProfile.cpp</label>
+        <link refid="_projection_profile_8cpp"/>
+      </node>
+      <node id="129">
+        <label>ManuscriptApp/ItayBinarizer.cpp</label>
+        <link refid="_itay_binarizer_8cpp"/>
+      </node>
+      <node id="126">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.cpp</label>
+        <link refid="_profile_seam_text_line_extractor_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_component_extractor" prot="public">ComponentExtractor</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_COMPONENEXTRACTOR_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_COMPONENEXTRACTOR_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv/cv.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv2/core/core.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_connected_component_8h" kindref="compound">ConnectedComponent.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_d_image" kindref="compound">DImage</ref><sp/>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacecv" kindref="compound">cv</ref><sp/>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="class_component_extractor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_component_extractor" kindref="compound">ComponentExtractor</ref>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14" refid="class_component_extractor_1a57494f356e871fc5216eb13fbdb76f0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_component_extractor_1a57494f356e871fc5216eb13fbdb76f0b" kindref="member">_image</ref><sp/>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="17" refid="class_component_extractor_1adccc457807e0b48696f94d3c6d28e88f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_component_extractor_1adccc457807e0b48696f94d3c6d28e88f" kindref="member">ComponentExtractor</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/><sp/>{;}</highlight></codeline>
+<codeline lineno="18" refid="class_component_extractor_1a4e079014da28395a14fb63babf10e1c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_component_extractor_1a4e079014da28395a14fb63babf10e1c6" kindref="member">~ComponentExtractor</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{;}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="class_component_extractor_1a3ef66896076dc20816fd656b8aeb1f96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_component_extractor_1a3ef66896076dc20816fd656b8aeb1f96" kindref="member">setImage</ref>(<ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/>img)<sp/>{<sp/>_image<sp/>=<sp/>img;<sp/>}<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>extract(vector&lt;ConnectedComponent*&gt;&amp;)<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ComponentExtractor.h"/>
+  </compounddef>
+</doxygen>

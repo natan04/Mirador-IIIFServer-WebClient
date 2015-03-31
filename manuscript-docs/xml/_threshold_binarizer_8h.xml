@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_threshold_binarizer_8h" kind="file">
+    <compoundname>ThresholdBinarizer.h</compoundname>
+    <includes refid="_image_binarizer_8h" local="yes">imagebinarizer.h</includes>
+    <includedby refid="_threshold_binarizer_8cpp" local="yes">ManuscriptApp/ThresholdBinarizer.cpp</includedby>
+    <incdepgraph>
+      <node id="1227">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="1225">
+        <label>ManuscriptApp/ThresholdBinarizer.h</label>
+        <link refid="ThresholdBinarizer.h"/>
+        <childnode refid="1226" relation="include">
+        </childnode>
+      </node>
+      <node id="1228">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="1227" relation="include">
+        </childnode>
+      </node>
+      <node id="1226">
+        <label>imagebinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="1227" relation="include">
+        </childnode>
+        <childnode refid="1228" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1230">
+        <label>ManuscriptApp/ThresholdBinarizer.cpp</label>
+        <link refid="_threshold_binarizer_8cpp"/>
+      </node>
+      <node id="1229">
+        <label>ManuscriptApp/ThresholdBinarizer.h</label>
+        <link refid="ThresholdBinarizer.h"/>
+        <childnode refid="1230" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_threshold_binarizer" prot="public">ThresholdBinarizer</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_THRESHOLD_BINARIZER_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_THRESHOLD_BINARIZER_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_binarizer_8h" kindref="compound">imagebinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="class_threshold_binarizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_threshold_binarizer" kindref="compound">ThresholdBinarizer</ref><sp/>:<sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_image_binarizer" kindref="compound">ImageBinarizer</ref><sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/>_threshold<sp/>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/>_reverse<sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="10" refid="class_threshold_binarizer_1a951304a610f67e3ba71823f4a376111a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_threshold_binarizer_1a951304a610f67e3ba71823f4a376111a" kindref="member">ThresholdBinarizer</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>threshold){</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_threshold<sp/>=<sp/>threshold<sp/>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_reverse<sp/>=<sp/>false<sp/>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="class_threshold_binarizer_1adcca8ae82313ed16e17f06d27abdf9b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_threshold_binarizer_1adcca8ae82313ed16e17f06d27abdf9b5" kindref="member">ThresholdBinarizer</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>threshold,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>reverse<sp/>){</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_threshold<sp/>=<sp/>threshold<sp/>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_reverse<sp/>=<sp/>false<sp/>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="class_threshold_binarizer_1a6e58690b08f2db45e4235b44629ae307" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_threshold_binarizer_1a6e58690b08f2db45e4235b44629ae307" kindref="member">setThreshold</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>threshold){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_threshold<sp/>=<sp/>threshold<sp/>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="class_threshold_binarizer_1a6dbfb62c3bc1a692dfd220743ef006cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_threshold_binarizer_1a6dbfb62c3bc1a692dfd220743ef006cc" kindref="member">setReverse</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>reverse){</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_reverse<sp/>=<sp/><sp/>reverse<sp/>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_threshold_binarizer_1a2880414f620b4a6f44032e478217ee1e" kindref="member">binarize</ref>();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,88 @@
+\hypertarget{class_text_line_extractor}{\section{Text\+Line\+Extractor Class Reference}
+\label{class_text_line_extractor}\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+}
+
+
+Text line extractor is a base class for text line extraction algorithms. Each should implement the virtual funxtion extract  
+
+
+
+
+{\ttfamily \#include $<$Text\+Line\+Extractor.\+h$>$}
+
+Inheritance diagram for Text\+Line\+Extractor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_text_line_extractor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_text_line_extractor_a5f0c3627efd8b25b82e747a191b21d54}{Text\+Line\+Extractor} (void)
+\item 
+\hyperlink{class_text_line_extractor_a220ed917eeb0ded278f9a08539149623}{$\sim$\+Text\+Line\+Extractor} (void)
+\item 
+void \hyperlink{class_text_line_extractor_a67f7e8bdb62bff99de9816b55de4c6d0}{set\+Image} (Mat img)
+\item 
+virtual void \hyperlink{class_text_line_extractor_ae3e60f7dfccd378b6144510b5b85104f}{extract} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Mat \hyperlink{class_text_line_extractor_acc518adbefc6a211ce84f5124da31709}{\+\_\+image}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Text line extractor is a base class for text line extraction algorithms. Each should implement the virtual funxtion extract 
+
+El Sana, 2/15/2012. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_text_line_extractor_a5f0c3627efd8b25b82e747a191b21d54}{\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}!Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}!Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+\subsubsection[{Text\+Line\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Text\+Line\+Extractor\+::\+Text\+Line\+Extractor (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_line_extractor_a5f0c3627efd8b25b82e747a191b21d54}
+\hypertarget{class_text_line_extractor_a220ed917eeb0ded278f9a08539149623}{\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}!````~Text\+Line\+Extractor@{$\sim$\+Text\+Line\+Extractor}}
+\index{````~Text\+Line\+Extractor@{$\sim$\+Text\+Line\+Extractor}!Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+\subsubsection[{$\sim$\+Text\+Line\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Text\+Line\+Extractor\+::$\sim$\+Text\+Line\+Extractor (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_line_extractor_a220ed917eeb0ded278f9a08539149623}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_text_line_extractor_ae3e60f7dfccd378b6144510b5b85104f}{\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}!extract@{extract}}
+\index{extract@{extract}!Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+\subsubsection[{extract}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Text\+Line\+Extractor\+::extract (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_text_line_extractor_ae3e60f7dfccd378b6144510b5b85104f}
+
+
+Implemented in \hyperlink{class_profile_seam_text_line_extractor_a67017476e961c0531524d3f52cf70e23}{Profile\+Seam\+Text\+Line\+Extractor}, and \hyperlink{class_rafi_text_line_extractor_aec2e65306e243dfdf0675fb6987ff730}{Rafi\+Text\+Line\+Extractor}.
+
+\hypertarget{class_text_line_extractor_a67f7e8bdb62bff99de9816b55de4c6d0}{\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}!set\+Image@{set\+Image}}
+\index{set\+Image@{set\+Image}!Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+\subsubsection[{set\+Image}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+Line\+Extractor\+::set\+Image (
+\begin{DoxyParamCaption}
+\item[{Mat}]{img}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_text_line_extractor_a67f7e8bdb62bff99de9816b55de4c6d0}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_text_line_extractor_acc518adbefc6a211ce84f5124da31709}{\index{Text\+Line\+Extractor@{Text\+Line\+Extractor}!\+\_\+image@{\+\_\+image}}
+\index{\+\_\+image@{\+\_\+image}!Text\+Line\+Extractor@{Text\+Line\+Extractor}}
+\subsubsection[{\+\_\+image}]{\setlength{\rightskip}{0pt plus 5cm}Mat Text\+Line\+Extractor\+::\+\_\+image\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_text_line_extractor_acc518adbefc6a211ce84f5124da31709}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Manuscript\+App/\hyperlink{_text_line_extractor_8h}{Text\+Line\+Extractor.\+h}\end{DoxyCompactItemize}

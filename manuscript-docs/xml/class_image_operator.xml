@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_image_operator" kind="class" prot="public">
+    <compoundname>ImageOperator</compoundname>
+    <derivedcompoundref refid="class_image_binarizer" prot="public" virt="non-virtual">ImageBinarizer</derivedcompoundref>
+    <derivedcompoundref refid="class_image_converter" prot="public" virt="non-virtual">ImageConverter</derivedcompoundref>
+    <derivedcompoundref refid="class_image_enhancer" prot="public" virt="non-virtual">ImageEnhancer</derivedcompoundref>
+    <derivedcompoundref refid="class_image_filter" prot="public" virt="non-virtual">ImageFilter</derivedcompoundref>
+    <derivedcompoundref refid="class_image_projector" prot="public" virt="non-virtual">ImageProjector</derivedcompoundref>
+    <includes refid="_image_operator_8h" local="no">ImageOperator.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* ImageOperator::_image</definition>
+        <argsstring></argsstring>
+        <name>_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_image_operator_1ad51aedea73c2392a53dac0f359d67734" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ImageOperator::ImageOperator</definition>
+        <argsstring>(void)</argsstring>
+        <name>ImageOperator</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="13" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_image_operator_1aa21a419edd1071392438c98fec2bbb6b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ImageOperator::ImageOperator</definition>
+        <argsstring>(DImage *img)</argsstring>
+        <name>ImageOperator</name>
+        <param>
+          <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="14" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="14" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="class_image_operator_1a381d5ddd708a43730d9b0545b5fedff5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ImageOperator::~ImageOperator</definition>
+        <argsstring>(void)</argsstring>
+        <name>~ImageOperator</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="17" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImageOperator::setImage</definition>
+        <argsstring>(DImage *img)</argsstring>
+        <name>setImage</name>
+        <param>
+          <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+          <declname>img</declname>
+        </param>
+        <briefdescription>
+<para>Sets the operated image. </para>        </briefdescription>
+        <detaileddescription>
+<para>El Sana. </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>img</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[in] The image. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="27" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="27" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_image_operator_1a71271114184aa4d9fe21c903687b55a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage* ImageOperator::getImage</definition>
+        <argsstring>()</argsstring>
+        <name>getImage</name>
+        <briefdescription>
+<para>Gets the operated image </para>        </briefdescription>
+        <detaileddescription>
+<para>El Sana. </para><para><simplesect kind="return"><para>The image. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="39" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="39" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="80">
+        <label>OtsulBinarizer</label>
+        <link refid="class_otsul_binarizer"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>GlobalBinarizer</label>
+        <link refid="class_global_binarizer"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>ImageBinarizer</label>
+        <link refid="class_image_binarizer"/>
+        <childnode refid="75" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>OtsuBinarizer</label>
+        <link refid="class_otsu_binarizer"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>ItayBinarizer</label>
+        <link refid="class_itay_binarizer"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>ImageOperator</label>
+        <link refid="class_image_operator"/>
+      </node>
+      <node id="84">
+        <label>ImageFilter</label>
+        <link refid="class_image_filter"/>
+        <childnode refid="75" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>AnisotropicFilter</label>
+        <link refid="class_anisotropic_filter"/>
+        <childnode refid="84" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>ImageEnhancer</label>
+        <link refid="class_image_enhancer"/>
+        <childnode refid="75" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="82">
+        <label>ImageConverter</label>
+        <link refid="class_image_converter"/>
+        <childnode refid="75" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>ImageProjector</label>
+        <link refid="class_image_projector"/>
+        <childnode refid="75" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>ThresholdBinarizer</label>
+        <link refid="class_threshold_binarizer"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>ProjectionProfile</label>
+        <link refid="class_projection_profile"/>
+        <childnode refid="86" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="89">
+        <label>DImage</label>
+        <link refid="class_d_image"/>
+      </node>
+      <node id="88">
+        <label>ImageOperator</label>
+        <link refid="class_image_operator"/>
+        <childnode refid="89" relation="usage">
+          <edgelabel>_image</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" line="8" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ImageOperator.h" bodystart="8" bodyend="42"/>
+    <listofallmembers>
+      <member refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" prot="protected" virt="non-virtual"><scope>ImageOperator</scope><name>_image</name></member>
+      <member refid="class_image_operator_1a71271114184aa4d9fe21c903687b55a5" prot="public" virt="non-virtual"><scope>ImageOperator</scope><name>getImage</name></member>
+      <member refid="class_image_operator_1ad51aedea73c2392a53dac0f359d67734" prot="public" virt="non-virtual"><scope>ImageOperator</scope><name>ImageOperator</name></member>
+      <member refid="class_image_operator_1aa21a419edd1071392438c98fec2bbb6b" prot="public" virt="non-virtual"><scope>ImageOperator</scope><name>ImageOperator</name></member>
+      <member refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" prot="public" virt="non-virtual"><scope>ImageOperator</scope><name>setImage</name></member>
+      <member refid="class_image_operator_1a381d5ddd708a43730d9b0545b5fedff5" prot="public" virt="non-virtual"><scope>ImageOperator</scope><name>~ImageOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

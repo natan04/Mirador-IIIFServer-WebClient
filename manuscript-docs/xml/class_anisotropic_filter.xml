@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_anisotropic_filter" kind="class" prot="public">
+    <compoundname>AnisotropicFilter</compoundname>
+    <basecompoundref refid="class_image_filter" prot="public" virt="non-virtual">ImageFilter</basecompoundref>
+    <includes refid="_anisotropic_filter_8h" local="no">AnisotropicFilter.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_anisotropic_filter_1ab6fbb68bbb07060a894a14a313120cf8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Mat</type>
+        <definition>Mat AnisotropicFilter::findMaxResponse</definition>
+        <argsstring>()</argsstring>
+        <name>findMaxResponse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="8" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.cpp" bodystart="88" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_anisotropic_filter_1abd33ea7f118a621d9edbc3a1cf00094f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; AnisotropicFilter::lineSizeEstimation</definition>
+        <argsstring>()</argsstring>
+        <name>lineSizeEstimation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="9" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.cpp" bodystart="45" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_anisotropic_filter_1ab6834854a9529df05b18f68dd1cad839" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Mat</type>
+        <definition>Mat AnisotropicFilter::eraseMargins</definition>
+        <argsstring>(Mat im)</argsstring>
+        <name>eraseMargins</name>
+        <param>
+          <type>Mat</type>
+          <declname>im</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.cpp" bodystart="28" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_anisotropic_filter_1a558c2d47cff83040fd2ef3fe06520edf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Mat</type>
+        <definition>Mat AnisotropicFilter::applyFilter</definition>
+        <argsstring>(double *I, Size sz, double theta, double scale, double eta)</argsstring>
+        <name>applyFilter</name>
+        <param>
+          <type>double *</type>
+          <declname>I</declname>
+        </param>
+        <param>
+          <type>Size</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>theta</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scale</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>eta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="11" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.cpp" bodystart="135" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_anisotropic_filter_1ae47e28a13ee052b05d173cf6abd9975c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>AnisotropicFilter::AnisotropicFilter</definition>
+        <argsstring>()</argsstring>
+        <name>AnisotropicFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="14" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.cpp" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="class_anisotropic_filter_1addbceed7b786a575f553bd4a41e0987c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage * AnisotropicFilter::filter</definition>
+        <argsstring>()</argsstring>
+        <name>filter</name>
+        <reimplements refid="class_image_filter_1afb06f41ef9470e2e2673eb3481c1f86a">filter</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="15" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.cpp" bodystart="13" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ImageOperator</label>
+        <link refid="class_image_operator"/>
+      </node>
+      <node id="1">
+        <label>ImageFilter</label>
+        <link refid="class_image_filter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="0">
+        <label>AnisotropicFilter</label>
+        <link refid="class_anisotropic_filter"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>DImage</label>
+        <link refid="class_d_image"/>
+      </node>
+      <node id="5">
+        <label>ImageOperator</label>
+        <link refid="class_image_operator"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_image</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ImageFilter</label>
+        <link refid="class_image_filter"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>AnisotropicFilter</label>
+        <link refid="class_anisotropic_filter"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" line="7" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/AnisotropicFilter.h" bodystart="6" bodyend="16"/>
+    <listofallmembers>
+      <member refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" prot="protected" virt="non-virtual"><scope>AnisotropicFilter</scope><name>_image</name></member>
+      <member refid="class_anisotropic_filter_1ae47e28a13ee052b05d173cf6abd9975c" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>AnisotropicFilter</name></member>
+      <member refid="class_anisotropic_filter_1a558c2d47cff83040fd2ef3fe06520edf" prot="private" virt="non-virtual"><scope>AnisotropicFilter</scope><name>applyFilter</name></member>
+      <member refid="class_anisotropic_filter_1ab6834854a9529df05b18f68dd1cad839" prot="private" virt="non-virtual"><scope>AnisotropicFilter</scope><name>eraseMargins</name></member>
+      <member refid="class_anisotropic_filter_1addbceed7b786a575f553bd4a41e0987c" prot="public" virt="virtual"><scope>AnisotropicFilter</scope><name>filter</name></member>
+      <member refid="class_anisotropic_filter_1ab6fbb68bbb07060a894a14a313120cf8" prot="private" virt="non-virtual"><scope>AnisotropicFilter</scope><name>findMaxResponse</name></member>
+      <member refid="class_image_operator_1a71271114184aa4d9fe21c903687b55a5" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>getImage</name></member>
+      <member refid="class_image_filter_1a86dae480d07ddd441dc40c3ec89e5d3e" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>ImageFilter</name></member>
+      <member refid="class_image_operator_1ad51aedea73c2392a53dac0f359d67734" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>ImageOperator</name></member>
+      <member refid="class_image_operator_1aa21a419edd1071392438c98fec2bbb6b" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>ImageOperator</name></member>
+      <member refid="class_anisotropic_filter_1abd33ea7f118a621d9edbc3a1cf00094f" prot="private" virt="non-virtual"><scope>AnisotropicFilter</scope><name>lineSizeEstimation</name></member>
+      <member refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>setImage</name></member>
+      <member refid="class_image_filter_1a8d04f3e5a04c9b93cdbb004519161936" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>~ImageFilter</name></member>
+      <member refid="class_image_operator_1a381d5ddd708a43730d9b0545b5fedff5" prot="public" virt="non-virtual"><scope>AnisotropicFilter</scope><name>~ImageOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

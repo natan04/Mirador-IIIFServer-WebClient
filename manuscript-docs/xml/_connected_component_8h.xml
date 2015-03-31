@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_connected_component_8h" kind="file">
+    <compoundname>ConnectedComponent.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">string</includes>
+    <includes refid="_contour_8h" local="yes">Contour.h</includes>
+    <includedby refid="_component_extractor_8h" local="yes">ManuscriptApp/ComponentExtractor.h</includedby>
+    <includedby refid="_connected_component_8cpp" local="yes">ManuscriptApp/ConnectedComponent.cpp</includedby>
+    <includedby refid="_gabor_blob_extractor_8h" local="yes">ManuscriptApp/GaborBlobExtractor.h</includedby>
+    <incdepgraph>
+      <node id="149">
+        <label>ManuscriptApp/ConnectedComponent.h</label>
+        <link refid="ConnectedComponent.h"/>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+      </node>
+      <node id="151">
+        <label>string</label>
+      </node>
+      <node id="152">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
+      </node>
+      <node id="153">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="150">
+        <label>vector</label>
+      </node>
+      <node id="154">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="178">
+        <label>ManuscriptApp/ThresholdBinarizer.cpp</label>
+        <link refid="_threshold_binarizer_8cpp"/>
+      </node>
+      <node id="175">
+        <label>ManuscriptApp/OtsulBinarizer.cpp</label>
+        <link refid="_otsul_binarizer_8cpp"/>
+      </node>
+      <node id="179">
+        <label>ManuscriptApp/BinaryComponentExtractor.h</label>
+        <link refid="_binary_component_extractor_8h"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+      </node>
+      <node id="155">
+        <label>ManuscriptApp/ConnectedComponent.h</label>
+        <link refid="ConnectedComponent.h"/>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="180" relation="include">
+        </childnode>
+        <childnode refid="165" relation="include">
+        </childnode>
+      </node>
+      <node id="166">
+        <label>ManuscriptApp/GaborBlobExtractor.cpp</label>
+        <link refid="_gabor_blob_extractor_8cpp"/>
+      </node>
+      <node id="177">
+        <label>ManuscriptApp/PageImage.cpp</label>
+        <link refid="_page_image_8cpp"/>
+      </node>
+      <node id="159">
+        <label>ManuscriptApp/AnisotropicFilter.cpp</label>
+        <link refid="_anisotropic_filter_8cpp"/>
+      </node>
+      <node id="165">
+        <label>ManuscriptApp/GaborBlobExtractor.h</label>
+        <link refid="_gabor_blob_extractor_8h"/>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>ManuscriptApp/ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="157" relation="include">
+        </childnode>
+        <childnode refid="179" relation="include">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>ManuscriptApp/AnisotropicFilter.h</label>
+        <link refid="_anisotropic_filter_8h"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+      </node>
+      <node id="162">
+        <label>ManuscriptApp/BinaryComponentExtractor.cpp</label>
+        <link refid="_binary_component_extractor_8cpp"/>
+      </node>
+      <node id="172">
+        <label>ManuscriptApp/GlobalBinarizer.cpp</label>
+        <link refid="_global_binarizer_8cpp"/>
+      </node>
+      <node id="160">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="163">
+        <label>ManuscriptApp/DImage.cpp</label>
+        <link refid="_d_image_8cpp"/>
+      </node>
+      <node id="169">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.h</label>
+        <link refid="_profile_seam_text_line_extractor_8h"/>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+      </node>
+      <node id="167">
+        <label>ManuscriptApp/ImageTools.cpp</label>
+        <link refid="_image_tools_8cpp"/>
+      </node>
+      <node id="161">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+      <node id="176">
+        <label>ManuscriptApp/PageImage.h</label>
+        <link refid="_page_image_8h"/>
+        <childnode refid="177" relation="include">
+        </childnode>
+      </node>
+      <node id="168">
+        <label>ManuscriptApp/ProjectionProfile.h</label>
+        <link refid="_projection_profile_8h"/>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="169" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="174">
+        <label>ManuscriptApp/OtsuBinarizer.cpp</label>
+        <link refid="_otsu_binarizer_8cpp"/>
+      </node>
+      <node id="157">
+        <label>ManuscriptApp/DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="164" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="172" relation="include">
+        </childnode>
+        <childnode refid="173" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="176" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+        <childnode refid="178" relation="include">
+        </childnode>
+      </node>
+      <node id="164">
+        <label>ManuscriptApp/ImageTools.h</label>
+        <link refid="_image_tools_8h"/>
+        <childnode refid="165" relation="include">
+        </childnode>
+        <childnode refid="167" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
+        </childnode>
+      </node>
+      <node id="171">
+        <label>ManuscriptApp/ProjectionProfile.cpp</label>
+        <link refid="_projection_profile_8cpp"/>
+      </node>
+      <node id="173">
+        <label>ManuscriptApp/ItayBinarizer.cpp</label>
+        <link refid="_itay_binarizer_8cpp"/>
+      </node>
+      <node id="170">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.cpp</label>
+        <link refid="_profile_seam_text_line_extractor_8cpp"/>
+      </node>
+      <node id="180">
+        <label>ManuscriptApp/ConnectedComponent.cpp</label>
+        <link refid="_connected_component_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_connected_component" prot="public">ConnectedComponent</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_CONNECTEDCOMPONENT_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_CONNECTEDCOMPONENT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_contour_8h" kindref="compound">Contour.h</ref>&quot;</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="class_connected_component" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ABOVE<sp/>=<sp/><sp/>1<sp/>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>BELOW<sp/>=<sp/>-1<sp/>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>BORDER<sp/>=<sp/>1<sp/>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>VERTEX<sp/>=<sp/>2<sp/>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ON_EDGE<sp/>=<sp/>3<sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22" refid="class_connected_component_1aeffe49ad736a5be430f40ffe2816234b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1aeffe49ad736a5be430f40ffe2816234b" kindref="member">_image</ref><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="23" refid="class_connected_component_1a802edcad018e25fbf4398d3c1eaad926" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref>*<sp/><sp/><sp/><ref refid="class_connected_component_1a802edcad018e25fbf4398d3c1eaad926" kindref="member">_parent</ref><sp/><sp/>;</highlight></codeline>
+<codeline lineno="24" refid="class_connected_component_1ac41ea811b504bd7b57ed2cfaf6a73e04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_contour" kindref="compound">Contour</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1ac41ea811b504bd7b57ed2cfaf6a73e04" kindref="member">_contour</ref><sp/>;</highlight></codeline>
+<codeline lineno="25" refid="class_connected_component_1a3d7c59ca80f6304b1f07a0e196a45bc1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>String<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1a3d7c59ca80f6304b1f07a0e196a45bc1" kindref="member">_string</ref><sp/><sp/>;</highlight></codeline>
+<codeline lineno="26" refid="class_connected_component_1a68dde04250c15d018d774d55b8dc521c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;ConnectedComponent*&gt;<sp/><ref refid="class_connected_component_1a68dde04250c15d018d774d55b8dc521c" kindref="member">_children</ref><sp/>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1af69288c391283d9ca4d017d435c840c9" kindref="member">ConnectedComponent</ref>(vector&lt;Point&gt;&amp;<sp/>contour);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1af69288c391283d9ca4d017d435c840c9" kindref="member">ConnectedComponent</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1a91f368cd2b9c725ba1ef610c0d18e223" kindref="member">~ConnectedComponent</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="class_connected_component_1ac13a32125f8c05e118dcaa1fd57eacfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1ac13a32125f8c05e118dcaa1fd57eacfb" kindref="member">setImage</ref>(Mat<sp/>img)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>_image<sp/>=<sp/>img;<sp/><sp/>}</highlight></codeline>
+<codeline lineno="34" refid="class_connected_component_1abd451aa4596f6e4bfb2c4b74b1764789" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1abd451aa4596f6e4bfb2c4b74b1764789" kindref="member">setImage</ref>(Mat<sp/>img,<sp/>Rect&amp;<sp/>rect){</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_image<sp/>=<sp/>img(rect);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="class_connected_component_1ad25f944f3627225427501c1a1cd7dc45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/><sp/><ref refid="class_connected_component_1ad25f944f3627225427501c1a1cd7dc45" kindref="member">getImage</ref>()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1aeffe49ad736a5be430f40ffe2816234b" kindref="member">_image</ref><sp/>;<sp/>}<sp/></highlight></codeline>
+<codeline lineno="39" refid="class_connected_component_1ae2272acc6e94fc8e2fa7f87e4e17c944" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_contour" kindref="compound">Contour</ref>&amp;<sp/><ref refid="class_connected_component_1ae2272acc6e94fc8e2fa7f87e4e17c944" kindref="member">getContour</ref>()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1ac41ea811b504bd7b57ed2cfaf6a73e04" kindref="member">_contour</ref><sp/>;}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1a391767f0886946771bf138e3d136b192" kindref="member">addChild</ref>(<ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref>*<sp/>component)<sp/>;</highlight></codeline>
+<codeline lineno="42" refid="class_connected_component_1a7be353a1c50182b97b4f4e36d1bb5275" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Rect<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1a7be353a1c50182b97b4f4e36d1bb5275" kindref="member">getBoundRect</ref>()<sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_contour.<ref refid="class_contour_1a6a0a7792ef282071a7bbde523ec0e96d" kindref="member">getBoundRect</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="43" refid="class_connected_component_1a9ac344dd99b73e26ba9f12e632db9a81" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_connected_component_1a9ac344dd99b73e26ba9f12e632db9a81" kindref="member">getParent</ref>()<sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1a802edcad018e25fbf4398d3c1eaad926" kindref="member">_parent</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="44" refid="class_connected_component_1a3d061e6cd4e5bf337b084a3463ea8bb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;ConnectedComponent*&gt;&amp;<sp/><ref refid="class_connected_component_1a3d061e6cd4e5bf337b084a3463ea8bb0" kindref="member">getChildren</ref>()<sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1a68dde04250c15d018d774d55b8dc521c" kindref="member">_children</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="class_connected_component_1acca10d6015b6dbbf07fd111b07b5dee9" kindref="member">borderType</ref>(Mat<sp/>mat,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>mask,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>trace<sp/>);</highlight></codeline>
+<codeline lineno="47" refid="class_connected_component_1afbf7969c6c69fa5c603ca819d809c820" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1afbf7969c6c69fa5c603ca819d809c820" kindref="member">setParent</ref>(<ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref>*<sp/>parent)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>_parent<sp/><sp/><sp/>=<sp/>parent;<sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1a9cbcbbd6f27b0d5981522da5aa63ddac" kindref="member">fillComponentOnMat</ref>(Mat<sp/>mat,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>mask,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>filler);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_connected_component_1acf50ca5ed3d677faaff0b160b1e2a136" kindref="member">draw</ref>(Mat<sp/>img,<sp/>Scalar<sp/>clr,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isclosed,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>thickness,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_type);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ConnectedComponent.h"/>
+  </compounddef>
+</doxygen>

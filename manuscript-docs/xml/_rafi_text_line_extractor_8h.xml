@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_rafi_text_line_extractor_8h" kind="file">
+    <compoundname>RafiTextLineExtractor.h</compoundname>
+    <includes refid="_text_line_extractor_8h" local="yes">TextLineExtractor.h</includes>
+    <includedby refid="_manuscript_app_8cpp" local="yes">ManuscriptApp/ManuscriptApp.cpp</includedby>
+    <includedby refid="_rafi_text_line_extractor_8cpp" local="yes">ManuscriptApp/RafiTextLineExtractor.cpp</includedby>
+    <incdepgraph>
+      <node id="1112">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="1113">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="1110">
+        <label>ManuscriptApp/RafiTextLineExtractor.h</label>
+        <link refid="RafiTextLineExtractor.h"/>
+        <childnode refid="1111" relation="include">
+        </childnode>
+      </node>
+      <node id="1111">
+        <label>TextLineExtractor.h</label>
+        <link refid="_text_line_extractor_8h"/>
+        <childnode refid="1112" relation="include">
+        </childnode>
+        <childnode refid="1113" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1114">
+        <label>ManuscriptApp/RafiTextLineExtractor.h</label>
+        <link refid="RafiTextLineExtractor.h"/>
+        <childnode refid="1115" relation="include">
+        </childnode>
+        <childnode refid="1116" relation="include">
+        </childnode>
+      </node>
+      <node id="1115">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="1116">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_rafi_text_line_extractor" prot="public">RafiTextLineExtractor</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_text_line_extractor_8h" kindref="compound">TextLineExtractor.h</ref>&quot;</highlight><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="3" refid="class_rafi_text_line_extractor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_rafi_text_line_extractor" kindref="compound">RafiTextLineExtractor</ref><sp/>:</highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_text_line_extractor" kindref="compound">TextLineExtractor</ref>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/><ref refid="class_rafi_text_line_extractor_1a4a5f293ba87e2c80d9e02b38050351ea" kindref="member">filterDocument</ref>();</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_rafi_text_line_extractor_1a96292e5e16014f1e48cf4754bf130d1f" kindref="member">TraverseTree</ref>();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_rafi_text_line_extractor_1a7bbeb76ff90b68710376be91fddb95c9" kindref="member">RafiTextLineExtractor</ref>();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_rafi_text_line_extractor_1aec2e65306e243dfdf0675fb6987ff730" kindref="member">extract</ref>();</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/RafiTextLineExtractor.h"/>
+  </compounddef>
+</doxygen>

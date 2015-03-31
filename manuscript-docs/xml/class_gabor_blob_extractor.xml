@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_gabor_blob_extractor" kind="class" prot="public">
+    <compoundname>GaborBlobExtractor</compoundname>
+    <basecompoundref refid="class_feature_extractor" prot="public" virt="non-virtual">FeatureExtractor</basecompoundref>
+    <includes refid="_gabor_blob_extractor_8h" local="no">GaborBlobExtractor.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_gabor_blob_extractor_1a1735a6fd1fe90e43fdb51be85c11437c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int GaborBlobExtractor::_numOrientation</definition>
+        <argsstring></argsstring>
+        <name>_numOrientation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="11" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_extractor_1a384699156b2bbb36876b0d7bf8f0f70a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float GaborBlobExtractor::_curOrientation</definition>
+        <argsstring></argsstring>
+        <name>_curOrientation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="12" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_extractor_1a61a7a851aa8e93e709d4bec0cbb40f44" prot="private" static="no" mutable="no">
+        <type>Size</type>
+        <definition>Size GaborBlobExtractor::_kernelSize</definition>
+        <argsstring></argsstring>
+        <name>_kernelSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="13" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_extractor_1aa599c975bc1ea6fc57fa9e202b08e58d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GaborBlobExtractor::_envelopeSigma</definition>
+        <argsstring></argsstring>
+        <name>_envelopeSigma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="14" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_extractor_1a1e13c61bf5998c52a3fc4db2d2ef2eb9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GaborBlobExtractor::_wavelength</definition>
+        <argsstring></argsstring>
+        <name>_wavelength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="15" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gabor_blob_extractor_1a014f54272b7f966a4b04a5e5b4f874f9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GaborBlobExtractor::_aspectRatio</definition>
+        <argsstring></argsstring>
+        <name>_aspectRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="16" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_gabor_blob_extractor_1a7f3a5a4c61cd515fbae56fdfefe3d004" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GaborBlobExtractor::GaborBlobExtractor</definition>
+        <argsstring>()</argsstring>
+        <name>GaborBlobExtractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="19" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="19" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_extractor_1a5c911de75dbda420e572cf1715440bb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GaborBlobExtractor::GaborBlobExtractor</definition>
+        <argsstring>(int n, int r, double sigma, double lambda)</argsstring>
+        <name>GaborBlobExtractor</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lambda</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="27" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="27" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_extractor_1ac13442f2a5ca9d980efb4ed93c6576f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GaborBlobExtractor::~GaborBlobExtractor</definition>
+        <argsstring>()</argsstring>
+        <name>~GaborBlobExtractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="35" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_extractor_1a033c00368027417ff74d14ce98e12108" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobExtractor::setNumOrientation</definition>
+        <argsstring>(int n)</argsstring>
+        <name>setNumOrientation</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="37" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_extractor_1a9f332a64eaa87a97cd48fbc34a5a58da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_gabor_blob_feature" kindref="compound">GaborBlobFeature</ref> *</type>
+        <definition>GaborBlobFeature * GaborBlobExtractor::getComponentFeature</definition>
+        <argsstring>(ConnectedComponent *component)</argsstring>
+        <name>getComponentFeature</name>
+        <param>
+          <type><ref refid="class_connected_component" kindref="compound">ConnectedComponent</ref> *</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="41" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.cpp" bodystart="9" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_extractor_1a8111b21c0587c91e53267bdcef9b1882" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaborBlobExtractor::processResponse</definition>
+        <argsstring>(Mat &amp;response, vector&lt; Feature * &gt; &amp;list)</argsstring>
+        <name>processResponse</name>
+        <param>
+          <type>Mat &amp;</type>
+          <declname>response</declname>
+        </param>
+        <param>
+          <type>vector&lt; <ref refid="class_feature" kindref="compound">Feature</ref> * &gt; &amp;</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="42" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.cpp" bodystart="16" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gabor_blob_extractor_1aff19b47162d8d4244ac9325b82f1de4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void GaborBlobExtractor::extract</definition>
+        <argsstring>(vector&lt; Feature * &gt; &amp;)</argsstring>
+        <name>extract</name>
+        <reimplements refid="class_feature_extractor_1a34507279297dcc1bc8a7ba9422da4abf">extract</reimplements>
+        <param>
+          <type>vector&lt; <ref refid="class_feature" kindref="compound">Feature</ref> * &gt; &amp;</type>
+          <defname>list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="43" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.cpp" bodystart="48" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="32">
+        <label>GaborBlobExtractor</label>
+        <link refid="class_gabor_blob_extractor"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>FeatureExtractor</label>
+        <link refid="class_feature_extractor"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="34">
+        <label>GaborBlobExtractor</label>
+        <link refid="class_gabor_blob_extractor"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>FeatureExtractor</label>
+        <link refid="class_feature_extractor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GaborBlobExtractor.h" bodystart="10" bodyend="44"/>
+    <listofallmembers>
+      <member refid="class_gabor_blob_extractor_1a014f54272b7f966a4b04a5e5b4f874f9" prot="private" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_aspectRatio</name></member>
+      <member refid="class_gabor_blob_extractor_1a384699156b2bbb36876b0d7bf8f0f70a" prot="private" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_curOrientation</name></member>
+      <member refid="class_gabor_blob_extractor_1aa599c975bc1ea6fc57fa9e202b08e58d" prot="private" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_envelopeSigma</name></member>
+      <member refid="class_feature_extractor_1a56fefb5d4a1d14aef973442b4bf47a62" prot="protected" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_image</name></member>
+      <member refid="class_gabor_blob_extractor_1a61a7a851aa8e93e709d4bec0cbb40f44" prot="private" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_kernelSize</name></member>
+      <member refid="class_gabor_blob_extractor_1a1735a6fd1fe90e43fdb51be85c11437c" prot="private" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_numOrientation</name></member>
+      <member refid="class_gabor_blob_extractor_1a1e13c61bf5998c52a3fc4db2d2ef2eb9" prot="private" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>_wavelength</name></member>
+      <member refid="class_gabor_blob_extractor_1aff19b47162d8d4244ac9325b82f1de4f" prot="public" virt="virtual"><scope>GaborBlobExtractor</scope><name>extract</name></member>
+      <member refid="class_feature_extractor_1a20fdc922c648855f2d6e4ba98377c2c0" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>FeatureExtractor</name></member>
+      <member refid="class_feature_extractor_1a69618427765f959e239836106f33dc61" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>FeatureExtractor</name></member>
+      <member refid="class_gabor_blob_extractor_1a7f3a5a4c61cd515fbae56fdfefe3d004" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>GaborBlobExtractor</name></member>
+      <member refid="class_gabor_blob_extractor_1a5c911de75dbda420e572cf1715440bb1" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>GaborBlobExtractor</name></member>
+      <member refid="class_gabor_blob_extractor_1a9f332a64eaa87a97cd48fbc34a5a58da" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>getComponentFeature</name></member>
+      <member refid="class_gabor_blob_extractor_1a8111b21c0587c91e53267bdcef9b1882" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>processResponse</name></member>
+      <member refid="class_feature_extractor_1a2f56319a663c984edce8b3c977bf8b89" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>setImage</name></member>
+      <member refid="class_gabor_blob_extractor_1a033c00368027417ff74d14ce98e12108" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>setNumOrientation</name></member>
+      <member refid="class_feature_extractor_1ab659cba0f7ca31313ebf80544400dfae" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>~FeatureExtractor</name></member>
+      <member refid="class_gabor_blob_extractor_1ac13442f2a5ca9d980efb4ed93c6576f6" prot="public" virt="non-virtual"><scope>GaborBlobExtractor</scope><name>~GaborBlobExtractor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

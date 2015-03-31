@@ -1,0 +1,107 @@
+\hypertarget{class_binary_component_extractor}{\section{Binary\+Component\+Extractor Class Reference}
+\label{class_binary_component_extractor}\index{Binary\+Component\+Extractor@{Binary\+Component\+Extractor}}
+}
+
+
+Binary component extractor class  
+
+
+
+
+{\ttfamily \#include $<$Binary\+Component\+Extractor.\+h$>$}
+
+Inheritance diagram for Binary\+Component\+Extractor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_binary_component_extractor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_binary_component_extractor_ab350a4d29003655c652d7e7943e7854e}{Binary\+Component\+Extractor} (void)
+\item 
+\hyperlink{class_binary_component_extractor_aa1be60410fd2e11b1bedfeac3bb44519}{$\sim$\+Binary\+Component\+Extractor} (void)
+\item 
+void \hyperlink{class_binary_component_extractor_a675e103667b7eeb343765c0daa5686a5}{collect\+Components} (vector$<$ vector$<$ Point $>$$>$ \&contours, vector$<$ Vec4i $>$ hierarchy, vector$<$ \hyperlink{class_connected_component}{Connected\+Component} $\ast$ $>$ \&component)
+\begin{DoxyCompactList}\small\item\em Collect components. \end{DoxyCompactList}\item 
+void \hyperlink{class_binary_component_extractor_a16232815f3a3e8e28fd80a733ff71383}{extract} (vector$<$ \hyperlink{class_connected_component}{Connected\+Component} $\ast$ $>$ \&)
+\begin{DoxyCompactList}\small\item\em Extracts the given components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Binary component extractor class 
+
+El Sana, 2/15/2012. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_binary_component_extractor_ab350a4d29003655c652d7e7943e7854e}{\index{Binary\+Component\+Extractor@{Binary\+Component\+Extractor}!Binary\+Component\+Extractor@{Binary\+Component\+Extractor}}
+\index{Binary\+Component\+Extractor@{Binary\+Component\+Extractor}!Binary\+Component\+Extractor@{Binary\+Component\+Extractor}}
+\subsubsection[{Binary\+Component\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Binary\+Component\+Extractor\+::\+Binary\+Component\+Extractor (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_binary_component_extractor_ab350a4d29003655c652d7e7943e7854e}
+\hypertarget{class_binary_component_extractor_aa1be60410fd2e11b1bedfeac3bb44519}{\index{Binary\+Component\+Extractor@{Binary\+Component\+Extractor}!````~Binary\+Component\+Extractor@{$\sim$\+Binary\+Component\+Extractor}}
+\index{````~Binary\+Component\+Extractor@{$\sim$\+Binary\+Component\+Extractor}!Binary\+Component\+Extractor@{Binary\+Component\+Extractor}}
+\subsubsection[{$\sim$\+Binary\+Component\+Extractor}]{\setlength{\rightskip}{0pt plus 5cm}Binary\+Component\+Extractor\+::$\sim$\+Binary\+Component\+Extractor (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_binary_component_extractor_aa1be60410fd2e11b1bedfeac3bb44519}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_binary_component_extractor_a675e103667b7eeb343765c0daa5686a5}{\index{Binary\+Component\+Extractor@{Binary\+Component\+Extractor}!collect\+Components@{collect\+Components}}
+\index{collect\+Components@{collect\+Components}!Binary\+Component\+Extractor@{Binary\+Component\+Extractor}}
+\subsubsection[{collect\+Components}]{\setlength{\rightskip}{0pt plus 5cm}void Binary\+Component\+Extractor\+::collect\+Components (
+\begin{DoxyParamCaption}
+\item[{vector$<$ vector$<$ Point $>$$>$ \&}]{contours, }
+\item[{vector$<$ Vec4i $>$}]{hierarchy, }
+\item[{vector$<$ {\bf Connected\+Component} $\ast$ $>$ \&}]{components}
+\end{DoxyParamCaption}
+)}}\label{class_binary_component_extractor_a675e103667b7eeb343765c0daa5686a5}
+
+
+Collect components. 
+
+El Sana, 2/9/2012. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contours} & \mbox{[}in\mbox{]} The contours. \\
+\hline
+{\em hierarchy} & \mbox{[}in\mbox{]} The hierarchy. \\
+\hline
+{\em components} & \mbox{[}out\mbox{]} the collected components. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_binary_component_extractor_a16232815f3a3e8e28fd80a733ff71383}{\index{Binary\+Component\+Extractor@{Binary\+Component\+Extractor}!extract@{extract}}
+\index{extract@{extract}!Binary\+Component\+Extractor@{Binary\+Component\+Extractor}}
+\subsubsection[{extract}]{\setlength{\rightskip}{0pt plus 5cm}void Binary\+Component\+Extractor\+::extract (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Connected\+Component} $\ast$ $>$ \&}]{components}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_binary_component_extractor_a16232815f3a3e8e28fd80a733ff71383}
+
+
+Extracts the given components. 
+
+El Sana, 2/9/2012. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em components} & \mbox{[}in,out\mbox{]} the extracted components. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_component_extractor_ac26bd7eec0e6caa7312f603bf2368d84}{Component\+Extractor}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Manuscript\+App/\hyperlink{_binary_component_extractor_8h}{Binary\+Component\+Extractor.\+h}\item 
+Manuscript\+App/\hyperlink{_binary_component_extractor_8cpp}{Binary\+Component\+Extractor.\+cpp}\end{DoxyCompactItemize}

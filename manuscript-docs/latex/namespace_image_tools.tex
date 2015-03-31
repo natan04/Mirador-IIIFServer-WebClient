@@ -1,0 +1,81 @@
+\hypertarget{namespace_image_tools}{\section{Image\+Tools Namespace Reference}
+\label{namespace_image_tools}\index{Image\+Tools@{Image\+Tools}}
+}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::pair$<$ cv\+::\+Point2f, \\*
+cv\+::\+Point2f $>$ \hyperlink{namespace_image_tools_ab9b6e111b7139dcff8b2b04b0f36d1a1}{Orientation}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+cv\+::\+Point2f \hyperlink{namespace_image_tools_aef9fa361958e089c60e33af0e1ae96c4}{center\+Of\+Mass} (cv\+::\+Mat mat)
+\item 
+cv\+::\+Mat \hyperlink{namespace_image_tools_aef7ccc5ec3cb576256506b6539f5ad6e}{variance\+Around\+Point} (cv\+::\+Mat m, cv\+::\+Point2f point)
+\item 
+\hyperlink{namespace_image_tools_ab9b6e111b7139dcff8b2b04b0f36d1a1}{Orientation} \hyperlink{namespace_image_tools_ab6bb0f737969195fcfceb4723bf474ea}{orientation} (cv\+::\+Mat m, cv\+::\+Point2f \&com)
+\item 
+void \hyperlink{namespace_image_tools_af76b41d3be28c818faf2a9ec1e3d3bb1}{smooth\+Column} (cv\+::\+Mat mat, cv\+::\+Mat filter, int col\+\_\+idx)
+\item 
+void \hyperlink{namespace_image_tools_a45492e740afde5d3482a71d5cee9842b}{display} (String win, \hyperlink{class_d_image}{D\+Image} \&img)
+\item 
+void \hyperlink{namespace_image_tools_a00f243162ed9b7c3dc16d105425e473d}{display} (String win, Mat \&img)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{namespace_image_tools_ab9b6e111b7139dcff8b2b04b0f36d1a1}{\index{Image\+Tools@{Image\+Tools}!Orientation@{Orientation}}
+\index{Orientation@{Orientation}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{Orientation}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::pair$<$cv\+::\+Point2f, cv\+::\+Point2f$>$ {\bf Image\+Tools\+::\+Orientation}}}\label{namespace_image_tools_ab9b6e111b7139dcff8b2b04b0f36d1a1}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace_image_tools_aef9fa361958e089c60e33af0e1ae96c4}{\index{Image\+Tools@{Image\+Tools}!center\+Of\+Mass@{center\+Of\+Mass}}
+\index{center\+Of\+Mass@{center\+Of\+Mass}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{center\+Of\+Mass}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Point2f Image\+Tools\+::center\+Of\+Mass (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{mat}
+\end{DoxyParamCaption}
+)}}\label{namespace_image_tools_aef9fa361958e089c60e33af0e1ae96c4}
+\hypertarget{namespace_image_tools_a45492e740afde5d3482a71d5cee9842b}{\index{Image\+Tools@{Image\+Tools}!display@{display}}
+\index{display@{display}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{display}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Tools\+::display (
+\begin{DoxyParamCaption}
+\item[{String}]{win, }
+\item[{{\bf D\+Image} \&}]{img}
+\end{DoxyParamCaption}
+)}}\label{namespace_image_tools_a45492e740afde5d3482a71d5cee9842b}
+\hypertarget{namespace_image_tools_a00f243162ed9b7c3dc16d105425e473d}{\index{Image\+Tools@{Image\+Tools}!display@{display}}
+\index{display@{display}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{display}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Tools\+::display (
+\begin{DoxyParamCaption}
+\item[{String}]{win, }
+\item[{Mat \&}]{img}
+\end{DoxyParamCaption}
+)}}\label{namespace_image_tools_a00f243162ed9b7c3dc16d105425e473d}
+\hypertarget{namespace_image_tools_ab6bb0f737969195fcfceb4723bf474ea}{\index{Image\+Tools@{Image\+Tools}!orientation@{orientation}}
+\index{orientation@{orientation}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{orientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image\+Tools\+::\+Orientation} Image\+Tools\+::orientation (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{m, }
+\item[{cv\+::\+Point2f \&}]{com}
+\end{DoxyParamCaption}
+)}}\label{namespace_image_tools_ab6bb0f737969195fcfceb4723bf474ea}
+\hypertarget{namespace_image_tools_af76b41d3be28c818faf2a9ec1e3d3bb1}{\index{Image\+Tools@{Image\+Tools}!smooth\+Column@{smooth\+Column}}
+\index{smooth\+Column@{smooth\+Column}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{smooth\+Column}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Tools\+::smooth\+Column (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{mat, }
+\item[{cv\+::\+Mat}]{filter, }
+\item[{int}]{col\+\_\+idx}
+\end{DoxyParamCaption}
+)}}\label{namespace_image_tools_af76b41d3be28c818faf2a9ec1e3d3bb1}
+\hypertarget{namespace_image_tools_aef7ccc5ec3cb576256506b6539f5ad6e}{\index{Image\+Tools@{Image\+Tools}!variance\+Around\+Point@{variance\+Around\+Point}}
+\index{variance\+Around\+Point@{variance\+Around\+Point}!Image\+Tools@{Image\+Tools}}
+\subsubsection[{variance\+Around\+Point}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Image\+Tools\+::variance\+Around\+Point (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{m, }
+\item[{cv\+::\+Point2f}]{point}
+\end{DoxyParamCaption}
+)}}\label{namespace_image_tools_aef7ccc5ec3cb576256506b6539f5ad6e}

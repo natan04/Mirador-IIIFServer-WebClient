@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="class_threshold_binarizer" kind="class" prot="public">
+    <compoundname>ThresholdBinarizer</compoundname>
+    <basecompoundref refid="class_image_binarizer" prot="public" virt="non-virtual">ImageBinarizer</basecompoundref>
+    <includes refid="_threshold_binarizer_8h" local="no">ThresholdBinarizer.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_threshold_binarizer_1a17e761d2f32d330bb7a45b105d9f78ce" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ThresholdBinarizer::_threshold</definition>
+        <argsstring></argsstring>
+        <name>_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="7" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_threshold_binarizer_1aedc8ddfe0c6732495da1b8c2085985be" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ThresholdBinarizer::_reverse</definition>
+        <argsstring></argsstring>
+        <name>_reverse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="8" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_threshold_binarizer_1a951304a610f67e3ba71823f4a376111a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ThresholdBinarizer::ThresholdBinarizer</definition>
+        <argsstring>(int threshold)</argsstring>
+        <name>ThresholdBinarizer</name>
+        <param>
+          <type>int</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="10" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="10" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_threshold_binarizer_1adcca8ae82313ed16e17f06d27abdf9b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ThresholdBinarizer::ThresholdBinarizer</definition>
+        <argsstring>(int threshold, bool reverse)</argsstring>
+        <name>ThresholdBinarizer</name>
+        <param>
+          <type>int</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reverse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="15" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_threshold_binarizer_1a6e58690b08f2db45e4235b44629ae307" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ThresholdBinarizer::setThreshold</definition>
+        <argsstring>(int threshold)</argsstring>
+        <name>setThreshold</name>
+        <param>
+          <type>int</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="20" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="20" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_threshold_binarizer_1a6dbfb62c3bc1a692dfd220743ef006cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ThresholdBinarizer::setReverse</definition>
+        <argsstring>(bool reverse)</argsstring>
+        <name>setReverse</name>
+        <param>
+          <type>bool</type>
+          <declname>reverse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="24" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_threshold_binarizer_1a2880414f620b4a6f44032e478217ee1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_d_image" kindref="compound">DImage</ref> *</type>
+        <definition>DImage * ThresholdBinarizer::binarize</definition>
+        <argsstring>()</argsstring>
+        <name>binarize</name>
+        <reimplements refid="class_image_binarizer_1accf059357ade25887a94c91f76262254">binarize</reimplements>
+        <briefdescription>
+<para>binarize an image based on a thershold </para>        </briefdescription>
+        <detaileddescription>
+<para>El Sana, 2/15/2012. </para><para><simplesect kind="return"><para>null if it fails, else. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="28" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.cpp" bodystart="14" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="156">
+        <label>ImageBinarizer</label>
+        <link refid="class_image_binarizer"/>
+        <childnode refid="157" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>ImageOperator</label>
+        <link refid="class_image_operator"/>
+      </node>
+      <node id="155">
+        <label>ThresholdBinarizer</label>
+        <link refid="class_threshold_binarizer"/>
+        <childnode refid="156" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="159">
+        <label>ImageBinarizer</label>
+        <link refid="class_image_binarizer"/>
+        <childnode refid="160" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>DImage</label>
+        <link refid="class_d_image"/>
+      </node>
+      <node id="160">
+        <label>ImageOperator</label>
+        <link refid="class_image_operator"/>
+        <childnode refid="161" relation="usage">
+          <edgelabel>_image</edgelabel>
+        </childnode>
+      </node>
+      <node id="158">
+        <label>ThresholdBinarizer</label>
+        <link refid="class_threshold_binarizer"/>
+        <childnode refid="159" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" line="6" column="1" bodyfile="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.h" bodystart="6" bodyend="29"/>
+    <listofallmembers>
+      <member refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" prot="protected" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>_image</name></member>
+      <member refid="class_threshold_binarizer_1aedc8ddfe0c6732495da1b8c2085985be" prot="private" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>_reverse</name></member>
+      <member refid="class_threshold_binarizer_1a17e761d2f32d330bb7a45b105d9f78ce" prot="private" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>_threshold</name></member>
+      <member refid="class_threshold_binarizer_1a2880414f620b4a6f44032e478217ee1e" prot="public" virt="virtual"><scope>ThresholdBinarizer</scope><name>binarize</name></member>
+      <member refid="class_image_operator_1a71271114184aa4d9fe21c903687b55a5" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>getImage</name></member>
+      <member refid="class_image_operator_1ad51aedea73c2392a53dac0f359d67734" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>ImageOperator</name></member>
+      <member refid="class_image_operator_1aa21a419edd1071392438c98fec2bbb6b" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>ImageOperator</name></member>
+      <member refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>setImage</name></member>
+      <member refid="class_threshold_binarizer_1a6dbfb62c3bc1a692dfd220743ef006cc" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>setReverse</name></member>
+      <member refid="class_threshold_binarizer_1a6e58690b08f2db45e4235b44629ae307" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>setThreshold</name></member>
+      <member refid="class_threshold_binarizer_1a951304a610f67e3ba71823f4a376111a" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>ThresholdBinarizer</name></member>
+      <member refid="class_threshold_binarizer_1adcca8ae82313ed16e17f06d27abdf9b5" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>ThresholdBinarizer</name></member>
+      <member refid="class_image_operator_1a381d5ddd708a43730d9b0545b5fedff5" prot="public" virt="non-virtual"><scope>ThresholdBinarizer</scope><name>~ImageOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

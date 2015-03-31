@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_global_binarizer_8cpp" kind="file">
+    <compoundname>GlobalBinarizer.cpp</compoundname>
+    <includes refid="stdafx_8h" local="yes">stdafx.h</includes>
+    <includes refid="_global_binarizer_8h" local="yes">GlobalBinarizer.h</includes>
+    <includes refid="_d_image_8h" local="yes">DImage.h</includes>
+    <incdepgraph>
+      <node id="454">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="456">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="448" relation="include">
+        </childnode>
+        <childnode refid="457" relation="include">
+        </childnode>
+        <childnode refid="458" relation="include">
+        </childnode>
+      </node>
+      <node id="439">
+        <label>SDKDDKVer.h</label>
+      </node>
+      <node id="455">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="451">
+        <label>ImageConverter.h</label>
+        <link refid="_image_converter_8h"/>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="445" relation="include">
+        </childnode>
+      </node>
+      <node id="457">
+        <label>string</label>
+      </node>
+      <node id="442">
+        <label>GlobalBinarizer.h</label>
+        <link refid="_global_binarizer_8h"/>
+        <childnode refid="443" relation="include">
+        </childnode>
+      </node>
+      <node id="453">
+        <label>ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="454" relation="include">
+        </childnode>
+        <childnode refid="455" relation="include">
+        </childnode>
+        <childnode refid="456" relation="include">
+        </childnode>
+      </node>
+      <node id="458">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="448" relation="include">
+        </childnode>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="459" relation="include">
+        </childnode>
+      </node>
+      <node id="444">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="450">
+        <label>ImageEnhancer.h</label>
+        <link refid="_image_enhancer_8h"/>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="445" relation="include">
+        </childnode>
+      </node>
+      <node id="437">
+        <label>stdafx.h</label>
+        <link refid="stdafx_8h"/>
+        <childnode refid="438" relation="include">
+        </childnode>
+        <childnode refid="440" relation="include">
+        </childnode>
+        <childnode refid="441" relation="include">
+        </childnode>
+      </node>
+      <node id="461">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="436">
+        <label>ManuscriptApp/GlobalBinarizer.cpp</label>
+        <link refid="GlobalBinarizer.cpp"/>
+        <childnode refid="437" relation="include">
+        </childnode>
+        <childnode refid="442" relation="include">
+        </childnode>
+        <childnode refid="446" relation="include">
+        </childnode>
+      </node>
+      <node id="448">
+        <label>vector</label>
+      </node>
+      <node id="460">
+        <label>FeatureExtractor.h</label>
+        <link refid="_feature_extractor_8h"/>
+        <childnode refid="454" relation="include">
+        </childnode>
+        <childnode refid="455" relation="include">
+        </childnode>
+        <childnode refid="461" relation="include">
+        </childnode>
+      </node>
+      <node id="452">
+        <label>ImageProjector.h</label>
+        <link refid="_image_projector_8h"/>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="445" relation="include">
+        </childnode>
+      </node>
+      <node id="447">
+        <label>opencv2/highgui/highgui.hpp</label>
+      </node>
+      <node id="446">
+        <label>DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="447" relation="include">
+        </childnode>
+        <childnode refid="448" relation="include">
+        </childnode>
+        <childnode refid="449" relation="include">
+        </childnode>
+        <childnode refid="443" relation="include">
+        </childnode>
+        <childnode refid="450" relation="include">
+        </childnode>
+        <childnode refid="451" relation="include">
+        </childnode>
+        <childnode refid="452" relation="include">
+        </childnode>
+        <childnode refid="453" relation="include">
+        </childnode>
+        <childnode refid="460" relation="include">
+        </childnode>
+      </node>
+      <node id="441">
+        <label>tchar.h</label>
+      </node>
+      <node id="449">
+        <label>ImageFilter.h</label>
+        <link refid="_image_filter_8h"/>
+        <childnode refid="445" relation="include">
+        </childnode>
+      </node>
+      <node id="438">
+        <label>targetver.h</label>
+        <link refid="targetver_8h"/>
+        <childnode refid="439" relation="include">
+        </childnode>
+      </node>
+      <node id="440">
+        <label>stdio.h</label>
+      </node>
+      <node id="445">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="444" relation="include">
+        </childnode>
+      </node>
+      <node id="459">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+      <node id="443">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="445" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8h" kindref="compound">stdafx.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_global_binarizer_8h" kindref="compound">GlobalBinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_d_image_8h" kindref="compound">DImage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><ref refid="class_global_binarizer_1a50bbd8c67da42e27dcecfcbacfa1189d" kindref="member">GlobalBinarizer::GlobalBinarizer</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><ref refid="class_global_binarizer_1a50bbd8c67da42e27dcecfcbacfa1189d" kindref="member">GlobalBinarizer::GlobalBinarizer</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>thershold){</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>_thershold<sp/>=<sp/>thershold<sp/>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><ref refid="class_global_binarizer_1ad5f62437210fb6c174db58456b09c632" kindref="member">GlobalBinarizer::~GlobalBinarizer</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_global_binarizer_1ad553b71737ff73e4ec06ccc52ba01b25" kindref="member">GlobalBinarizer::binarize</ref>(){</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>bin_image;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>bin_image.create(<ref refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" kindref="member">_image</ref>-&gt;<ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>().rows,<sp/><ref refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" kindref="member">_image</ref>-&gt;<ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>().cols,<sp/>CV_8U);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::threshold(<ref refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" kindref="member">_image</ref>-&gt;<ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>(),<sp/>bin_image,<sp/>_thershold,255,cv::THRESH_BINARY);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>(bin_image)<sp/>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/GlobalBinarizer.cpp"/>
+  </compounddef>
+</doxygen>

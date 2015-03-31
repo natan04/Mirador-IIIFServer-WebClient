@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_threshold_binarizer_8cpp" kind="file">
+    <compoundname>ThresholdBinarizer.cpp</compoundname>
+    <includes refid="stdafx_8h" local="yes">stdafx.h</includes>
+    <includes refid="_threshold_binarizer_8h" local="yes">ThresholdBinarizer.h</includes>
+    <includes refid="_d_image_8h" local="yes">DImage.h</includes>
+    <incdepgraph>
+      <node id="1198">
+        <label>ManuscriptApp/ThresholdBinarizer.cpp</label>
+        <link refid="ThresholdBinarizer.cpp"/>
+        <childnode refid="1199" relation="include">
+        </childnode>
+        <childnode refid="1204" relation="include">
+        </childnode>
+        <childnode refid="1208" relation="include">
+        </childnode>
+      </node>
+      <node id="1216">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="1218">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="1210" relation="include">
+        </childnode>
+        <childnode refid="1219" relation="include">
+        </childnode>
+        <childnode refid="1220" relation="include">
+        </childnode>
+      </node>
+      <node id="1201">
+        <label>SDKDDKVer.h</label>
+      </node>
+      <node id="1217">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="1213">
+        <label>ImageConverter.h</label>
+        <link refid="_image_converter_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+      </node>
+      <node id="1219">
+        <label>string</label>
+      </node>
+      <node id="1215">
+        <label>ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="1216" relation="include">
+        </childnode>
+        <childnode refid="1217" relation="include">
+        </childnode>
+        <childnode refid="1218" relation="include">
+        </childnode>
+      </node>
+      <node id="1220">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="1210" relation="include">
+        </childnode>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1221" relation="include">
+        </childnode>
+      </node>
+      <node id="1206">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="1212">
+        <label>ImageEnhancer.h</label>
+        <link refid="_image_enhancer_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+      </node>
+      <node id="1199">
+        <label>stdafx.h</label>
+        <link refid="stdafx_8h"/>
+        <childnode refid="1200" relation="include">
+        </childnode>
+        <childnode refid="1202" relation="include">
+        </childnode>
+        <childnode refid="1203" relation="include">
+        </childnode>
+      </node>
+      <node id="1223">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="1210">
+        <label>vector</label>
+      </node>
+      <node id="1222">
+        <label>FeatureExtractor.h</label>
+        <link refid="_feature_extractor_8h"/>
+        <childnode refid="1216" relation="include">
+        </childnode>
+        <childnode refid="1217" relation="include">
+        </childnode>
+        <childnode refid="1223" relation="include">
+        </childnode>
+      </node>
+      <node id="1214">
+        <label>ImageProjector.h</label>
+        <link refid="_image_projector_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+      </node>
+      <node id="1209">
+        <label>opencv2/highgui/highgui.hpp</label>
+      </node>
+      <node id="1208">
+        <label>DImage.h</label>
+        <link refid="_d_image_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1209" relation="include">
+        </childnode>
+        <childnode refid="1210" relation="include">
+        </childnode>
+        <childnode refid="1211" relation="include">
+        </childnode>
+        <childnode refid="1205" relation="include">
+        </childnode>
+        <childnode refid="1212" relation="include">
+        </childnode>
+        <childnode refid="1213" relation="include">
+        </childnode>
+        <childnode refid="1214" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+      </node>
+      <node id="1203">
+        <label>tchar.h</label>
+      </node>
+      <node id="1204">
+        <label>ThresholdBinarizer.h</label>
+        <link refid="_threshold_binarizer_8h"/>
+        <childnode refid="1205" relation="include">
+        </childnode>
+      </node>
+      <node id="1211">
+        <label>ImageFilter.h</label>
+        <link refid="_image_filter_8h"/>
+        <childnode refid="1207" relation="include">
+        </childnode>
+      </node>
+      <node id="1200">
+        <label>targetver.h</label>
+        <link refid="targetver_8h"/>
+        <childnode refid="1201" relation="include">
+        </childnode>
+      </node>
+      <node id="1202">
+        <label>stdio.h</label>
+      </node>
+      <node id="1207">
+        <label>ImageOperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+      </node>
+      <node id="1221">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+      <node id="1205">
+        <label>imagebinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8h" kindref="compound">stdafx.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_threshold_binarizer_8h" kindref="compound">ThresholdBinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_d_image_8h" kindref="compound">DImage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_threshold_binarizer_1a2880414f620b4a6f44032e478217ee1e" kindref="member">ThresholdBinarizer::binarize</ref>(){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/>bin_image;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>bin_image.create(<ref refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" kindref="member">_image</ref>-&gt;<ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>().size(),<sp/>CV_8U);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::threshold(<ref refid="class_image_operator_1a096f8347c28e3c3e932d4bfe0fb33472" kindref="member">_image</ref>-&gt;<ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>(),<sp/>bin_image,0<sp/>,255,cv::THRESH_BINARY|cv::THRESH_OTSU);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>(bin_image)<sp/>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/ThresholdBinarizer.cpp"/>
+  </compounddef>
+</doxygen>

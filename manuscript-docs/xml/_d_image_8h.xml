@@ -1,0 +1,459 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.8">
+  <compounddef id="_d_image_8h" kind="file">
+    <compoundname>DImage.h</compoundname>
+    <includes local="no">opencv\cv.h</includes>
+    <includes local="no">opencv2/highgui/highgui.hpp</includes>
+    <includes local="no">vector</includes>
+    <includes refid="_image_filter_8h" local="yes">ImageFilter.h</includes>
+    <includes refid="_image_binarizer_8h" local="yes">ImageBinarizer.h</includes>
+    <includes refid="_image_enhancer_8h" local="yes">ImageEnhancer.h</includes>
+    <includes refid="_image_converter_8h" local="yes">ImageConverter.h</includes>
+    <includes refid="_image_projector_8h" local="yes">ImageProjector.h</includes>
+    <includes refid="_component_extractor_8h" local="yes">ComponentExtractor.h</includes>
+    <includes refid="_feature_extractor_8h" local="yes">FeatureExtractor.h</includes>
+    <includedby refid="_anisotropic_filter_8h" local="yes">ManuscriptApp/AnisotropicFilter.h</includedby>
+    <includedby refid="_binary_component_extractor_8cpp" local="yes">ManuscriptApp/BinaryComponentExtractor.cpp</includedby>
+    <includedby refid="_d_image_8cpp" local="yes">ManuscriptApp/DImage.cpp</includedby>
+    <includedby refid="_image_tools_8h" local="yes">ManuscriptApp/ImageTools.h</includedby>
+    <includedby refid="_gabor_blob_extractor_8cpp" local="yes">ManuscriptApp/GaborBlobExtractor.cpp</includedby>
+    <includedby refid="_global_binarizer_8cpp" local="yes">ManuscriptApp/GlobalBinarizer.cpp</includedby>
+    <includedby refid="_itay_binarizer_8cpp" local="yes">ManuscriptApp/ItayBinarizer.cpp</includedby>
+    <includedby refid="_manuscript_app_8cpp" local="yes">ManuscriptApp/ManuscriptApp.cpp</includedby>
+    <includedby refid="_otsu_binarizer_8cpp" local="yes">ManuscriptApp/OtsuBinarizer.cpp</includedby>
+    <includedby refid="_otsul_binarizer_8cpp" local="yes">ManuscriptApp/OtsulBinarizer.cpp</includedby>
+    <includedby refid="_page_image_8h" local="yes">ManuscriptApp/PageImage.h</includedby>
+    <includedby refid="_profile_seam_text_line_extractor_8cpp" local="yes">ManuscriptApp/ProfileSeamTextLineExtractor.cpp</includedby>
+    <includedby refid="_projection_profile_8cpp" local="yes">ManuscriptApp/ProjectionProfile.cpp</includedby>
+    <includedby refid="_rafi_text_line_extractor_8cpp" local="yes">ManuscriptApp/RafiTextLineExtractor.cpp</includedby>
+    <includedby refid="_threshold_binarizer_8cpp" local="yes">ManuscriptApp/ThresholdBinarizer.cpp</includedby>
+    <incdepgraph>
+      <node id="261">
+        <label>opencv/cv.h</label>
+      </node>
+      <node id="263">
+        <label>ConnectedComponent.h</label>
+        <link refid="_connected_component_8h"/>
+        <childnode refid="253" relation="include">
+        </childnode>
+        <childnode refid="264" relation="include">
+        </childnode>
+        <childnode refid="265" relation="include">
+        </childnode>
+      </node>
+      <node id="262">
+        <label>opencv2/core/core.hpp</label>
+      </node>
+      <node id="258">
+        <label>ImageConverter.h</label>
+        <link refid="_image_converter_8h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+      <node id="264">
+        <label>string</label>
+      </node>
+      <node id="260">
+        <label>ComponentExtractor.h</label>
+        <link refid="_component_extractor_8h"/>
+        <childnode refid="261" relation="include">
+        </childnode>
+        <childnode refid="262" relation="include">
+        </childnode>
+        <childnode refid="263" relation="include">
+        </childnode>
+      </node>
+      <node id="265">
+        <label>Contour.h</label>
+        <link refid="_contour_8h"/>
+        <childnode refid="253" relation="include">
+        </childnode>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="266" relation="include">
+        </childnode>
+      </node>
+      <node id="251">
+        <label>opencv\cv.h</label>
+      </node>
+      <node id="257">
+        <label>ImageEnhancer.h</label>
+        <link refid="_image_enhancer_8h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+      <node id="268">
+        <label>Feature.h</label>
+        <link refid="_feature_8h"/>
+      </node>
+      <node id="253">
+        <label>vector</label>
+      </node>
+      <node id="267">
+        <label>FeatureExtractor.h</label>
+        <link refid="_feature_extractor_8h"/>
+        <childnode refid="261" relation="include">
+        </childnode>
+        <childnode refid="262" relation="include">
+        </childnode>
+        <childnode refid="268" relation="include">
+        </childnode>
+      </node>
+      <node id="259">
+        <label>ImageProjector.h</label>
+        <link refid="_image_projector_8h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+      <node id="252">
+        <label>opencv2/highgui/highgui.hpp</label>
+      </node>
+      <node id="250">
+        <label>ManuscriptApp/DImage.h</label>
+        <link refid="DImage.h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="252" relation="include">
+        </childnode>
+        <childnode refid="253" relation="include">
+        </childnode>
+        <childnode refid="254" relation="include">
+        </childnode>
+        <childnode refid="256" relation="include">
+        </childnode>
+        <childnode refid="257" relation="include">
+        </childnode>
+        <childnode refid="258" relation="include">
+        </childnode>
+        <childnode refid="259" relation="include">
+        </childnode>
+        <childnode refid="260" relation="include">
+        </childnode>
+        <childnode refid="267" relation="include">
+        </childnode>
+      </node>
+      <node id="254">
+        <label>ImageFilter.h</label>
+        <link refid="_image_filter_8h"/>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+      <node id="255">
+        <label>imageoperator.h</label>
+        <link refid="_image_operator_8h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+      </node>
+      <node id="266">
+        <label>opencv2\core\core.hpp</label>
+      </node>
+      <node id="256">
+        <label>ImageBinarizer.h</label>
+        <link refid="_image_binarizer_8h"/>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="290">
+        <label>ManuscriptApp/ThresholdBinarizer.cpp</label>
+        <link refid="_threshold_binarizer_8cpp"/>
+      </node>
+      <node id="287">
+        <label>ManuscriptApp/OtsulBinarizer.cpp</label>
+        <link refid="_otsul_binarizer_8cpp"/>
+      </node>
+      <node id="278">
+        <label>ManuscriptApp/GaborBlobExtractor.cpp</label>
+        <link refid="_gabor_blob_extractor_8cpp"/>
+      </node>
+      <node id="289">
+        <label>ManuscriptApp/PageImage.cpp</label>
+        <link refid="_page_image_8cpp"/>
+      </node>
+      <node id="271">
+        <label>ManuscriptApp/AnisotropicFilter.cpp</label>
+        <link refid="_anisotropic_filter_8cpp"/>
+      </node>
+      <node id="277">
+        <label>ManuscriptApp/GaborBlobExtractor.h</label>
+        <link refid="_gabor_blob_extractor_8h"/>
+        <childnode refid="278" relation="include">
+        </childnode>
+        <childnode refid="272" relation="include">
+        </childnode>
+      </node>
+      <node id="270">
+        <label>ManuscriptApp/AnisotropicFilter.h</label>
+        <link refid="_anisotropic_filter_8h"/>
+        <childnode refid="271" relation="include">
+        </childnode>
+        <childnode refid="272" relation="include">
+        </childnode>
+        <childnode refid="273" relation="include">
+        </childnode>
+      </node>
+      <node id="274">
+        <label>ManuscriptApp/BinaryComponentExtractor.cpp</label>
+        <link refid="_binary_component_extractor_8cpp"/>
+      </node>
+      <node id="284">
+        <label>ManuscriptApp/GlobalBinarizer.cpp</label>
+        <link refid="_global_binarizer_8cpp"/>
+      </node>
+      <node id="272">
+        <label>ManuscriptApp/ManuscriptApp.cpp</label>
+        <link refid="_manuscript_app_8cpp"/>
+      </node>
+      <node id="275">
+        <label>ManuscriptApp/DImage.cpp</label>
+        <link refid="_d_image_8cpp"/>
+      </node>
+      <node id="281">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.h</label>
+        <link refid="_profile_seam_text_line_extractor_8h"/>
+        <childnode refid="272" relation="include">
+        </childnode>
+        <childnode refid="282" relation="include">
+        </childnode>
+      </node>
+      <node id="279">
+        <label>ManuscriptApp/ImageTools.cpp</label>
+        <link refid="_image_tools_8cpp"/>
+      </node>
+      <node id="273">
+        <label>ManuscriptApp/RafiTextLineExtractor.cpp</label>
+        <link refid="_rafi_text_line_extractor_8cpp"/>
+      </node>
+      <node id="288">
+        <label>ManuscriptApp/PageImage.h</label>
+        <link refid="_page_image_8h"/>
+        <childnode refid="289" relation="include">
+        </childnode>
+      </node>
+      <node id="280">
+        <label>ManuscriptApp/ProjectionProfile.h</label>
+        <link refid="_projection_profile_8h"/>
+        <childnode refid="272" relation="include">
+        </childnode>
+        <childnode refid="281" relation="include">
+        </childnode>
+        <childnode refid="282" relation="include">
+        </childnode>
+        <childnode refid="283" relation="include">
+        </childnode>
+      </node>
+      <node id="286">
+        <label>ManuscriptApp/OtsuBinarizer.cpp</label>
+        <link refid="_otsu_binarizer_8cpp"/>
+      </node>
+      <node id="269">
+        <label>ManuscriptApp/DImage.h</label>
+        <link refid="DImage.h"/>
+        <childnode refid="270" relation="include">
+        </childnode>
+        <childnode refid="274" relation="include">
+        </childnode>
+        <childnode refid="275" relation="include">
+        </childnode>
+        <childnode refid="276" relation="include">
+        </childnode>
+        <childnode refid="278" relation="include">
+        </childnode>
+        <childnode refid="284" relation="include">
+        </childnode>
+        <childnode refid="285" relation="include">
+        </childnode>
+        <childnode refid="272" relation="include">
+        </childnode>
+        <childnode refid="286" relation="include">
+        </childnode>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="282" relation="include">
+        </childnode>
+        <childnode refid="283" relation="include">
+        </childnode>
+        <childnode refid="273" relation="include">
+        </childnode>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="276">
+        <label>ManuscriptApp/ImageTools.h</label>
+        <link refid="_image_tools_8h"/>
+        <childnode refid="277" relation="include">
+        </childnode>
+        <childnode refid="279" relation="include">
+        </childnode>
+        <childnode refid="280" relation="include">
+        </childnode>
+      </node>
+      <node id="283">
+        <label>ManuscriptApp/ProjectionProfile.cpp</label>
+        <link refid="_projection_profile_8cpp"/>
+      </node>
+      <node id="285">
+        <label>ManuscriptApp/ItayBinarizer.cpp</label>
+        <link refid="_itay_binarizer_8cpp"/>
+      </node>
+      <node id="282">
+        <label>ManuscriptApp/ProfileSeamTextLineExtractor.cpp</label>
+        <link refid="_profile_seam_text_line_extractor_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_d_image" prot="public">DImage</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_DImage_H_<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DImage_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv\cv.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;opencv2/highgui/highgui.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_filter_8h" kindref="compound">ImageFilter.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_binarizer_8h" kindref="compound">ImageBinarizer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_enhancer_8h" kindref="compound">ImageEnhancer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_converter_8h" kindref="compound">ImageConverter.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_projector_8h" kindref="compound">ImageProjector.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_component_extractor_8h" kindref="compound">ComponentExtractor.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_feature_extractor_8h" kindref="compound">FeatureExtractor.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref><sp/>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacecv" kindref="compound">cv</ref><sp/>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="class_d_image" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_d_image" kindref="compound">DImage</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat<sp/><sp/><sp/><sp/><sp/>_mat<sp/>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>Point2f<sp/>_com<sp/>;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Center<sp/>Of<sp/>Mass<sp/>;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_format<sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_type<sp/>;<sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27" refid="class_d_image_1a5329679c0199806b9951d0442ec292f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DIFORMAT_UNSET<sp/><sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="28" refid="class_d_image_1a16e31de8a97ada87e8a077f72ff297d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DIFORMAT_RGB<sp/><sp/><sp/><sp/>=<sp/>1<sp/>;</highlight></codeline>
+<codeline lineno="29" refid="class_d_image_1ac2aef108a618db6d3e04924510ba9f35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DIFORMAT_GRAY<sp/><sp/><sp/>=<sp/>2<sp/>;</highlight></codeline>
+<codeline lineno="30" refid="class_d_image_1adf32af60452b52eb59922c9bb5f87119" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DIFORMAT_BINARY<sp/>=<sp/>3<sp/>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="class_d_image_1abf8ff1b3f61e5a15641bc672eaa9922e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_UNSET<sp/>=<sp/>0<sp/>;</highlight></codeline>
+<codeline lineno="33" refid="class_d_image_1a6a2aac0adab6d13d6efadcd4c29de570" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_TEXT<sp/><sp/>=<sp/>1<sp/>;</highlight></codeline>
+<codeline lineno="34" refid="class_d_image_1ad447450c2077063fe5b87dc8c8ca4737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_DRAW<sp/><sp/>=<sp/>2<sp/>;</highlight></codeline>
+<codeline lineno="35" refid="class_d_image_1aad14d2a044d95e2aa71709c3c8e60379" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_IMAGE<sp/>=<sp/>3<sp/>;</highlight></codeline>
+<codeline lineno="36" refid="class_d_image_1a64f62a4c2bfc5b73f14bbb32975353b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_PARAGRAPH<sp/><sp/><sp/><sp/>=<sp/>4<sp/>;</highlight></codeline>
+<codeline lineno="37" refid="class_d_image_1ad7dc702b7df0b1929a0e36c6999d0f67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_PAGE_MAIN<sp/><sp/><sp/><sp/>=<sp/>5<sp/>;</highlight></codeline>
+<codeline lineno="38" refid="class_d_image_1adc0266fb6c72fad279ae7cef80c278dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DITYPE_PAGE_MARGIN<sp/><sp/>=<sp/>6<sp/>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="41" refid="class_d_image_1ab276c7e2458e697fbff3366a27f9bf93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image_1ab276c7e2458e697fbff3366a27f9bf93" kindref="member">DImage</ref>(){</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_format<sp/>=<sp/>DIFORMAT_UNSET;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_type<sp/><sp/><sp/>=<sp/>DITYPE_UNSET<sp/><sp/>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_com.x<sp/>=<sp/>-1<sp/>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_com.y<sp/>=<sp/>-1<sp/>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="class_d_image_1a7d7c1b9cf26cf48c81b9d5cd424ab788" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image_1a7d7c1b9cf26cf48c81b9d5cd424ab788" kindref="member">DImage</ref>(Mat<sp/>mat){</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mat<sp/>=<sp/>mat<sp/>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_format<sp/>=<sp/>DIFORMAT_UNSET;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_type<sp/><sp/><sp/>=<sp/>DITYPE_UNSET<sp/><sp/>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_com.x<sp/>=<sp/>-1<sp/>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_com.y<sp/>=<sp/>-1<sp/>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="class_d_image_1aa86a9aa92905deb0d8aab5f1298c6b9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image_1aa86a9aa92905deb0d8aab5f1298c6b9b" kindref="member">~DImage</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//_mat.deallocate();<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="class_d_image_1a4c4ee0a9910a21d200a469f945060fbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1a4c4ee0a9910a21d200a469f945060fbe" kindref="member">setType</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itype)<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_type<sp/>=<sp/>itype<sp/>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="class_d_image_1a7673f3ca0b1703a3401e7a953e7464e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1a7673f3ca0b1703a3401e7a953e7464e2" kindref="member">setFormat</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iformat)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_format<sp/>=<sp/>iformat<sp/>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_d_image_1a80065ac2ff9eb49a68adde1f24494087" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1a80065ac2ff9eb49a68adde1f24494087" kindref="member">getFormat</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_format<sp/>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="class_d_image_1aad98497ac69ada8d00e14d1aadf11406" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1aad98497ac69ada8d00e14d1aadf11406" kindref="member">getType</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_type<sp/>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="class_d_image_1af7605a6d9d5bd6ca117507bd9fd00c2b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1af7605a6d9d5bd6ca117507bd9fd00c2b" kindref="member">setMat</ref>(Mat<sp/>mat){</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mat<sp/>=<sp/>mat<sp/>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Mat&amp;<sp/><ref refid="class_d_image_1a1f875d1a50eff52cbd1ca119f5293c8d" kindref="member">getMat</ref>(){</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_mat<sp/>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>Point2f<sp/>setCOM()<sp/>;</highlight></codeline>
+<codeline lineno="85" refid="class_d_image_1a391b874fbd441d759a68582c5a1c65ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Point2f<sp/><ref refid="class_d_image_1a391b874fbd441d759a68582c5a1c65ff" kindref="member">getCOM</ref>(){</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_com<sp/>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/>convert(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>to_type)<sp/>;</highlight></codeline>
+<codeline lineno="90" refid="class_d_image_1abbd42491c1788bab34a871e5674e0ad4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_d_image_1abbd42491c1788bab34a871e5674e0ad4" kindref="member">convert</ref>(<ref refid="class_image_converter" kindref="compound">ImageConverter</ref>&amp;<sp/>ic){</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ic.<ref refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" kindref="member">setImage</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ic.<ref refid="class_image_converter_1ae318e984b77d5db5e3c37bbfd121b9dc" kindref="member">convert</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="class_d_image_1a62f8f2c9cd22264f31c94f352c2fb620" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_d_image_1a62f8f2c9cd22264f31c94f352c2fb620" kindref="member">enhance</ref>(<ref refid="class_image_enhancer" kindref="compound">ImageEnhancer</ref>&amp;<sp/>ih){</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ih.<ref refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" kindref="member">setImage</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ih.<ref refid="class_image_enhancer_1a1b46ef9f8e6271e0c7eb077ef2ac179f" kindref="member">enhance</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="class_d_image_1a30853028d3eee069389660a20178e57c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_d_image_1a30853028d3eee069389660a20178e57c" kindref="member">project</ref>(<ref refid="class_image_projector" kindref="compound">ImageProjector</ref>&amp;<sp/>ip){</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ip.<ref refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" kindref="member">setImage</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ip.<ref refid="class_image_projector_1a3dd19fda98e15001d7cbf5b8ca1b4b40" kindref="member">project</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="class_d_image_1aabf5c54bbdfdfb7cde2aca18452d5ef1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_d_image_1aabf5c54bbdfdfb7cde2aca18452d5ef1" kindref="member">binarize</ref>(<ref refid="class_image_binarizer" kindref="compound">ImageBinarizer</ref>&amp;<sp/>ib)<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ib.<ref refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" kindref="member">setImage</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/>img<sp/>=<sp/>ib.<ref refid="class_image_binarizer_1accf059357ade25887a94c91f76262254" kindref="member">binarize</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>img-&gt;<ref refid="class_d_image_1a7673f3ca0b1703a3401e7a953e7464e2" kindref="member">setFormat</ref>(DIFORMAT_BINARY);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>img<sp/>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="class_d_image_1ae3bb096400bf85dc02ee93578696471b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/><ref refid="class_d_image_1ae3bb096400bf85dc02ee93578696471b" kindref="member">filter</ref>(<ref refid="class_image_filter" kindref="compound">ImageFilter</ref>&amp;<sp/>io)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.<ref refid="class_image_operator_1a5b4f0975dabbfb1098d975dd238aa5d6" kindref="member">setImage</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_d_image" kindref="compound">DImage</ref>*<sp/>res<sp/>=<sp/>io.<ref refid="class_image_filter_1afb06f41ef9470e2e2673eb3481c1f86a" kindref="member">filter</ref>();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="class_d_image_1a644022c2f892f2087e2345faf9219930" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1a644022c2f892f2087e2345faf9219930" kindref="member">extractFeatures</ref>(<ref refid="class_feature_extractor" kindref="compound">FeatureExtractor</ref>&amp;<sp/>feature_extractor,<sp/>vector&lt;Feature*&gt;&amp;<sp/>feature_list){</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>feature_extractor.<ref refid="class_feature_extractor_1a2f56319a663c984edce8b3c977bf8b89" kindref="member">setImage</ref>(this-&gt;getMat());</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>feature_extractor.<ref refid="class_feature_extractor_1a34507279297dcc1bc8a7ba9422da4abf" kindref="member">extract</ref>(feature_list);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="class_d_image_1a4a60efb2e91c9a07a4d8f37b9bc4d086" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1a4a60efb2e91c9a07a4d8f37b9bc4d086" kindref="member">extractComponents</ref>(<ref refid="class_component_extractor" kindref="compound">ComponentExtractor</ref>&amp;<sp/>ex,<sp/>vector&lt;ConnectedComponent*&gt;&amp;<sp/>v){</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ex.<ref refid="class_component_extractor_1a3ef66896076dc20816fd656b8aeb1f96" kindref="member">setImage</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ex.<ref refid="class_component_extractor_1ac26bd7eec0e6caa7312f603bf2368d84" kindref="member">extract</ref>(v);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Debug<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="class_d_image_1a56a11350bd9375dfe95a62abc2f4f8f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_d_image_1a56a11350bd9375dfe95a62abc2f4f8f8" kindref="member">display</ref>(String<sp/>win){</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>namedWindow(win,<sp/>cv::WINDOW_NORMAL);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imshow(win,<sp/>this-&gt;getMat());</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/roykalony/Documents/workspace/manuscript-project/manuscriptvc/ManuscriptApp/DImage.h"/>
+  </compounddef>
+</doxygen>
