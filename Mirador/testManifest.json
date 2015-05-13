@@ -1,0 +1,45 @@
+{
+	"@type":"sc:Manifest",
+	"label" : "Ahalan!!! this is a book inaal abook",
+	"metadata": [
+		{"label": "Author", "value":"aaa!!!"},
+		{"label": "Yaaaala", "value": "wtf?!?!"}
+		],
+	"description": "Sarah Shara Shir Sameah",
+	"attribution": "example for BGU manuscript project",
+
+	"sequences": [
+		{
+			"@type" : "sc:Sequence",
+			"label":"Default page order",
+			"viewingDirection":"left-to-right",
+			"viewingHint":"paged",
+
+			"canvases": [
+				{
+					"@type":"sc:Canvas",
+					"label":"Goat no.1",
+					"height":400,
+					"width":400,
+					"images": [
+						{
+							"@type":"dctypes:Image",
+							"format":"image/jpeg",
+							"resource": {
+								"@id":"http://upload.wikimedia.org/wikipedia/commons/b/b2/Hausziege_04.jpg"
+							}
+						},
+						{
+							"@type":"dctypes:Image",
+							"format":"image/jpeg",
+							"resource": {
+								"@id":"https://www.sciencenews.org/sites/default/files/main/blogposts/sci_Goats_Go_Inspecting_wikimedia_commons.jpg"
+							}
+						}
+					]
+				}
+			]
+		}
+
+	]
+}

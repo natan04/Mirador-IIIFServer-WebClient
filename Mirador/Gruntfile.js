@@ -209,7 +209,7 @@ module.exports = function(grunt) {
         eqeqeq: false,
         loopfunc: false,
         indent: false,
-        jshintrc: '.jshintrc',
+        jshintrc: true,
         globals: {
           Mirador: true
         },
