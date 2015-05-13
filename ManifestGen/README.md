@@ -9,25 +9,25 @@
 * IIIFHelper - Static class with utilities (like IIIF url generator etc.)
 
 # Typical manifest layout:
-*Manifest
-**	Sequence
-***		Canvas (page 1)
-****			Image(file & url)
-***		Canvas (page 2)
-****			Image(file & url)
-***		Canvas (Page 3)
-****			Image(file & url)
-***		etc...
+* Manifest
+> > Sequence
+> > > Canvas (page 1)
+> > > > Image(file & url)
+> > > Canvas (page 2)
+> > > > Image(file & url)
+> > > Canvas (Page 3)
+> > > > Image(file & url)
+> > > etc...
  
 # Basic Usage (Creation from one file):
 * Python:
-*import manifest
-*m = manifest.Maker.makeFromSingleFile("goat.jpg","Label","Description","Attribution")
-*print manifest.Maker.toJSON(m)
+`import manifest`
+`m = manifest.Maker.makeFromSingleFile("goat.jpg","Label","Description","Attribution")`
+`print manifest.Maker.toJSON(m)`
 
 # TO-DOs:
-*Maker class - Make manifest from whole directory
-*Image class - Support for TIFF/BMP and others (currently only jpeg)
-*Canvas class - Calculate canvas dimensions by largest image
-*Manifest class - AddMetadata setter
+* Maker class - Make manifest from whole directory
+* Image class - Support for TIFF/BMP and others (currently only jpeg)
+* Canvas class - Calculate canvas dimensions by largest image
+* Manifest class - AddMetadata setter
 
