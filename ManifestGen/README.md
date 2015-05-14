@@ -10,24 +10,41 @@
 
 # Typical manifest layout:
 * Manifest
-> > Sequence
-> > > Canvas (page 1)
-> > > > Image(file & url)
-> > > Canvas (page 2)
-> > > > Image(file & url)
-> > > Canvas (Page 3)
-> > > > Image(file & url)
-> > > etc...
+* ** Sequence
+* **** Canvas (page 1)
+* ******* Image(file & url)
+* **** Canvas (page 2)
+* ******* Image(file & url)
+* **** Canvas (Page 3)
+* ******* Image(file & url)
+* **** etc...
  
 # Basic Usage (Creation from one file):
 * Python:
-`import manifest`
-`m = manifest.Maker.makeFromSingleFile("goat.jpg","Label","Description","Attribution")`
-`print manifest.Maker.toJSON(m)`
+* `import manifest`
+* `m = manifest.Maker.makeFromSingleFile("goat.jpg","Label","Description","Attribution")`
+* `print manifest.Maker.toJSON(m)`
+
+# Advanced Usage (From multiple files in a given directory):
+* Python:
+* `import manifest`
+* `m = manifest.Maker.makeFromDirectory("Label","Description","Attribution",dirname="/GoatsImages/")`
+* `print manifest.Maker.toJSON(m)`
+* This should iterate thru all the supported files(TIFF,JPEG,BMP) in the directory and create
+* Manifest with multiple pages(Canvases) - One canvas/page per file
 
 # TO-DOs:
-* Maker class - Make manifest from whole directory
-* Image class - Support for TIFF/BMP and others (currently only jpeg)
-* Canvas class - Calculate canvas dimensions by largest image
 * Manifest class - AddMetadata setter
+* Maker class + IIIFHelper class - transform into packages/modules
+* Image class static methods for supported formats - move into Utility or Formats module
+* Maker.makeFromDirectory - consider give an option to auto label(template) all the pages, for example: "Page {Number}"
+* Image class - when building IIIF urls - truncate file extension
+* CommandLine Utility
+* Check for option to integrate with apache as web service (WSGI / mod_python)
+
+# Changes 14/5/15
+* Support for multiple formats (currently JPEG, TIFF, BMP) - Managed by special list - Image.getSupportedFormats()
+* Canvas dimensions automatically fit to its Image's dimensions
+* Added method - Maker.makeFromDirectory
+
 

@@ -1,6 +1,10 @@
-import PIL
+import PIL.Image
 import json
+import os
 
+#DONE: Support for more formats (TIFF,BMP)
+#DONE: Canvas dimensions fits automatically to the biggest image
+#DONE: Maker.makeFromDirectory - by parameter dirname - scans dir for supported images files and constructs manifest(1 Canvas-Image per file)
 class Manifest:
 	def __init__(self, label,desc,attrib):
 		setattr(self,"@type","sc:Manifest")
@@ -35,28 +39,34 @@ class Sequence:
 
 
 
-# TODO: Canvas: height & width calculation by largest image
 class Canvas:
 	def __init__(self, label):
 		setattr(self,"@type","sc:Canvas")
 		self.label = label
-		self.height = 100
-		self.width = 100
+		self.height = 0
+		self.width = 0
 		self.images = []
 
 	def addImage(self,imgObj):
 		self.images.append(imgObj)
+		# Check if image dimensions are bigger than canvas's and update
+		if (imgObj.height > self.height):
+			self.height = imgObj.height
+		if (imgObj.width > self.width):
+			self.width = imgObj.width
 
-# TODO: Support for more than jpeg files
+#TODO: Add "Service" property for Mirador compatibility
 class Image:
 	def __init__(self,url="",format="image/jpeg"):
 		setattr(self,"@type","dctypes:Image")
 		self.format = format
 		self.resource = {"@id":url}
 
-	def initByFile(self,filename):
+	#TODO: Truncate file extension when building IIIF Url
+	#TODO: Remove debugging prints
+	def initByFile(self,filename,path=""):
 		print "Image class: Opening file " + filename
-		im = PIL.Image.open(filename)
+		im = PIL.Image.open(path + filename)
 		print "Image class: Format: " + im.format + ", Width,Height: " + str(im.size[0]) + "," + str(im.size[1])
 		self.width = im.size[0]
 		self.height = im.size[1]
@@ -67,7 +77,7 @@ class Image:
 	def setUrl(self,url):
 		self.resource = {"@id":url}
 
-
+	#TODO: Move it to common class or utilities class
 	@staticmethod
 	def getMimeFormat(fmt):
 		a = {"JPEG" : "image/jpeg"}
@@ -75,7 +85,43 @@ class Image:
 	   		return a[fmt]
 	   	return ""
 
+	#TODO: Move it to common class or utilities class
+	@staticmethod
+	def getSupportedFormats():
+	 	a = {}
+	 	a["JPEG"] = {"mime": "image/jpeg", "ext":"jpg"}
+	 	a["BMP"] = {"mime": "image/bmp", "ext":"bmp"}
+	 	a["TIFF"] = {"mime": "image/tif", "ext":"tiff"}
+	 	return a
 
+#TODO: SupportedFormats dictionary -> transform to static variable (instead of function)
+	@staticmethod
+	def getSupportedMimes():
+		s = Image.getSupportedFormats().values()
+		return [obj["mime"] for obj in s]
+
+	#TODO: Move it to common class or utilities class
+	@staticmethod
+	def getSupportedExtensions():
+		s = Image.getSupportedFormats().values()
+		return [obj["ext"] for obj in s]
+	#TODO: Move it to common class or utilities class
+	@staticmethod
+	def isSupported(fmt):
+	 	return Image.getSupportedFormats().has_key(fmt)
+
+	#TODO: Move it to common class or utilities class
+	@staticmethod
+	def isSupportedMime(mime):
+		return mime in Image.getSupportedMimes()
+
+	#TODO: Move it to common class or utilities class
+	@staticmethod
+	def isSupportedExtension(ext):
+		return ext in Image.getSupportedExtensions()
+
+
+#TODO: Transform to a package/module instead
 class Maker:
 	"""Factory Class for cooking manifests + utilities"""
 	@staticmethod
@@ -90,15 +136,34 @@ class Maker:
 		man.addSequence(seq)
 		return man
 
-	# TODO: ManifestMaker - makeFromDirectory
-	def makeFromDirectory(dirname,label,desc,attrib):
-		return ""
+	#TODO: Make formatted(template) expression for every canvas  (example: "Page {Number}" or "File {Filename}")
+	@staticmethod
+	def makeFromDirectory(label,desc,attrib,dirname="."):
+		files = Maker.listImagesFiles(dirname)
+		man = Manifest(label,desc,attrib)
+		seq = Sequence()
 
+		for fname in files:
+			canv = Canvas(label)
+			im = Image()
+			im.initByFile(fname,path=dirname)
+			canv.addImage(im)
+			seq.addCanvas(canv) 
+
+		man.addSequence(seq)
+		return man
+
+	#TODO: Move it to general helpers class
+	@staticmethod
+	def listImagesFiles(dirname="."):
+		return [fname for fname in os.listdir(dirname) if any([fname.endswith(ext) for ext in Image.getSupportedExtensions()]) ]
+
+	#TODO: Consider move it as method for every class
 	@staticmethod
 	def toJSON(manifestObj):
 		return json.dumps(manifestObj,default=(lambda o:o.__dict__),indent=4)
 
-
+#TODO: Transform into package/module
 class IIIFHelper:
 	"""Static class for different kinds of IIIF operations"""
 	urlPrefix = "http://localhost/iiif/"
