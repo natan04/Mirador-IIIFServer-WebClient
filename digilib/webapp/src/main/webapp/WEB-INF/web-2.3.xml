@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+ 
+<web-app>
+  <!-- General description of your web application -->
+  <display-name>
+        digilib
+  </display-name>
+  <description>
+        This is the web frontend of the Digital Document Library.
+  </description>
+  <!-- The Intialisation Listener -->
+  <listener>
+        <listener-class>
+            digilib.conf.DigilibServletConfiguration
+        </listener-class>
+  </listener>
+  <!-- The Scaler servlet -->
+  <servlet>
+        <servlet-name>
+            Scaler
+        </servlet-name>
+        <servlet-class>
+            digilib.servlet.Scaler
+        </servlet-class>
+        <!-- Load this servlet at server startup time -->
+        <load-on-startup>
+            5
+        </load-on-startup>
+  </servlet>
+  <!-- The mapping for the Scaler servlet -->
+  <servlet-mapping>
+        <servlet-name>
+            Scaler
+        </servlet-name>
+        <url-pattern>
+            /servlet/Scaler/*
+        </url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>
+            Scaler
+        </servlet-name>
+        <url-pattern>
+            /Scaler/*
+        </url-pattern>
+  </servlet-mapping>
+</web-app>
