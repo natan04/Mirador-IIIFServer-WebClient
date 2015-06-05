@@ -190,7 +190,7 @@ class Maker:
 #TODO: Transform into package/module
 class IIIFHelper:
 	"""Static class for different kinds of IIIF operations"""
-	urlPrefix = "http://localhost:4000/"
+	urlPrefix = "http://imagesrv:4000/"
 	
 	@staticmethod
 	def setPrefix(prefix):
