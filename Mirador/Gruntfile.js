@@ -14,6 +14,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-coveralls');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-githooks');
+  grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-todo');
   // grunt.loadNpmTasks('jasmine-jquery');
 
   // ----------
@@ -66,6 +68,17 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    todo: {
+      src: sources
+    },
+
+    express: {
+    	options: {
+		port: 8000
+	}
+
+    },
 
     clean: {
       build: ['build'],
@@ -179,7 +192,8 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
-          port: 8000,
+    		debug: true,
+  		port: 8000,
           keepalive: true,
           base: '.'
         }
@@ -364,7 +378,7 @@ module.exports = function(grunt) {
   // ----------
   // Dev Build task.
   // Build, but skip the time-consuming and obscurantist minification and uglification.
-  grunt.registerTask('dev_build', [ 'clean:build', 'git-describe', 'jshint', 'concat', 'copy' ]);
+  grunt.registerTask('dev_build', [ 'clean:build', 'git-describe', 'jshint', 'concat', 'copy','todo' ]);
 
   // ----------
   // Package task.
@@ -379,17 +393,24 @@ module.exports = function(grunt) {
   // ----------
   // Default task.
   // Does a normal build.
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('default', ['dev_build']);
 
   // ----------
   // Connect task.
   // Runs server at specified port
   grunt.registerTask('server', ['connect']);
+ 
+  // Express server task
+  grunt.registerTask('server-express',['express:dev']);
 
   // ----------
   // Test task.
   // Runs Jasmine tests
   grunt.registerTask('test', 'karma:test');
+
+  // ----------
+  // TODOs extractor
+  grunt.registerTask('todo-extract','todo');
 
   // ----------
   // Coverage task.

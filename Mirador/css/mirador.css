@@ -1590,3 +1590,14 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   border: 1px solid #aaa;
 }
 
+form.uploaderForm {
+  background-color: rgba(255, 255, 255, 0.94);
+  height: 40%;
+  width: 30%;
+  overflow: hidden;
+  position: absolute;
+  right: 500px;
+  top: 0;
+  border: 2px groove rgba(100,100,100,0.5);
+  padding: 3px;
+}

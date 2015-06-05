@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/workspaces/slot.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/workspaces/slot.js</span></h1>
+    <h2>
+        Statements: <span class="metric">58.62% <small>(17 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">30% <small>(3 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">50% <small>(5 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">60.71% <small>(17 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/workspaces/</a> &#187; slot.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">123</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">121</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function($) {
+&nbsp;
+  $.Slot = function(options) {
+&nbsp;
+    jQuery.extend(true, this, {
+      workspaceSlotCls: 'slot',
+      slotID:           null,
+      layoutAddress:    null,
+      focused:          null,
+      appendTo:         null,
+      parent:           null,
+      window:           null,
+      windowElement:    null
+    }, options);
+&nbsp;
+    this.init();
+&nbsp;
+  };
+&nbsp;
+  $.Slot.prototype = {
+    init: function () {
+      this.element = jQuery(this.template({
+        workspaceSlotCls: this.workspaceSlotCls,
+        slotID: this.slotId 
+      }));
+      this.element.appendTo(this.appendTo);
+&nbsp;
+      this.bindEvents();
+    },
+&nbsp;
+    bindEvents: function() {
+      var _this = this;
+&nbsp;
+      this.element.find('.addItemLink').on('click', <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >_this.addItem(); </span>});
+      this.element.find('.remove-slot-option').on('click', <span class="fstat-no" title="function not covered" >function(){ </span>
+<span class="cstat-no" title="statement not covered" >        _this.parent.removeNode(_this); </span>
+      });
+      jQuery.subscribe('windowRemoved', <span class="fstat-no" title="function not covered" >function(event, id) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_this.window &amp;&amp; _this.window.id === id) {</span>
+          // This prevents the save controller
+          // from attempting to re-save the window
+          // after having already removed it.
+<span class="cstat-no" title="statement not covered" >          _this.clearSlot();</span>
+        }
+      });
+      jQuery.subscribe('layoutChanged', function(event, layoutRoot) {
+        if (_this.parent.slots.length &lt;= 1) {
+          _this.element.find('.remove-slot-option').hide();
+        } else {
+          _this.element.find('.remove-slot-option').show();
+        }
+&nbsp;
+        // Must reset the slotAddress of the window.
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (_this.window) {
+<span class="cstat-no" title="statement not covered" >          _this.window.slotAddress = _this.layoutAddress;</span>
+<span class="cstat-no" title="statement not covered" >          jQuery.publish('windowUpdated', {</span>
+            id: _this.window.id,
+            slotAddress: _this.window.slotAddress
+          });
+        }
+      });
+    },
+&nbsp;
+    clearSlot: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.window) { </span>
+<span class="cstat-no" title="statement not covered" >        this.window.element.remove();</span>
+<span class="cstat-no" title="statement not covered" >        delete this.window;</span>
+      }
+    },
+&nbsp;
+    addItem: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >      _this.focused = true;</span>
+      
+<span class="cstat-no" title="statement not covered" >      _this.parent.addItem(_this);</span>
+    },
+&nbsp;
+    // template should be based on workspace type
+    template: Handlebars.compile([
+                                 '&lt;div id="{{slotID}}" class="{{workspaceSlotCls}}"&gt;',
+                                 '&lt;div class="slotIconContainer"&gt;',
+                                 // '&lt;a href="javascript:;" class="mirador-btn mirador-icon-window-menu" title="Replace object"&gt;&lt;i class="fa fa-table fa-lg fa-fw"&gt;&lt;/i&gt;',
+                                 // '&lt;ul class="dropdown slot-controls"&gt;',
+                                 // '&lt;li class="new-object-option"&gt;&lt;i class="fa fa-plus-square fa-lg fa-fw"&gt;&lt;/i&gt; New Object&lt;/li&gt;',
+                                 // '&lt;li class="remove-object-option"&gt;&lt;i class="fa fa-times fa-lg fa-fw"&gt;&lt;/i&gt; Close&lt;/li&gt;',
+                                 // '&lt;li class="add-slot-right"&gt;&lt;i class="fa fa-caret-square-o-right fa-lg fa-fw"&gt;&lt;/i&gt; Add Slot Right&lt;/li&gt;',
+                                 // '&lt;li class="add-slot-left"&gt;&lt;i class="fa fa-caret-square-o-left fa-lg fa-fw"&gt;&lt;/i&gt; Add Slot Left&lt;/li&gt;',
+                                 // '&lt;li class="add-slot-above"&gt;&lt;i class="fa fa-caret-square-o-up fa-lg fa-fw"&gt;&lt;/i&gt; Add Slot Above&lt;/li&gt;',
+                                 // '&lt;li class="add-slot-below"&gt;&lt;i class="fa fa-caret-square-o-down fa-lg fa-fw"&gt;&lt;/i&gt; Add Slot Below&lt;/li&gt;',
+                                 // '&lt;/ul&gt;',
+                                 // '&lt;/a&gt;',
+                                 '&lt;h1 class="plus"&gt;+&lt;/h1&gt;',
+                                 '&lt;h1&gt;Add Item&lt;/h1&gt;',
+                                 '&lt;/div&gt;',
+                                 '&lt;a class="addItemLink"&gt;&lt;/a&gt;',
+                                 '&lt;a class="remove-slot-option"&gt;&lt;i class="fa fa-times fa-lg fa-fw"&gt;&lt;/i&gt; Close&lt;/a&gt;',
+                                 '&lt;/div&gt;'
+    ].join(''))
+  };
+&nbsp;
+}(Mirador));
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 21 2015 00:07:25 GMT+0300 (IDT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -40,7 +40,8 @@
                 mainMenuCls: this.mainMenuCls,
                 showBookmark : this.parent.mainMenuSettings.buttons.bookmark,
                 showLayout : this.parent.mainMenuSettings.buttons.layout,
-                showOptions: this.parent.mainMenuSettings.buttons.options
+                showOptions: this.parent.mainMenuSettings.buttons.options,
+                showUpload: this.parent.mainMenuSettings.buttons.upload
             }));
 
             this.bindEvents();
@@ -56,6 +57,8 @@
             });
             // when options are implemented, this will need to do something
             this.element.find('.window-options').on('click', function() { });
+
+            this.element.find('.upload-images').on('click', function() { _this.parent.toggleUploadForm(); });
         },
 
         template: Handlebars.compile([
@@ -78,6 +81,13 @@
           '<li>',
             '<a href="javascript:;" class="change-layout" title="Change Layout">',
               '<span class="icon-window-options"></span>Change Layout',
+            '</a>',
+          '</li>',
+        '{{/if}}',
+        '{{#if showUpload}}',
+          '<li>',
+            '<a href="javascript:;" class="upload-images" title="Upload Images">',
+              '<span class="icon-window-options"></span>Upload Images',
             '</a>',
           '</li>',
         '{{/if}}',

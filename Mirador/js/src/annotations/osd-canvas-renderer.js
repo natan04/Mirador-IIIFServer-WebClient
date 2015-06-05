@@ -42,7 +42,7 @@
 
     render: function() {
       var _this = this;
-      _this.hideAll(),
+      _this.hideAll();
       this.overlays = [];
       this.list.forEach(function(annotation) {
         var region = _this.parseRegion(annotation.on),

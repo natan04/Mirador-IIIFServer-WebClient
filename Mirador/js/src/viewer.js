@@ -20,7 +20,8 @@
         'workspacePanelVisible': false,
         'manifestsPanelVisible': false,
         'optionsPanelVisible': false,
-        'bookmarkPanelVisible': false
+        'bookmarkPanelVisible': false,
+        'uploadFormVisible': false
       },
       manifests:             [] 
     }, $.DEFAULT_SETTINGS, options);
@@ -85,6 +86,8 @@
 
       this.bookmarkPanel = new $.BookmarkPanel({ parent: this, appendTo: this.element.find('.mirador-viewer') });
 
+      // TODO: UploaderForm url setting - customize
+      this.uploadForm = new $.Uploader.UploaderForm({url:'localhost:4000/upload', appendTo: this.element.find('.mirador-viewer') });
 
       // set this to be displayed
       this.set('currentWorkspaceVisible', true);
@@ -148,6 +151,9 @@
 
     toggleBookmarkPanel: function() {
       this.toggleOverlay('bookmarkPanelVisible');
+    },
+    toggleUploadForm: function() {
+      this.toggleOverlay('uploadFormVisible');
     },
 
     getManifestsData: function() {

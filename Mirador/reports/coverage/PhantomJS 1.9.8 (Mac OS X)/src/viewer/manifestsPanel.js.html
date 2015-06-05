@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/viewer/manifestsPanel.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/viewer/manifestsPanel.js</span></h1>
+    <h2>
+        Statements: <span class="metric">6.98% <small>(3 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">7.14% <small>(1 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">7.32% <small>(3 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/viewer/</a> &#187; manifestsPanel.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function($) {
+&nbsp;
+    $.ManifestsPanel = <span class="fstat-no" title="function not covered" >function(options) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        jQuery.extend(true, this, {</span>
+            element:                    null,
+            listItems:                  null,
+            appendTo:                   null,
+            parent:                     null,
+            manifestListItems:          [],
+            manifestListElement:        null,
+            manifestLoadStatusIndicator: null,
+            resultsWidth:               0
+        }, options);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        _this.init();</span>
+        
+    };
+&nbsp;
+    $.ManifestsPanel.prototype = {
+&nbsp;
+        init: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >            this.element = jQuery(this.template({</span>
+                showURLBox : this.parent.showAddFromURLBox
+            })).appendTo(this.appendTo);
+<span class="cstat-no" title="statement not covered" >            this.manifestListElement = this.element.find('ul');</span>
+            
+            //this code gives us the max width of the results area, used to determine how many preview images to show
+            //cloning the element and adjusting the display and visibility means it won't break the normal flow
+<span class="cstat-no" title="statement not covered" >            var clone = this.element.clone().css("visibility","hidden").css("display", "block").appendTo(this.appendTo);</span>
+<span class="cstat-no" title="statement not covered" >            this.resultsWidth = clone.find('.select-results').outerWidth();</span>
+<span class="cstat-no" title="statement not covered" >            clone.remove();</span>
+            
+            // this.manifestLoadStatusIndicator = new $.ManifestLoadStatusIndicator({
+            //   manifests: this.parent.manifests,
+            //   appendTo: this.element.find('.select-results')
+            // });
+<span class="cstat-no" title="statement not covered" >            this.bindEvents();</span>
+        },
+&nbsp;
+        bindEvents: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >            var _this = this;</span>
+            // handle interface events
+<span class="cstat-no" title="statement not covered" >            this.element.find('form#url-load-form').on('submit', <span class="fstat-no" title="function not covered" >function(event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                var url = jQuery(this).find('input').val();</span>
+<span class="cstat-no" title="statement not covered" >                _this.parent.addManifestFromUrl(url, "(Added from URL)");</span>
+                //console.log('trying to add from URL');
+            });
+            
+<span class="cstat-no" title="statement not covered" >            this.element.find('.remove-object-option').on('click', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >              _this.parent.toggleLoadWindow();</span>
+            });
+&nbsp;
+            // handle subscribed events
+<span class="cstat-no" title="statement not covered" >            jQuery.subscribe('manifestsPanelVisible.set', <span class="fstat-no" title="function not covered" >function(_, stateValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >               if (stateValue) { <span class="cstat-no" title="statement not covered" >_this.show(); <span class="cstat-no" title="statement not covered" ></span>return; </span>}</span>
+<span class="cstat-no" title="statement not covered" >                _this.hide();</span>
+            });
+            
+<span class="cstat-no" title="statement not covered" >            jQuery.subscribe('manifestReceived', <span class="fstat-no" title="function not covered" >function(event, newManifest, repository) {</span></span>
+              //console.log(newManifest);
+<span class="cstat-no" title="statement not covered" >              _this.manifestListItems.push(new $.ManifestListItem({ parent: _this, manifest: newManifest, resultsWidth: _this.resultsWidth }));</span>
+<span class="cstat-no" title="statement not covered" >              _this.element.find('#manifest-search').keyup();</span>
+            });
+            
+            // Filter manifests based on user input
+<span class="cstat-no" title="statement not covered" >            this.element.find('#manifest-search').on('keyup input', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >               if (this.value.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                  _this.element.find('.items-listing li').show().filter(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                     return jQuery(this).text().toLowerCase().indexOf(_this.element.find('#manifest-search').val().toLowerCase()) === -1;</span>
+                  }).hide();
+               } else {
+<span class="cstat-no" title="statement not covered" >                  _this.element.find('.items-listing li').show();</span>
+               }
+            });
+            
+<span class="cstat-no" title="statement not covered" >            this.element.find('#manifest-search-form').on('submit', <span class="fstat-no" title="function not covered" >function(event) {</span></span>
+<span class="cstat-no" title="statement not covered" >              event.preventDefault();</span>
+            });
+            
+<span class="cstat-no" title="statement not covered" >            jQuery.subscribe('resize', $.debounce(<span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >              var clone = _this.element.clone().css("visibility","hidden").css("display", "block").appendTo(_this.appendTo);</span>
+<span class="cstat-no" title="statement not covered" >              _this.resultsWidth = clone.find('.select-results').outerWidth();</span>
+<span class="cstat-no" title="statement not covered" >              clone.remove();</span>
+<span class="cstat-no" title="statement not covered" >              jQuery.publish("manifestPanelWidthChanged", _this.resultsWidth);</span>
+            }, 100));
+        },
+        
+        hide: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >            var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >            jQuery(this.element).hide({effect: "fade", duration: 160, easing: "easeOutCubic"});</span>
+        },
+&nbsp;
+        show: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >            var _this = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            jQuery(this.element).show({effect: "fade", duration: 160, easing: "easeInCubic"});</span>
+        },
+&nbsp;
+        template: Handlebars.compile([
+          '&lt;div id="manifest-select-menu"&gt;',
+          '&lt;div class="container"&gt;',
+              '&lt;div id="load-controls"&gt;',
+              '&lt;a class="remove-object-option"&gt;&lt;i class="fa fa-times fa-lg fa-fw"&gt;&lt;/i&gt; Close&lt;/a&gt;',
+              '&lt;form action="" id="manifest-search-form"&gt;',
+                  '&lt;label for="manifest-search"&gt;Filter objects:&lt;/label&gt;',
+                  '&lt;input id="manifest-search" type="text" name="manifest-filter" placeholder="Filter objects..."&gt;',
+              '&lt;/form&gt;',
+              '{{#if showURLBox}}',
+              '&lt;br/&gt;',
+              '&lt;form action="" id="url-load-form"&gt;',
+                  '&lt;label for="url-loader"&gt;Add new object from URL:&lt;/label&gt;',
+                  '&lt;input type="text" id="url-loader" name="url-load" placeholder="http://..."&gt;',
+              '&lt;/form&gt;',
+              '{{/if}}',
+              '&lt;/div&gt;',
+              '&lt;div class="select-results"&gt;',
+                  '&lt;ul class="items-listing"&gt;',
+                  '&lt;/ul&gt;',
+              '&lt;/div&gt;',
+              '&lt;/div&gt;',
+          '&lt;/div&gt;'
+        ].join(''))
+    };
+&nbsp;
+}(Mirador));
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 21 2015 00:07:25 GMT+0300 (IDT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

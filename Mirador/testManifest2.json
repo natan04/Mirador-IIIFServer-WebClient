@@ -1,0 +1,42 @@
+{
+	"@type":"sc:Manifest",
+	"label" : "Ahalan!!! this is a book inaal abook",
+	"metadata": [
+		{"label": "Author", "value":"aaa!!!"},
+		{"label": "Yaaaala", "value": "wtf?!?!"}
+		],
+	"description": "Sarah Shara Shir Sameah",
+	"attribution": "example for BGU manuscript project",
+
+	"sequences": [
+		{
+			"@type" : "sc:Sequence",
+			"label":"Default page order",
+			"viewingDirection":"left-to-right",
+			"viewingHint":"paged",
+
+			"canvases": [
+				{
+					"@type":"sc:Canvas",
+					"label":"Goat no.1",
+					"height":400,
+					"width":400,
+					"images": [
+						{
+							"@type":"dctypes:Image",
+							"format":"image/jpeg",
+							"resource": {
+								"@id":"http://127.0.0.1:4000/large.jpg/full/full/0/default.jpg",
+								"service" : {
+									"@id":"http://127.0.0.1:4000/large.jpg",
+									"@context":"http://iiif.io/api/image/2/context.json"
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+
+	]
+}
