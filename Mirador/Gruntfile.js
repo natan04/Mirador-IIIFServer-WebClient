@@ -70,6 +70,33 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     todo: {
+      options: {
+        file: "TODOs.md",
+        githubBoxes: true,
+        colophon: true,
+        usePackage: true,
+
+        marks: [
+        {
+          pattern: /DONE/,
+          color: "gray",
+          name: "DONE" },
+        {
+          name: "FIX",
+          pattern: /FIXME/,
+          color: "red"
+        },
+        {
+          name: "TODO",
+          pattern: /TODO/,
+          color: "yellow"
+        },
+        {
+          name: "NOTE",
+          pattern: /NOTE/,
+          color: "blue"
+        }]
+      },
       src: sources
     },
 
