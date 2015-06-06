@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +20,10 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.*;
+
+import sun.security.mscapi.KeyStore.MY;
+
+import com.sun.istack.internal.logging.Logger;
 //import org.apache.commons.fileupload.FileItem;
 //import org.apache.commons.fileupload.FileUploadException;
 //import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -61,14 +64,17 @@ public class Upload extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+
+		javax.servlet.ServletContext.log("in the start");
+
+
+		
 		FileItem fileUpdate = null;
 		String fieldId = null;
-		   String fileName ;
-	final String ID_Field = "ID";
-//	      filePath = 
-//	              getServletContext().getInitParameter("file-upload"); 
-//		// Check that we have a file upload request
-	     isMultipart = ServletFileUpload.isMultipartContent(request);
+		String fileName ;
+		final String ID_Field = "ID";
+
+		isMultipart = ServletFileUpload.isMultipartContent(request);
 	      response.setContentType("text/html");
 	      java.io.PrintWriter out = response.getWriter( );
 	      if( !isMultipart ){
