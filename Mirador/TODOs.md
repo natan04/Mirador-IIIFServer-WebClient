@@ -17,7 +17,8 @@
 -  [ ] **TODO** `(line 9)` : Handle failure on combo fetching
 -  [ ] **TODO** `(line 10)` : Handle of new manifest
 -  [ ] **TODO** `(line 11)` : Change name of menu to "Admin" or something
--  [ ] **TODO** `(line 46)` : Upload form is messed up - add some borders, colors etc
+-  [ ] **TODO** `(line 12)` : Change this to a global manifests editting admin panel (add,delete,append page etc.)
+-  [ ] **TODO** `(line 47)` : Upload form is messed up - add some borders, colors etc
 
 ## js/src/viewer.js
 
@@ -31,7 +32,16 @@
 
 -  [ ] **TODO** `(line 308)` : stitch all images together per the viewingDirection
 
+## js/src/FuncClass/funcClassManager.js
+
+-  [ ] **NOTE** `(line 4)` : FC = Function Classes (Manuscript manipulation c++ lib)
+-  [ ] **TODO** `(line 5)` : FC - All - Options defaults
+-  [ ] **DONE** `(line 7)` : FC - Parameter - makeFromXML(xmlString)
+-  [ ] **DONE** `(line 8)` : FC - class - makeFromXML
+-  [ ] **DONE** `(line 9)` : FC - function - makeFromXML
+-  [ ] **TODO** `(line 102)` : FC - FCManager
+
 
 * * *
 
-Last generated: Sat Jun 06 2015 17:59:34 by [grunt-todo](https://github.com/leny/grunt-todo).
+Last generated: Sat Jun 06 2015 20:53:09 by [grunt-todo](https://github.com/leny/grunt-todo).

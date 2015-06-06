@@ -9,6 +9,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 // TODO: Handle failure on combo fetching
 // TODO: Handle of new manifest
 // TODO: Change name of menu to "Admin" or something
+// TODO: Change this to a global manifests editting admin panel (add,delete,append page etc.)
 (function($) {
 	
 	/**

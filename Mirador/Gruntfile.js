@@ -54,7 +54,8 @@ module.exports = function(grunt) {
     'js/src/annotations/*.js',
     'js/src/workspaces/*.js',
     'js/src/widgets/*.js',
-    'js/src/utils/*.js'
+    'js/src/utils/*.js',
+    'js/src/FuncClass/*.js'
   ],
 
   specs = ['spec/**/*js'];
