@@ -15,12 +15,14 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 
@@ -37,12 +39,12 @@ public class Global extends HttpServlet {
     public static ArrayList<Book> gBooks;
     public static JSONArray bookArrayInfo = new JSONArray();
     
-    public static String gNameOfServer = "http://imagesrv/iipsrv/";
+    public static String ImageServerAddress;
 	public static String context = "http://iiif.io/api/image/2/context.json";
-	public static String filePath = "C:\\Users\\Natan\\Desktop\\ira\\";
-	public static String sep = "\\";
-	public static String bookInfoPath = filePath +"booksInfo.json";
-	public static String logPath = "C:\\Users\\Natan\\Desktop\\ira\\";
+	public static String filePath;
+	public static String sep;
+	public static String bookInfoPath;
+	public static String logPath ;
 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
 
@@ -90,13 +92,19 @@ public static Book getBook(String id)
 public void init() throws ServletException
 {
 
-	
-	mainLogger.info("Starting picture server");
+   ServletContext context = getServletContext();
+   ImageServerAddress = context.getInitParameter("ImageServerAddress");
+   sep = File.separator;
+   filePath =  context.getInitParameter("ImageFolder");
+   bookInfoPath = filePath +"booksInfo.json";
+   logPath =  context.getInitParameter("LogPath");
+   mainLogger.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7");
+   mainLogger.info("Starting picture server");
 	
 	/*****************Log initlize**************/
 	try {
 		
-		Handler fileHandler = new FileHandler(logPath);
+		Handler fileHandler = new FileHandler(logPath,true);
 		fileHandler.setFormatter(new SimpleFormatter());
 		mainLogger.addHandler(fileHandler);
 	

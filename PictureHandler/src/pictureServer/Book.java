@@ -91,8 +91,8 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 
 		String port = "80"; //didn't put
 		String spec = "full/full/0/default.jpg";
-		String idRes = Global.gNameOfServer + fId + "/" + aFile.getName() + "/full/full/0/default.jpg";
-		String idSer = Global.gNameOfServer + fId + "/" + aFile.getName();
+		String idRes = Global.ImageServerAddress + fId + "/" + aFile.getName() + "/full/full/0/default.jpg";
+		String idSer = Global.ImageServerAddress + fId + "/" + aFile.getName();
 		String typeImage = "dctypes:Image";
 		String typeCanvas = "sc:Canvas";
 		String label = "Default label";
