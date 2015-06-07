@@ -31,23 +31,27 @@ public class Json extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		String idOfBook = request.getParameter("id");
-		
+		Global.mainLogger.info("Get Json request from ip:" + request.getRemoteAddr());
 		PrintWriter printWriter  = response.getWriter();
 		
 		if (idOfBook == null)
 		{
+
 			return;
 		}
 		
 		if (idOfBook.compareTo("all") ==0)
 		{
+			Global.mainLogger.info("send array data base to:" + request.getRemoteAddr());
 			printWriter.println(Global.getListOfBook());
 		}
 		else
 		{
 			Book book = Global.getBook(idOfBook);
-			
+			Global.mainLogger.info("send  database book" + book.fId + " to:" + request.getRemoteAddr());
+
 			printWriter.println(book.toString());
 		}
 	}

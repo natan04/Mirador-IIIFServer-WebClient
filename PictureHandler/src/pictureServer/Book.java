@@ -25,11 +25,11 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 	
 	Book(String id, boolean restore)
 	{
-		
 		fId = id;
 		
 		if (restore)
 		{
+			Global.mainLogger.info("Restoreing book: " + id);
             String pathOfJson = Global.filePath + Global.sep + fId + Global.sep + "jsonCanvas" +".json";
             File f = new File(pathOfJson);
 			Scanner sc;
@@ -48,7 +48,8 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		}
 		else
 		{
-			
+			Global.mainLogger.info("creating book: " + id);
+
 			fCanvas = new JSONArray();
 		}
 		
@@ -86,6 +87,8 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 	
 	void addPage(File aFile)
 	{
+		Global.mainLogger.info("adding page: " + aFile.getName() + " in book:" + fId);
+
 		String port = "80"; //didn't put
 		String spec = "full/full/0/default.jpg";
 		String idRes = Global.gNameOfServer + fId + "/" + aFile.getName() + "/full/full/0/default.jpg";
@@ -127,9 +130,13 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 	            toReturn.put("@type", typeCanvas);
 	            toReturn.put("@type", label);
               System.out.println(toReturn.toString());
-              fCanvas.put(toReturn);
+             
+              synchronized (fCanvas) 
+              {
+            	  fCanvas.put(toReturn);  
+              }
+              
               String pathOfJson = Global.filePath + Global.sep + fId + Global.sep + "jsonCanvas" +".json";
-              System.out.println(pathOfJson);
 
             //writing out the info
               File file = new File(pathOfJson);

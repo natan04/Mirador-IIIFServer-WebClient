@@ -21,8 +21,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.*;
 
-import sun.security.mscapi.KeyStore.MY;
-
 import com.sun.istack.internal.logging.Logger;
 //import org.apache.commons.fileupload.FileItem;
 //import org.apache.commons.fileupload.FileUploadException;
@@ -65,10 +63,7 @@ public class Upload extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 
-		javax.servlet.ServletContext.log("in the start");
-
-
-		
+	
 		FileItem fileUpdate = null;
 		String fieldId = null;
 		String fileName ;
@@ -118,8 +113,6 @@ public class Upload extends HttpServlet {
 	         {
 	        	 fileUpdate = fi;
 
-	           
-	            
 	         }
 	         else 
 	         {
@@ -147,7 +140,10 @@ public class Upload extends HttpServlet {
 	            }
 	          
 	          file.getParentFile().mkdirs();
+				
+
 	          fileUpdate.write( file ) ;
+	          Global.mainLogger.info("saving file:" +file.getName() + "to folder: " + fieldId);
 	          out.println("Uploaded Filename: " + fileName + "<br>");
 	    	  Book book = Global.getBook(fieldId);
 	    	  book.addPage(file);

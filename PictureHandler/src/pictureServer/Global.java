@@ -1,20 +1,34 @@
 package pictureServer;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
+
+
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+
+
+
+
+
+
 
 import com.sun.java_cup.internal.runtime.Symbol;
 
@@ -28,6 +42,10 @@ public class Global extends HttpServlet {
 	public static String filePath = "C:\\Users\\Natan\\Desktop\\ira\\";
 	public static String sep = "\\";
 	public static String bookInfoPath = filePath +"booksInfo.json";
+	public static String logPath = "C:\\Users\\Natan\\Desktop\\ira\\";
+
+	public static Logger mainLogger = Logger.getLogger("com.appinf");
+
 
 	
 public static String getListOfBook()
@@ -72,15 +90,33 @@ public static Book getBook(String id)
 public void init() throws ServletException
 {
 
+	
+	mainLogger.info("Starting picture server");
+	
+	/*****************Log initlize**************/
+	try {
+		
+		Handler fileHandler = new FileHandler(logPath);
+		fileHandler.setFormatter(new SimpleFormatter());
+		mainLogger.addHandler(fileHandler);
+	
+	} catch (SecurityException | IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
 	gBooks = new ArrayList<Book>();
 	File f = new File(bookInfoPath);
 	if (f.exists())
 	{
+		mainLogger.info("Restoring information from json database");
+
 		try {
 			Scanner sc = new Scanner(f);
 			String line = sc.nextLine();
 			sc.close();
-			
+			mainLogger.info("restoring book: " + line);
+
 			bookArrayInfo = new JSONArray(line);
 			
 			for (int index = 0; index < bookArrayInfo.length(); index ++)
