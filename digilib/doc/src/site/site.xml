@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd"
+    name="digilib - The Digital Image Library">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.0</version>
+  </skin>
+  <bannerLeft>
+    <name>digilib - a versatile image viewing environment for the internet</name>
+    <href>http://digilib.sourceforge.net/</href>
+  </bannerLeft>
+  <bannerRight>
+    <src>images/digilib-logo-small.png</src>
+    <href>http://digilib.sourceforge.net/</href>
+  </bannerRight>
+  <poweredBy>
+    <logo name="Built by Maven" href="http://maven.apache.org/" img="http://maven.apache.org/images/logos/maven-feather.png"/>  
+    <logo name="Hosted by SourceForge" href="http://www.sourceforge.net/" img="http://upload.wikimedia.org/wikipedia/commons/0/0b/Sourceforge_logo.png"/>
+  </poweredBy>
+  <body>
+    <menu name="Overview">
+      <item name="About digilib" href="index.html"/>
+      <item name="digilib features" href="features.html"/>
+      <item name="How digilib works" href="digilib-short.html"/>
+      <item name="Ancient history" href="history.html"/>
+    </menu>
+    <menu name="Installation">
+      <item name="Installing digilib" href="install-digilib.html"/>
+      <item name="Building digilib" href="build-maven.html"/>
+    </menu>
+    <menu name="Configuration">
+      <item name="Configuring digilib" href="digilib-config.html"/>
+      <item name="Directory layout" href="image-directories.html"/>
+      <item name="Java settings" href="java-settings.html"/>
+    </menu>
+    <menu name="Development">
+      <item name="The digilib Scaler API" href="scaler-api.html"/>
+      <item name="Integrating digilib into your page" href="client-integration.html"/>
+      <item name="Digilib plugins" href="plugins.html"/>
+      <!-- <item name="Integrating digilib into your server" href=""/> -->
+    </menu>
+    <menu ref="reports"/>
+  </body>
+</project>
