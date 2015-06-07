@@ -98,15 +98,16 @@ public void init() throws ServletException
    filePath =  context.getInitParameter("ImageFolder");
    bookInfoPath = filePath +"booksInfo.json";
    logPath =  context.getInitParameter("LogPath");
-   mainLogger.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7");
    mainLogger.info("Starting picture server");
-	
+   mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath);
 	/*****************Log initlize**************/
 	try {
-		
+
+
 		Handler fileHandler = new FileHandler(logPath,true);
 		fileHandler.setFormatter(new SimpleFormatter());
 		mainLogger.addHandler(fileHandler);
+		mainLogger.info("\n\n\n\n\n\n\n\n\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7");
 	
 	} catch (SecurityException | IOException e1) {
 		// TODO Auto-generated catch block

@@ -133,10 +133,15 @@ public class Upload extends HttpServlet {
 	          
 	            if( fileName.lastIndexOf("\\") >= 0 ){
 	               file = new File( Global.filePath  + Global.sep + fieldId + Global.sep+
-	               fileName.substring( fileName.lastIndexOf("\\"))) ;
-	            }else{
+	               fileName.substring( fileName.lastIndexOf("\\") + 1)) ;
+	            }else if(fileName.lastIndexOf("/") >= 0){
 	               file = new File( Global.filePath +  Global.sep + fieldId + Global.sep+
-	               fileName.substring(fileName.lastIndexOf("\\")+1)) ;
+	               fileName.substring(fileName.lastIndexOf("/")+1)) ;
+	            }
+	            else
+	            {
+		               file = new File( Global.filePath +  Global.sep + fieldId + Global.sep+
+		    	               fileName) ;
 	            }
 	          
 	          file.getParentFile().mkdirs();
