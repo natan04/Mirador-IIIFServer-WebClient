@@ -11,14 +11,17 @@
 ## js/src/uploader.js
 
 -  [ ] **DONE** `(line 5)` : Handlebars Template
--  [ ] **TODO** `(line 6)` : Multifiles support
--  [ ] **DONE** `(line 7)` : Dynamic combo
--  [ ] **TODO** `(line 8)` : Option for refreshing
--  [ ] **TODO** `(line 9)` : Handle failure on combo fetching
--  [ ] **TODO** `(line 10)` : Handle of new manifest
--  [ ] **TODO** `(line 11)` : Change name of menu to "Admin" or something
--  [ ] **TODO** `(line 12)` : Change this to a global manifests editting admin panel (add,delete,append page etc.)
--  [ ] **TODO** `(line 47)` : Upload form is messed up - add some borders, colors etc
+-  [ ] **DONE** `(line 6)` : Fixed bug: form shows by default at startup!
+-  [ ] **DONE** `(line 7)` : option for base URL for manifestService
+-  [ ] **DONE** `(line 8)` : Upload function
+-  [ ] **DONE** `(line 9)` : Dynamic combo
+-  [ ] **DONE** `(line 10)` : Option for refreshing
+-  [ ] **TODO** `(line 12)` : Multifiles support
+-  [ ] **TODO** `(line 13)` : Handle failure on combo fetching
+-  [ ] **TODO** `(line 14)` : Handle of new manifest
+-  [ ] **TODO** `(line 15)` : Change name of menu to "Admin" or something
+-  [ ] **TODO** `(line 16)` : Change this to a global manifests editting admin panel (add,delete,append page etc.)
+-  [ ] **TODO** `(line 60)` : Upload form is messed up - add some borders, colors etc
 
 ## js/src/viewer.js
 
@@ -44,4 +47,4 @@
 
 * * *
 
-Last generated: Sat Jun 06 2015 20:53:09 by [grunt-todo](https://github.com/leny/grunt-todo).
+Last generated: Mon Jun 08 2015 03:36:30 by [grunt-todo](https://github.com/leny/grunt-todo).

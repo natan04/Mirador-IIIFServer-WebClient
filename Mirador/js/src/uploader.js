@@ -3,9 +3,13 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 
 // DONE: Handlebars Template
-// TODO: Multifiles support
+// DONE: Fixed bug: form shows by default at startup!
+// DONE: option for base URL for manifestService
+// DONE: Upload function
 // DONE: Dynamic combo
-// TODO: Option for refreshing
+// DONE: Option for refreshing
+
+// TODO: Multifiles support
 // TODO: Handle failure on combo fetching
 // TODO: Handle of new manifest
 // TODO: Change name of menu to "Admin" or something
@@ -14,7 +18,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 	
 	/**
 	 * UploaderForm class constructor
-	 * @param {Object} options:  {  url  (String)  url for form submit (form action) 
+	 * @param {Object} options:  {  baseUrl  (String)  base url for manifest service 
 	 *                           	show (Boolean) if true => form is visible
 	 *                           	AppendTo (DOM element) Element to append the form to 
 	 *                           	id (String) HTML Element id for form DIV
@@ -24,20 +28,29 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 		jQuery.extend(true, this,
 		{
-			url: 'localhost:4000/upload',
+			baseUrl: 'http://localhost:4000',
+			serviceName: 'PictureHandler',
+			serviceCommands: {
+				list: 'JsonAll',
+				upload: 'Upload'
+			},
 			show: false,
 			id: "uploaderForm",
 			cls: "uploaderForm",
 			element: null,
-			appendTo: null
+			appendTo: null,
+			filesToUp: []
 		},options);
 
+		this.url = this.getUrl('upload');
 		this.element = jQuery(this.template(this));
 		this.element.hide();
 		this.showForm(this.show);
 		this.element.appendTo(this.appendTo);
 
-		this.dynCombo = new $.DynamicCombo({appendTo: this.element, autoExtend: true});
+		this.dynCombo = new $.DynamicCombo({appendTo: this.element, 
+											autoExtend: true,
+											urlToFetch: this.getUrl('list')});
 		this.dynCombo.fetchData();
 
 		this.bindEvents();
@@ -50,12 +63,25 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 					["<div id={{id}} class={{cls}}>",
 					"<form method='post' action={{url}} enctype='multipart/form-data'>",
 					"<span>Please choose file: </span>",
-					 "<input name='f' type='file'/>",
+					 "<input name='file' type='file'/>",
 					 "<input name='id' class='idText' type='text' placeholder='Type name of a manuscript'/>",
 					 "<input type='submit'/></form>",
+					 "<div class='reports'></div>",
+					 "<div class='refBtn'><a href='javascript:'>Refresh</a></div>",
 					 "</div>"
 					 ].join('')),
+		getUrl: function(cmd) {
+			var prefix = this.baseUrl + '/' + this.serviceName + '/';
+			return prefix + this.serviceCommands[cmd];
+		},
 
+		// Binds global events:
+		// uploadFormVisible.set - called when user clicks on menu item
+		// uploadForm.chooseId - when choosing manifest id from combobox
+		// uploadForm.msg - for messaging/error reporting
+		// refBtn a onClick - refresh button click
+		// input file change - whenever user chooses file
+		// submit - form submit
 		bindEvents: function() {
 			var _this = this;
 			// Show form event
@@ -66,8 +92,17 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 				//console.log('choosed manuscript: '+obj);
 				_this.element.find('.idText').val(obj);
 			});
+			jQuery.subscribe('uploadForm.msg',function(_, msg) {
+				_this.element.find('.reports').text(msg);
+			});
+			_this.element.find('.refBtn a').on('click',function(){
+				jQuery.publish('dynCombo.refresh',{});
+			});
+			_this.element.find('input[type=file]').on('change', function(ev){
+				_this.filesToUp = ev.target.files;
+			});
+			_this.element.on('submit',_this,_this.sendFile);
 		},
-		// FIX: form shows by default at startup!
 		showForm: function(sh) {
 			if(sh === undefined) 
 				sh = !this.show;
@@ -81,6 +116,40 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 				this.element.show(params);
 			else
 				this.element.hide(params);
+		},
+		sendFile: function(event) {
+			event.stopPropagation();
+			event.preventDefault();
+			jQuery.publish('uploadForm.msg','Uploading...');
+			var fData = new FormData(event.data.element.find('form')[0]);
+			var f = event.data.filesToUp[0];
+
+			var ajxObj = {
+				url: event.data.url,
+				type: 'post',
+				data: fData,
+				cache: false,
+				processData: false,
+				contentType: false,
+				crossDomain: true,
+				dataType: 'json',
+				enctype:'multipart/form-data',
+				success: function(data,stat) {
+					console.log('ajax upload done: '+data);
+					if (status != 'error') {
+						jQuery.publish('uploadForm.msg','Upload done. status: '+data.status);
+						jQuery.publish('dynCombo.refresh');
+					} else {
+						jQuery.publish('uploadForm.msg','Upload remote error: '+data.err);
+					}
+				},
+				error: function(jq,stat,err) {
+					console.log('ajax upload ERROR: '+stat+', '+err);
+					jQuery.publish('uploadForm.msg','Upload local error: ' + err);
+				}
+			};
+			jQuery.ajax(ajxObj);
+
 		}
 	};
 
@@ -104,7 +173,7 @@ $.DynamicCombo = function(options) {
 			element: null,
 			appendTo: null,
 			data: [],
-			autoExtend: false,
+			autoExtend: false
 		},options);
 
 		this.element = jQuery(this.template(this));
@@ -123,6 +192,10 @@ $.DynamicCombo.prototype = {
 		var _this = this;
 		_this.element.change(function() {
 			jQuery.publish('uploadForm.chooseId',_this.element.find('option:selected').text());
+		});
+
+		jQuery.subscribe('dynCombo.refresh',function(_,obj){
+			_this.fetchData();
 		});
 	},
 
