@@ -4,53 +4,66 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.fileupload.FileItem;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class Book implements Comparable<Book>, Comparator<Book> {
-	String fId = null;
+
+    public ArrayList<Page> gPages;
+
+	String bookId = null;
 	JSONArray fCanvas;
 	JSONObject all;
+    String pathOfJsonFolder;
+
 	String getId()
 	{
-		return fId;
+		return bookId;
 	}
 	
 	Book(String id, boolean restore)
-	{
-		fId = id;
-		
+	{			
+		fCanvas = new JSONArray();
+
+		gPages = new ArrayList<Page>();
+		bookId = id;
+		 pathOfJsonFolder = Global.filePath + Global.sep + bookId + Global.sep + "JsonFolder" + Global.sep;
 		if (restore)
 		{
-			Global.mainLogger.info("Restoreing book: " + id);
-            String pathOfJson = Global.filePath + Global.sep + fId + Global.sep + "jsonCanvas" +".json";
-            File f = new File(pathOfJson);
-			Scanner sc;
-			try {
-				sc = new Scanner(f);
-				String line = sc.nextLine();
-				fCanvas = new JSONArray(line);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				File folder = new File(pathOfJsonFolder);
+				File[] listOfFiles = folder.listFiles();
+				Global.mainLogger.info("Restoreing book: " + id);
+				
+			 for (File f : listOfFiles) 
+			 {
 			
-		}
+	            Page p = new Page(null, bookId, f.getAbsolutePath());
+	    		int found;    		
+	    		synchronized (gPages)
+	    		{
+	    			 found = Collections.binarySearch(gPages, p);
+	    			gPages.add(-found-1, p);	//keeping the sorted array
+	
+	    		}
+	    		
+	    		fCanvas.put(p.json);
+	    		
+			 }
+			}
 		else
 		{
 			Global.mainLogger.info("creating book: " + id);
 
-			fCanvas = new JSONArray();
 		}
 		
 		try {
@@ -82,75 +95,19 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		
 	}
 	
-
 	
-	
-	void addPage(File aFile)
-	{
-		Global.mainLogger.info("adding page: " + aFile.getName() + " in book:" + fId);
-
-		String port = "80"; //didn't put
-		String spec = "full/full/0/default.jpg";
-		String idRes = Global.ImageServerAddress + fId + "/" + aFile.getName() + "/full/full/0/default.jpg";
-		String idSer = Global.ImageServerAddress + fId + "/" + aFile.getName();
-		String typeImage = "dctypes:Image";
-		String typeCanvas = "sc:Canvas";
-		String label = "Default label";
-		JSONObject toReturn = new JSONObject();
-		
-	      BufferedImage img = null;
-          try {
-              img = ImageIO.read(new File(aFile.getPath()));
-              System.out.println("height:" + img.getHeight() + " width:" + img.getWidth());
-
-              		  JSONObject firstImage = new JSONObject() ;
-						firstImage.put("width", img.getWidth());
-					
-		              firstImage.put("height", img.getHeight());
-		              
-		              	JSONObject resource = new JSONObject() ;
-		              	resource.put("@id", idRes);
-		              
-		              		JSONObject service = new JSONObject() ;
-		              		service.put("@context", Global.context);
-		              		service.put("@id", idSer);
-		              	
-		              	resource.put("service", service);
-		              	
-		              firstImage.put("resource", resource);
-		              
-		              firstImage.put("@type", typeImage);
-		              firstImage.put("format", "image/jpeg");
-              
-	            toReturn.append("images", firstImage);
-   
-	            toReturn.put("width", img.getWidth());
-	            toReturn.put("height", img.getHeight());
-
-	            toReturn.put("@type", typeCanvas);
-	            toReturn.put("@type", label);
-              System.out.println(toReturn.toString());
-             
-              synchronized (fCanvas) 
-              {
-            	  fCanvas.put(toReturn);  
-              }
-              
-              String pathOfJson = Global.filePath + Global.sep + fId + Global.sep + "jsonCanvas" +".json";
-
-            //writing out the info
-              File file = new File(pathOfJson);
-              file.getParentFile().mkdirs(); 		
-              PrintWriter out = new PrintWriter(pathOfJson);
-              out.println(fCanvas.toString());
-              out.close();
-          } catch (IOException | JSONException e) {
-          }
-	
-    
+private void refreshCanvas()
+{
+	fCanvas = new JSONArray();
+	Global.mainLogger.info("Refreshing canvas");
+	synchronized (gPages)
+		{
+		for (Page p : gPages)
+		{
+			fCanvas.put(p.json);
+		}
 	}
-
-	
+}
 	public String toString() {
 		// TODO Auto-generated method stub
 		return all.toString();
@@ -166,6 +123,51 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		// TODO Auto-generated method stub
 		return o1.getId().compareTo(o2.getId());
 		}
+
+	public boolean existsPage(String fileName) {
+		Page search = new Page(fileName, bookId);
+		int found;
+		
+		synchronized (gPages)
+		{
+			 found = Collections.binarySearch(gPages, search);
+		}
+		
+		return (found >= 0);
+	}
+
+	public void removePage(String fileName) {
+		Page search = new Page(fileName, bookId);
+		int found;
+		
+		synchronized (gPages)
+		{
+			 found = Collections.binarySearch(gPages, search);
+			 gPages.get(found).remove();
+			 gPages.remove(found);
+		}
+		
+		refreshCanvas();
+		
+	}
+
+	//creating the file and page, assuming the page not exists
+	public void createPage(FileItem fileUpdate, String fileName) {
+		
+		
+		Page search = new Page(fileName, bookId);
+		synchronized (gPages)
+		{
+			int found = Collections.binarySearch(gPages, search);
+			gPages.add(-found-1, search);	//keeping the sorted array
+		}
+		
+		search.writePage(fileUpdate, fileName);
+		
+		fCanvas.put(search.json);
+		
+		
+	}
 	
 	
 	

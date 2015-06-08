@@ -100,12 +100,6 @@ public class Upload extends HttpServlet {
 		
 	      // Process the uploaded file items
 	      Iterator i = fileItems.iterator();
-
-	      out.println("<html>");
-	      out.println("<head>");
-	      out.println("<title>Servlet upload</title>");  
-	      out.println("</head>");
-	      out.println("<body>");
 	      while ( i.hasNext () ) 
 	      {
 	         FileItem fi = (FileItem)i.next();
@@ -123,35 +117,39 @@ public class Upload extends HttpServlet {
 	        	}
 	         }
 	      }
-	      out.println("</body>");
-	      out.println("</html>");
+	   
+	      
+	    
+	      
+	      
+	      boolean override = true;
 	      
 	      if (fieldId != null && fileUpdate != null)
 	      {
 	            String fieldName = fileUpdate.getFieldName();
-	            fileName = fileUpdate.getName();
+	            fileName = getFileName(fileUpdate);
+	                   
+	            Book book = Global.getBook(fieldId);
+	            
+	           if (book.existsPage(fileName))
+	           {
+	        	   if (override)
+	        	   {
+	        		   book.removePage(fileName);
+	        	   }
+	        	   else
+	        	   {
+	        		   Global.respond(out, Global.imageAlreadyExists, Global.imageAlreadyExistsDesc);
+	        		   return;
+	        	   }	
+	           }
+	            
+	          book.createPage(fileUpdate, fileName);
 	          
-	            if( fileName.lastIndexOf("\\") >= 0 ){
-	               file = new File( Global.filePath  + Global.sep + fieldId + Global.sep+
-	               fileName.substring( fileName.lastIndexOf("\\") + 1)) ;
-	            }else if(fileName.lastIndexOf("/") >= 0){
-	               file = new File( Global.filePath +  Global.sep + fieldId + Global.sep+
-	               fileName.substring(fileName.lastIndexOf("/")+1)) ;
-	            }
-	            else
-	            {
-		               file = new File( Global.filePath +  Global.sep + fieldId + Global.sep+
-		    	               fileName) ;
-	            }
-	          
-	          file.getParentFile().mkdirs();
-				
+				Global.respond(out, Global.imageUpload, Global.imageUploadDesc);
 
-	          fileUpdate.write( file ) ;
-	          Global.mainLogger.info("saving file:" +file.getName() + "to folder: " + fieldId);
-	          out.println("Uploaded Filename: " + fileName + "<br>");
-	    	  Book book = Global.getBook(fieldId);
-	    	  book.addPage(file);
+
+	
 	      }
 	   }catch(Exception ex) {
 	       System.out.println(ex);
@@ -159,6 +157,26 @@ public class Upload extends HttpServlet {
 	
 
 }
+
+	//get picture file name after removing slashes
+	private String getFileName(FileItem fileUpdate)
+	{
+		
+        String name = fileUpdate.getName();    
+        if( name.lastIndexOf("\\") >= 0 )
+        {
+        	return name.substring(name.lastIndexOf("\\") + 1);
+        }
+        else if(name.lastIndexOf("/") >= 0)
+        	{
+        		return name.substring(name.lastIndexOf("/")+1) ;
+        	}
+        else
+        {
+        	return name;
+        }
+      
+	}
 	
 	
 }

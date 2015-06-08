@@ -49,10 +49,16 @@ public class Json extends HttpServlet {
 		}
 		else
 		{
-			Book book = Global.getBook(idOfBook);
-			Global.mainLogger.info("send  database book" + book.fId + " to:" + request.getRemoteAddr());
-
-			printWriter.println(book.toString());
+			Book book = Global.getIfHaveBook(idOfBook);
+			if (book != null)
+			{
+				Global.mainLogger.info("send  database book" + book.bookId + " to:" + request.getRemoteAddr());
+				printWriter.println(book.toString());
+			}
+			else
+			{
+				Global.respond(printWriter, Global.bookArentExists, Global.bookArentExistsDesc);
+			}
 		}
 	}
 

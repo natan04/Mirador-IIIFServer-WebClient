@@ -32,11 +32,13 @@ import org.json.JSONObject;
 
 
 
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
 public class Global extends HttpServlet {
     public static ArrayList<Book> gBooks;
+
     public static JSONArray bookArrayInfo = new JSONArray();
     
     public static String ImageServerAddress;
@@ -48,18 +50,42 @@ public class Global extends HttpServlet {
 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
 
-
+	//Codes:
+	public static int imageUpload = 0;
+	public static String imageUploadDesc = "Success to upload image";
+	public static int imageAlreadyExists = 1;
+	public static String imageAlreadyExistsDesc = "Image already exists, put ovrride flag to ovrride";
+	public static int bookArentExists	= 2;
+	public static String bookArentExistsDesc = "The book aren't exists";
+	
+	
+	
+	
 	
 public static String getListOfBook()
-{
-	
+{	
 	return bookArrayInfo.toString();
 }
+
+public static Book getIfHaveBook(String id)
+{
+	Book search = new Book(id, false);
+	
+	int found = Collections.binarySearch(gBooks, search);
+	if (found < 0)
+	{
+		return null;
+	}
+	
+	else
+		return gBooks.get(found);
+}
+
 public static Book getBook(String id)
 {
 	Book search = new Book(id, false);
-	int found = Collections.binarySearch(gBooks, search);
 	
+	int found = Collections.binarySearch(gBooks, search);
 	if (found < 0)
 	{
 		synchronized (gBooks) {
@@ -89,6 +115,7 @@ public static Book getBook(String id)
 		return gBooks.get(found);
 }
 
+
 public void init() throws ServletException
 {
 
@@ -107,7 +134,7 @@ public void init() throws ServletException
 		Handler fileHandler = new FileHandler(logPath,true);
 		fileHandler.setFormatter(new SimpleFormatter());
 		mainLogger.addHandler(fileHandler);
-		mainLogger.info("\n\n\n\n\n\n\n\n\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7");
+		mainLogger.info("\n\n\n\n\n\n\n\n\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 	
 	} catch (SecurityException | IOException e1) {
 		// TODO Auto-generated catch block
@@ -134,7 +161,6 @@ public void init() throws ServletException
 				int found = Collections.binarySearch(gBooks, book);
 				gBooks.add(-found-1, book);	//keeping the sorted array
 
-
 			}
 			
 		} catch (FileNotFoundException | JSONException e) {
@@ -145,5 +171,14 @@ public void init() throws ServletException
 	
 	}
 
+}
+
+public static void respond(PrintWriter printWriter, int a,
+		String b) {
+
+	JSONArray temp = new JSONArray(); 
+	temp.put(a);
+	temp.put(b);
+	printWriter.println(temp);
 }
 }
