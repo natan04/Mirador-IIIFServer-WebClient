@@ -87,7 +87,7 @@
       this.bookmarkPanel = new $.BookmarkPanel({ parent: this, appendTo: this.element.find('.mirador-viewer') });
 
       // TODO: UploaderForm url setting - customize
-      this.uploadForm = new $.Uploader.UploaderForm({url:'localhost:4000/upload', appendTo: this.element.find('.mirador-viewer') });
+      this.uploadForm = new $.Uploader.UploaderForm({baseUrl:'http://localhost:8080', appendTo: this.element.find('.mirador-viewer'), parent: _this });
 
       // set this to be displayed
       this.set('currentWorkspaceVisible', true);

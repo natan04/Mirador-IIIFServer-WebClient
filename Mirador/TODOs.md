@@ -16,12 +16,15 @@
 -  [ ] **DONE** `(line 8)` : Upload function
 -  [ ] **DONE** `(line 9)` : Dynamic combo
 -  [ ] **DONE** `(line 10)` : Option for refreshing
--  [ ] **TODO** `(line 12)` : Multifiles support
--  [ ] **TODO** `(line 13)` : Handle failure on combo fetching
--  [ ] **TODO** `(line 14)` : Handle of new manifest
--  [ ] **TODO** `(line 15)` : Change name of menu to "Admin" or something
--  [ ] **TODO** `(line 16)` : Change this to a global manifests editting admin panel (add,delete,append page etc.)
--  [ ] **TODO** `(line 60)` : Upload form is messed up - add some borders, colors etc
+-  [ ] **DONE** `(line 11)` : Close button
+-  [ ] **TODO** `(line 13)` : Upload API response handling - array [ErrCode, Desc] (success = 0)
+-  [ ] **TODO** `(line 14)` : Checkbox for file overwrite (name: overwriteFlag)
+-  [ ] **TODO** `(line 15)` : Multifiles support
+-  [ ] **TODO** `(line 16)` : Handle failure on combo fetching
+-  [ ] **TODO** `(line 17)` : Handle of new manifest
+-  [ ] **TODO** `(line 18)` : Change name of menu to "Admin" or something
+-  [ ] **TODO** `(line 19)` : Change this to a global manifests editting admin panel (add,delete,append page etc.)
+-  [ ] **TODO** `(line 64)` : Upload form is messed up - add some borders, colors etc
 
 ## js/src/viewer.js
 
@@ -47,4 +50,4 @@
 
 * * *
 
-Last generated: Mon Jun 08 2015 03:36:30 by [grunt-todo](https://github.com/leny/grunt-todo).
+Last generated: Tue Jun 09 2015 18:56:27 by [grunt-todo](https://github.com/leny/grunt-todo).

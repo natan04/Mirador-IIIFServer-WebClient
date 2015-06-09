@@ -1601,3 +1601,11 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   border: 2px groove rgba(100,100,100,0.5);
   padding: 3px;
 }
+
+.refBtn {
+  border: 2px inset grey;
+  width: 53px;
+  padding: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}

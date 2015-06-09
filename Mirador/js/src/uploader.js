@@ -8,6 +8,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 // DONE: Upload function
 // DONE: Dynamic combo
 // DONE: Option for refreshing
+// DONE: Close button
 
 // TODO: Upload API response handling - array [ErrCode, Desc] (success = 0)
 // TODO: Checkbox for file overwrite (name: overwriteFlag)
@@ -30,10 +31,10 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 		jQuery.extend(true, this,
 		{
-			baseUrl: 'http://localhost:4000',
+			baseUrl: 'http://localhost:8080',
 			serviceName: 'PictureHandler',
 			serviceCommands: {
-				list: 'JsonAll',
+				list: 'Json?id=all',
 				upload: 'Upload'
 			},
 			show: false,
@@ -41,7 +42,8 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 			cls: "uploaderForm",
 			element: null,
 			appendTo: null,
-			filesToUp: []
+			filesToUp: [],
+			parent: null
 		},options);
 
 		this.url = this.getUrl('upload');
@@ -70,6 +72,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 					 "<input type='submit'/></form>",
 					 "<div class='reports'></div>",
 					 "<div class='refBtn'><a href='javascript:'>Refresh</a></div>",
+					 "<div class='closeBtn'><a href='javascript:'>Close</a></div>",
 					 "</div>"
 					 ].join('')),
 		getUrl: function(cmd) {
@@ -99,6 +102,9 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 			});
 			_this.element.find('.refBtn a').on('click',function(){
 				jQuery.publish('dynCombo.refresh',{});
+			});
+			this.element.find('.closeBtn a').on('click', function() {
+				_this.parent.toggleUploadForm();
 			});
 			_this.element.find('input[type=file]').on('change', function(ev){
 				_this.filesToUp = ev.target.files;
