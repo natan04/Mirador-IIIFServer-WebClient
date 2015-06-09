@@ -9,6 +9,8 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 // DONE: Dynamic combo
 // DONE: Option for refreshing
 // DONE: Close button
+// DONE: Fixed Bug with form field id (Expects ID uppercase)
+// DONE: Support for global Service Manager class
 
 // TODO: Upload API response handling - array [ErrCode, Desc] (success = 0)
 // TODO: Checkbox for file overwrite (name: overwriteFlag)
@@ -17,7 +19,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 // TODO: Handle of new manifest
 // TODO: Change name of menu to "Admin" or something
 // TODO: Change this to a global manifests editting admin panel (add,delete,append page etc.)
-(function($) {
+(function($,mInst) {
 	
 	/**
 	 * UploaderForm class constructor
@@ -31,12 +33,6 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 		jQuery.extend(true, this,
 		{
-			baseUrl: 'http://localhost:8080',
-			serviceName: 'PictureHandler',
-			serviceCommands: {
-				list: 'Json?id=all',
-				upload: 'Upload'
-			},
 			show: false,
 			id: "uploaderForm",
 			cls: "uploaderForm",
@@ -46,7 +42,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 			parent: null
 		},options);
 
-		this.url = this.getUrl('upload');
+		this.url = mInst.ServiceManager.getUrlForCommand('PictureHandler','upload');
 		this.element = jQuery(this.template(this));
 		this.element.hide();
 		this.showForm(this.show);
@@ -54,7 +50,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 		this.dynCombo = new $.DynamicCombo({appendTo: this.element, 
 											autoExtend: true,
-											urlToFetch: this.getUrl('list')});
+											urlToFetch: mInst.ServiceManager.getUrlForCommand('PictureHandler','list')});
 		this.dynCombo.fetchData();
 
 		this.bindEvents();
@@ -68,17 +64,13 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 					"<form method='post' action={{url}} enctype='multipart/form-data'>",
 					"<span>Please choose file: </span>",
 					 "<input name='file' type='file'/>",
-					 "<input name='id' class='idText' type='text' placeholder='Type name of a manuscript'/>",
+					 "<input name='ID' class='idText' type='text' placeholder='Type name of a manuscript'/>",
 					 "<input type='submit'/></form>",
 					 "<div class='reports'></div>",
 					 "<div class='refBtn'><a href='javascript:'>Refresh</a></div>",
 					 "<div class='closeBtn'><a href='javascript:'>Close</a></div>",
 					 "</div>"
 					 ].join('')),
-		getUrl: function(cmd) {
-			var prefix = this.baseUrl + '/' + this.serviceName + '/';
-			return prefix + this.serviceCommands[cmd];
-		},
 
 		// Binds global events:
 		// uploadFormVisible.set - called when user clicks on menu item
@@ -144,11 +136,11 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 				enctype:'multipart/form-data',
 				success: function(data,stat) {
 					console.log('ajax upload done: '+data);
-					if (status != 'error') {
-						jQuery.publish('uploadForm.msg','Upload done. status: '+data.status);
+					if (data[0] === 0) {
+						jQuery.publish('uploadForm.msg','Upload done. code '+data[0]+': '+data[1]);
 						jQuery.publish('dynCombo.refresh');
 					} else {
-						jQuery.publish('uploadForm.msg','Upload remote error: '+data.err);
+						jQuery.publish('uploadForm.msg','Upload remote error code '+data[0] +': '+data[1]);
 					}
 				},
 				error: function(jq,stat,err) {
@@ -238,4 +230,4 @@ $.DynamicCombo.prototype = {
 };
 
 
-} )(Mirador.Uploader);
+} )(Mirador.Uploader,Mirador);
