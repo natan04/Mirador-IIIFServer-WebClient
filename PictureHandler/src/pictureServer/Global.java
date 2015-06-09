@@ -49,7 +49,7 @@ public class Global extends HttpServlet {
 	public static String sep;
 	public static String bookInfoPath;
 	public static String logPath ;
-
+	public static boolean convertToTiff = false; 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
 
 	//Codes:
@@ -129,7 +129,6 @@ public void init() throws ServletException
    bookInfoPath = filePath +"booksInfo.json";
    logPath =  context.getInitParameter("LogPath");
    mainLogger.info("Starting picture server");
-   mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath);
 	/*****************Log initlize**************/
 	try {
 		Handler fileHandler = new FileHandler(logPath,true);
@@ -142,6 +141,7 @@ public void init() throws ServletException
 		e1.printStackTrace();
 	}
 	
+	mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath + "server: " + ImageServerAddress );
 	gBooks = new ArrayList<Book>();
 	File f = new File(bookInfoPath);
 	if (f.exists())

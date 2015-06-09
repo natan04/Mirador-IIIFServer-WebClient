@@ -1,19 +1,41 @@
 package pictureServer;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Scanner;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.ImageTypeSpecifier;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.fileupload.FileItem;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.sun.imageio.plugins.jpeg.JPEGImageReaderSpi;
+import com.sun.media.imageio.plugins.tiff.TIFFImageWriteParam;
+import com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterSpi;
+
+import sun.awt.image.ImageDecoder;
+import sun.security.util.Length;
 
 public class Page implements Comparable<Page>, Comparator<Page>{
 	public String pathOfJson;
@@ -74,7 +96,8 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 			p.getParentFile().mkdirs();
 			fileUpdate.write(p);
 			Global.mainLogger.info("saving page: " + fileName + "\tto book: " + nameOfBook);
-
+			String f = p.getAbsolutePath();
+		
 			
 			createJsonInFolder(p, fileName);
 			pathOfFile = p.getAbsolutePath();
@@ -82,6 +105,8 @@ public class Page implements Comparable<Page>, Comparator<Page>{
       
 		
 	}
+
+
 
 	private void createJsonInFolder(File p, String fileName) throws JSONException, IOException {
 		Global.mainLogger.info("adding page: " + fileName + " in book:" + nameOfBook);
@@ -94,7 +119,8 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		String label = "Default label";
 		
 	      BufferedImage img = null;
-              img = ImageIO.read(new File(p.getPath()));
+	      
+             img = ImageIO.read(new File(p.getPath()));
               		  JSONObject firstImage = new JSONObject() ;
 						firstImage.put("width", img.getWidth());
 					
@@ -120,6 +146,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
             json.put("width", img.getWidth());
             json.put("height", img.getHeight());
 
+            
             json.put("@type", typeCanvas);
 	        json.put("@type", label);
              
@@ -174,6 +201,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 	}
 
 
+	
 private String nameFromPath(String path)
 {
     if( path.lastIndexOf("\\") >= 0 )
@@ -189,4 +217,8 @@ private String nameFromPath(String path)
     	return path;
     }
 }
+
+	
+	
 }
+
