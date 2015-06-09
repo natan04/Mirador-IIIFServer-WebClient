@@ -33,6 +33,8 @@ import org.json.JSONObject;
 
 
 
+
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
@@ -53,11 +55,15 @@ public class Global extends HttpServlet {
 	//Codes:
 	public static int imageUpload = 0;
 	public static String imageUploadDesc = "Success to upload image";
+	
 	public static int imageAlreadyExists = 1;
 	public static String imageAlreadyExistsDesc = "Image already exists, put ovrride flag to ovrride";
+	
 	public static int bookArentExists	= 2;
 	public static String bookArentExistsDesc = "The book aren't exists";
 	
+	public static int problemToUploadImage = 3;
+	public static String problemToUploadImageDesc = "Problem with upload, wrong format?";
 	
 	
 	
@@ -87,9 +93,7 @@ public static Book getBook(String id)
 	
 	int found = Collections.binarySearch(gBooks, search);
 	if (found < 0)
-	{
-		synchronized (gBooks) {
-			
+	{			
 		bookArrayInfo.put(id);
         //file.getParentFile().mkdirs();
         
@@ -107,7 +111,6 @@ public static Book getBook(String id)
 		
 		gBooks.add(-found-1, search);	//keeping the sorted array
 		
-		}
 		return search;
 	}
 	
@@ -129,8 +132,6 @@ public void init() throws ServletException
    mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath);
 	/*****************Log initlize**************/
 	try {
-
-
 		Handler fileHandler = new FileHandler(logPath,true);
 		fileHandler.setFormatter(new SimpleFormatter());
 		mainLogger.addHandler(fileHandler);
@@ -177,8 +178,49 @@ public static void respond(PrintWriter printWriter, int a,
 		String b) {
 
 	JSONArray temp = new JSONArray(); 
-	temp.put(a);
+	temp.put(a +"");
 	temp.put(b);
 	printWriter.println(temp);
 }
+
+public static void rollBackAction(String bookId, String fileName)
+{
+	Book search = new Book(bookId, false);
+	
+	int found = Collections.binarySearch(gBooks, search);
+	if (found >= 0)
+	{			
+		search = gBooks.get(found);
+		
+		if (search.rollBackAction(fileName)) //not true;
+			return;
+		
+		gBooks.remove(found);
+		
+		try {	
+
+		for ( int index = 0; index < bookArrayInfo.length(); index ++)
+		{
+			if (bookArrayInfo.getString(index).compareTo(bookId) == 0)
+			{
+				bookArrayInfo.remove(index);
+				break;
+			}
+		}
+		PrintWriter out;
+		File file = new File(bookInfoPath);
+		out = new PrintWriter(bookInfoPath);
+		out.println(bookArrayInfo.toString());
+		out.close();
+		
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+			} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		}
+	}
+
 }

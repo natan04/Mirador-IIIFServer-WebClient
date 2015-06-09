@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -36,7 +37,6 @@ public class Upload extends HttpServlet {
 	  private boolean isMultipart;
 	   private int maxFileSize = 10	*1024 * 1024;
 	   private int maxMemSize =  10	* 1024 * 1024;
-	   private File file ;
  
     /**
      * @see HttpServlet#HttpServlet()
@@ -63,14 +63,14 @@ public class Upload extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 
-	
+		response.addHeader("Access-Control-Allow-Origin", "*");
+
 		FileItem fileUpdate = null;
-		String fieldId = null;
-		String fileName ;
+		String bookId = null;
+		String fileName = null ;
 		final String ID_Field = "ID";
 
 		isMultipart = ServletFileUpload.isMultipartContent(request);
-	      response.setContentType("text/html");
 	      java.io.PrintWriter out = response.getWriter( );
 	      if( !isMultipart ){
 	         out.println("<html>");
@@ -112,7 +112,7 @@ public class Upload extends HttpServlet {
 	         {
 	        	if (ID_Field.compareTo(fi.getFieldName()) == 0)
 	        	{
-	        		 fieldId = fi.getString();
+	        		 bookId = fi.getString();
 	        	
 	        	}
 	         }
@@ -124,12 +124,12 @@ public class Upload extends HttpServlet {
 	      
 	      boolean override = true;
 	      
-	      if (fieldId != null && fileUpdate != null)
+	      if (bookId != null && fileUpdate != null)
 	      {
-	            String fieldName = fileUpdate.getFieldName();
 	            fileName = getFileName(fileUpdate);
 	                   
-	            Book book = Global.getBook(fieldId);
+	            Book book = Global.getBook(bookId);
+	    		Global.mainLogger.info("Get update request from ip:" + request.getRemoteAddr() + "book: " + bookId +" page:" + fileName );
 	            
 	           if (book.existsPage(fileName))
 	           {
@@ -146,13 +146,16 @@ public class Upload extends HttpServlet {
 	            
 	          book.createPage(fileUpdate, fileName);
 	          
-				Global.respond(out, Global.imageUpload, Global.imageUploadDesc);
+			  Global.respond(out, Global.imageUpload, Global.imageUploadDesc);
 
 
 	
 	      }
 	   }catch(Exception ex) {
-	       System.out.println(ex);
+		   Global.rollBackAction(bookId, fileName);
+		   Global.respond(out, Global.problemToUploadImage, Global.problemToUploadImageDesc);
+		   Global.mainLogger.finer("Error uploading page: " + fileName + " maybe wrong format?");;
+		   System.out.println(ex);
 	   }
 	
 

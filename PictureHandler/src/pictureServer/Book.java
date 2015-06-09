@@ -31,7 +31,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		return bookId;
 	}
 	
-	Book(String id, boolean restore)
+Book(String id, boolean restore)
 	{			
 		fCanvas = new JSONArray();
 
@@ -49,14 +49,13 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 			
 	            Page p = new Page(null, bookId, f.getAbsolutePath());
 	    		int found;    		
-	    		synchronized (gPages)
-	    		{
+	    
 	    			 found = Collections.binarySearch(gPages, p);
 	    			gPages.add(-found-1, p);	//keeping the sorted array
 	
-	    		}
 	    		
-	    		fCanvas.put(p.json);
+
+	    			fCanvas.put(p.json);
 	    		
 			 }
 			}
@@ -68,7 +67,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		
 		try {
 			JSONObject sequenceElement = new JSONObject();
-		//	JSONObject canvas = new JSONObject();
+	
 			sequenceElement.put("viewingDirection", "left-to-right");
 			sequenceElement.put("viewingHint", "paged");
 			sequenceElement.put("canvases", fCanvas);
@@ -81,7 +80,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 			all.put("sequences", sequences);
 			all.put("attribution", "Default attribution");
 			all.put("@type", "sc:Manifest");
-			all.put("@label", "Default label");
+			all.put("label",bookId);
 			
 			
 			
@@ -96,7 +95,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 	}
 	
 	
-private void refreshCanvas()
+synchronized private void refreshCanvas()
 {
 	fCanvas = new JSONArray();
 	Global.mainLogger.info("Refreshing canvas");
@@ -108,7 +107,8 @@ private void refreshCanvas()
 		}
 	}
 }
-	public String toString() {
+	
+public String toString() {
 		// TODO Auto-generated method stub
 		return all.toString();
 	}
@@ -124,35 +124,37 @@ private void refreshCanvas()
 		return o1.getId().compareTo(o2.getId());
 		}
 
-	public boolean existsPage(String fileName) {
+public synchronized boolean existsPage(String fileName) {
 		Page search = new Page(fileName, bookId);
 		int found;
 		
-		synchronized (gPages)
-		{
-			 found = Collections.binarySearch(gPages, search);
-		}
+		found = Collections.binarySearch(gPages, search);
 		
 		return (found >= 0);
 	}
 
-	public void removePage(String fileName) {
+public synchronized void removePage(String fileName) {
 		Page search = new Page(fileName, bookId);
 		int found;
 		
-		synchronized (gPages)
-		{
-			 found = Collections.binarySearch(gPages, search);
-			 gPages.get(found).remove();
-			 gPages.remove(found);
-		}
+		 found = Collections.binarySearch(gPages, search);
+		 
+		 if (found < 0)
+		 {
+			 Global.mainLogger.info("tried to remove page: " + fileName + " ,book: " + bookId);
+			 return;
+		 }
+		 
+		 gPages.get(found).remove();
+		 gPages.remove(found);
+	
 		
 		refreshCanvas();
 		
 	}
 
 	//creating the file and page, assuming the page not exists
-	public void createPage(FileItem fileUpdate, String fileName) {
+public synchronized void createPage(FileItem fileUpdate, String fileName) throws Exception {
 		
 		
 		Page search = new Page(fileName, bookId);
@@ -163,11 +165,27 @@ private void refreshCanvas()
 		}
 		
 		search.writePage(fileUpdate, fileName);
-		
-		fCanvas.put(search.json);
-		
+		synchronized (fCanvas)
+		{
+			fCanvas.put(search.json);
+		}
 		
 	}
+
+public synchronized boolean rollBackAction(String fileName) {
+	Page search = new Page(fileName, bookId);
+	int found;
+	
+	 found = Collections.binarySearch(gPages, search);
+	 gPages.get(found).removeRollBack();
+	 gPages.remove(found);
+	 
+	 if (gPages.size() == 0)
+		 return false;
+	 
+	 return true;
+	
+}
 	
 	
 	

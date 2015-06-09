@@ -26,6 +26,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 	{
 		PageName = fileName;
 		nameOfBook = bookID;
+		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + PageName;
 	}
 	
 	Page(String fileName, String bookID, String jsonPath)
@@ -66,9 +67,8 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		return this.PageName.compareTo(arg0.PageName);
 	}
 
-	public void writePage(FileItem fileUpdate, String fileName) {
+	public void writePage(FileItem fileUpdate, String fileName) throws Exception {
 
-		try {
 			
 			File p = new File(Global.filePath + Global.sep + nameOfBook + Global.sep + fileName);
 			p.getParentFile().mkdirs();
@@ -78,15 +78,12 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 			
 			createJsonInFolder(p, fileName);
 			pathOfFile = p.getAbsolutePath();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
       
 		
 	}
 
-	private void createJsonInFolder(File p, String fileName) {
+	private void createJsonInFolder(File p, String fileName) throws JSONException, IOException {
 		Global.mainLogger.info("adding page: " + fileName + " in book:" + nameOfBook);
 
 		String spec = "full/full/0/default.jpg";
@@ -97,7 +94,6 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		String label = "Default label";
 		
 	      BufferedImage img = null;
-          try {
               img = ImageIO.read(new File(p.getPath()));
               		  JSONObject firstImage = new JSONObject() ;
 						firstImage.put("width", img.getWidth());
@@ -137,9 +133,6 @@ public class Page implements Comparable<Page>, Comparator<Page>{
               PrintWriter out = new PrintWriter(pathOfJson);
               out.println(json);
               out.close();
-          } catch (IOException | JSONException e) {
-          }
-		
 	}
 
 	public boolean remove() {
@@ -157,6 +150,27 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 			Global.mainLogger.severe("problem to remove Json:" + pathOfJson + "\t and remove page:" + pathOfFile + "Database may currpoted");
 		
 		return err;
+	}
+	
+	public void removeRollBack() {
+		
+		
+		if (pathOfJson != null)
+		{
+			File jsonF = new File(pathOfJson);
+			if (jsonF.delete())
+				Global.mainLogger.info("rollback Json:" + pathOfJson);
+		}
+		
+		if (pathOfFile != null)
+		{
+			File imageF = new File(pathOfFile);
+			json = null;
+			if (imageF.delete())
+				Global.mainLogger.info("rollback image:" + pathOfJson );
+		}
+	
+	
 	}
 
 

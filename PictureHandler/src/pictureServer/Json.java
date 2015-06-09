@@ -44,7 +44,7 @@ public class Json extends HttpServlet {
 		
 		if (idOfBook.compareTo("all") ==0)
 		{
-			Global.mainLogger.info("send array data base to:" + request.getRemoteAddr());
+			Global.mainLogger.info("send Json base array to:" + request.getRemoteAddr());
 			printWriter.println(Global.getListOfBook());
 		}
 		else
