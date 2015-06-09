@@ -9,6 +9,8 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 // DONE: Dynamic combo
 // DONE: Option for refreshing
 
+// TODO: Upload API response handling - array [ErrCode, Desc] (success = 0)
+// TODO: Checkbox for file overwrite (name: overwriteFlag)
 // TODO: Multifiles support
 // TODO: Handle failure on combo fetching
 // TODO: Handle of new manifest
