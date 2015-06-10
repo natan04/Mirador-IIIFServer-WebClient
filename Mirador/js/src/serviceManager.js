@@ -30,7 +30,7 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 
 
 	// Initial config for manifest service
-	$.addService('PictureHandler','http://localhost:8080',
+	$.addService('PictureHandler','http://132.72.46.235:8080/',
 		{ list: 'Json?id=all', 
 		  upload: 'Upload',
 		  get: 'Json?id='
