@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>digilib</artifactId>
+    <groupId>digilib</groupId>
+    <version>2.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>digilib-common</artifactId>
+  <name>digilib-common</name>
+  <description>The Digital Image Library - common library</description>
+  <url>http://digilib.sourceforge.net</url>
+  <packaging>jar</packaging>
+  <build>
+  	<pluginManagement>
+  		<plugins>
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target> 
+                </configuration>
+  			</plugin>
+   		</plugins>
+  	</pluginManagement>
+  </build>
+
+  <repositories>
+    <!-- This provides Stian Soiland-Reyes re-packaged version of JAI-ImageIO -->
+    <repository>
+      <releases />
+       <snapshots>
+           <enabled>false</enabled>
+       </snapshots>
+       <id>mygrid-repository</id>
+       <name>myGrid Repository</name>
+       <url>http://www.mygrid.org.uk/maven/repository</url>
+    </repository>
+  </repositories>
+  <dependencies>
+	<dependency>
+	    <groupId>net.java.dev.jai-imageio</groupId> 
+	    <artifactId>jai-imageio-core-standalone</artifactId> 
+	    <version>1.2-pre-dr-b04-2011-07-04</version> 
+	</dependency>
+  	<dependency>
+  		<groupId>org.devlib.schmidt</groupId>
+  		<artifactId>imageinfo</artifactId>
+        <version>1.9</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>log4j</groupId>
+  		<artifactId>log4j</artifactId>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+</project>
