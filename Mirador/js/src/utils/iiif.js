@@ -1,4 +1,4 @@
-
+// DONE: Url always points to version 2 (without context checking)
 (function($) {
 
   $.Iiif = {
@@ -27,11 +27,13 @@
 
     makeUriWithWidth: function(uri, width, version) {
       uri = uri.replace(/\/$/, '');
-      if (version[0] == '1') {
+      return uri + '/full/' + width + ',/0/default.jpg';
+
+      /*if (version[0] == '1') {
         return uri + '/full/' + width + ',/0/native.jpg';
       } else {
         return uri + '/full/' + width + ',/0/default.jpg';
-      }
+      }*/
     },
 
     getImageHostUrl: function(json) {
