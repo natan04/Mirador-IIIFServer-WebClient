@@ -566,7 +566,7 @@ public class DigilibRequest extends ParameterMap {
          */
         if (quality != null) {
             // quality param
-            if (quality.equals("default") || quality.equals("color")) {
+            if (quality.equals("default") || quality.equals("color") || quality.equals("native")) {
                 // native is default anyway
             } else if (quality.equals("grey")) {
                 setValueFromString("colop", "grayscale");
