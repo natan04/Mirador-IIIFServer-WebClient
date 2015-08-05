@@ -1,0 +1,13 @@
+{
+  "services": [
+    {
+      "name": "PictureHandler",
+      "baseUrl": "http://localhost:8000/",
+      "cmds": {
+        "list": "Json?id=all",
+        "upload": "Upload",
+        "get": "Json?id="
+      }
+    }
+  ]
+}

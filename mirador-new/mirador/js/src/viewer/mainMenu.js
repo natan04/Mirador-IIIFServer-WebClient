@@ -42,7 +42,7 @@
                 showLayout : this.parent.mainMenuSettings.buttons.layout,
                 showOptions: this.parent.mainMenuSettings.buttons.options,
                 userButtons: this.parent.mainMenuSettings.userButtons,
-                userLogo:    this.parent.mainMenuSettings.userLogo
+                userLogo:    this.parent.mainMenuSettings.userLogo,
                 showUpload: this.parent.mainMenuSettings.buttons.upload
             }));
 
