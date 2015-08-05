@@ -1611,7 +1611,42 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   border: 1px solid #aaa;
 }
 
+.uploaderForm {
+  background-color: rgba(255, 255, 255, 0.94);
+  height: 40%;
+  width: 30%;
+  overflow: hidden;
+  position: absolute;
+  right: 500px;
+  top: 0;
+  border: 2px groove rgba(100,100,100,0.5);
+  padding: 3px;
+}
+.refBtn {
+  border: 2px inset grey;
+  width: 53px;
+  padding: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-family: fantasy;
+  font-weight: bolder;
+}
+
 .mce-edit-area iframe {
     height: 75px !important;
 }
-
+.closeBtn {
+  border: 2px inset grey;
+  border-radius: initial;
+  font-weight: bolder;
+  /* border-spacing: 39px; */
+  /* border-width: 2px; */
+  /* width: 38px; */
+  text-align: center;
+  font-family: fantasy;
+  /* text-indent: 360px; */
+  position: fixed;
+  top: 109px;
+  right: 523px;
+  /* text-shadow: 5px 5px; */
+}

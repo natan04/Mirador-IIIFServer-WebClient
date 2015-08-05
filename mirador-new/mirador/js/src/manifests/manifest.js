@@ -51,6 +51,11 @@
       } else {
         // No thumbnail, use main image
         var resource = canvas.images[0].resource;
+        
+        if(!resource.hasOwnProperty('service') ) {
+          return resource['@id'];
+        }
+
         service = resource['default'] ? resource['default'].service : resource.service;
         if (service.hasOwnProperty('@context')) {
           version = $.Iiif.getVersionFromContext(service['@context']);

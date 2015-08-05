@@ -43,6 +43,7 @@
                 showOptions: this.parent.mainMenuSettings.buttons.options,
                 userButtons: this.parent.mainMenuSettings.userButtons,
                 userLogo:    this.parent.mainMenuSettings.userLogo
+                showUpload: this.parent.mainMenuSettings.buttons.upload
             }));
 
             this.bindEvents();
@@ -58,6 +59,8 @@
             });
             // when options are implemented, this will need to do something
             this.element.find('.window-options').on('click', function() { });
+
+            this.element.find('.upload-images').on('click', function() { _this.parent.toggleUploadForm(); });
         },
 
         template: Handlebars.compile([
