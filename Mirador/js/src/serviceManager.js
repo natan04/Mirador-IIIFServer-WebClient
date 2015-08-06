@@ -2,7 +2,7 @@ window.Mirador = window.Mirador || {};
 window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 
 // DONE: Add global manifest service manager
-// TODO: Service Manager - Move initial config to somewhere else(maybe Launcher? maybe index.html?)
+// DONE: Service Manager - Move initial config to somewhere else(in mirador-config.json)
 (function($){
 
 	$.Service = function(name,baseUrl,cmds) {
@@ -26,15 +26,19 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 		$.services[name] = new $.Service(name,baseUrl,cmds);
 	};
 
+	$.addServiceFromJson = function(serviceJson) {
+		$.addService(serviceJson.name, serviceJson.baseUrl,serviceJson.cmds);
+	};
+
 	$.services = {};
 
 
 	// Initial config for manifest service
-	$.addService('PictureHandler','http://132.72.46.235:8080/',
-		{ list: 'Json?id=all', 
-		  upload: 'Upload',
-		  get: 'Json?id='
-	});
+	//$.addService('PictureHandler','http://132.72.46.235:8080/',
+	//	{ list: 'Json?id=all', 
+	//	  upload: 'Upload',
+	//	  get: 'Json?id='
+	//});
 
 
 })(Mirador.ServiceManager);

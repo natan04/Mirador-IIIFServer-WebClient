@@ -125,7 +125,7 @@
 
     split: function(targetSlot, direction) {
       var _this = this,
-      node = jQuery.grep(_this.layout, function(node) { return node.id === targetSlot.slotID; })[0],
+      node = jQuery.grep(_this.layout, function(node) { return node.id === targetSlot.slotID; })[0];
       nodeIndex = node.parent ? node.parent.children.indexOf(node) : 0,
       nodeIsNotRoot = node.parent;
 

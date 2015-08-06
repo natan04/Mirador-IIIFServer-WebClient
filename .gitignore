@@ -1,3 +1,12 @@
 Mirador/TODOs.md
 Mirador/node_modules/*
 Mirador/build/*
+
+Mirador-old/TODOs.md
+Mirador-old/node_modules/*
+Mirador-old/build/*
+.metadata
+Mirador/bower_components
+.project
+.pydevproject
+phandler_test
