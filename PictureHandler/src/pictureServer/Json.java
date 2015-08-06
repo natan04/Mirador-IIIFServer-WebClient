@@ -52,7 +52,7 @@ public class Json extends HttpServlet {
 			Book book = Global.getIfHaveBook(idOfBook);
 			if (book != null)
 			{
-				Global.mainLogger.info("send  database book" + book.bookId + " to:" + request.getRemoteAddr());
+				Global.mainLogger.info("send  database book" + book.gBookId + " to:" + request.getRemoteAddr());
 				printWriter.println(book.toString());
 			}
 			else

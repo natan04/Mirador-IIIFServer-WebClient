@@ -2,61 +2,45 @@ package pictureServer;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Locale;
 import java.util.Scanner;
 
-import javax.imageio.IIOImage;
+
+
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.ImageTypeSpecifier;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.metadata.IIOMetadata;
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
-import javax.imageio.stream.ImageInputStream;
-import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.fileupload.FileItem;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.sun.imageio.plugins.jpeg.JPEGImageReaderSpi;
-import com.sun.media.imageio.plugins.tiff.TIFFImageWriteParam;
-import com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterSpi;
-
-import sun.awt.image.ImageDecoder;
-import sun.security.util.Length;
 
 public class Page implements Comparable<Page>, Comparator<Page>{
 	public String pathOfJson;
 	public String pathOfFile;
 	public JSONObject json;
 	public String nameOfBook;
+	public String nameOfVersion;
+
 	public String PageName;
 	
-	Page(String fileName, String bookID)
+	Page(String fileName, String bookID, String versionId)
 	{
 		PageName = fileName;
 		nameOfBook = bookID;
-		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + PageName;
+		nameOfVersion = versionId;
+		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + versionId + Global.sep + PageName;
 	}
 	
-	Page(String fileName, String bookID, String jsonPath)
+	Page(String fileName, String bookID, String versionId, String jsonPath)
 	{
 		
 		PageName = nameFromPath(jsonPath.substring(0, jsonPath.lastIndexOf(".")));
 		nameOfBook = bookID;
-		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + PageName;
+		nameOfVersion = versionId;
+		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + versionId + Global.sep + PageName;
 		pathOfJson = jsonPath;
 		File f = new File(jsonPath);
 		if (f.exists())
@@ -66,13 +50,13 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 				Scanner sc = new Scanner(f);
 				String line = sc.nextLine();
 				sc.close();
-				Global.mainLogger.info("restoring page: " + PageName + ", in book: " + bookID);
 				
+				Global.mainLogger.info("restoring page: " + PageName + ", in version/book: " + versionId + "//" + bookID);
 				json = new JSONObject(line);
 			}
 		   catch (IOException | JSONException e) {
 			   
-			   Global.mainLogger.severe("Couldn't restore page: " + PageName + ", On book:" + nameOfBook);
+			   Global.mainLogger.severe("Couldn't restore page: " + PageName + ", in version/book: " + versionId + "//" + bookID);
           }
 
 		}
@@ -89,10 +73,10 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		return this.PageName.compareTo(arg0.PageName);
 	}
 
-	public void writePage(FileItem fileUpdate, String fileName) throws Exception {
-
-			
-			File p = new File(Global.filePath + Global.sep + nameOfBook + Global.sep + fileName);
+	//always save upload file in "default" folder inside book
+	public void writePageFromUpload(FileItem fileUpdate, String fileName) throws Exception {
+		
+			File p = new File(Global.filePath + Global.sep + nameOfBook + Global.sep + Global.defaultUploadFolder + Global.sep + fileName);
 			p.getParentFile().mkdirs();
 			fileUpdate.write(p);
 			Global.mainLogger.info("saving page: " + fileName + "\tto book: " + nameOfBook);
@@ -102,18 +86,18 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 			createJsonInFolder(p, fileName);
 			pathOfFile = p.getAbsolutePath();
 	
-      
+
 		
 	}
 
 
 
 	private void createJsonInFolder(File p, String fileName) throws JSONException, IOException {
-		Global.mainLogger.info("adding page: " + fileName + " in book:" + nameOfBook);
+		Global.mainLogger.info("adding page: " + fileName + " in version/book: " + nameOfVersion + "//" + nameOfBook);
 
 		String spec = "full/full/0/default.jpg";
-		String idRes = Global.ImageServerAddress + nameOfBook + "/" + fileName + "/full/full/0/default.jpg";
-		String idSer = Global.ImageServerAddress + nameOfBook + "/" + fileName;
+		String idRes = Global.ImageServerAddress + nameOfBook + "/" + nameOfVersion + "/" + fileName + "/full/full/0/default.jpg";
+		String idSer = Global.ImageServerAddress + nameOfBook + "/" + nameOfVersion + "/" + fileName;
 		String typeImage = "dctypes:Image";
 		String typeCanvas = "sc:Canvas";
 		String label = "Default label";
@@ -147,12 +131,12 @@ public class Page implements Comparable<Page>, Comparator<Page>{
             json.put("height", img.getHeight());
 
             
-            json.put("@type", typeCanvas);
 	        json.put("@type", label);
              
+	        json.put("@id", idRes);
    
               
-              pathOfJson = Global.filePath + Global.sep + nameOfBook + Global.sep + "JsonFolder" + Global.sep +  fileName + ".json";
+              pathOfJson = Global.filePath + Global.sep + nameOfBook + Global.sep + nameOfVersion + Global.sep + "JsonFolder" + Global.sep +  fileName + ".json";
 
             //writing out the info
               File file = new File(pathOfJson);

@@ -120,6 +120,12 @@ public class Upload extends HttpServlet {
 	   
 	      
 	    
+	      if (bookId.length() == 0)
+	      {
+			   Global.respond(out, Global.problemToUploadImage, Global.emptyFileName);
+			   Global.mainLogger.info("Error uploading page: " + fileName + " empty file name");;
+			   return;
+	      }
 	      
 	      
 	      boolean override = true;
@@ -129,13 +135,14 @@ public class Upload extends HttpServlet {
 	            fileName = getFileName(fileUpdate);
 	                   
 	            Book book = Global.getBook(bookId);
+	            Version version = book.getDefaultVersion();
 	    		Global.mainLogger.info("Get update request from ip:" + request.getRemoteAddr() + "book: " + bookId +" page:" + fileName );
 	            
-	           if (book.existsPage(fileName))
+	           if (version.existsPage(fileName))
 	           {
 	        	   if (override)
 	        	   {
-	        		   book.removePage(fileName);
+	        		   version.removePage(fileName);
 	        	   }
 	        	   else
 	        	   {
@@ -144,18 +151,17 @@ public class Upload extends HttpServlet {
 	        	   }	
 	           }
 	            
-	          book.createPage(fileUpdate, fileName);
-	          
+	           version.createPage(fileUpdate, fileName);
+	           
 			  Global.respond(out, Global.imageUpload, Global.imageUploadDesc);
 
 
 	
 	      }
 	   }catch(Exception ex) {
-		   Global.rollBackAction(bookId, fileName);
-		   Global.respond(out, Global.problemToUploadImage, Global.problemToUploadImageDesc);
-		   Global.mainLogger.finer("Error uploading page: " + fileName + " maybe wrong format?");;
-		   System.out.println(ex);
+   		Global.mainLogger.severe("exception upload page. book: " + bookId +" page:" + fileName );
+   	    ex.printStackTrace();
+
 	   }
 	
 

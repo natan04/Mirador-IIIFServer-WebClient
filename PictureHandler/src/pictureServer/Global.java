@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
-
-
-
+import java.sql.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
@@ -35,20 +33,28 @@ import org.json.JSONObject;
 
 
 
+
+
+
+
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
 public class Global extends HttpServlet {
     public static ArrayList<Book> gBooks;
 
+    public static Connection databaseConnection;
     public static JSONArray bookArrayInfo = new JSONArray();
     
     public static String ImageServerAddress;
 	public static String context = "http://iiif.io/api/image/2/context.json";
+	public static String sqlDatabase = "C:\\Users\\Natan\\Desktop\\Server\\test.db";
 	public static String filePath;
 	public static String sep;
 	public static String bookInfoPath;
 	public static String logPath ;
+	public static String defaultUploadFolder = "Default" ;
 	public static boolean convertToTiff = false; 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
 
@@ -64,6 +70,8 @@ public class Global extends HttpServlet {
 	
 	public static int problemToUploadImage = 3;
 	public static String problemToUploadImageDesc = "Problem with upload, wrong format?";
+
+	public static String emptyFileName = "Empty file name";
 	
 	
 	
@@ -109,8 +117,9 @@ public static Book getBook(String id)
 			e.printStackTrace();
 		}
 		
-		gBooks.add(-found-1, search);	//keeping the sorted array
+		gBooks.add(-found-1, search);	//keeping the  array sorted
 		
+		search.addBookToDatabase();
 		return search;
 	}
 	
@@ -129,6 +138,8 @@ public void init() throws ServletException
    bookInfoPath = filePath +"booksInfo.json";
    logPath =  context.getInitParameter("LogPath");
    mainLogger.info("Starting picture server");
+   
+   databaseInit();
 	/*****************Log initlize**************/
 	try {
 		Handler fileHandler = new FileHandler(logPath,true);
@@ -140,6 +151,8 @@ public void init() throws ServletException
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
+	
+	
 	
 	mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath + "server: " + ImageServerAddress );
 	gBooks = new ArrayList<Book>();
@@ -183,6 +196,87 @@ public static void respond(PrintWriter printWriter, int a,
 	printWriter.println(temp);
 }
 
+
+
+
+
+public void databaseInit()
+{
+    Connection c = null;
+    try {
+
+    	Class.forName("org.sqlite.JDBC");
+    
+      c = DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
+    
+      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text primary key)";
+      String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
+      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id INTEGER, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version)))";
+      
+      
+      Statement stmt = c.createStatement();
+      stmt.executeUpdate(sMakeTable_Book);
+      stmt.executeUpdate(sMakeTable_Version);
+  //    stmt.executeUpdate(sMakeTable_Pages);
+      stmt.close();
+    } catch ( Exception e ) {
+      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+      System.exit(0);
+    }
+    databaseConnection = c;
+	
+    mainLogger.info("Opened database successfully");
+}
+
+public static void SqlAddBook(String bookid) {
+	
+	/*
+	 * Sql section
+	 */
+
+	String sqlBook = "INSERT INTO Books " +
+			"VALUES ( NULL,\""+ bookid + "\" );"; 
+	
+	synchronized (databaseConnection) {
+		
+	      try {
+	    	  Statement stmt = Global.databaseConnection.createStatement();
+	    	  stmt.executeUpdate(sqlBook);
+				Global.mainLogger.info("add to database:" + bookid);
+
+	      } catch (SQLException e) {
+			Global.mainLogger.severe("Problem adding to sql");
+
+			e.printStackTrace();
+		}
+
+	}
+}
+
+public static void sqlAddVersion(String version, String book) {
+	
+	String sqlVersion = "INSERT INTO Versions " +
+			"VALUES ( NULL,\""+ version + "\", \"" +  book + "\");"; 
+	
+	synchronized (databaseConnection) {
+		
+	      try {
+	    	  Statement stmt = Global.databaseConnection.createStatement();
+	    	  stmt.executeUpdate(sqlVersion);
+				Global.mainLogger.info("add to database version/book:" + version + "/" + book);
+
+	      } catch (SQLException e) {
+			Global.mainLogger.severe("Problem adding to sql");
+
+			e.printStackTrace();
+		}
+
+	}
+}
+
+
+
+/*
 public static void rollBackAction(String bookId, String fileName)
 {
 	Book search = new Book(bookId, false);
@@ -222,5 +316,5 @@ public static void rollBackAction(String bookId, String fileName)
 	}
 		}
 	}
-
+*/
 }
