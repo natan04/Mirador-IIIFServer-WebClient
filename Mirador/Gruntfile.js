@@ -16,9 +16,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-githooks');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-todo');
+  grunt.loadNpmTasks('grunt-exec');
   // grunt.loadNpmTasks('jasmine-jquery');
 
   // ----------
+  var miradorWebappDir = '/var/lib/tomcat7/webapps/Mirador'
   var distribution = 'build/mirador/mirador.js',
   minified = 'build/mirador/mirador.min.js',
   releaseRoot = '../site-build/built-mirador/',
@@ -70,6 +72,10 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    exec: {
+      deploy: './deploy.sh'
+    },
 
     todo: {
       options: {
@@ -161,6 +167,18 @@ module.exports = function(grunt) {
     },
 
     copy: {
+      deploy: {
+        files: [{
+          src: 'build/**',
+          dest: miradorWebappDir + '/'
+        },{
+          src: 'index.html',
+          dest: miradorWebappDir + '/'
+        },{
+          src: 'mirador-config.json',
+          dest: miradorWebappDir + '/'
+        }]
+      },
       main: {
         files: [{
           expand: true,
@@ -246,7 +264,7 @@ module.exports = function(grunt) {
           'css/*.css',
           'index.html'
         ],
-        tasks: 'dev_build'
+        tasks: 'deploy'
       }
     },
 
@@ -406,12 +424,13 @@ module.exports = function(grunt) {
   // ----------
   // Build task.
   // Cleans out the build folder and builds the code and images into it, checking lint.
-  grunt.registerTask('build', [ 'clean:build', 'git-describe', 'jshint', 'concat', 'cssmin', 'copy' ]);
+  grunt.registerTask('build', [ 'clean:build', 'git-describe', 'jshint', 'concat', 'cssmin', 'copy:main' ]);
 
+  grunt.registerTask('deploy', ['default', 'exec:deploy'])
   // ----------
   // Dev Build task.
   // Build, but skip the time-consuming and obscurantist minification and uglification.
-  grunt.registerTask('dev_build', [ 'clean:build', 'git-describe', 'jshint', 'concat', 'copy','todo' ]);
+  grunt.registerTask('dev_build', [ 'clean:build', 'git-describe', 'jshint', 'concat', 'copy:main','todo' ]);
 
   // ----------
   // Package task.

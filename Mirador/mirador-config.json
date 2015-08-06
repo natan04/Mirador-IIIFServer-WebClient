@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "PictureHandler",
-      "baseUrl": "http://imagesrv:8080/",
+      "baseUrl": "http://localhost:5000",
       "cmds": {
         "list": "Json?id=all",
         "upload": "Upload",

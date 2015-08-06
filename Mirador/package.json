@@ -8,19 +8,19 @@
   },
   "devDependencies": {
     "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "*",
     "grunt-contrib-concat": "*",
+    "grunt-contrib-connect": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-cssmin": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-connect": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-clean": "*",
+    "grunt-exec": "^0.4.6",
     "grunt-git-describe": "*",
-    "grunt-cli": "*",
     "grunt-githooks": "^0.3.1",
-    "grunt-coveralls": "^1.0.0",
     "grunt-todo": "^0.5.0"
   },
   "scripts": {
