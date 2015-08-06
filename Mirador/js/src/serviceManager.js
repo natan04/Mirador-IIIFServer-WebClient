@@ -26,15 +26,19 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 		$.services[name] = new $.Service(name,baseUrl,cmds);
 	};
 
+	$.addServiceFromJson = function(serviceJson) {
+		$.addService(serviceJson.name, serviceJson.baseUrl,serviceJson.cmds);
+	};
+
 	$.services = {};
 
 
 	// Initial config for manifest service
-	$.addService('PictureHandler','http://132.72.46.235:8080/',
-		{ list: 'Json?id=all', 
-		  upload: 'Upload',
-		  get: 'Json?id='
-	});
+	//$.addService('PictureHandler','http://132.72.46.235:8080/',
+	//	{ list: 'Json?id=all', 
+	//	  upload: 'Upload',
+	//	  get: 'Json?id='
+	//});
 
 
 })(Mirador.ServiceManager);

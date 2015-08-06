@@ -55,12 +55,18 @@
 
       this.tplData.repoImage = (function() {
         var repo = _this.tplData.repository;
+        if (manifest.logo) {
+          if (typeof manifest.logo === "string")
+            return manifest.logo;
+          if (typeof manifest.logo['@id'] !== 'undefined')
+            return manifest.logo['@id'];
+        }
         if (_this.tplData.repository === '(Added from URL)') {
           repo = '';
         }            
-        var imageName = $.DEFAULT_SETTINGS.repoImages[repo || 'other'];
+        var imageName = $.viewer.repoImages[repo || 'other'] || $.viewer.repoImages.other;
 
-        return 'images/logos/' + imageName;
+        return $.viewer.logosLocation + imageName;
       })();
 
       for ( var i=0; i < manifest.sequences[0].canvases.length; i++) {
@@ -174,7 +180,7 @@
                                  '</div>',
                                  '<div class="select-metadata">',
                                  '<h3 class="manifest-title">{{label}}</h3>',
-                                 '<h4>{{canvasCount}} items</h4>',
+                                 '<h4>{{canvasCount}} {{t "items"}}</h4>',
                                  '{{#if repository}}',
                                  '<h4 class="repository-label">{{repository}}</h4>',
                                  '{{/if}}',
@@ -185,7 +191,7 @@
                                  '{{/each}}',
                                  '</div>',
                                  '{{#if remaining}}',
-                                 '<div class="remaining-items"><h3><span class="remaining-amount">{{remaining}}</span> more</h3></div>',
+                                 '<div class="remaining-items"><h3><span class="remaining-amount">{{remaining}}</span> {{t "more"}}</h3></div>',
                                  '{{/if}}',
                                  '</li>'
     ].join(''))

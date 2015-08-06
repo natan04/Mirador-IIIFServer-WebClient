@@ -83,7 +83,8 @@
       'buttons' : {
         'bookmark' : true,
         'layout' : true,
-        'options' : false
+        'options' : false,
+        'upload' : true
       }
       //'height': 25,
       //'width': '100%'
