@@ -122,6 +122,7 @@ public synchronized void createPage(FileItem fileUpdate, String fileName) throws
 		
 		
 		Page search = new Page(fileName, gBookId, gVersionId);
+		search.addPageToDatabase();
 		synchronized (gPages)
 		{
 			int found = Collections.binarySearch(gPages, search);
@@ -133,6 +134,7 @@ public synchronized void createPage(FileItem fileUpdate, String fileName) throws
 		{
 			fCanvas.put(search.json);
 		}
+		
 		
 	}
 

@@ -185,6 +185,10 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 	}
 
 
+public void addPageToDatabase()
+{
+	Global.SqlAddPage(PageName, nameOfVersion, nameOfBook);
+}
 	
 private String nameFromPath(String path)
 {

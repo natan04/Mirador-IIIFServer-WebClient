@@ -38,6 +38,7 @@ import org.json.JSONObject;
 
 
 
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
@@ -209,15 +210,15 @@ public void databaseInit()
     
       c = DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
     
-      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text primary key)";
+      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text)";
       String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
-      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id INTEGER, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version)))";
+      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id text, book_id text, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version))";
       
       
       Statement stmt = c.createStatement();
       stmt.executeUpdate(sMakeTable_Book);
       stmt.executeUpdate(sMakeTable_Version);
-  //    stmt.executeUpdate(sMakeTable_Pages);
+      stmt.executeUpdate(sMakeTable_Pages);
       stmt.close();
     } catch ( Exception e ) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -264,6 +265,28 @@ public static void sqlAddVersion(String version, String book) {
 	    	  Statement stmt = Global.databaseConnection.createStatement();
 	    	  stmt.executeUpdate(sqlVersion);
 				Global.mainLogger.info("add to database version/book:" + version + "/" + book);
+
+	      } catch (SQLException e) {
+			Global.mainLogger.severe("Problem adding to sql");
+
+			e.printStackTrace();
+		}
+
+	}
+}
+
+public static void SqlAddPage(String pageName, String versionName,
+		String bookName) {
+
+	String sqlPage = "INSERT INTO pages " +
+			"VALUES ( NULL,\""+ pageName  + "\", \"" +  versionName + "\", \"" + bookName + "\");"; 
+	
+	synchronized (databaseConnection) {
+		
+	      try {
+	    	  Statement stmt = Global.databaseConnection.createStatement();
+	    	  stmt.executeUpdate(sqlPage);
+				Global.mainLogger.info("add page to database page/version/book:" + pageName + "/" + versionName + "/" + bookName);
 
 	      } catch (SQLException e) {
 			Global.mainLogger.severe("Problem adding to sql");
