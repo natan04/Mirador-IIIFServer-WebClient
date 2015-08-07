@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/annotations/annotationTooltip.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/annotations/annotationTooltip.js</span></h1>
+    <h2>
+        Statements: <span class="metric">11.11% <small>(3 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">11.11% <small>(1 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">11.11% <small>(3 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/annotations/</a> &#187; annotationTooltip.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function($) {
+&nbsp;
+  $.AnnotationTooltip = <span class="fstat-no" title="function not covered" >function(options) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    jQuery.extend(this, {</span>
+      element:   null,
+      parent:    null,
+      annotations: []
+    }, options);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.init();</span>
+  };
+&nbsp;
+  $.AnnotationTooltip.prototype = {
+&nbsp;
+    init: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      this.bindEvents();</span>
+    },
+&nbsp;
+    bindEvents: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var _this = this;</span>
+    },
+    
+    getEditor: <span class="fstat-no" title="function not covered" >function(annotation) {</span>
+<span class="cstat-no" title="statement not covered" >      var annoText,</span>
+      tags = [],
+      _this = this;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (jQuery.isArray(annotation.resource)) {</span>
+<span class="cstat-no" title="statement not covered" >          jQuery.each(annotation.resource, <span class="fstat-no" title="function not covered" >function(index, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (value['@type'] === "oa:Tag") {</span>
+<span class="cstat-no" title="statement not covered" >              tags.push(value.chars);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              annoText = value.chars;</span>
+            }
+          });
+        } else {
+<span class="cstat-no" title="statement not covered" >          annoText = annotation.resource.chars;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return this.editorTemplate({content : annoText,</span>
+      tags : tags.join(" "),
+      id : annotation['@id']});
+    },
+&nbsp;
+    getViewer: <span class="fstat-no" title="function not covered" >function(annotations) {</span>
+<span class="cstat-no" title="statement not covered" >      var annoText,</span>
+      tags = [],
+      _this = this,
+      htmlAnnotations = [],
+      id;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      jQuery.each(annotations, <span class="fstat-no" title="function not covered" >function(index, annotation) {</span></span>
+<span class="cstat-no" title="statement not covered" >        tags = [];</span>
+<span class="cstat-no" title="statement not covered" >        if (jQuery.isArray(annotation.resource)) {</span>
+<span class="cstat-no" title="statement not covered" >          jQuery.each(annotation.resource, <span class="fstat-no" title="function not covered" >function(index, value) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (value['@type'] === "oa:Tag") {</span>
+<span class="cstat-no" title="statement not covered" >              tags.push(value.chars);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              annoText = value.chars;</span>
+            }
+          });
+        } else {
+<span class="cstat-no" title="statement not covered" >          annoText = annotation.resource.chars;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        htmlAnnotations.push({</span>
+          annoText : annoText,
+          tags : tags,
+          id : annotation['@id'],
+          //this needs to be fleshed out more based on permissions from the endpoint,
+          //for now, just disable edit/delete for manifest annotations
+          showEdit : annotation.endpoint === 'manifest' ? false : true,
+          showDelete : annotation.endpoint === 'manifest' ? false : true
+        });
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var template = this.viewerTemplate({annotations : htmlAnnotations});      </span>
+<span class="cstat-no" title="statement not covered" >      return template;</span>
+      //return combination of all of them
+    },
+&nbsp;
+    //when this is being used to edit an existing annotation, insert them into the inputs
+    editorTemplate: Handlebars.compile([
+                                       '&lt;form class="new-annotation-form annotation-tooltip" {{#if id}}data-anno-id="{{id}}"{{/if}}&gt;',
+                                       '&lt;textarea class="text-editor" placeholder="Comments…"&gt;{{#if content}}{{content}}{{/if}}&lt;/textarea&gt;',
+                                       '&lt;input class="tags-editor" placeholder="Add tags here…" {{#if tags}}value="{{tags}}"{{/if}}&gt;',
+                                       '&lt;div&gt;',
+                                       // need to add a delete, if permissions allow
+                                       '&lt;div class="button-container"&gt;',
+                                       '&lt;a href="#cancel" class="cancel"&gt;&lt;i class="fa fa-times-circle-o fa-fw"&gt;&lt;/i&gt;Cancel&lt;/a&gt;',
+                                       '&lt;a href="#save" class="save"&gt;&lt;i class="fa fa-database fa-fw"&gt;&lt;/i&gt;Save&lt;/a&gt;',
+                                       '&lt;/div&gt;',
+                                       '&lt;/div&gt;',
+                                       '&lt;/form&gt;'
+    ].join('')),
+&nbsp;
+    viewerTemplate: Handlebars.compile([
+                                       '&lt;div class="all-annotations"&gt;',
+                                       '{{#each annotations}}',
+                                       '&lt;div class="annotation-display annotation-tooltip" data-anno-id="{{id}}"&gt;',
+                                       '&lt;div class="button-container"&gt;',
+                                         '{{#if showEdit}}&lt;a href="#edit" class="edit"&gt;&lt;i class="fa fa-pencil-square-o fa-fw"&gt;&lt;/i&gt;Edit&lt;/a&gt;{{/if}}',
+                                         '{{#if showDelete}}&lt;a href="#delete" class="delete"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;Delete&lt;/a&gt;{{/if}}',
+                                       '&lt;/div&gt;',
+                                       '&lt;div class="text-viewer"&gt;',
+                                       '&lt;p&gt;{{{annoText}}}&lt;/p&gt;',
+                                       '&lt;/div&gt;',
+                                       '&lt;div class="tags-viewer"&gt;',
+                                       '{{#each tags}}',
+                                       '&lt;span class="tag"&gt;{{this}}&lt;/span&gt;',
+                                       '{{/each}}',
+                                       '&lt;/div&gt;',
+                                       '&lt;/div&gt;',
+                                       '{{/each}}',
+                                       '&lt;/div&gt;'                      
+    ].join(''))
+  };
+&nbsp;
+}(Mirador));
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 21 2015 00:07:25 GMT+0300 (IDT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

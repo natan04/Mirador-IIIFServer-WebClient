@@ -20,7 +20,8 @@
         'workspacePanelVisible': false,
         'manifestsPanelVisible': false,
         'optionsPanelVisible': false,
-        'bookmarkPanelVisible': false
+        'bookmarkPanelVisible': false,
+        'uploadFormVisible': false
       },
       manifests:             [] 
     }, $.DEFAULT_SETTINGS, options);
@@ -39,6 +40,15 @@
       var _this = this;
       // retrieve manifests
       this.getManifestsData();
+
+      //initialize i18next  
+      i18n.init({debug: false, getAsync: false, resGetPath: _this.i18nPath+'__lng__/__ns__.json'}); 
+
+      //register Handlebars helper
+      Handlebars.registerHelper('t', function(i18n_key) {
+        var result = i18n.t(i18n_key);
+        return new Handlebars.SafeString(result);
+      });
 
       //check all buttons in mainMenu.  If they are all set to false, then don't show mainMenu
       var showMainMenu = false;
@@ -85,6 +95,9 @@
 
       this.bookmarkPanel = new $.BookmarkPanel({ parent: this, appendTo: this.element.find('.mirador-viewer') });
 
+      // TODO: UploaderForm url setting - customize
+     // this.uploadForm = new $.Uploader.UploaderForm({baseUrl:'http://132.73.193.113:8080', appendTo: this.element.find('.mirador-viewer'), parent: _this });
+      this.uploadForm = new $.Uploader.UploaderForm({appendTo: this.element.find('.mirador-viewer'), parent: _this });
 
       // set this to be displayed
       this.set('currentWorkspaceVisible', true);
@@ -149,6 +162,9 @@
     toggleBookmarkPanel: function() {
       this.toggleOverlay('bookmarkPanelVisible');
     },
+    toggleUploadForm: function() {
+      this.toggleOverlay('uploadFormVisible');
+    },
 
     getManifestsData: function() {
       var _this = this;
@@ -209,6 +225,7 @@
         sidePanelAvailable : options.sidePanel,
         overlayAvailable : options.overlay,
         annotationLayerAvailable : options.annotationLayer,
+        annotationCreationAvailable : options.annotationCreation,
         slotAddress: slotAddress,
         displayLayout : options.displayLayout,
         layoutOptions: options.layoutOptions

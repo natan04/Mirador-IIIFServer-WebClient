@@ -63,6 +63,15 @@ a {
   text-align: right;
 }
 
+.mirador-main-menu.user-buttons {
+  padding-right: 0;
+}
+.mirador-main-menu.user-logo {
+  padding-right: 0;
+  padding-left: 0;
+  float: left;
+}
+
 .mirador-main-menu li {
   cursor: pointer;
   float: left;
@@ -711,7 +720,7 @@ li.highlight {
   z-index: 4;
   overflow:hidden;
   display: none;
-  transition:all 0.3s ease;
+  transition:transform 0.3s ease;
 }
 .bottomPanel.minimized {
   transform:translateY(130px);
@@ -751,7 +760,6 @@ li.highlight {
     height: 100%;
     width: 100%;
     overflow-x: scroll;
-    margin-top: 10px;
     overflow-y: hidden;
 }
 
@@ -760,7 +768,7 @@ li.highlight {
   list-style: none;
   padding: 0;
   white-space: nowrap;
-  margin-top: 4px;
+  margin-top: 10px;
   margin-bottom: 4px;
 }
 
@@ -769,7 +777,7 @@ li.highlight {
   /*float: left;*/
   /*margin: 0 0 15px 0;*/
   padding: 0px 10px 0px 10px;
-  transition: all 0.05s ease-out;
+  /*transition: all 0.03s ease-out;*/
   display: inline-block;
 }
 
@@ -843,7 +851,7 @@ li.highlight {
 }
 .mirador-osd-edit-mode.selected, .mirador-osd-annotations-layer.selected {
   opacity: 1;
-  transition: none;
+  /*transition: none;*/
 }
 .mirador-osd-previous {
   position:absolute;
@@ -1130,7 +1138,7 @@ text {
   border: 3px solid orangered;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.7);
 }
-.annotation:hover {
+/*.annotation:hover {
   border: 3px solid orangered;
   opacity: 0.5;
   box-shadow: 0px 0px 15px rgba(0,0,0,1);
@@ -1139,7 +1147,7 @@ text {
   border: 3px solid orangered;
   opacity: 1;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.7);
-}
+}*/
 .annotation.hovered {
   border: 3px solid orangered;
   opacity: 0.5;
@@ -1241,7 +1249,7 @@ ul.scroll-listing-thumbs li {
   box-sizing:border-box;
   margin: 0 0 15px 0;
   padding: 10px 10px 10px 10px;
-  transition: all 0.05s ease-out;
+  /*transition: all 0.05s ease-out;*/
   display: inline-block;
 }
 
@@ -1282,7 +1290,7 @@ ul.scroll-listing-thumbs li .thumb-label {
   float: left;
   margin: 0 0 15px 0;
   padding: 10px 10px 10px 10px;
-  transition: all 0.05s ease-out;
+  /*transition: all 0.05s ease-out;*/
 }
 
 .mirador-viewer ul.listing-thumbs li img {
@@ -1292,7 +1300,7 @@ ul.scroll-listing-thumbs li .thumb-label {
   margin: 0 auto;
   display: block;
   box-sizing:border-box;
-  transition: all 0.2 ease-out;
+  /*transition: all 0.2 ease-out;*/
 }
 .mirador-viewer ul.listing-thumbs li img:hover {
   border:3px solid rgba(0,191,255,0.7);
@@ -1344,29 +1352,37 @@ ul.scroll-listing-thumbs li .thumb-label {
     padding: 0 5px 5px 0;
 }
 
-.mirador-viewer dl.metadata-listing {
+.mirador-viewer .metadata-listing {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
   margin: 0;
   padding: 0px 20px 10px 20px;
+  box-sizing: border-box;
 }
 
-.mirador-viewer dl.metadata-listing a:hover {
-  border-bottom: 1px dotted #005EBD;
+.mirador-viewer .metadata-item {
+  display: table-row;
 }
 
-.mirador-viewer .metadata-listing dt {
-  clear: both;
-  color: #555;
-  float: left;
+.mirador-viewer .metadata-label, .mirador-viewer .metadata-value {
+  display: table-cell;
   line-height: 1.5;
   padding: 3px 0;
-  text-transform: capitalize;
+}
+
+.mirador-viewer .metadata-label {
   width: 8em;
+  text-transform: capitalize;
+  color: #555;
 }
 
-.mirador-viewer .metadata-listing dd {
-  margin-left: 8em;
-  line-height: 1.5;
-  padding: 3px 0;
+.mirador-viewer .metadata-value {
+  vertical-align: bottom;
+}
+
+.mirador-viewer .metadata-listing a:hover {
+  border-bottom: 1px dotted #005EBD;
 }
 
 .mirador-metadata-view-nav-toolbar {
@@ -1518,11 +1534,11 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   clear: both;
 }
 .qtip-content {
-  max-height: 150px;
+  max-height: 185px;
   overflow: auto;
 }
 .annotation-tooltip {
-  padding: 12px; 
+  padding: 7px; 
 }
 .annotation-display {
   position:relative;
@@ -1556,7 +1572,7 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
 .text-editor, .tags-editor {
   padding: 5px;
   display: block;
-  margin-bottom: 12px;
+  margin: 6px 0px 6px 0px;
   border: 0;
   background: #efefef;
   box-shadow: inset 0 0 7px gray;
@@ -1574,6 +1590,11 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
 .text-viewer p {
   margin-top: 0;
 }
+.text-viewer p.user {
+  color: gray;
+  font-style: italic;
+  font-size: 11px;
+}
 .tags-viewer {
   margin-bottom: 12px;
 }
@@ -1590,3 +1611,42 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   border: 1px solid #aaa;
 }
 
+.uploaderForm {
+  background-color: rgba(255, 255, 255, 0.94);
+  height: 40%;
+  width: 30%;
+  overflow: hidden;
+  position: absolute;
+  right: 500px;
+  top: 0;
+  border: 2px groove rgba(100,100,100,0.5);
+  padding: 3px;
+}
+.refBtn {
+  border: 2px inset grey;
+  width: 53px;
+  padding: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-family: fantasy;
+  font-weight: bolder;
+}
+
+.mce-edit-area iframe {
+    height: 75px !important;
+}
+.closeBtn {
+  border: 2px inset grey;
+  border-radius: initial;
+  font-weight: bolder;
+  /* border-spacing: 39px; */
+  /* border-width: 2px; */
+  /* width: 38px; */
+  text-align: center;
+  font-family: fantasy;
+  /* text-indent: 360px; */
+  position: fixed;
+  top: 109px;
+  right: 523px;
+  /* text-shadow: 5px 5px; */
+}
