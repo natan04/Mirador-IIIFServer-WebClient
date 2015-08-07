@@ -10,7 +10,7 @@
   </appender>
 
   <appender name="log" class="org.apache.log4j.FileAppender">
-    <param name="File" value="/Work/Log/digilib-log.txt"/>
+    <param name="File" value="C:\Users\Natan\Desktop\Server\Logs\digilib-log.txt"/>
     <param name="Append" value="true"/>
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern" value="%d [%t] %p - %m%n"/>
@@ -18,7 +18,7 @@
   </appender>
 
   <appender name="account" class="org.apache.log4j.FileAppender">
-    <param name="File" value="/Work/Logdl-access-log.txt"/>
+    <param name="File" value="C:\Users\Natan\Desktop\Server\Logs\Logdl-access-log.txt"/>
     <param name="Append" value="true"/>
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern" value="%d [%t] %p - %m%n"/>
