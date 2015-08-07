@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -21,12 +22,11 @@ import org.json.JSONObject;
 
 public class Book implements Comparable<Book>, Comparator<Book> {
 
-    public ArrayList<Version> gVersions;
+    public ArrayList<Version> gVersions; //list of VERSION object
+    JSONObject versionsJson;
 
 	String gBookId = null;
-	JSONArray fCanvas;
 	
-	JSONArray all;
     String pathOfJsonFolder;
 
 	String getId()	
@@ -34,39 +34,50 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		return gBookId;
 	}
 	
+Book(String bookid)
+{
+	gBookId = bookid;
+
+}
+	
 Book(String bookid, boolean restore)
 	{			
-		fCanvas = new JSONArray();
-		all = new JSONArray();
+		versionsJson = new JSONObject();
 		gVersions = new ArrayList<Version>();
 		gBookId = bookid;
-		 pathOfJsonFolder = Global.filePath + Global.sep + bookid + Global.sep + "JsonFolder" + Global.sep;
 	
 		 
 		 if (restore)
-			 restore= restore;
-		/*
+		
 		 {
-				File folder = new File(pathOfJsonFolder);
-				File[] listOfFiles = folder.listFiles();
-				Global.mainLogger.info("Restoreing book: " + id);
-				
-			 for (File f : listOfFiles) 
-			 {
-			
-	            Page p = new Page(null, bookId, f.getAbsolutePath());
-	    		int found;    		
-	    
-	    		found = Collections.binarySearch(gPages, p);
-	    		gPages.add(-found-1, p);	//keeping the sorted array
 	
-	    		
+				Global.mainLogger.info("Restoreing book: " + gBookId);
+				
+				ResultSet rs = Global.sqlVersionsOfBook(bookid);
+			
+				  try {
+					while ( rs.next() )
+					  {
+						  String nameOfVersion = rs.getString("version_name");
+						  Version ver = new Version(gBookId, nameOfVersion, true);
 
-	    			fCanvas.put(p.json);
-	    		
-			 }
+						  int found = Collections.binarySearch(gVersions, ver);
+						  gVersions.add(-found-1, ver);	//keeping the sorted array
+						
+						  versionsJson.put(nameOfVersion,ver.all);
+
+
+					  }
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 			}
-			*/
+			
 		else
 		{
 			
@@ -75,7 +86,12 @@ Book(String bookid, boolean restore)
 			
 			//creating first default folder.
 			Version ver = new Version(bookid, "default", false);
-			all.put(ver.all);
+			try {
+				versionsJson.put("default", ver.all);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			gVersions.add(ver);
 
 			ver.addToSql();
@@ -93,24 +109,22 @@ void addBookToDatabase()
 	
 }
 
-	/*
-synchronized private void refreshCanvas()
+public void removeVersion(String version)
 {
-	fCanvas = new JSONArray();
-	Global.mainLogger.info("Refreshing canvas");
-	synchronized (gVersions)
-		{
-		for (Page p : gPages)
-		{
-			fCanvas.put(p.json);
-		}
-	}
+	Version ver = new Version(version);	
+	int foundIndex = Collections.binarySearch(gVersions, ver);
+	
+	ver = gVersions.get(foundIndex); //the real version;
+	
+	versionsJson.remove(ver.gVersionId);	//remove from json
+	ver.removeMe();							//remove from sql
+	gVersions.remove(foundIndex);			//remove from list
+	
 }
-*/
 	
 public String toString() {
 		
-	return all.toString();
+	return versionsJson.toString();
 	}
 	
 	@Override

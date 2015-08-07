@@ -37,30 +37,26 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 	Page(String fileName, String bookID, String versionId, String jsonPath)
 	{
 		
-		PageName = nameFromPath(jsonPath.substring(0, jsonPath.lastIndexOf(".")));
 		nameOfBook = bookID;
 		nameOfVersion = versionId;
+		PageName = fileName;
 		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + versionId + Global.sep + PageName;
-		pathOfJson = jsonPath;
-		File f = new File(jsonPath);
-		if (f.exists())
-		{
+		
+		File picture = new File(pathOfFile);
 
-			try {
-				Scanner sc = new Scanner(f);
-				String line = sc.nextLine();
-				sc.close();
-				
-				Global.mainLogger.info("restoring page: " + PageName + ", in version/book: " + versionId + "//" + bookID);
-				json = new JSONObject(line);
-			}
-		   catch (IOException | JSONException e) {
-			   
-			   Global.mainLogger.severe("Couldn't restore page: " + PageName + ", in version/book: " + versionId + "//" + bookID);
-          }
 
+		try {
+			createJson(picture, fileName);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
+
+
 
 
 	@Override
@@ -83,7 +79,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 			String f = p.getAbsolutePath();
 		
 			
-			createJsonInFolder(p, fileName);
+			createJson(p, fileName);
 			pathOfFile = p.getAbsolutePath();
 	
 
@@ -92,7 +88,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 
 
 
-	private void createJsonInFolder(File p, String fileName) throws JSONException, IOException {
+	private void createJson(File p, String fileName) throws JSONException, IOException {
 		Global.mainLogger.info("adding page: " + fileName + " in version/book: " + nameOfVersion + "//" + nameOfBook);
 
 		String spec = "full/full/0/default.jpg";
@@ -136,14 +132,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 	        json.put("@id", idRes);
    
               
-              pathOfJson = Global.filePath + Global.sep + nameOfBook + Global.sep + nameOfVersion + Global.sep + "JsonFolder" + Global.sep +  fileName + ".json";
-
-            //writing out the info
-              File file = new File(pathOfJson);
-              file.getParentFile().mkdirs(); 		
-              PrintWriter out = new PrintWriter(pathOfJson);
-              out.println(json);
-              out.close();
+   
 	}
 
 	public boolean remove() {

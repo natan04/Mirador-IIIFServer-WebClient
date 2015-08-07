@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 
 
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
@@ -50,10 +51,9 @@ public class Global extends HttpServlet {
     
     public static String ImageServerAddress;
 	public static String context = "http://iiif.io/api/image/2/context.json";
-	public static String sqlDatabase = "C:\\Users\\Natan\\Desktop\\Server\\test.db";
+	public static String sqlDatabase ;
 	public static String filePath;
 	public static String sep;
-	public static String bookInfoPath;
 	public static String logPath ;
 	public static String defaultUploadFolder = "Default" ;
 	public static boolean convertToTiff = false; 
@@ -84,7 +84,7 @@ public static String getListOfBook()
 
 public static Book getIfHaveBook(String id)
 {
-	Book search = new Book(id, false);
+	Book search = new Book(id);
 	
 	int found = Collections.binarySearch(gBooks, search);
 	if (found < 0)
@@ -96,32 +96,28 @@ public static Book getIfHaveBook(String id)
 		return gBooks.get(found);
 }
 
+public static void removeVersion(String bookId, String versionId)
+{
+	Book book = getBook(bookId);
+	book.removeVersion(versionId);
+}
+
 public static Book getBook(String id)
 {
-	Book search = new Book(id, false);
+	Book search = new Book(id);
 	
 	int found = Collections.binarySearch(gBooks, search);
 	if (found < 0)
 	{			
+		Book newBook = new Book(id, false);
+
 		bookArrayInfo.put(id);
         //file.getParentFile().mkdirs();
         
-		try {
-			PrintWriter out;
-			File file = new File(bookInfoPath);
-			out = new PrintWriter(bookInfoPath);
-			out.println(bookArrayInfo.toString());
-			out.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		gBooks.add(-found-1, newBook);	//keeping the  array sorted
 		
-		gBooks.add(-found-1, search);	//keeping the  array sorted
-		
-		search.addBookToDatabase();
-		return search;
+		newBook.addBookToDatabase();
+		return newBook;
 	}
 	
 	else
@@ -136,11 +132,10 @@ public void init() throws ServletException
    ImageServerAddress = context.getInitParameter("ImageServerAddress");
    sep = File.separator;
    filePath =  context.getInitParameter("ImageFolder");
-   bookInfoPath = filePath +"booksInfo.json";
+   sqlDatabase = filePath + sep + "Picture.db";
    logPath =  context.getInitParameter("LogPath");
    mainLogger.info("Starting picture server");
    
-   databaseInit();
 	/*****************Log initlize**************/
 	try {
 		Handler fileHandler = new FileHandler(logPath,true);
@@ -157,34 +152,9 @@ public void init() throws ServletException
 	
 	mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath + "server: " + ImageServerAddress );
 	gBooks = new ArrayList<Book>();
-	File f = new File(bookInfoPath);
-	if (f.exists())
-	{
-		mainLogger.info("Restoring information from json database");
-
-		try {
-			Scanner sc = new Scanner(f);
-			String line = sc.nextLine();
-			sc.close();
-			mainLogger.info("restoring book: " + line);
-
-			bookArrayInfo = new JSONArray(line);
-			
-			for (int index = 0; index < bookArrayInfo.length(); index ++)
-			{
-				Book book = new Book((String) bookArrayInfo.get(index), true);
-				int found = Collections.binarySearch(gBooks, book);
-				gBooks.add(-found-1, book);	//keeping the sorted array
-
-			}
-			
-		} catch (FileNotFoundException | JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	
-	}
+	databaseInit();
+	
 
 }
 
@@ -203,30 +173,110 @@ public static void respond(PrintWriter printWriter, int a,
 
 public void databaseInit()
 {
-    Connection c = null;
+ 
     try {
 
     	Class.forName("org.sqlite.JDBC");
-    
-      c = DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
-    
-      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text)";
-      String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
-      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id text, book_id text, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version))";
-      
-      
-      Statement stmt = c.createStatement();
-      stmt.executeUpdate(sMakeTable_Book);
-      stmt.executeUpdate(sMakeTable_Version);
-      stmt.executeUpdate(sMakeTable_Pages);
-      stmt.close();
-    } catch ( Exception e ) {
+
+    	  final File f = new File(sqlDatabase);
+    	  
+    	  if (f.exists())
+    	  {
+    		  databaseConnection = DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
+    		  Global.mainLogger.info("database exists, starting to restore");
+    		  recoverPictureHandler();
+    	  }
+	    
+    	  else{
+    		  
+    		  Global.mainLogger.info("database doesn't exists, creating database...");
+    		  databaseConnection = DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
+
+		      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text)";
+		      String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
+		      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id text, book_id text, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version))";
+		      
+		      
+		      Statement stmt = databaseConnection.createStatement();
+		      stmt.executeUpdate(sMakeTable_Book);
+		      stmt.executeUpdate(sMakeTable_Version);
+		      stmt.executeUpdate(sMakeTable_Pages);
+		      stmt.close();
+    	  }
+    	} catch ( Exception e ) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
     }
-    databaseConnection = c;
 	
     mainLogger.info("Opened database successfully");
+}
+
+
+public static ResultSet sqlVersionsOfBook(String bookId)
+{
+	String queryGetBookVersion = "SELECT version_name FROM \"Versions\" where book_id == \"" + bookId + "\";";
+	ResultSet rs = null;;  
+	
+	try{
+		synchronized (databaseConnection) {
+			Statement stmt = databaseConnection.createStatement();
+			rs = stmt.executeQuery(queryGetBookVersion);
+		}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	return rs;
+}
+
+public static ResultSet sqlPagesOfVersionAndBook(String version, String book)
+{
+	String queryGetPages = "SELECT name FROM Pages where book_id = \"" + book + "\" AND version_id = \"" + version +"\";";
+	ResultSet rs = null;;  
+	
+	try{
+		synchronized (databaseConnection) {
+			Statement stmt = databaseConnection.createStatement();
+			rs = stmt.executeQuery(queryGetPages);
+		}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	return rs;
+}
+
+private void recoverPictureHandler()
+{
+
+	String queryGetBooks = "SELECT name FROM \"Books\";";
+	ResultSet rs;  
+	try {
+			synchronized (databaseConnection) {
+
+				Statement stmt = databaseConnection.createStatement();
+				rs = stmt.executeQuery(queryGetBooks);
+			}	
+			      while ( rs.next() )
+			      {
+			    	  String nameOfBook = rs.getString("name");
+			    	  Book search = new Book(nameOfBook, true);
+			          //file.getParentFile().mkdirs();
+			          
+			  	
+			    	int found = Collections.binarySearch(gBooks, search);
+
+			  		gBooks.add(-found-1, search);	//keeping the  array sorted
+			  		bookArrayInfo.put(nameOfBook);
+			  		
+			  	}
+			     
+			
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	 }
+	
 }
 
 public static void SqlAddBook(String bookid) {
@@ -244,6 +294,34 @@ public static void SqlAddBook(String bookid) {
 	    	  Statement stmt = Global.databaseConnection.createStatement();
 	    	  stmt.executeUpdate(sqlBook);
 				Global.mainLogger.info("add to database:" + bookid);
+
+	      } catch (SQLException e) {
+			Global.mainLogger.severe("Problem adding to sql");
+
+			e.printStackTrace();
+		}
+
+	}
+}
+
+//remove version and pages assosiate 
+public static void sqlRemoveVersion(String version, String book) {
+	
+	String sqlVersionRemove = "DELETE FROM versions " +
+			"where version_name = "+ version + " AND book_id \"" +  book + "\");"; 
+
+	String sqlPageRemove = "DELETE FROM Pages " +
+			"where version_id = "+ version + " AND book_id \"" +  book + "\");"; 
+	
+	
+
+	synchronized (databaseConnection) {
+		
+	      try {
+	    	  Statement stmt = Global.databaseConnection.createStatement();
+	    	  stmt.executeUpdate(sqlVersionRemove);
+	    	  stmt.executeUpdate(sqlPageRemove);
+				Global.mainLogger.info("add to database version/book:" + version + "/" + book);
 
 	      } catch (SQLException e) {
 			Global.mainLogger.severe("Problem adding to sql");
@@ -286,7 +364,7 @@ public static void SqlAddPage(String pageName, String versionName,
 	      try {
 	    	  Statement stmt = Global.databaseConnection.createStatement();
 	    	  stmt.executeUpdate(sqlPage);
-				Global.mainLogger.info("add page to database page/version/book:" + pageName + "/" + versionName + "/" + bookName);
+				Global.mainLogger.info("add page to database [page/version/book]:" + pageName + "/" + versionName + "/" + bookName);
 
 	      } catch (SQLException e) {
 			Global.mainLogger.severe("Problem adding to sql");
@@ -298,46 +376,4 @@ public static void SqlAddPage(String pageName, String versionName,
 }
 
 
-
-/*
-public static void rollBackAction(String bookId, String fileName)
-{
-	Book search = new Book(bookId, false);
-	
-	int found = Collections.binarySearch(gBooks, search);
-	if (found >= 0)
-	{			
-		search = gBooks.get(found);
-		
-		if (search.rollBackAction(fileName)) //not true;
-			return;
-		
-		gBooks.remove(found);
-		
-		try {	
-
-		for ( int index = 0; index < bookArrayInfo.length(); index ++)
-		{
-			if (bookArrayInfo.getString(index).compareTo(bookId) == 0)
-			{
-				bookArrayInfo.remove(index);
-				break;
-			}
-		}
-		PrintWriter out;
-		File file = new File(bookInfoPath);
-		out = new PrintWriter(bookInfoPath);
-		out.println(bookArrayInfo.toString());
-		out.close();
-		
-	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-			} catch (JSONException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		}
-	}
-*/
 }

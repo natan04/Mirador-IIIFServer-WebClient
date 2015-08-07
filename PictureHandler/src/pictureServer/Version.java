@@ -1,5 +1,8 @@
 package pictureServer;
 
+import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,13 +17,17 @@ public class Version implements Comparable<Version>, Comparator<Version> {
 	public ArrayList<Page> gPages;
 	JSONObject all;
 	
-	String pathOfJsonFolder;
 	String gVersionId;
 	String gBookId;
 
 	JSONArray fCanvas;
 
 	
+	Version(String versionId)
+	{
+		gVersionId = versionId;
+
+	}
 	
 	Version(String bookId, String versionId,  boolean restore)
 	{			
@@ -31,33 +38,35 @@ public class Version implements Comparable<Version>, Comparator<Version> {
 		gPages = new  ArrayList<Page>();
 		gVersionId = versionId;
 		gBookId = bookId;
-		 pathOfJsonFolder = Global.filePath + Global.sep + bookId + Global.sep +  versionId + Global.sep +"JsonFolder"   + Global.sep;
 	
 		 
 		 if (restore)
-			 restore= restore;
-		/*
 		 {
-				File folder = new File(pathOfJsonFolder);
-				File[] listOfFiles = folder.listFiles();
-				Global.mainLogger.info("Restoreing book: " + id);
+				Global.mainLogger.info("Restoreing version  [version/book]: " + versionId + "/" + bookId);
 				
-			 for (File f : listOfFiles) 
-			 {
-			
-	            Page p = new Page(null, bookId, f.getAbsolutePath());
-	    		int found;    		
-	    
-	    		found = Collections.binarySearch(gPages, p);
-	    		gPages.add(-found-1, p);	//keeping the sorted array
-	
-	    		
+				ResultSet rs =	Global.sqlPagesOfVersionAndBook(versionId, bookId);
+				
+				
+				try {
+					while ( rs.next() )
+					      {
 
-	    			fCanvas.put(p.json);
-	    		
-			 }
-			}
-			*/
+					    	  String nameOfPage = rs.getString("name");
+					    	  String pathOfJson = Global.filePath + Global.sep + bookId + Global.sep + versionId + Global.sep + "JsonFolder" + Global.sep +  nameOfPage + ".json";
+					    	  Page p = new Page(nameOfPage, bookId, versionId, pathOfJson);
+					    	  int found;    		
+					  	    
+					    		found = Collections.binarySearch(gPages, p);
+					    		gPages.add(-found-1, p);	//keeping the sorted array
+					
+					    		fCanvas.put(p.json);
+					      }
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 }
+			
 		else
 		{
 			Global.mainLogger.info("creating version: " + versionId);
@@ -115,6 +124,13 @@ public void addToSql()
 {
 	Global.sqlAddVersion(gVersionId,gBookId);
 	
+}
+
+public void removeMe()
+{
+	
+
+	Global.sqlRemoveVersion(gVersionId, gBookId);
 }
 
 	//creating the file and page, assuming the page not exists
