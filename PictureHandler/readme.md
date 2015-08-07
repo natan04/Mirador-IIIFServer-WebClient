@@ -24,7 +24,7 @@ Please make sure PictureHandler have R+W permissions!
 
 ## Third side application:
 Any Third side application that want to integrate with Picture handler for further processing **MUST** able to received Json object as follow:
-
+```html
 {
     "Function": "<Function Name>",
     "Class": "<Class Name>",
@@ -32,6 +32,7 @@ Any Third side application that want to integrate with Picture handler for furth
     "Input": "<Input File Path>"
     "Output": "<Output File Path>"
 }
+```
 
 
 #To-do:
