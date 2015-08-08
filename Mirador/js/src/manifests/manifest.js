@@ -88,6 +88,16 @@
       this.switchToVersionByTitle(lastTitle);
     },
 
+    getVersionsSummary : function() {
+      vers = [];
+
+      jQuery.each(this.versions, function(verTitle,manifest) {
+        vers.push({num: manifest.index, title: verTitle});
+      });
+
+      return vers;
+    },
+
     getThumbnailForCanvas : function(canvas, width) {
       var version = "1.1",
       service,
