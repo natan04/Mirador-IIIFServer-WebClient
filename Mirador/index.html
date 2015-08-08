@@ -15,7 +15,13 @@
   <script src="build/mirador/mirador.js"></script>
   <script type="text/javascript">
 
-  Mirador.launch('mirador-config.json');
+
+  var customData = [ { "manifestUri": "http://oculus-dev.harvardx.harvard.edu/manifests/drs:48309543", "location": "Harvard University"}, // Harvard Scroll 
+                    { "manifestUri": "http://dms-data.stanford.edu/data/manifests/Walters/qm670kv1873/manifest.json", "location": "Stanford University"},
+                    { "manifestUri": "http://dms-data.stanford.edu/data/manifests/Stanford/ege1/manifest.json", "location": "Stanford University"}];
+
+
+  Mirador.launch('mirador-config.json',customData);
   /*  $(function() {
       Mirador({
         "id": "viewer",

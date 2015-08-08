@@ -5,7 +5,8 @@ window.Mirador = window.Mirador || {};
 (function($) {
 
 
-	$.launch = function(configUrl) {
+
+	$.launch = function(configUrl,customData) {
 		var manifests = [];
 		var opts = {};
 		var url = '';
@@ -22,11 +23,12 @@ window.Mirador = window.Mirador || {};
 			jQuery.getJSON(url)
 			.done(function(response) {
 				manifestsURLs = $.parseAndAddManifestsURIs(response);
+				Array.prototype.push.apply(manifestsURLs, customData); // Chaining custom data array with fetched books
 				loadManifests.resolve(manifestsURLs);
 			})
 			.fail(function(){
-				console.log("Mirador Launcher: Failed to fetch books! continuing with empty list");
-				loadManifests.resolve([]);
+				console.log("Mirador Launcher: Failed to fetch books! continuing with only custom data");
+				loadManifests.resolve(customData);
 			});
 		});
 
@@ -49,27 +51,6 @@ window.Mirador = window.Mirador || {};
 		});
 
 	};
-
-
-	// $.getManifests = function(manifests) {
-	// 	url = $.ServiceManager.getUrlForCommand('PictureHandler','list');
-	// 	console.log('Mirador Launcher: getting book names from server: ' + url);
-		
-	// 	return jQuery.getJSON(url).done(function(data){
-	// 				jQuery.each(data, function(idx,name) {
-				
-	// 					var curUrl = $.ServiceManager.getUrlForCommand('PictureHandler','get') + encodeURIComponent(name);
-	// 					manifests.push({manifestUri: curUrl});
-	// 					console.log('Mirador Launcher: adding manifest for url: ' + curUrl );
-				
-	// 				});
-	// 			})
-	// 			.fail(function() {
-	// 				console.log("Mirador Launcher: Failed to fetch books! continuing with empty list");
-	// 			});
-	// };
-
-
 
 	$.parseAndAddManifestsURIs = function(manifests_arr) {
 			manifests = [];

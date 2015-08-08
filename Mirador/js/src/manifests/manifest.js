@@ -1,11 +1,26 @@
 (function($){
 
+/*
+  Manifest Class Version conversion: 
+    added versions field object, key:vernum,  value:json manifest
+    loading&fetching: if already multi -> choose first(need tweaking)
+                        if single -> convert to one-version, choose first
+
+ */
+
+
+  // DONE: Manifest class: add versions array + array/object checking.
+  // DONE: Convert versions array to {vernum: , title: , manifest: } object
+  // TODO: Manifest class: add versions traverse functions. + indexing
+
   $.Manifest = function(manifestUri, location) {
 
     jQuery.extend(true, this, {
-      jsonLd: null,
+      jsonLd: null,       // Current loaded version
+      versions: null,     // versions: {vernum: <version no.>, title: <title>, manifest: <manifest object> }
       location: location,
       uri: manifestUri,
+      type: "",
       request: null 
     });
 
@@ -22,9 +37,45 @@
       });
 
       this.request.done(function(jsonLd) {
-        _this.jsonLd = jsonLd;
+        console.log("Manifest Loader: DONE fetching. Checking if manifest has multiple versions...");
+
+        // TODO: Multiver manifest: load most recently version(currently by 1st index)
+        // Check if we got array(multiple versions).
+        if (Object.prototype.toString(jsonLd) == '[object Array]') {
+          console.log("Manifest Loader: Multiple versions. assigning first version");
+          _this.versions = jsonLd;
+          _this.versions = _this.convertVersionsToObject(jsonLd);
+          _this.switchToVersionByIndex(0);
+
+        } else {
+          console.log("Manifest Loader: Single version. converting...");
+          _this.versions = {0: jsonLd};
+          _this.switchToVersionByIndex(0);
+        }
       });
     },
+
+    convertVersionsToObject : function(ver_array) {
+      versions_obj = {};
+      jQuery.each(ver_array, function(index, manifest){
+          var vernum = manifest.vernum;
+          versions_obj[vernum] = manifest;
+      });
+
+      return versions_obj;
+
+    },
+
+    switchToVersion : function(ver) {
+      this.jsonLd = this.versions[ver]; // TODO: SwitchToVersion event publishing(change/reloaded)
+      // TODO: SwithToVersion - safety for falsy version parameter
+
+    },
+    switchToVersionByIndex : function(idx) {
+      var key_vernum = Object.keys(this.versions)[idx];
+      this.switchToVersion(key_vernum);
+    },
+
     getThumbnailForCanvas : function(canvas, width) {
       var version = "1.1",
       service,

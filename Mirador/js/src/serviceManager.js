@@ -2,7 +2,7 @@ window.Mirador = window.Mirador || {};
 window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 
 // DONE: Add global manifest service manager
-// TODO: Service Manager - Move initial config to somewhere else(maybe Launcher? maybe index.html?)
+// DONE: Service Manager - Move initial config to somewhere else(in mirador-config.json)
 (function($){
 
 	$.Service = function(name,baseUrl,cmds) {

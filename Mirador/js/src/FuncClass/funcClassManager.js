@@ -1,6 +1,6 @@
 window.Mirador = window.Mirador || {};
 window.Mirador.FuncClass = window.Mirador.FuncClass || {};
-
+window.Mirador.FuncClass.Utils = window.Mirador.FuncClass.Utils || {};
 // NOTE: FC = Function Classes (Manuscript manipulation c++ lib)
 // TODO: FC - All - Options defaults
 // 
@@ -106,6 +106,6 @@ window.Mirador.FuncClass = window.Mirador.FuncClass || {};
 
 
 
-
-
 })(Mirador.FuncClass);
+
+
