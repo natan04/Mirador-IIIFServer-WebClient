@@ -6,6 +6,14 @@
     loading&fetching: if already multi -> choose first(need tweaking)
                         if single -> convert to one-version, choose first
 
+    Multiversion manifest format:   
+    {"default": { 
+                  "index": 0,
+                  "IIIF" : { <Manifest Obj>}  },
+     "Version1 title": { "index": 1, "IIIF": {...}   },
+     "Version2 title": { "index": 2, "IIIF": {...} }
+    }
+
  */
 
 
@@ -17,7 +25,7 @@
 
     jQuery.extend(true, this, {
       jsonLd: null,       // Current loaded version
-      versions: null,     // versions: {vernum: <version no.>, title: <title>, manifest: <manifest object> }
+      versions: null,     // versions: {"default": { idx: ... , IIIF: }}
       location: location,
       uri: manifestUri,
       type: "",
@@ -39,41 +47,45 @@
       this.request.done(function(jsonLd) {
         console.log("Manifest Loader: DONE fetching. Checking if manifest has multiple versions...");
 
-        // TODO: Multiver manifest: load most recently version(currently by 1st index)
-        // Check if we got array(multiple versions).
-        if (Object.prototype.toString(jsonLd) == '[object Array]') {
-          console.log("Manifest Loader: Multiple versions. assigning first version");
-          _this.versions = jsonLd;
-          _this.versions = _this.convertVersionsToObject(jsonLd);
-          _this.switchToVersionByIndex(0);
-
+        // DONE: Multiver manifest: load most recently version(currently by 1st index)
+        // Check if we got multiver(multiple versions).
+        if (jsonLd.hasOwnProperty('default')) {
+            console.log("Manifest Loader: Multiple versions. assigning last version");
+            _this.versions = jsonLd;
+            _this.switchToLastVersion();
         } else {
-          console.log("Manifest Loader: Single version. converting...");
-          _this.versions = {0: jsonLd};
-          _this.switchToVersionByIndex(0);
+            console.log("Manifest Loader: Single version. converting...");
+            _this.versions = {'default': {'index':0, 'IIIF': jsonLd }};
         }
+        _this.switchToLastVersion();
+
       });
     },
 
-    convertVersionsToObject : function(ver_array) {
-      versions_obj = {};
-      jQuery.each(ver_array, function(index, manifest){
-          var vernum = manifest.vernum;
-          versions_obj[vernum] = manifest;
-      });
-
-      return versions_obj;
-
-    },
-
-    switchToVersion : function(ver) {
-      this.jsonLd = this.versions[ver]; // TODO: SwitchToVersion event publishing(change/reloaded)
+    switchToVersionByTitle : function(ver_title) {
+      this.jsonLd = this.versions[ver_title].IIIF; // TODO: SwitchToVersion event publishing(change/reloaded)
       // TODO: SwithToVersion - safety for falsy version parameter
 
     },
-    switchToVersionByIndex : function(idx) {
-      var key_vernum = Object.keys(this.versions)[idx];
-      this.switchToVersion(key_vernum);
+
+    getLastVerTitle : function() {
+        var currentMax = 0;
+        var currentTitle = "";
+
+        jQuery.each(this.versions, function(verTitle,manifest) {
+          if (manifest.index >= currentMax) {
+            currentMax = manifest.index;
+            currentTitle = verTitle;
+          }
+
+        });
+
+        return currentTitle;
+    },
+    switchToLastVersion : function() {
+      var lastTitle = this.getLastVerTitle();
+      console.log("Manifest Loader: switching to last version: " + lastTitle);
+      this.switchToVersionByTitle(lastTitle);
     },
 
     getThumbnailForCanvas : function(canvas, width) {
