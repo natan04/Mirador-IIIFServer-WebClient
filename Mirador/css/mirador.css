@@ -1667,7 +1667,11 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
     vertical-align: middle;
 }
 
-.manifest-version-row:hover {
+.manifest-version-row {
+  transition: all 0.2s;
+}
+
+.manifest-version-row:hover, .version-selected {
     background-color: rgba(0,0,0,0.5);
     color: white;
 }

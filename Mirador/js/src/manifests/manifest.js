@@ -26,6 +26,7 @@
     jQuery.extend(true, this, {
       jsonLd: null,       // Current loaded version
       versions: null,     // versions: {"default": { idx: ... , IIIF: }}
+      currentVersionTitle: "",
       location: location,
       uri: manifestUri,
       type: "",
@@ -64,6 +65,7 @@
 
     switchToVersionByTitle : function(ver_title) {
       this.jsonLd = this.versions[ver_title].IIIF; // TODO: SwitchToVersion event publishing(change/reloaded)
+      this.currentVersionTitle = ver_title;
       // TODO: SwithToVersion - safety for falsy version parameter
 
     },
@@ -89,10 +91,12 @@
     },
 
     getVersionsSummary : function() {
+      var _this = this;
       vers = [];
 
       jQuery.each(this.versions, function(verTitle,manifest) {
-        vers.push({num: manifest.index, title: verTitle});
+        selectedVersion = (verTitle == _this.currentVersionTitle);
+        vers.push({num: manifest.index, title: verTitle, selected: selectedVersion});
       });
 
       return vers;

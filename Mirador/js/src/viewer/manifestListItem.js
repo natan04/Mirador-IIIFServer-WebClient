@@ -52,6 +52,7 @@
       this.element.find('.remaining-items').css('left', remainingOffset);
 
       this.bindEvents();
+
     },
 
     fetchTplData: function() {
@@ -143,7 +144,10 @@
 
       this.element.find('.manifest-version-row').on('click', function(e){
         e.stopPropagation();
-        var title = jQuery(this).attr('data-version-title');
+        el = jQuery(this);
+                
+        var title = el.attr('data-version-title');
+        
         _this.manifest.switchToVersionByTitle(title);
         _this.init();
       });
@@ -220,7 +224,7 @@
                                             '</thead>',
                                             '<tbody>',
                                                 '{{#each versions}}',
-                                                '<tr class="manifest-version-row" data-version-title="{{this.title}}">', // TODO: Revisions -> convert to useful links
+                                                '<tr class="manifest-version-row{{#if this.selected}} version-selected{{/if}}" data-version-title="{{this.title}}">', // TODO: Revisions -> convert to useful links
                                                     '<td>{{this.num}}</td>',
                                                     '<td>{{this.title}}</td>',
                                                 '</tr>',
