@@ -1,4 +1,6 @@
 (function($) {
+//TODO: Version select with arrow buttons
+//TODO: Version select - enlarge font or add mouseover to enlarge
 
   $.ManifestListItem = function(options) {
 
@@ -139,6 +141,13 @@
         $.viewer.workspace.addWindow(windowConfig);
       });
 
+      this.element.find('.manifest-version-row').on('click', function(e){
+        e.stopPropagation();
+        var title = jQuery(this).attr('data-version-title');
+        _this.manifest.switchToVersionByTitle(title);
+        _this.init();
+      });
+
       this.element.find('.preview-image').on('click', function(e) {
         e.stopPropagation();
         var windowConfig = {
@@ -211,7 +220,7 @@
                                             '</thead>',
                                             '<tbody>',
                                                 '{{#each versions}}',
-                                                '<tr>', // TODO: Revisions -> convert to useful links
+                                                '<tr class="manifest-version-row" data-version-title="{{this.title}}">', // TODO: Revisions -> convert to useful links
                                                     '<td>{{this.num}}</td>',
                                                     '<td>{{this.title}}</td>',
                                                 '</tr>',

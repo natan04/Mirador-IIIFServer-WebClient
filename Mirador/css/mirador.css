@@ -1667,6 +1667,12 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
     vertical-align: middle;
 }
 
+.manifest-version-row:hover {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+}
+
+
 .manifest-revisions tbody td {
   padding: 5px;
   text-align: center;
