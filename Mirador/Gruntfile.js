@@ -58,7 +58,8 @@ module.exports = function(grunt) {
     'js/src/workspaces/*.js',
     'js/src/widgets/*.js',
     'js/src/utils/*.js',
-    'js/src/FuncClass/*.js'
+    'js/src/FuncClass/*.js',
+    'js/src/InvokerLib/*.js'
   ],
 
   specs = ['spec/**/*js'];
@@ -264,7 +265,7 @@ module.exports = function(grunt) {
           'css/*.css',
           'index.html'
         ],
-        tasks: 'deploy'
+        tasks: 'dev_build'
       }
     },
 

@@ -1681,3 +1681,15 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   padding: 5px;
   text-align: center;
 }
+
+.manifest-commands {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 80px;
+    margin-top: 5px;
+}
+
+.manifest-cmd {
+  float: left;
+}

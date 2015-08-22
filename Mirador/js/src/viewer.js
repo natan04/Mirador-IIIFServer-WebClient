@@ -119,6 +119,16 @@
         }
       });
 
+      jQuery.subscribe('dynCombo.dataAdded', function(data,itemText){
+        manifestUrl = $.ServiceManager.getUrlForCommand('PictureHandler','get') + itemText;
+
+        console.log('viewer: dynCombo item "'+ itemText +'" added. adding manifest from: '+manifestUrl);
+
+        _this.addManifestFromUrl(manifestUrl,'');
+
+
+      });
+
     },
 
     get: function(prop, parent) {
