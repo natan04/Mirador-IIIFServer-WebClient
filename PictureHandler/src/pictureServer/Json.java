@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Json
@@ -30,10 +31,17 @@ public class Json extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		response.addHeader("Access-Control-Allow-Origin", "*");
+
+		
+		response.addHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+		response.addHeader("Access-Control-Allow-Credentials", "true");
+		response.addHeader("Access-Control-Allow-Methods", "GET, POST");
+		response.addHeader("Access-Control-Allow-Headers ", "Content-Type, *");
+		
+		HttpSession session = request.getSession();
+		
 		String idOfBook = request.getParameter("id");
-		Global.mainLogger.info("Get Json request from ip:" + request.getRemoteAddr());
+		Global.mainLogger.info("Get Json request from session:" + session.getId());
 		PrintWriter printWriter  = response.getWriter();
 		
 		if (idOfBook == null)
@@ -52,7 +60,7 @@ public class Json extends HttpServlet {
 			Book book = Global.getIfHaveBook(idOfBook);
 			if (book != null)
 			{
-				Global.mainLogger.info("send  database book" + book.gBookId + " to:" + request.getRemoteAddr());
+				Global.mainLogger.info("send  database book" + book.gBookId + " to:" + session);
 				printWriter.println(book.toString());
 			}
 			else
