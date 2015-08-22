@@ -25,7 +25,11 @@ public class Book implements Comparable<Book>, Comparator<Book> {
     public ArrayList<Version> gVersions; //list of VERSION object
     JSONObject versionsJson;
 
+	JSONObject indexIIIf;
+
 	String gBookId = null;
+	
+	int index = 0;
 	
     String pathOfJsonFolder;
 
@@ -42,30 +46,38 @@ Book(String bookid)
 	
 Book(String bookid, boolean restore)
 	{			
+	
+		indexIIIf = new JSONObject();
 		versionsJson = new JSONObject();
 		gVersions = new ArrayList<Version>();
 		gBookId = bookid;
 	
 		 
 		 if (restore)
-		
 		 {
-	
 				Global.mainLogger.info("Restoreing book: " + gBookId);
 				
 				ResultSet rs = Global.sqlVersionsOfBook(bookid);
-			
 				  try {
 					while ( rs.next() )
 					  {
-						  String nameOfVersion = rs.getString("version_name");
-						  Version ver = new Version(gBookId, nameOfVersion, true);
-
-						  int found = Collections.binarySearch(gVersions, ver);
-						  gVersions.add(-found-1, ver);	//keeping the sorted array
 						
-						  versionsJson.put(nameOfVersion,ver.all);
+						String nameOfVersion = rs.getString("version_name");
+						 Version ver = new Version(gBookId, nameOfVersion, true);
 
+						int found = Collections.binarySearch(gVersions, ver);
+						gVersions.add(-found-1, ver);	//keeping the sorted array
+						
+						  
+						indexIIIf.put("index", index++);
+						indexIIIf.put("IIIF",  ver.all);
+						versionsJson.put(nameOfVersion,indexIIIf);
+
+						//dummy
+						JSONObject indexDummy = new JSONObject();
+						indexDummy.put("index", index++);
+						indexDummy.put("IIIF",  ver.all);
+						versionsJson.put("Natan", indexDummy);
 
 					  }
 				} catch (SQLException e) {
@@ -85,9 +97,19 @@ Book(String bookid, boolean restore)
 			
 			
 			//creating first default folder.
-			Version ver = new Version(bookid, "default", false);
+			Version ver = new Version(bookid, Global.defaultUploadFolder, false);
+			
 			try {
-				versionsJson.put("default", ver.all);
+				indexIIIf.put("index", index++);
+				indexIIIf.put("IIIF",  ver.all);
+				versionsJson.put(Global.defaultUploadFolder, indexIIIf);
+				
+				//dummy
+				JSONObject indexDummy = new JSONObject();
+				indexDummy.put("index", index++);
+				indexDummy.put("IIIF",  ver.all);
+				versionsJson.put("Natan", indexDummy);
+
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -140,13 +162,13 @@ public String toString() {
 
 	public Version getDefaultVersion() {
 
-		Version search = new Version(gBookId, "default", false);
+		Version search = new Version(gBookId, Global.defaultUploadFolder, false);
 		
 		int found = Collections.binarySearch(gVersions, search);
 		if (found < 0)
 		{
 			
-			Global.mainLogger.severe("Problem return default version of book: " + gBookId);
+			Global.mainLogger.severe("Problem return base version of book: " + gBookId);
 			return null;
 		}
 		

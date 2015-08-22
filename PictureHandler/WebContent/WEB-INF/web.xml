@@ -9,15 +9,15 @@
 	
 	<context-param>
 		<param-name>ImageServerAddress</param-name>
-		<param-value>http://localhost:8080/digilib/Scaler/IIIF/</param-value>
+		<param-value>http://132.72.46.235:8080/digilib/Scaler/IIIF/</param-value>
 	</context-param>
 	<context-param>
 		<param-name>ImageFolder</param-name>
-		<param-value>C:\Users\Natan\Desktop\Server\Picture</param-value>
+		<param-value>/images/</param-value>
 	</context-param>
 	<context-param>
 		<param-name>LogPath</param-name>
-		<param-value>C:\Users\Natan\Desktop\Server\Logs\log.txt</param-value>
+		<param-value>/Work/Log/PicutreHandler</param-value>
 	</context-param>
 
 

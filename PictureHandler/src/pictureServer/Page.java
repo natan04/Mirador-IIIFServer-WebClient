@@ -100,6 +100,8 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		
 	      BufferedImage img = null;
 	      
+			Global.mainLogger.info("image read " + new File(p.getPath()));
+
              img = ImageIO.read(new File(p.getPath()));
               		  JSONObject firstImage = new JSONObject() ;
 						firstImage.put("width", img.getWidth());

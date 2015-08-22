@@ -55,7 +55,7 @@ public class Global extends HttpServlet {
 	public static String filePath;
 	public static String sep;
 	public static String logPath ;
-	public static String defaultUploadFolder = "Default" ;
+	public static String defaultUploadFolder = "default" ;
 	public static boolean convertToTiff = false; 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
 
