@@ -1,4 +1,6 @@
 // DONE: Url always points to version 2 (without context checking)
+// DONE: getImageId method - cuts host and returns full path (id/version/image)
+
 (function($) {
 
   $.Iiif = {
@@ -16,6 +18,14 @@
 
       return id;
     },
+
+    getImageId: function(canvas) {
+      var id = canvas.images[0].resource.service['@id'];
+      id = id.replace(/.*\/IIIF\//g,"");
+
+      return id;
+    },
+
 
     getVersionFromContext: function(context) {
       if (context == "http://iiif.io/api/image/2/context.json") {

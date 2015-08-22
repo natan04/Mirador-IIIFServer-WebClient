@@ -136,7 +136,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 				enctype:'multipart/form-data',
 				success: function(data,stat) {
 					console.log('ajax upload done: '+data);
-					if (data[0] === 0) {
+					if (data[0] === '0') {
 						jQuery.publish('uploadForm.msg','Upload done. code '+data[0]+': '+data[1]);
 						jQuery.publish('dynCombo.refresh');
 					} else {
@@ -199,6 +199,13 @@ $.DynamicCombo.prototype = {
 		});
 	},
 
+
+	clearAll: function() {
+		this.element.html('');
+		this.data = [];
+		this.element[0].size = 0;
+	},
+
 	addItem: function(text) {
 		// Check if item exists
 		var res = jQuery.grep(this.data,function(el,idx){
@@ -214,12 +221,16 @@ $.DynamicCombo.prototype = {
 		$optEl.appendTo(this.element);
 		if(this.autoExtend)
 			this.element[0].size++;
+
+		jQuery.publish('dynCombo.dataAdded',text);
+
 	},
 	fetchData: function() {
 		var _this = this;
 		jQuery.getJSON(this.urlToFetch).done(function(data){
 			console.log("DynCombo --> fetched data: " + data);
 
+			_this.clearAll();
 			jQuery.each(data, function(i, str){
 				_this.addItem(str);
 			});

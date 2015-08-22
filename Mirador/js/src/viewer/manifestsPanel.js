@@ -86,6 +86,12 @@
               clone.remove();
               jQuery.publish("manifestPanelWidthChanged", _this.resultsWidth);
             }, 100));
+
+
+            this.element.find('#refresh-all-btn').on('click', function(){
+                _this.refreshAll();
+            });
+
         },
         
         hide: function() {
@@ -97,6 +103,15 @@
             var _this = this;
 
             jQuery(this.element).show({effect: "fade", duration: 160, easing: "easeInCubic"});
+        },
+
+        refreshAll: function() {
+            var _this = this;
+
+            jQuery.each(_this.manifestListItems, function(idx, listItem){ 
+                listItem.init();
+            });
+
         },
 
         template: Handlebars.compile([
@@ -114,6 +129,7 @@
                   '<label for="url-loader">{{t "addNewObject"}}:</label>',
                   '<input type="text" id="url-loader" name="url-load" placeholder="http://...">',
               '</form>',
+              '<input type="button" id="refresh-all-btn" value="Refresh All" />',
               '{{/if}}',
               '</div>',
               '<div class="select-results">',

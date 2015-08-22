@@ -46,7 +46,7 @@
       });
 
       this.request.done(function(jsonLd) {
-        console.log("Manifest Loader: DONE fetching. Checking if manifest has multiple versions...");
+        console.log("Manifest Loader: DONE fetching url "+manifestUri+".");
 
         // DONE: Multiver manifest: load most recently version(currently by 1st index)
         // Check if we got multiver(multiple versions).

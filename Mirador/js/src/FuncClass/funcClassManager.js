@@ -41,7 +41,7 @@ window.Mirador.FuncClass.Utils = window.Mirador.FuncClass.Utils || {};
 		return {
 			name:name,
 			description:description,
-			params: parameters || []
+			parameters: parameters || []
 		};
 	};
 
