@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#deploy
+
+echo  "What to Deploy? "
+echo "INSTALL MIRADOR? 				[YES]"
+read -n1  character
+
+if [ "$character" = "" ]; then
+TOMCAT_HOME="/var/lib/tomcat7/webapps"
+
+echo "Stopping tomcat"
+sudo service tomcat7 stop
+echo "Compiling mirador"
+cd Mirador
+grunt
+echo "Copying files..."
+sudo rm -rf $TOMCAT_HOME/Mirador
+sudo mkdir $TOMCAT_HOME/Mirador
+sudo mkdir $TOMCAT_HOME/Mirador/build
+sudo cp -R build $TOMCAT_HOME/Mirador/
+sudo cp index.html $TOMCAT_HOME/Mirador/
+echo "Starting tomcat"
+sudo service tomcat7 start
+fi
+printf "\n"
+echo "CHANGE PICTURE-HANDLER?                   [YES]" 
+read -n1 character2
+if [ "$character2" = "" ]; then
+printf "\n"
+echo  "For Modifying Image Server Address press 1"
+echo  "For Modifying Image Folder press 2"
+echo  "For Modifying Log Path press 3"
+read -n1 character3
+if [ $character3 = "1" ]; then
+printf "\n"
+echo "Image Server Address:"
+fi
+if [ $character3 = "2" ]; then
+printf "\n"
+echo "Image Folder"
+sed 
+fi
+fi
+printf "\n"
+

@@ -258,9 +258,11 @@ a {
 }
 .repository-label {
   border-top: 1px solid rgba(0,0,0,0.7);
+  border-bottom: 1px solid rgba(0,0,0,0.7);
   padding-top:3px;
-  position:absolute;
-  bottom:0;
+  padding-bottom: 3px;
+  /*position:absolute;
+  bottom:0;*/
   width:100%;
 }
 .items-listing li:hover {
@@ -302,7 +304,7 @@ a {
 .repo-image, .select-metadata, .preview-images {
   float:left;
   margin-right:15px;
-  height: 80px;
+  min-height: 80px;
 }
 .preview-images {
   margin-right:0;
@@ -1649,4 +1651,33 @@ div.manifest-info a.mirador-btn.mirador-icon-toc {
   top: 109px;
   right: 523px;
   /* text-shadow: 5px 5px; */
+}
+.manifest-revisions {
+  display: block;
+  max-height: 150px;
+  background-color: rgba(0,0,0,0.08);
+  overflow-y: auto;
+}
+
+.manifest-revisions table {
+  margin: 5px 0;
+}
+.manifest-revisions thead td {
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.manifest-version-row {
+  transition: all 0.2s;
+}
+
+.manifest-version-row:hover, .version-selected {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+}
+
+
+.manifest-revisions tbody td {
+  padding: 5px;
+  text-align: center;
 }

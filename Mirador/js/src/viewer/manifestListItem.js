@@ -1,4 +1,6 @@
 (function($) {
+//TODO: Version select with arrow buttons
+//TODO: Version select - enlarge font or add mouseover to enlarge
 
   $.ManifestListItem = function(options) {
 
@@ -29,16 +31,28 @@
       var _this = this;
       //need a better way of calculating this because JS can't get width and margin of hidden elements, so must manually set that info
       //ultimately use 95% of space available, since sometimes it still displays too many images
+      if (this.element) 
+          this.imagesTotalWidth = 0;
+
       this.maxPreviewImagesWidth = this.resultsWidth - (this.repoWidth + this.margin + this.metadataWidth + this.margin + this.remainingItemsMinWidth);
       this.maxPreviewImagesWidth = this.maxPreviewImagesWidth * 0.95;
 
       this.fetchTplData(this.manifestId);
-      this.element = jQuery(this.template(this.tplData)).prependTo(this.parent.manifestListElement).hide().fadeIn('slow');
+
+      // Check if this is a refresh (replace element if this is the case)
+      if (!this.element) {
+          this.element = jQuery(this.template(this.tplData)).prependTo(this.parent.manifestListElement).hide().fadeIn('slow');
+      } else {
+          newEl = jQuery(this.template(this.tplData));
+          this.element.replaceWith(newEl);
+          this.element = newEl;
+      }
 
       var remainingOffset = this.repoWidth + this.margin + this.metadataWidth + this.margin + this.imagesTotalWidth;
       this.element.find('.remaining-items').css('left', remainingOffset);
 
       this.bindEvents();
+
     },
 
     fetchTplData: function() {
@@ -50,7 +64,8 @@
         label: manifest.label,
         repository: location,
         canvasCount: manifest.sequences[0].canvases.length,
-        images: []
+        images: [],
+        versions: _this.manifest.getVersionsSummary()
       };
 
       this.tplData.repoImage = (function() {
@@ -109,6 +124,10 @@
     bindEvents: function() {
       var _this = this;
 
+      this.element.find('.manifest-update-btn').on('click', function() {
+        _this.init();
+      });
+
       this.element.find('img').on('load', function() {
         //if img width is not equal to the width in the html, change height
         jQuery(this).hide().fadeIn(600);
@@ -121,6 +140,16 @@
           currentFocus: 'ThumbnailsView'
         };
         $.viewer.workspace.addWindow(windowConfig);
+      });
+
+      this.element.find('.manifest-version-row').on('click', function(e){
+        e.stopPropagation();
+        el = jQuery(this);
+                
+        var title = el.attr('data-version-title');
+        
+        _this.manifest.switchToVersionByTitle(title);
+        _this.init();
       });
 
       this.element.find('.preview-image').on('click', function(e) {
@@ -176,19 +205,37 @@
     template: Handlebars.compile([
                                  '<li>',
                                  '<div class="repo-image">',
-                                 '<img src="{{repoImage}}" alt="repoImg">',
+                                    '<img src="{{repoImage}}" alt="repoImg">',
                                  '</div>',
                                  '<div class="select-metadata">',
-                                 '<h3 class="manifest-title">{{label}}</h3>',
-                                 '<h4>{{canvasCount}} {{t "items"}}</h4>',
-                                 '{{#if repository}}',
-                                 '<h4 class="repository-label">{{repository}}</h4>',
-                                 '{{/if}}',
+                                    '<h3 class="manifest-title">{{label}}</h3>',
+                                    '<h4>{{canvasCount}} {{t "items"}}</h4>',
+                                    '{{#if repository}}',
+                                    '<h4 class="repository-label">{{repository}}</h4>',
+                                    '{{/if}}',
+                                    '<div class="manifest-revisions">',
+                                        '<h3>Versions</h3>',
+                                        '<table>',
+                                            '<thead>',
+                                                '<tr>',
+                                                    '<td>No.</td>',
+                                                    '<td>Title</td>',
+                                                '</tr>',
+                                            '</thead>',
+                                            '<tbody>',
+                                                '{{#each versions}}',
+                                                '<tr class="manifest-version-row{{#if this.selected}} version-selected{{/if}}" data-version-title="{{this.title}}">', // TODO: Revisions -> convert to useful links
+                                                    '<td>{{this.num}}</td>',
+                                                    '<td>{{this.title}}</td>',
+                                                '</tr>',
+                                                '{{/each}}',
+                                        '</table>',
+                                    '</div>',
                                  '</div>',
                                  '<div class="preview-images">',
-                                 '{{#each images}}',
-                                 '<img src="{{url}}" width="{{width}}" height="{{height}}" class="preview-image flash" data-image-id="{{id}}">',
-                                 '{{/each}}',
+                                    '{{#each images}}',
+                                    '<img src="{{url}}" width="{{width}}" height="{{height}}" class="preview-image flash" data-image-id="{{id}}">',
+                                    '{{/each}}',
                                  '</div>',
                                  '{{#if remaining}}',
                                  '<div class="remaining-items"><h3><span class="remaining-amount">{{remaining}}</span> {{t "more"}}</h3></div>',
