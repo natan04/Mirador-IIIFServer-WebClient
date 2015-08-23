@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 
 
+
 import javax.imageio.ImageIO;
 
 import org.apache.commons.fileupload.FileItem;
@@ -32,6 +33,18 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		nameOfBook = bookID;
 		nameOfVersion = versionId;
 		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + versionId + Global.sep + PageName;
+	}
+	
+	//for temp invoke
+	Page(String versionId, String pathOfFile)
+	{
+		String[] fields = pathOfFile.split("/");
+		String page 	= fields[2];
+		
+		PageName = page;
+		nameOfBook = Global.tempBookStr;
+		nameOfVersion = versionId;
+		pathOfFile = Global.filePath + Global.sep +  pathOfFile;
 	}
 	
 	Page(String fileName, String bookID, String versionId, String jsonPath)
@@ -88,7 +101,56 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 
 
 
-	private void createJson(File p, String fileName) throws JSONException, IOException {
+	public void createJsonForTemp(File p, String fileName) throws JSONException, IOException {
+		Global.mainLogger.info("adding page: " + fileName + " in version/book: " + nameOfVersion + "//" + nameOfBook);
+
+		String spec = "full/full/0/default.jpg";
+		String idRes = Global.ImageServerAddress  + fileName + "/full/full/0/default.jpg";
+		String idSer = Global.ImageServerAddress  + fileName;
+		String typeImage = "dctypes:Image";
+		String typeCanvas = "sc:Canvas";
+		String label = "Default label";
+		
+	      BufferedImage img = null;
+	      
+			Global.mainLogger.info("image read " + (p.getPath()));
+
+             img = ImageIO.read(new File(p.getPath()));
+              		  JSONObject firstImage = new JSONObject() ;
+						firstImage.put("width", img.getWidth());
+					
+		              firstImage.put("height", img.getHeight());
+		              
+		              	JSONObject resource = new JSONObject() ;
+		              	resource.put("@id", idRes);
+		              
+		              		JSONObject service = new JSONObject() ;
+		              		service.put("@context", Global.context);
+		              		service.put("@id", idSer);
+		              	
+		              	resource.put("service", service);
+		              	
+		              firstImage.put("resource", resource);
+		              
+		              firstImage.put("@type", typeImage);
+		              firstImage.put("format", "image/jpeg");
+              
+	        json = new JSONObject();
+            json.append("images", firstImage);
+  
+            json.put("width", img.getWidth());
+            json.put("height", img.getHeight());
+
+            
+	        json.put("@type", label);
+             
+	        json.put("@id", idRes);
+   
+              
+   
+	}
+	
+	public void createJson(File p, String fileName) throws JSONException, IOException {
 		Global.mainLogger.info("adding page: " + fileName + " in version/book: " + nameOfVersion + "//" + nameOfBook);
 
 		String spec = "full/full/0/default.jpg";
@@ -100,7 +162,7 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		
 	      BufferedImage img = null;
 	      
-			Global.mainLogger.info("image read " + new File(p.getPath()));
+			Global.mainLogger.info("image read " + (p.getPath()));
 
              img = ImageIO.read(new File(p.getPath()));
               		  JSONObject firstImage = new JSONObject() ;

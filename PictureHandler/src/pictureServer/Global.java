@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 
 
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
@@ -61,7 +62,8 @@ public class Global extends HttpServlet {
 	public static boolean convertToTiff = false; 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
     public static String ExePath;
-
+    public static String tempBookStr = "&temp&";
+    public static Book	InvokerPreviewBook;	//each session is a version.
     public static String tempPath;    
     public static AtomicInteger tempIndex = new AtomicInteger(0);
 	
@@ -162,7 +164,11 @@ public void init() throws ServletException
 	
 	databaseInit();
 	
+	InvokerPreviewBook = new Book(tempBookStr, false);
+	
+	Preview.startEditMode("base", "lalala");
 
+	
 }
 
 public static void respond(PrintWriter printWriter, int a,
@@ -176,7 +182,10 @@ public static void respond(PrintWriter printWriter, int a,
 
 
 
-
+public static Connection getDatabaseNewConnection() throws SQLException
+{
+	return DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
+}
 
 public void databaseInit()
 {
@@ -202,7 +211,7 @@ public void databaseInit()
 		      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text)";
 		      String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
 		      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id text, book_id text, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version))";
-		      String sMakeTable_Preview = "CREATE TABLE Preview (image_id text, current_picture text, json text, max_index INTEGER, json_cmmnd text)";
+		      String sMakeTable_Preview = "CREATE TABLE Preview (session_id text, current_picture text, json text, max_index INTEGER, json_cmmnd text)";
 
 		      
 		      Statement stmt = databaseConnection.createStatement();

@@ -28,6 +28,9 @@ public class Invoker extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion("11111");
+
+		versionOfCurrentSession.createPageToTemp(pathToNewFile);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -43,22 +46,25 @@ public class Invoker extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Methods", "GET, POST");
 		response.addHeader("Access-Control-Allow-Headers ", "Content-Type, *");
 		BufferedReader read = request.getReader();
-		
+		String sessionId = session.getId();
 		try {
 		
 			JSONObject Json = new JSONObject(read.readLine());
 
 			String typeStr 			= Json.get("type").toString();
-			JSONArray images 	= (JSONArray) Json.get("images");
 		
 			if (typeStr.equals("edit"))
 			{
-				String image = (String) images.get(0);
-
-				Preview preview = new Preview(image, session.getId());
+				Global.mainLogger.info("Initiate edit mode for session: " + sessionId);
+						
+				String baseImg	= Json.get("baseImage").toString();
+				Preview.startEditMode(baseImg, sessionId);
+				
+				return;
 			} 
 		
 			
+			JSONArray images 	= (JSONArray) Json.get("images");
 			JSONObject invokeCmmnd	= (JSONObject) Json.get("invokes");
 			Global.mainLogger.info("Invoker cmmnd: \n"
 					+ " Type:    " + typeStr + "\n"
@@ -68,17 +74,29 @@ public class Invoker extends HttpServlet {
 				
 			if (typeStr.equals("preview"))
 			{
-					printWriter.println(previewInvoke(invokeCmmnd, images));
+				String pathToNewFile = (previewInvoke(invokeCmmnd, images));
+				Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion(sessionId);
+				versionOfCurrentSession.createPageToTemp(pathToNewFile);
+			
 			} 
 					
 			
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 
+	
+	
+	
+	/*
+	 * 
+	 * TODO:
+	 * add version id to to invoke and check the result of both iiif and real path of image.
+	 * 
+	 */
 	//preview take only one image.
 	//return base address of the new picture.
 	private String previewInvoke(JSONObject invokeCmmnd, JSONArray images) throws JSONException {
@@ -90,7 +108,7 @@ public class Invoker extends HttpServlet {
 		String version 	= fields[1];
 		String page 	= fields[2];
 		
-		String toReturned = null; //path for mirador
+		String toReturnedIIIF = null; //path for mirador
 		
 		String oldImage = Global.filePath + Global.sep + book + Global.sep + version + Global.sep + page;
 		
@@ -98,7 +116,7 @@ public class Invoker extends HttpServlet {
 		{
 			int newIndex = Global.tempIndex.getAndIncrement();
 			newImagePath = Global.tempPath + Global.sep + version + Global.sep + newIndex  + ".jpg";
-			toReturned =  Global.ImageServerAddress + "temp/" + version + "/" + newIndex + ".jpg";
+			toReturnedIIIF =  Global.filePath + Global.tempBookStr +"/" + version + "/" + newIndex + ".jpg";
 			
 			JSONObject singleInvoke = (JSONObject) (invokeCmmnd.getJSONObject("" + i));
 			singleInvoke.put("input", oldImage);
@@ -108,7 +126,8 @@ public class Invoker extends HttpServlet {
 			
 		}
 		
-		return toReturned;
+		String[] willReturn = {newImagePath, toReturnedIIIF};
+		return willReturn;
 	}
 
 	private void singleInvoke(JSONObject singleInvoke) {

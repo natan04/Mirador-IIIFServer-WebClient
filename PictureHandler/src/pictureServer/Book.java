@@ -73,12 +73,6 @@ Book(String bookid, boolean restore)
 						indexIIIf.put("IIIF",  ver.all);
 						versionsJson.put(nameOfVersion,indexIIIf);
 
-						//dummy
-						JSONObject indexDummy = new JSONObject();
-						indexDummy.put("index", index++);
-						indexDummy.put("IIIF",  ver.all);
-						versionsJson.put("Natan", indexDummy);
-
 					  }
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -104,11 +98,7 @@ Book(String bookid, boolean restore)
 				indexIIIf.put("IIIF",  ver.all);
 				versionsJson.put(Global.defaultUploadFolder, indexIIIf);
 				
-				//dummy
-				JSONObject indexDummy = new JSONObject();
-				indexDummy.put("index", index++);
-				indexDummy.put("IIIF",  ver.all);
-				versionsJson.put("Natan", indexDummy);
+		
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -131,11 +121,11 @@ void addBookToDatabase()
 	
 }
 
-public void removeVersion(String version)
+public synchronized void  removeVersion(String version)
 {
 	Version ver = new Version(version);	
 	int foundIndex = Collections.binarySearch(gVersions, ver);
-	
+
 	ver = gVersions.get(foundIndex); //the real version;
 	
 	versionsJson.remove(ver.gVersionId);	//remove from json
@@ -160,9 +150,31 @@ public String toString() {
 		return o1.getId().compareTo(o2.getId());
 		}
 
+	
+	//get the version from book, if not exists, create one.
+	public Version getVersion(String idVersion)
+	{
+		Version search = new Version(idVersion);
+		int found = Collections.binarySearch(gVersions, search);
+		if (found < 0)
+		{
+			Version newVersion = new Version(gBookId, idVersion, false);
+			gVersions.add(-found-1, newVersion);	//keeping the  array sorted
+
+			Global.mainLogger.info("creating version: version/book: " + idVersion + "/" + gBookId);
+		
+			return newVersion ;
+		}
+		
+		else
+			return gVersions.get(found);
+		
+
+	
+	}
 	public Version getDefaultVersion() {
 
-		Version search = new Version(gBookId, Global.defaultUploadFolder, false);
+		Version search = new Version( Global.defaultUploadFolder);
 		
 		int found = Collections.binarySearch(gVersions, search);
 		if (found < 0)
