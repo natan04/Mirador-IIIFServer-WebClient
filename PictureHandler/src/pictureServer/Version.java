@@ -154,7 +154,25 @@ public synchronized void createPage(FileItem fileUpdate, String fileName) throws
 		
 	}
 
-public synchronized boolean existsPage(String fileName) {
+//creating the file and page, assuming the page not exists
+// file name are in format /temp/ver/$NAME_OF_FILE$ already
+public synchronized void createPageToTemp(String fileName) throws Exception {
+	
+	
+	File p = new File(Global.filePath + Global.sep + fileName);
+	
+	Page search = new Page( gVersionId, fileName);
+
+	int found = Collections.binarySearch(gPages, search);
+	gPages.add(-found-1, search);	//keeping the sorted array
+	
+	search.createJsonForTemp(p, search.PageName);
+	fCanvas.put(search.json);
+	
+	
+}
+
+public  boolean existsPage(String fileName) {
 	Page search = new Page(fileName, gBookId, gVersionId);
 	int found;
 	

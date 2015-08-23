@@ -331,6 +331,16 @@ public class DigilibRequest extends ParameterMap {
                 }
             }
         }
+        if (query.hasMoreTokens()) {
+            token = getNextDecodedToken(query);
+            if (!token.equals("/")) {
+                identifier += "/" + token;
+                // skip /
+                if (query.hasMoreTokens()) {
+                    query.nextToken();
+                }
+            }
+        }
         /*
          * third parameter region
          */
@@ -419,9 +429,6 @@ public class DigilibRequest extends ParameterMap {
         // alway set HTTP status code error reporting
         options.setOption("errcode");
         
-        logger.debug("**Natan** fileName:" + identifier +"  region:" + region + " size:" + size +
-        		"rotation: " + rotation + "  quality:" + quality +"   format:" +format );
-        		
         /*
          * parameter identifier (encoded)
          */
@@ -566,7 +573,7 @@ public class DigilibRequest extends ParameterMap {
          */
         if (quality != null) {
             // quality param
-            if (quality.equals("default") || quality.equals("color") || quality.equals("native")) {
+            if (quality.equals("native") || quality.equals("default") || quality.equals("Natan") || quality.equals("color")) {
                 // native is default anyway
             } else if (quality.equals("grey")) {
                 setValueFromString("colop", "grayscale");

@@ -25,7 +25,11 @@ public class Book implements Comparable<Book>, Comparator<Book> {
     public ArrayList<Version> gVersions; //list of VERSION object
     JSONObject versionsJson;
 
+	JSONObject indexIIIf;
+
 	String gBookId = null;
+	
+	int index = 0;
 	
     String pathOfJsonFolder;
 
@@ -42,30 +46,32 @@ Book(String bookid)
 	
 Book(String bookid, boolean restore)
 	{			
+	
+		indexIIIf = new JSONObject();
 		versionsJson = new JSONObject();
 		gVersions = new ArrayList<Version>();
 		gBookId = bookid;
 	
 		 
 		 if (restore)
-		
 		 {
-	
 				Global.mainLogger.info("Restoreing book: " + gBookId);
 				
 				ResultSet rs = Global.sqlVersionsOfBook(bookid);
-			
 				  try {
 					while ( rs.next() )
 					  {
-						  String nameOfVersion = rs.getString("version_name");
-						  Version ver = new Version(gBookId, nameOfVersion, true);
-
-						  int found = Collections.binarySearch(gVersions, ver);
-						  gVersions.add(-found-1, ver);	//keeping the sorted array
 						
-						  versionsJson.put(nameOfVersion,ver.all);
+						String nameOfVersion = rs.getString("version_name");
+						 Version ver = new Version(gBookId, nameOfVersion, true);
 
+						int found = Collections.binarySearch(gVersions, ver);
+						gVersions.add(-found-1, ver);	//keeping the sorted array
+						
+						  
+						indexIIIf.put("index", index++);
+						indexIIIf.put("IIIF",  ver.all);
+						versionsJson.put(nameOfVersion,indexIIIf);
 
 					  }
 				} catch (SQLException e) {
@@ -85,9 +91,15 @@ Book(String bookid, boolean restore)
 			
 			
 			//creating first default folder.
-			Version ver = new Version(bookid, "default", false);
+			Version ver = new Version(bookid, Global.defaultUploadFolder, false);
+			
 			try {
-				versionsJson.put("default", ver.all);
+				indexIIIf.put("index", index++);
+				indexIIIf.put("IIIF",  ver.all);
+				versionsJson.put(Global.defaultUploadFolder, indexIIIf);
+				
+		
+
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -109,11 +121,11 @@ void addBookToDatabase()
 	
 }
 
-public void removeVersion(String version)
+public synchronized void  removeVersion(String version)
 {
 	Version ver = new Version(version);	
 	int foundIndex = Collections.binarySearch(gVersions, ver);
-	
+
 	ver = gVersions.get(foundIndex); //the real version;
 	
 	versionsJson.remove(ver.gVersionId);	//remove from json
@@ -138,15 +150,37 @@ public String toString() {
 		return o1.getId().compareTo(o2.getId());
 		}
 
+	
+	//get the version from book, if not exists, create one.
+	public Version getVersion(String idVersion)
+	{
+		Version search = new Version(idVersion);
+		int found = Collections.binarySearch(gVersions, search);
+		if (found < 0)
+		{
+			Version newVersion = new Version(gBookId, idVersion, false);
+			gVersions.add(-found-1, newVersion);	//keeping the  array sorted
+
+			Global.mainLogger.info("creating version: version/book: " + idVersion + "/" + gBookId);
+		
+			return newVersion ;
+		}
+		
+		else
+			return gVersions.get(found);
+		
+
+	
+	}
 	public Version getDefaultVersion() {
 
-		Version search = new Version(gBookId, "default", false);
+		Version search = new Version( Global.defaultUploadFolder);
 		
 		int found = Collections.binarySearch(gVersions, search);
 		if (found < 0)
 		{
 			
-			Global.mainLogger.severe("Problem return default version of book: " + gBookId);
+			Global.mainLogger.severe("Problem return base version of book: " + gBookId);
 			return null;
 		}
 		

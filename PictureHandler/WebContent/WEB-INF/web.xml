@@ -19,7 +19,10 @@
 		<param-name>LogPath</param-name>
 		<param-value>C:\Users\Natan\Desktop\Server\Logs\log.txt</param-value>
 	</context-param>
-
+	<context-param>
+		<param-name>ExePath</param-name>
+		<param-value>C:\Users\Natan\Desktop\java\bw.jar</param-value>
+	</context-param>
 
     <servlet>
     <servlet-name>pictureServer.Global</servlet-name>

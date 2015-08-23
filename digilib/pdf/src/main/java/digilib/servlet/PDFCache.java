@@ -133,6 +133,8 @@ public class PDFCache extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         accountlog.info("GET from " + request.getRemoteAddr());
+		response.addHeader("Access-Control-Allow-Origin", "*");
+
         this.processRequest(request, response);
     }
 

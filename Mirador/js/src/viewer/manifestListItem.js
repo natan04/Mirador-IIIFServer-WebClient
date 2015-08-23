@@ -65,7 +65,8 @@
         repository: location,
         canvasCount: manifest.sequences[0].canvases.length,
         images: [],
-        versions: _this.manifest.getVersionsSummary()
+        versions: _this.manifest.getVersionsSummary(),
+        commands: []
       };
 
       this.tplData.repoImage = (function() {
@@ -114,6 +115,12 @@
           return remaining;
         }
       })();
+
+      this.tplData.commands.push({title: 'refresh', class:'command-refresh', icon:'http://uxrepo.com/static/icon-sets/ionicons/svg/refresh.svg', iconWidth:'25'});
+      //this.tplData.commands.push({title: 'refresh', class:'command-refresh', icon:'http://uxrepo.com/static/icon-sets/ionicons/svg/refresh.svg', iconWidth:'25'});
+      //this.tplData.commands.push({title: 'refresh', class:'command-refresh', icon:'http://uxrepo.com/static/icon-sets/ionicons/svg/refresh.svg', iconWidth:'25'});
+      //this.tplData.commands.push({title: 'refresh', class:'command-refresh', icon:'http://uxrepo.com/static/icon-sets/ionicons/svg/refresh.svg', iconWidth:'25'});
+
 
     },
 
@@ -240,6 +247,14 @@
                                  '{{#if remaining}}',
                                  '<div class="remaining-items"><h3><span class="remaining-amount">{{remaining}}</span> {{t "more"}}</h3></div>',
                                  '{{/if}}',
+                                 '<div class="manifest-commands">',
+                                  '{{#each commands}}',
+                                          '<a href="#" class="manifest-cmd {{this.class}}">',
+                                              '<img class="cmd-icon" alt="{{this.title}}" width="{{this.iconWidth}}" src="{{this.icon}}"></img>',
+                                          '</a>', 
+                                  '{{/each}}',
+                                 '</div>',
+
                                  '</li>'
     ].join(''))
   };

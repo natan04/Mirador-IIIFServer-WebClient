@@ -108,8 +108,6 @@ public class ServletOps {
      * @return
      */
     public static String getFile(String filename, ServletContext sc) {
-        logger.debug("**natan** get file:" + filename);
-
         File f = new File(filename);
         // is the filename absolute?
         if (!f.isAbsolute()) {
@@ -261,6 +259,8 @@ public class ServletOps {
                 // no download name -- use filename
                 name = f.getName();
             }
+            
+
             response.addHeader("Content-Disposition", "attachment; filename=\""+name+"\"");
         }
         FileInputStream inFile = null;
@@ -401,6 +401,8 @@ public class ServletOps {
         } catch (IOException e) {
             throw new ServletException("Unable to write response!", e);
         }
+        
+
     }
 
     /** Returns text representation of headers for debuggging purposes.

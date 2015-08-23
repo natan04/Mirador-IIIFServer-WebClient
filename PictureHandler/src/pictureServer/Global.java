@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 import java.sql.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServlet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 
 
@@ -55,10 +58,15 @@ public class Global extends HttpServlet {
 	public static String filePath;
 	public static String sep;
 	public static String logPath ;
-	public static String defaultUploadFolder = "Default" ;
+	public static String defaultUploadFolder = "default" ;
 	public static boolean convertToTiff = false; 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
-
+    public static String ExePath;
+    public static String tempBookStr = "&temp&";
+    public static Book	InvokerPreviewBook;	//each session is a version.
+    public static String tempPath;    
+    public static AtomicInteger tempIndex = new AtomicInteger(0);
+	
 	//Codes:
 	public static int imageUpload = 0;
 	public static String imageUploadDesc = "Success to upload image";
@@ -135,7 +143,8 @@ public void init() throws ServletException
    sqlDatabase = filePath + sep + "Picture.db";
    logPath =  context.getInitParameter("LogPath");
    mainLogger.info("Starting picture server");
-   
+   ExePath = context.getInitParameter("ExePath");
+   tempPath = filePath + sep + "temp";
 	/*****************Log initlize**************/
 	try {
 		Handler fileHandler = new FileHandler(logPath,true);
@@ -155,7 +164,11 @@ public void init() throws ServletException
 	
 	databaseInit();
 	
+	InvokerPreviewBook = new Book(tempBookStr, false);
+	
+	Preview.startEditMode("base", "lalala");
 
+	
 }
 
 public static void respond(PrintWriter printWriter, int a,
@@ -169,7 +182,10 @@ public static void respond(PrintWriter printWriter, int a,
 
 
 
-
+public static Connection getDatabaseNewConnection() throws SQLException
+{
+	return DriverManager.getConnection("jdbc:sqlite:" + sqlDatabase);
+}
 
 public void databaseInit()
 {
@@ -195,12 +211,15 @@ public void databaseInit()
 		      String sMakeTable_Book = "CREATE TABLE Books (serial_id_Book INTEGER primary key, name text)";
 		      String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
 		      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id text, book_id text, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version))";
-		      
+		      String sMakeTable_Preview = "CREATE TABLE Preview (session_id text, current_picture text, json text, max_index INTEGER, json_cmmnd text)";
+
 		      
 		      Statement stmt = databaseConnection.createStatement();
 		      stmt.executeUpdate(sMakeTable_Book);
 		      stmt.executeUpdate(sMakeTable_Version);
 		      stmt.executeUpdate(sMakeTable_Pages);
+		      stmt.executeUpdate(sMakeTable_Preview);
+
 		      stmt.close();
     	  }
     	} catch ( Exception e ) {
