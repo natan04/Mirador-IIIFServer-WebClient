@@ -1,0 +1,18 @@
+#!/bin/bash
+#deploy_mirador
+TOMCAT_HOME="/var/lib/tomcat7/webapps"
+echo "Stopping tomcat"
+sudo service tomcat7 stop
+echo "Compiling mirador"
+cd Mirador
+grunt
+echo "Copying files..."
+sudo rm -rf $TOMCAT_HOME/Mirador
+sudo mkdir $TOMCAT_HOME/Mirador
+sudo mkdir $TOMCAT_HOME/Mirador/build
+sudo cp -R build $TOMCAT_HOME/Mirador/
+sudo cp index.html $TOMCAT_HOME/Mirador/
+echo "Starting tomcat"
+sudo service tomcat7 start
+printf "\n"
+
