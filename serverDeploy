@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#deploy
+rm -f web.xml
+echo "<?xml version="1.0" encoding="ISO-8859-1"?>" >> web.xml
+printf "\n" >> web.xml
+echo "<!DOCTYPE web-app
+    PUBLIC \"-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN\"
+    \"http://java.sun.com/j2ee/dtds/web-app_2_2.dtd\">" >> web.xml
+printf "\n" >> web.xml
+echo "<web-app>" >> web.xml
+printf "\n" >> web.xml
+printf "\n" >> web.xml
+echo "        <context-param>" >> web.xml
+echo "                <param-name>ImageServerAddress</param-name>" >> web.xml
+if [ -z "$1" ]; then
+echo "                <param-value>http://132.72.46.235:8080/digilib/Scaler/</param-value>" >> web.xml
+else
+echo "                <param-value>"$1"</param-value>" >> web.xml
+fi
+echo "        </context-param>" >> web.xml
+echo "        <context-param>" >> web.xml
+echo "                <param-name>ImageFolder</param-name>" >> web.xml
+if [ -z "$2" ]; then
+echo "                 <param-value>/images/</param-value>" >> web.xml
+else
+echo "                 <param-value>"$2"</param-value>" >> web.xml
+fi
+echo "         </context-param>" >> web.xml
+echo "        <context-param>" >> web.xml
+echo "                 <param-name>LogPath</param-name>" >> web.xml
+if [ -z "$3" ]; then
+echo "                 <param-value>/Work/Log/PicutreHandler</param-value>" >> web.xml
+else
+echo "                 <param-value>"$3"</param-value>" >> web.xml
+fi
+echo "         </context-param>" >> web.xml
+printf "\n" >> web.xml
+printf "\n" >> web.xml
+echo "    <servlet>" >> web.xml
+echo "     <servlet-name>pictureServer.Global</servlet-name>" >> web.xml
+echo "    <servlet-class>pictureServer.Global</servlet-class>" >> web.xml
+echo "     <load-on-startup>1</load-on-startup>" >> web.xml
+printf "\n" >> web.xml
+echo "    </servlet>" >> web.xml
+printf "\n" >> web.xml
+printf "\n" >> web.xml
+printf "\n" >> web.xml
+echo "</web-app>" >> web.xml
+sudo cp web.xml /var/lib/tomcat7/webapps/PictureHandler/WEB-INF/web.xml
+
+
