@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.imageio.ImageIO;
 
@@ -25,11 +26,9 @@ public class Book implements Comparable<Book>, Comparator<Book> {
     public ArrayList<Version> gVersions; //list of VERSION object
     JSONObject versionsJson;
 
-	JSONObject indexIIIf;
-
 	String gBookId = null;
 	
-	int index = 0;
+	AtomicInteger tempIndex = new AtomicInteger(0);
 	
     String pathOfJsonFolder;
 
@@ -44,10 +43,10 @@ Book(String bookid)
 
 }
 	
-Book(String bookid, boolean restore)
+
+Book(String bookid, boolean restore, boolean addToDatabase)
 	{			
 	
-		indexIIIf = new JSONObject();
 		versionsJson = new JSONObject();
 		gVersions = new ArrayList<Version>();
 		gBookId = bookid;
@@ -68,8 +67,9 @@ Book(String bookid, boolean restore)
 						int found = Collections.binarySearch(gVersions, ver);
 						gVersions.add(-found-1, ver);	//keeping the sorted array
 						
-						  
-						indexIIIf.put("index", index++);
+						JSONObject indexIIIf = new JSONObject();
+
+						indexIIIf.put("index", tempIndex.getAndIncrement());
 						indexIIIf.put("IIIF",  ver.all);
 						versionsJson.put(nameOfVersion,indexIIIf);
 
@@ -94,7 +94,9 @@ Book(String bookid, boolean restore)
 			Version ver = new Version(bookid, Global.defaultUploadFolder, false);
 			
 			try {
-				indexIIIf.put("index", index++);
+				JSONObject indexIIIf = new JSONObject();
+
+				indexIIIf.put("index", tempIndex.getAndIncrement());
 				indexIIIf.put("IIIF",  ver.all);
 				versionsJson.put(Global.defaultUploadFolder, indexIIIf);
 				
@@ -106,7 +108,8 @@ Book(String bookid, boolean restore)
 			}
 			gVersions.add(ver);
 
-			ver.addToSql();
+			if (addToDatabase)
+				ver.addToSql();
 
 		}
 		
@@ -161,14 +164,43 @@ public String toString() {
 			Version newVersion = new Version(gBookId, idVersion, false);
 			gVersions.add(-found-1, newVersion);	//keeping the  array sorted
 
-			Global.mainLogger.info("creating version: version/book: " + idVersion + "/" + gBookId);
-		
+			Global.mainLogger.info("creating version: Book/Version: "  +  gBookId + "/" + idVersion);
+			
+			
+			try {
+				JSONObject indexIIIf = new JSONObject();
+
+				indexIIIf.put("index", tempIndex.getAndIncrement());
+				indexIIIf.put("IIIF",  newVersion.all);
+				versionsJson.put(idVersion , indexIIIf);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			return newVersion ;
 		}
 		
 		else
 			return gVersions.get(found);
 		
+
+	
+	}
+	
+
+	//get the version from book, if not exists, create one.
+	public Version getNewVersion(String idVersion)
+	{
+		Version search = new Version(idVersion);
+		int found = Collections.binarySearch(gVersions, search);
+		if (found > 0)
+		{
+			gVersions.remove(found);
+		
+		}
+		
+		return getVersion(idVersion);
 
 	
 	}

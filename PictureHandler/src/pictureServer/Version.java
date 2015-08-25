@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.fileupload.FileItem;
 import org.json.JSONArray;
@@ -22,6 +23,11 @@ public class Version implements Comparable<Version>, Comparator<Version> {
 
 	JSONArray fCanvas;
 
+	//only use by the invoker temp book.
+	String iiifPathOfBaseImage; 
+	JSONArray gTempInvokesCommendArray;
+	AtomicInteger currentIndex = new AtomicInteger(0);
+	
 	
 	Version(String versionId)
 	{
@@ -32,6 +38,7 @@ public class Version implements Comparable<Version>, Comparator<Version> {
 	Version(String bookId, String versionId,  boolean restore)
 	{			
 
+		gTempInvokesCommendArray = new JSONArray();
 		fCanvas = new JSONArray();
 		all = new JSONObject();
 
@@ -154,21 +161,22 @@ public synchronized void createPage(FileItem fileUpdate, String fileName) throws
 		
 	}
 
-//creating the file and page, assuming the page not exists
-// file name are in format /temp/ver/$NAME_OF_FILE$ already
-public synchronized void createPageToTemp(String fileName) throws Exception {
+/*
+ * fileName: string array. 	first element: real path of the page.
+ * 							second element: iiif path (BOOK/VERSION/PAGE)
+ */
+public synchronized void createPageToTemp(String[] pathFile) throws Exception {
 	
 	
-	File p = new File(Global.filePath + Global.sep + fileName);
+	File p = new File(pathFile[0]);
 	
-	Page search = new Page( gVersionId, fileName);
+	Page search = new Page( pathFile[1]);
 
 	int found = Collections.binarySearch(gPages, search);
 	gPages.add(-found-1, search);	//keeping the sorted array
 	
-	search.createJsonForTemp(p, search.PageName);
+	search.createJsonForTemp(p, pathFile[1]);
 	fCanvas.put(search.json);
-	
 	
 }
 

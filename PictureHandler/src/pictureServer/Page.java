@@ -35,15 +35,14 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 		pathOfFile = Global.filePath + Global.sep + nameOfBook + Global.sep + versionId + Global.sep + PageName;
 	}
 	
-	//for temp invoke
-	Page(String versionId, String pathOfFile)
+	//pathOfFile iiif format
+	Page(String pathOfFile)
 	{
 		String[] fields = pathOfFile.split("/");
-		String page 	= fields[2];
 		
-		PageName = page;
-		nameOfBook = Global.tempBookStr;
-		nameOfVersion = versionId;
+		PageName = fields[2];
+		nameOfBook = fields[0];
+		nameOfVersion = fields[1];
 		pathOfFile = Global.filePath + Global.sep +  pathOfFile;
 	}
 	
@@ -101,12 +100,12 @@ public class Page implements Comparable<Page>, Comparator<Page>{
 
 
 
-	public void createJsonForTemp(File p, String fileName) throws JSONException, IOException {
-		Global.mainLogger.info("adding page: " + fileName + " in version/book: " + nameOfVersion + "//" + nameOfBook);
+	public void createJsonForTemp(File p, String iiifPath) throws JSONException, IOException {
+		Global.mainLogger.info("adding page: " + iiifPath + " in version/book: " + nameOfVersion + "//" + nameOfBook);
 
 		String spec = "full/full/0/default.jpg";
-		String idRes = Global.ImageServerAddress  + fileName + "/full/full/0/default.jpg";
-		String idSer = Global.ImageServerAddress  + fileName;
+		String idRes = Global.ImageServerAddress  + iiifPath + "/full/full/0/default.jpg";
+		String idSer = Global.ImageServerAddress  + iiifPath;
 		String typeImage = "dctypes:Image";
 		String typeCanvas = "sc:Canvas";
 		String label = "Default label";

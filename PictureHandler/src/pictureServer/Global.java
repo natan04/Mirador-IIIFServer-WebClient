@@ -23,26 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
@@ -62,9 +42,10 @@ public class Global extends HttpServlet {
 	public static boolean convertToTiff = false; 
 	public static Logger mainLogger = Logger.getLogger("com.appinf");
     public static String ExePath;
-    public static String tempBookStr = "&temp&";
     public static Book	InvokerPreviewBook;	//each session is a version.
-    public static String tempPath;    
+    public static String tempFolderPath;    
+    public static String tempFolderName = "temp";    
+    public static String tempBookStr = tempFolderName;
     public static AtomicInteger tempIndex = new AtomicInteger(0);
 	
 	//Codes:
@@ -117,7 +98,7 @@ public static Book getBook(String id)
 	int found = Collections.binarySearch(gBooks, search);
 	if (found < 0)
 	{			
-		Book newBook = new Book(id, false);
+		Book newBook = new Book(id, false, true);
 
 		bookArrayInfo.put(id);
         //file.getParentFile().mkdirs();
@@ -144,7 +125,7 @@ public void init() throws ServletException
    logPath =  context.getInitParameter("LogPath");
    mainLogger.info("Starting picture server");
    ExePath = context.getInitParameter("ExePath");
-   tempPath = filePath + sep + "temp";
+   tempFolderPath = filePath + sep + "temp";
 	/*****************Log initlize**************/
 	try {
 		Handler fileHandler = new FileHandler(logPath,true);
@@ -164,10 +145,28 @@ public void init() throws ServletException
 	
 	databaseInit();
 	
-	InvokerPreviewBook = new Book(tempBookStr, false);
+	InvokerPreviewBook = new Book(tempBookStr, false, false);
 	
-	Preview.startEditMode("base", "lalala");
-
+	JSONObject s = new JSONObject();
+	try {
+		s.put("type", "edit");
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	Invoker.HandleInvoke("{\"type\": \"preview\","
+			+ " \"invokes\": {\"0\": {\"Function\": \"Binarizer\",\"Class\": \"Threshold\",\"Parameters\": [ {\"name\": \"level\",\"value\": \"20\"}, {\"name\": \"reverse\",\"value\": \"True\" }]}  },"
+    + " \"images\": [\"jjj/default/20150419_225219.jpg\"] ,"
+    + "\"index\": 2}"
+    , "SESS_ID");
+	
+	
+	System.out.println(InvokerPreviewBook);
+	Version ver = InvokerPreviewBook.getVersion("SESS_ID");
+	System.out.println(ver.gTempInvokesCommendArray);
+	Preview.removeFromVersion(ver, 0, "SESS_ID");
+	System.out.println(ver.gTempInvokesCommendArray);
+	System.out.println(InvokerPreviewBook);
 	
 }
 
@@ -279,7 +278,7 @@ private void recoverPictureHandler()
 			      while ( rs.next() )
 			      {
 			    	  String nameOfBook = rs.getString("name");
-			    	  Book search = new Book(nameOfBook, true);
+			    	  Book search = new Book(nameOfBook, true, false);
 			          //file.getParentFile().mkdirs();
 			          
 			  	

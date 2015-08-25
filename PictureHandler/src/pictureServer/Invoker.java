@@ -1,10 +1,14 @@
 package pictureServer;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +34,6 @@ public class Invoker extends HttpServlet {
 
 		Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion("11111");
 
-		versionOfCurrentSession.createPageToTemp(pathToNewFile);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -46,10 +49,17 @@ public class Invoker extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Methods", "GET, POST");
 		response.addHeader("Access-Control-Allow-Headers ", "Content-Type, *");
 		BufferedReader read = request.getReader();
+		
+		String line = read.readLine();
 		String sessionId = session.getId();
+		HandleInvoke(line, sessionId);
+		
+	}
+
+	public static void HandleInvoke(String line, String sessionId) {
 		try {
 		
-			JSONObject Json = new JSONObject(read.readLine());
+			JSONObject Json = new JSONObject(line);
 
 			String typeStr 			= Json.get("type").toString();
 		
@@ -74,9 +84,13 @@ public class Invoker extends HttpServlet {
 				
 			if (typeStr.equals("preview"))
 			{
-				String pathToNewFile = (previewInvoke(invokeCmmnd, images));
+
+				int currentIndex	=  Json.getInt("index");	//index of current photo. usefull for backtracking changes
 				Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion(sessionId);
-				versionOfCurrentSession.createPageToTemp(pathToNewFile);
+				Preview.removeFromVersion(versionOfCurrentSession, currentIndex, sessionId);
+				versionOfCurrentSession.gTempInvokesCommendArray.put(invokeCmmnd);
+				String[] iiifAndPath = (previewInvoke(invokeCmmnd, images, sessionId));
+				versionOfCurrentSession.createPageToTemp(iiifAndPath);
 			
 			} 
 					
@@ -85,7 +99,6 @@ public class Invoker extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	
@@ -93,13 +106,11 @@ public class Invoker extends HttpServlet {
 	
 	/*
 	 * 
-	 * TODO:
-	 * add version id to to invoke and check the result of both iiif and real path of image.
-	 * 
+	 * Images array in the format "BOOK/VERSION/PAGE.jpg" NOTICE: WITHOUT SLASH IN THE BEGININNG
 	 */
 	//preview take only one image.
 	//return base address of the new picture.
-	private String previewInvoke(JSONObject invokeCmmnd, JSONArray images) throws JSONException {
+	private static String[] previewInvoke(JSONObject invokeCmmnd, JSONArray images, String sessionId) throws JSONException {
 		
 		String image = (String) images.get(0);
 		String newImagePath = null;
@@ -115,13 +126,13 @@ public class Invoker extends HttpServlet {
 		for (int i = 0; i < invokeCmmnd.length(); i++)
 		{
 			int newIndex = Global.tempIndex.getAndIncrement();
-			newImagePath = Global.tempPath + Global.sep + version + Global.sep + newIndex  + ".jpg";
-			toReturnedIIIF =  Global.filePath + Global.tempBookStr +"/" + version + "/" + newIndex + ".jpg";
+			newImagePath 	=	Global.tempFolderPath + Global.sep + sessionId + Global.sep + newIndex  + ".jpg";
+			toReturnedIIIF 	=   Global.tempFolderName +"/" + sessionId + "/" + newIndex + ".jpg";
 			
 			JSONObject singleInvoke = (JSONObject) (invokeCmmnd.getJSONObject("" + i));
 			singleInvoke.put("input", oldImage);
 			singleInvoke.put("output", newImagePath);			
-			singleInvoke(singleInvoke);
+			singleInvokeGateFunction(singleInvoke);
 			oldImage = newImagePath;		//chain: new->old
 			
 		}
@@ -130,9 +141,33 @@ public class Invoker extends HttpServlet {
 		return willReturn;
 	}
 
-	private void singleInvoke(JSONObject singleInvoke) {
+	
+	private static void singleInvokeGateFunction(JSONObject singleInvoke) {
 		
-		//System.out.println(singleInvoke.toString());
+		try {
+	
+			BufferedImage imgInput = ImageIO.read(new File(singleInvoke.get("input").toString()));
+			BufferedImage imageOutput = new BufferedImage(imgInput.getWidth(), imgInput.getHeight(),  
+				    BufferedImage.TYPE_BYTE_GRAY);  
+			Graphics g = imageOutput.getGraphics();  
+			g.drawImage(imgInput,0, 0, null);
+			g.dispose();  
+			
+			File outputfile = new File(singleInvoke.get("output").toString());
+			outputfile.mkdirs();
+			ImageIO.write(imageOutput, "jpg", outputfile);
+
+			return ;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
+	
 
 }
