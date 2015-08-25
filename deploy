@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #deploy
-
 echo  "What to Deploy? "
 echo "INSTALL MIRADOR? 				[YES]"
 read -n1  character
@@ -37,10 +36,21 @@ printf "\n"
 echo "Image Server Address:"
 fi
 if [ $character3 = "2" ]; then
+FOLDER_PATH=`cat initFolder`
 printf "\n"
-echo "Image Folder"
-sed 
+printf "Image Folder                            " 
+echo $FOLDER_PATH 
+printf "Change Image Folder? Y or N"
+printf "\n"
+read character4
+if [ $character4 = "y" ]; then
+read character5
+sudo sed -i 's/<param-value>\'$FOLDER_PATH'\/.*<\/param-value>/<param-value>\'$character5'\/<\/param-value>/g' /var/lib/tomcat7/webapps/PictureHandler/WEB-INF/web.xml
+echo $character5 > initFolder
 fi
 fi
-printf "\n"
+fi
+
+
+
 
