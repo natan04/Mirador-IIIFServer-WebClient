@@ -1,8 +1,0 @@
-#!/bin/bash
-
-#newdeploy
-SERVER_PATH=`cat serverAddress`
-printf "\n"    
-echo $SERVER_PATH
-sudo sed -i '/<param-value>http:\/\//c\<param-value>'$1'<\/param-value>' /var/lib/tomcat7/webapps/PictureHandler/WEB-INF/web.xml
-echo $1 > serverAddress 
