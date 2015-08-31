@@ -16,9 +16,10 @@
 
  */
 
-
   // DONE: Manifest class: add versions array + array/object checking.
   // DONE: Convert versions array to {vernum: , title: , manifest: } object
+  // DONE: Manifest clone with single image (for edit mode)
+
   // TODO: Manifest class: add versions traverse functions. + indexing
 
   $.Manifest = function(manifestUri, location) {
@@ -33,17 +34,25 @@
       request: null 
     });
 
-    this.init(manifestUri);
+    if (manifestUri){
+        this.init(manifestUri);
+    }
   };
 
   $.Manifest.prototype = {
     init: function(manifestUri) {
       var _this = this;
-      this.request = jQuery.ajax({
-        url: manifestUri,
-        dataType: 'json',
-        async: true
-      });
+      var ajaxObj = {
+          url: manifestUri,
+          dataType: 'json',
+          async: true,
+        };
+        //TODO: REMOVE xhrFields for production
+      if (manifestUri.indexOf('PictureHandler') > -1) {
+          ajaxObj.xhrFields = { withCredentials: true};
+      }
+
+      this.request = jQuery.ajax(ajaxObj);
 
       this.request.done(function(jsonLd) {
         console.log("Manifest Loader: DONE fetching url "+manifestUri+".");
@@ -158,7 +167,47 @@
     getStructures: function() {
       var _this = this;
       return _this.jsonLd.structures;
+    },
+
+    cloneWithSingleByIndex: function(canvasIdx) {
+        var canvasId = this.getCanvases()[canvasIdx];
+        return this.cloneWithSingleById(canvasId);
+    },
+    getCanvasById: function(canvasId) {
+        var _this = this;
+        var canvas = jQuery.grep(_this.getCanvases(), function(canvas, index) {
+          return canvas['@id'] === canvasId;
+        })[0];
+        return canvas;
+    },
+
+    cloneWithSingleById: function(canvasId) {
+        var _this = this;
+        var newManifest = new $.Manifest('','');
+
+        canvas = this.getCanvasById(canvasId);
+
+        // Deep copy given canvas
+        canvasCopy = jQuery.extend(true, {}, canvas);
+
+        // Deep copy manifest json
+        newManifest.jsonLd = jQuery.extend(true, {}, _this.jsonLd);
+        
+        // Erase canvases and add only the given canvas
+        newManifest.jsonLd.sequences[0].canvases = [];
+        newManifest.jsonLd.sequences[0].canvases.push(canvasCopy);
+
+        newManifest.versions = {'default': {'index':0, 'IIIF': jsonLd }};
+        newManifest.currentVersionTitle = 'default';
+        
+        return newManifest;
     }
+
+
+
+
+
+
   };
 
 }(Mirador));

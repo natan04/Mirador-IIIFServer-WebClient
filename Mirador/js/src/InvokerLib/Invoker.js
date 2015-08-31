@@ -5,11 +5,37 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 // DONE: Added simple dummy requests functions
 
 
+
+/*
+	ENTER INTO EDIT MODE (HANDSHAKE):
+		1.User selects canvas(image) & clicks "EDIT"
+		2.Mirador sends "Edit Handshake" to Invoker:
+					{
+						type: 'edit',
+						images: [<image_canvas_id> - for example: "aaa/default/blabla.jpg"]
+					}
+
+		3.Invoker sends special "edit mode" manifest for specific images
+	
+		4.Mirador presents "edit mode" manifest on new imageView window
+
+	FOR EVERY FUNCTION INVOKE(INSIDE EDITOR IMAGEVIEW):
+		1.User selects function/class/parameters
+		2.Mirador sends regular invokeRequest to invoker:
+				previewKey - index of current selected image (from thumbnails array)
+				baseImage - Original image id
+		3.Invoker sends back new "edit mode" manifest	
+
+ */
+
+
+
+
 /* ------------------------------------------------------ */
 /*  			Models									  */
 /* ------------------------------------------------------ */
 
-(function($) {
+(function($,ServiceManager) {
 
 
 	$.Parameter = function(name, type, description) {
@@ -45,10 +71,15 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
-	$.InvokeRequest = function(req_type, invokes, images_ids) {
-		this.type = req_type || "preview";
-		this.invokes = invokes || {};
-		this.images = images_ids || [];
+	$.InvokeRequest = function(options) {
+		jQuery.extend(true, this, {
+			type: 'preview',
+			invokes: {},
+			images: [],
+			baseImage: '',
+			previewKey: 0
+		},options);
+
 	};
 
 	$.InvokeRequest.prototype = {
@@ -75,65 +106,95 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 
 
-(function($) {
+(function($,ServiceManager) {
 
 
 
-	$.createDummy = function() {
-		res = {
-			type: "preview",
-			invokes: {},
-			images: []
-		};
+	$.createDummy = function(r_type) {
+		var req = new $.Models.InvokeRequest({type: r_type});
+		
+		var inv = $.Models.Invoke('Binarizer','Threshold');
+		inv.parameters.push({name:"level", value:"20"});
+		inv.parameters.push({name:"reverse", value:"true"});
+		req.addInvoke(inv);
 
-		res.invokes["0"] = {
-			Function: "Binarizer",
-			Class: "Threshold",
-			Parameters: []
-		};
-		res.invokes["0"].Parameters.push({
-			name: "level",
-			value: "20"
-		});
-		res.invokes["0"].Parameters.push({
-			name: "reverse",
-			value: "true"
-		});
+		inv = $.Models.Invoke('Ahalanizer','Blabla');
+		inv.parameters.push({name:"ppp", value:"127"});
+		inv.parameters.push({name:"aaa", value:"23.5"});
+		req.addInvoke(inv);
 
-		res.images.push('achbar/default/11655127_10153432370269337_1461771407_n.jpg');
 
-		return res;
+		req.baseImage= 'achbar/default/11655127_10153432370269337_1461771407_n.jpg';
+
+
+		return req;
 
 	};
 
-	$.sendDummy = function(url, sendWhat) {
-		if (!url) {
-			url = 'http://132.72.46.235:8080/PictureHandler/Invoker';
-		}
+	$.sendDummy = function(url, sendWhat,r_type) {
 
 		if (!sendWhat) {
-			sendWhat = JSON.stringify($.createDummy());
+			sendWhat = $.createDummy(r_type);
 		}
 
 		console.log('Invoker: dummy request initiated - url: ' + url);
-		jQuery.ajax({
-			type: "POST",
-			url: url,
-			data: sendWhat,
-			dataType: "text",
-
-			success: function(data, status) {
+		
+		ServiceManager.services.invoker.sendRequest(sendWhat, function(json,status){
 				console.log('Invoker: dummy request success - status ' + status + ', data:');
-				console.log(data);
-			},
+		 		console.log(JSON.stringify(json));
+		},function(jqXHR,status,error){
+			  console.log('Invoker: dummy request FAILED - status ' + status + ', error ' + error);
 
-			error: function(jqXHR, status, error) {
-				console.log('Invoker: dummy request FAILED - status ' + status + ', error ' + error);
-			}
 		});
+
 
 	};
 
 
+	$.InvokerService = function(options) {
+		jQuery.extend(true, this,
+		{
+			baseUrl: 'http://localhost:5000',
+			servicePath: 'PictureHandler/Invoker',
+			ajaxOpts: {type: "POST", dataType: "json", xhrFields: {withCredentials: true} }
+		},options);
 
-})(window.InvokerLib);
+	};
+
+	$.InvokerService.prototype = {
+
+		sendRequest: function(invokeReq,successCallback, failCallback,url){
+			var ajaxObj = jQuery.extend(true, {
+									success: successCallback,
+									error: failCallback,
+									url: url || (this.baseUrl + '/' + this.servicePath),
+									data: JSON.stringify(invokeReq),
+									timeout: 3000,
+								},this.ajaxOpts);
+
+			jQuery.ajax(ajaxObj);
+		},
+
+		doList: function() {},
+		doHandshake: function(manifest, canvasId) {
+			var baseImage = window.Mirador.Iiif.getImageId(manifest.getCanvasById(canvasId));
+			
+			var req = new $.Models.InvokeRequest({type: 'edit', images: [baseImage] });
+			
+			console.log('Invoker: Initiating Edit Handshake for ' + baseImage);
+			this.sendRequest(req, function(json){
+				jQuery.publish('Invoker.Handshake.Success', json);
+				console.log('Invoker Handshake: success! response:' + JSON.stringify(json) );
+			}, function(){
+				jQuery.publish('Invoker.Handshake.Fail');
+				console.log('Invoker Handshake ERROR!');
+			});
+
+		},
+		doInvoke: function() {}
+	};
+
+
+
+
+})(window.InvokerLib,window.Mirador.ServiceManager);

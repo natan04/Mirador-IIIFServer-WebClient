@@ -134,6 +134,9 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 				crossDomain: true,
 				dataType: 'json',
 				enctype:'multipart/form-data',
+				xhrFields: {
+				      withCredentials: true
+				},
 				success: function(data,stat) {
 					console.log('ajax upload done: '+data);
 					if (data[0] === '0') {
@@ -227,7 +230,16 @@ $.DynamicCombo.prototype = {
 	},
 	fetchData: function() {
 		var _this = this;
-		jQuery.getJSON(this.urlToFetch).done(function(data){
+
+		var ajaxObj = {
+			dataType: 'json',
+			url: this.urlToFetch,
+			xhrFields: {
+			      withCredentials: true
+			   }
+		};
+
+		jQuery.ajax(ajaxObj).done(function(data){
 			console.log("DynCombo --> fetched data: " + data);
 
 			_this.clearAll();
