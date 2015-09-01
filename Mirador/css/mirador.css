@@ -1716,3 +1716,9 @@ div.loader-overlay {
 div.loader-overlay .loader-icon {
     width:300px;
 }
+
+.editor-win {
+    position: fixed;
+    z-index: 10;
+    border: 5px ridge rgb(169, 169, 169);
+}

@@ -163,7 +163,7 @@
 
       this.bindEvents();
 
-      if (this.imagesList.length === 1) {
+      if (this.imagesList.length === 1 && !_this.editMode) {
         this.bottomPanelVisibility(false);      
       }
     },
@@ -631,22 +631,6 @@
       }
     },
 
-    showLoaderOverlay: function(msg) {
-      overlayElement = this.element.find('.loader-overlay');
-      overlayElement.find('.msg h2').html(msg);
-      overlayElement.fadeIn(200);
-    },
-
-    addLoaderOverlayMessage: function(msg) {
-      this.element.find('.loader-overlay .msg h2').html(msg);
-    },
-
-
-    hideLoaderOverlay: function() {
-      this.element.find('.loader-overlay').fadeOut(200);
-    },
-
-
 
     // based on currentFocus
     bindNavigation: function() {
@@ -686,48 +670,12 @@
 
     this.element.find('.edit-mode-option').on('click', function() {
 
+        if (_this.editMode) {
+            alert('Already in edit mode');
+            return 0;
+        }
 
-      if (_this.editMode) {
-        alert('Already in edit mode');
-        return 0;
-      }
-
-      console.log('Window: entering edit mode for canvasID ' + _this.currentCanvasID);
-
-      jQuery.subscribe('Invoker.Handshake.Success', function(json) {
-        console.log('Window: successfully received edit mode manifest. entering new window');
-        var maniest = new $.Manifest();
-        manifest.jsonLd = json;
-
-        _this.hideLoaderOverlay();
-
-        var windowConfig = {
-          manifest: _this.manifest,
-          currentCanvasID: _this.currentCanvasID,
-          currentFocus: 'ThumbnailsView',
-          editMode: true
-        };
-
-
-        $.viewer.workspace.addWindow(windowConfig);
-
-        jQuery.unsubscribe('Invoker.Handshake.Success');
-
-      });
-
-      jQuery.subscribe('Invoker.Handshake.Fail', function() {
-        _this.addLoaderOverlayMessage('<span style="color: red;">Request failed!</span>');
-
-        setTimeout(function() { 
-            _this.hideLoaderOverlay();
-        }, 
-        1000);
-      });
-
-      _this.showLoaderOverlay('Sending edit request to server...');
-
-      $.ServiceManager.services.invoker.doHandshake(_this.manifest, _this.currentCanvasID);
-
+        _this.enterEditMode();
     });
 
     this.element.find('.mirador-icon-metadata-view').on('click', function() {
@@ -763,13 +711,21 @@
     });
     },
 
+    enterEditMode: function() {
+
+        var _this = this;
+
+        _this.editor = new $.Edidor({
+              parent: _this, 
+              appendTo: _this.element,
+              canvasId: _this.currentCanvasID,
+        }); 
+
+    },
+
     // template should be based on workspace type
     template: Handlebars.compile([
                                  '<div class="window">',
-                                 '<div class="loader-overlay">',
-                                    '<img class="loader-icon" src="images/ajax-loader.gif"></img>',
-                                    '<span class="msg"><h2></h2></span>',
-                                 '</div>',
                                  '<div class="manifest-info">',
                                  '<div class="window-manifest-navigation">',
                                  '<a href="javascript:;" class="mirador-btn mirador-icon-edit-mode edit-mode-option"><i class="fa fa-pencil fa-lg fa-fw"></i>',

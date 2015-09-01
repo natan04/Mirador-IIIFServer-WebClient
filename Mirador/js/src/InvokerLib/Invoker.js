@@ -156,7 +156,8 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		{
 			baseUrl: 'http://localhost:5000',
 			servicePath: 'PictureHandler/Invoker',
-			ajaxOpts: {type: "POST", dataType: "json", xhrFields: {withCredentials: true} }
+			ajaxOpts: {type: "POST", dataType: "json", xhrFields: {withCredentials: true} },
+			timeout: 10000
 		},options);
 
 	};
@@ -169,7 +170,7 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 									error: failCallback,
 									url: url || (this.baseUrl + '/' + this.servicePath),
 									data: JSON.stringify(invokeReq),
-									timeout: 3000,
+									timeout: this.timeout,
 								},this.ajaxOpts);
 
 			jQuery.ajax(ajaxObj);
@@ -185,9 +186,9 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			this.sendRequest(req, function(json){
 				jQuery.publish('Invoker.Handshake.Success', json);
 				console.log('Invoker Handshake: success! response:' + JSON.stringify(json) );
-			}, function(){
-				jQuery.publish('Invoker.Handshake.Fail');
-				console.log('Invoker Handshake ERROR!');
+			}, function(jqXHR, err, exp){
+				jQuery.publish('Invoker.Handshake.Fail', err);
+				console.log('Invoker Handshake ERROR! (' + err +')');
 			});
 
 		},
