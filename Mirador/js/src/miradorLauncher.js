@@ -19,8 +19,17 @@ window.Mirador = window.Mirador || {};
 			
 			console.log('Mirador Launcher: getting book names from server: ' + url);
 			
+			var ajaxObj = {
+				dataType: 'json',
+				url: url,
+				timeout: 1000,
+				xhrFields: {
+				      withCredentials: true
+				   }
+			};
+
 			// Request book names from PictureHandler
-			jQuery.getJSON(url)
+			jQuery.ajax(ajaxObj)
 			.done(function(response) {
 				manifestsURLs = $.parseAndAddManifestsURIs(response);
 				Array.prototype.push.apply(manifestsURLs, customData); // Chaining custom data array with fetched books
@@ -71,6 +80,10 @@ window.Mirador = window.Mirador || {};
 			jQuery.each(configJson.services, function(idx, serviceJson) {
 				console.log("Mirador Launcher config: adding service - " + serviceJson.name);
 				$.ServiceManager.addServiceFromJson(serviceJson);
+				
+				if (serviceJson.name == "InvokerService") {
+					$.ServiceManager.services.invoker = new window.InvokerLib.InvokerService(serviceJson);
+				}
 			});
 
 	};

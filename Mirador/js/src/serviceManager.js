@@ -5,6 +5,14 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 // DONE: Service Manager - Move initial config to somewhere else(in mirador-config.json)
 (function($){
 
+	$.Service = function(options) {
+		jQuery.extend(true, this, {
+			name: '',
+			baseUrl: 'http://localhost:5000',
+		},options);
+	};
+
+
 	$.Service = function(name,baseUrl,cmds) {
 		this.name = name;
 		this.baseUrl = baseUrl;
@@ -31,6 +39,11 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 	};
 
 	$.services = {};
+
+
+	$.ServicePictureHandler = function() {
+		return 0;
+	};
 
 
 	// Initial config for manifest service

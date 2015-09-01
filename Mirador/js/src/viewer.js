@@ -70,6 +70,12 @@
       .addClass('mirador-viewer')
       .appendTo(this.element);
 
+      // add overlay for loading progress/messages
+        this.canvas.html(['<div class="loader-overlay">',
+                              '<img class="loader-icon" src="images/ajax-loader.gif"></img>',
+                              '<span class="msg"><h2></h2></span>',
+                          '</div>'].join(''));
+
       if (!showMainMenu) {
         this.canvas.css("top", "0px");
       }
@@ -175,6 +181,23 @@
     toggleUploadForm: function() {
       this.toggleOverlay('uploadFormVisible');
     },
+
+    showLoaderOverlay: function(msg) {
+      overlayElement = this.canvas.find('.loader-overlay');
+      overlayElement.find('.msg h2').html(msg);
+      overlayElement.fadeIn(200);
+    },
+
+    addLoaderOverlayMessage: function(msg) {
+      this.canvas.find('.loader-overlay .msg h2').html(msg);
+    },
+
+
+    hideLoaderOverlay: function() {
+      this.canvas.find('.loader-overlay').fadeOut(200);
+    },
+
+
 
     getManifestsData: function() {
       var _this = this;

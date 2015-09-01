@@ -5,12 +5,40 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 // DONE: Added simple dummy requests functions
 
 
+
+/*
+	FUNCTIONS LIST:
+		Available at /Invoker service HTTP GET request
+
+	ENTER INTO EDIT MODE (HANDSHAKE):
+		1.User selects canvas(image) & clicks "EDIT"
+		2.Mirador sends "Edit Handshake" to Invoker:
+					{
+						type: 'edit',
+						images: [<image_canvas_id> - for example: "aaa/default/blabla.jpg"]
+					}
+
+		3.Invoker sends special "edit mode" manifest for specific images
+	
+		4.Mirador presents "edit mode" manifest on new imageView window
+
+	FOR EVERY FUNCTION INVOKE(INSIDE EDITOR IMAGEVIEW):
+		1.User selects function/class/parameters
+		2.Mirador sends regular invokeRequest to invoker:
+				previewKey - index of current selected image (from thumbnails array)
+				baseImage - Original image id
+		3.Invoker sends back new "edit mode" manifest	
+
+ */
+
+
+
+
 /* ------------------------------------------------------ */
 /*  			Models									  */
 /* ------------------------------------------------------ */
 
-(function($) {
-
+(function($,ServiceManager) {
 
 	$.Parameter = function(name, type, description) {
 		return {
@@ -37,6 +65,10 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
+	/*
+		
+	 */
+
 	$.Invoke = function(func_name, class_name, parameters){
 		return {
 			function: func_name,
@@ -45,10 +77,15 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
-	$.InvokeRequest = function(req_type, invokes, images_ids) {
-		this.type = req_type || "preview";
-		this.invokes = invokes || {};
-		this.images = images_ids || [];
+	$.InvokeRequest = function(options) {
+		jQuery.extend(true, this, {
+			type: 'preview',
+			invokes: {},
+			images: [],
+			baseImage: '',
+			previewKey: 0
+		},options);
+
 	};
 
 	$.InvokeRequest.prototype = {
@@ -75,65 +112,117 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 
 
-(function($) {
+(function($,ServiceManager) {
+
+	$.createDummy = function(r_type) {
+		var req = new $.Models.InvokeRequest({type: r_type});
+		
+		var inv = $.Models.Invoke('Binarizer','Threshold');
+		inv.parameters.push({name:"level", value:"20"});
+		inv.parameters.push({name:"reverse", value:"true"});
+		req.addInvoke(inv);
+
+		inv = $.Models.Invoke('Ahalanizer','Blabla');
+		inv.parameters.push({name:"ppp", value:"127"});
+		inv.parameters.push({name:"aaa", value:"23.5"});
+		req.addInvoke(inv);
 
 
+		req.baseImage= 'achbar/default/11655127_10153432370269337_1461771407_n.jpg';
 
-	$.createDummy = function() {
-		res = {
-			type: "preview",
-			invokes: {},
-			images: []
-		};
 
-		res.invokes["0"] = {
-			Function: "Binarizer",
-			Class: "Threshold",
-			Parameters: []
-		};
-		res.invokes["0"].Parameters.push({
-			name: "level",
-			value: "20"
-		});
-		res.invokes["0"].Parameters.push({
-			name: "reverse",
-			value: "true"
-		});
-
-		res.images.push('achbar/default/11655127_10153432370269337_1461771407_n.jpg');
-
-		return res;
+		return req;
 
 	};
 
-	$.sendDummy = function(url, sendWhat) {
-		if (!url) {
-			url = 'http://132.72.46.235:8080/PictureHandler/Invoker';
-		}
+	$.sendDummy = function(url, sendWhat,r_type) {
 
 		if (!sendWhat) {
-			sendWhat = JSON.stringify($.createDummy());
+			sendWhat = $.createDummy(r_type);
 		}
 
 		console.log('Invoker: dummy request initiated - url: ' + url);
-		jQuery.ajax({
-			type: "POST",
-			url: url,
-			data: sendWhat,
-			dataType: "text",
-
-			success: function(data, status) {
+		
+		ServiceManager.services.invoker.sendRequest(sendWhat, function(json,status){
 				console.log('Invoker: dummy request success - status ' + status + ', data:');
-				console.log(data);
-			},
+		 		console.log(JSON.stringify(json));
+		},function(jqXHR,status,error){
+			  console.log('Invoker: dummy request FAILED - status ' + status + ', error ' + error);
 
-			error: function(jqXHR, status, error) {
-				console.log('Invoker: dummy request FAILED - status ' + status + ', error ' + error);
-			}
 		});
 
+
+	};
+
+	$.InvokerService = function(options) {
+		jQuery.extend(true, this,
+		{
+			baseUrl: 'http://localhost:5000',
+			servicePath: 'PictureHandler/Invoker',
+			ajaxOpts: {type: "POST", dataType: "json", xhrFields: {withCredentials: true} },
+			timeout: 10000
+		},options);
+
+	};
+
+	$.InvokerService.prototype = {
+
+		sendRequest: function(invokeReq,successCallback, failCallback,url, methodType, customAjax){
+			var dataToSend = null;
+
+			if (invokeReq) {
+				dataToSend = JSON.stringify(invokeReq);
+			}
+
+			var ajaxObj = jQuery.extend(true, {
+									success: successCallback,
+									error: failCallback,
+									url: url || (this.baseUrl + '/' + this.servicePath),
+									data: dataToSend,
+									timeout: this.timeout,
+								},this.ajaxOpts, customAjax || {});
+
+			if (methodType) {
+				ajaxObj.type = methodType;
+			}
+
+			jQuery.ajax(ajaxObj);
+		},
+
+		doList: function() {
+			console.log('Invoker: Fetching functions list');
+
+			this.sendRequest('', function(json){
+				console.log('Invoker: Functions list receive SUCCESS, response: ');
+				console.log(JSON.stringify(json));
+				
+				jQuery.publish('Invoker.List.Success', json);
+
+			}, function(jq, err, exp){
+				console.log('Invoker: Functions list receive FAILED. err: ' + err);
+				jQuery.publish('Invoker.List.Fail', err);
+			}, '', 'GET', {xhrFields: {withCredentials: false } } );
+
+		},
+		doHandshake: function(manifest, canvasId) {
+			var baseImage = window.Mirador.Iiif.getImageId(manifest.getCanvasById(canvasId));
+			
+			var req = new $.Models.InvokeRequest({type: 'edit', images: [baseImage] });
+			
+			console.log('Invoker: Initiating Edit Handshake for ' + baseImage);
+			this.sendRequest(req, function(json){
+				jQuery.publish('Invoker.Handshake.Success', json);
+				console.log('Invoker Handshake: success! response:' + JSON.stringify(json) );
+			}, function(jqXHR, err, exp){
+				jQuery.publish('Invoker.Handshake.Fail', err);
+				console.log('Invoker Handshake ERROR! (' + err +')');
+			});
+
+		},
+		doInvoke: function() {}
 	};
 
 
 
-})(window.InvokerLib);
+
+})(window.InvokerLib,window.Mirador.ServiceManager);

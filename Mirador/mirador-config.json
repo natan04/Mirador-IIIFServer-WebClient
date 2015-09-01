@@ -2,12 +2,20 @@
   "services": [
     {
       "name": "PictureHandler",
-      "baseUrl": "http://132.72.46.235:8080",
+      "baseUrl": "http://localhost:5000"  ,
       "cmds": {
         "list": "Json?id=all",
         "upload": "Upload",
         "get": "Json?id="
-      }
+      },
+      "timeout": 2000
+    },
+    {
+      "name": "InvokerService",
+      "baseUrl": "http://localhost:5000",
+      "cmds" : {},
+      "timeout": 2000
     }
+
   ]
 }

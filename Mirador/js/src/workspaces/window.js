@@ -4,6 +4,8 @@
 
     jQuery.extend(this, {
       element:           null,
+      editMode:           false, 
+      invokerService:     null, 
       scrollImageRatio:  0.9,
       manifest:          null,
       currentCanvasID:    null,
@@ -161,7 +163,7 @@
 
       this.bindEvents();
 
-      if (this.imagesList.length === 1) {
+      if (this.imagesList.length === 1 && !_this.editMode) {
         this.bottomPanelVisibility(false);      
       }
     },
@@ -629,6 +631,7 @@
       }
     },
 
+
     // based on currentFocus
     bindNavigation: function() {
       var _this = this;
@@ -665,6 +668,16 @@
       _this.toggleThumbnails(_this.currentCanvasID);
     });
 
+    this.element.find('.edit-mode-option').on('click', function() {
+
+        if (_this.editMode) {
+            alert('Already in edit mode');
+            return 0;
+        }
+
+        _this.enterEditMode();
+    });
+
     this.element.find('.mirador-icon-metadata-view').on('click', function() {
       _this.toggleMetadataOverlay(_this.currentFocus);
     });
@@ -698,11 +711,28 @@
     });
     },
 
+    enterEditMode: function() {
+
+        var _this = this;
+
+        if (!_this.editor) {
+
+            _this.editor = new $.Edidor({
+                parent: _this, 
+                appendTo: _this.element,
+                canvasId: _this.currentCanvasID,
+            }); 
+        }
+    },
+
     // template should be based on workspace type
     template: Handlebars.compile([
                                  '<div class="window">',
                                  '<div class="manifest-info">',
                                  '<div class="window-manifest-navigation">',
+                                 '<a href="javascript:;" class="mirador-btn mirador-icon-edit-mode edit-mode-option"><i class="fa fa-pencil fa-lg fa-fw"></i>',
+                                    '<span>EDIT</span>',
+                                 '</a>',
                                  '<a href="javascript:;" class="mirador-btn mirador-icon-image-view"><i class="fa fa-photo fa-lg fa-fw"></i>',
                                  '<ul class="dropdown image-list">',
                                  '{{#if ImageView}}',
