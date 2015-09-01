@@ -196,7 +196,7 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 				console.log('Invoker: Functions list receive SUCCESS, response: ');
 				console.log(JSON.stringify(json));
 				
-				jQuery.publish('Invoker.List.Success', json);
+				jQuery.publish('Invoker.List.Success', {funcList: json});
 
 			}, function(jq, err, exp){
 				console.log('Invoker: Functions list receive FAILED. err: ' + err);

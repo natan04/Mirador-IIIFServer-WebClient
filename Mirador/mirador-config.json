@@ -2,7 +2,7 @@
   "services": [
     {
       "name": "PictureHandler",
-      "baseUrl": "http://localhost:5000"  ,
+      "baseUrl": "http://10.100.102.6:8080"  ,
       "cmds": {
         "list": "Json?id=all",
         "upload": "Upload",
@@ -12,7 +12,7 @@
     },
     {
       "name": "InvokerService",
-      "baseUrl": "http://localhost:5000",
+      "baseUrl": "http://10.100.102.6:8080",
       "cmds" : {},
       "timeout": 2000
     }
