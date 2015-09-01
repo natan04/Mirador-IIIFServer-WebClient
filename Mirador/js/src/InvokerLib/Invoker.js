@@ -7,6 +7,9 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 
 /*
+	FUNCTIONS LIST:
+		Available at /Invoker service HTTP GET request
+
 	ENTER INTO EDIT MODE (HANDSHAKE):
 		1.User selects canvas(image) & clicks "EDIT"
 		2.Mirador sends "Edit Handshake" to Invoker:
@@ -37,7 +40,6 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 (function($,ServiceManager) {
 
-
 	$.Parameter = function(name, type, description) {
 		return {
 			name: name,
@@ -62,6 +64,10 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			classes: classes || []
 		};
 	};
+
+	/*
+		
+	 */
 
 	$.Invoke = function(func_name, class_name, parameters){
 		return {
@@ -108,8 +114,6 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 (function($,ServiceManager) {
 
-
-
 	$.createDummy = function(r_type) {
 		var req = new $.Models.InvokeRequest({type: r_type});
 		
@@ -150,7 +154,6 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 	};
 
-
 	$.InvokerService = function(options) {
 		jQuery.extend(true, this,
 		{
@@ -164,19 +167,43 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 	$.InvokerService.prototype = {
 
-		sendRequest: function(invokeReq,successCallback, failCallback,url){
+		sendRequest: function(invokeReq,successCallback, failCallback,url, methodType, customAjax){
+			var dataToSend = null;
+
+			if (invokeReq) {
+				dataToSend = JSON.stringify(invokeReq);
+			}
+
 			var ajaxObj = jQuery.extend(true, {
 									success: successCallback,
 									error: failCallback,
 									url: url || (this.baseUrl + '/' + this.servicePath),
-									data: JSON.stringify(invokeReq),
+									data: dataToSend,
 									timeout: this.timeout,
-								},this.ajaxOpts);
+								},this.ajaxOpts, customAjax || {});
+
+			if (methodType) {
+				ajaxObj.type = methodType;
+			}
 
 			jQuery.ajax(ajaxObj);
 		},
 
-		doList: function() {},
+		doList: function() {
+			console.log('Invoker: Fetching functions list');
+
+			this.sendRequest('', function(json){
+				console.log('Invoker: Functions list receive SUCCESS, response: ');
+				console.log(JSON.stringify(json));
+				
+				jQuery.publish('Invoker.List.Success', json);
+
+			}, function(jq, err, exp){
+				console.log('Invoker: Functions list receive FAILED. err: ' + err);
+				jQuery.publish('Invoker.List.Fail', err);
+			}, '', 'GET', {xhrFields: {withCredentials: false } } );
+
+		},
 		doHandshake: function(manifest, canvasId) {
 			var baseImage = window.Mirador.Iiif.getImageId(manifest.getCanvasById(canvasId));
 			

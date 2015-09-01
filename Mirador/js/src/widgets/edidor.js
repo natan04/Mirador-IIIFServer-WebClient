@@ -1,5 +1,5 @@
 //DONE: Editor Window setup
-//TODO: Close button
+//TODO: Close button - implement functionality
 //DONE: Resize
 //DONE: Disable annotation icon
 //DONE: Disable all other view options
@@ -24,7 +24,9 @@
                                 width: 500,
                                 draggable: true,
                                 resizable: true
-                        }
+                        },
+                        functionList: [],
+                        history: []
                 }, options);
 
 
@@ -60,6 +62,9 @@ $.Edidor.prototype = {
 
    			_this.setUpEditorWin();
 
+   			_this.bindEvents();
+
+
                 	jQuery.unsubscribe('Invoker.Handshake.Success');
           	});
 
@@ -83,30 +88,35 @@ $.Edidor.prototype = {
       setUpEditorWin: function() {
 	      var _this = this;
 
+	      // Set default dimensions
 	      _this.element.height(_this.windowOptions.height);
 	      _this.element.width(_this.windowOptions.width);
 
-
+	      // Create editor window
   	    	var windowConfig = {
-    		    manifest: _this.manifest,
-                currentCanvasID: _this.canvasId,
-                currentFocus: 'ImageView',
-                editMode: true,
-                appendTo: _this.element,
-                layoutOptions : {
-        			"newObject" : false,
-        			"close" : true,
-        			"slotRight" : false,
-        			"slotLeft" : false,
-        			"slotAbove" : false,
-        			"slotBelow" : false
-      		},
+    		    	manifest: _this.manifest,
+                	currentCanvasID: _this.canvasId,
+                	currentFocus: 'ImageView',
+                	editMode: true,
+                	appendTo: _this.element,
+                	displayLayout:false,
       		annotationLayerAvailable: false,
       		annotationCreationAvailable: false
 
          	 };
-          
       	_this.window = new $.Window(windowConfig);
+
+      	// Create close button
+		jQuery('<a>')
+			.addClass('mirador-btn')
+			.addClass('edit-mode-close-btn')
+			.attr('href','#')
+			.css('float','left')
+			.append(jQuery('<i class="fa fa-times fa-lg fa-fw"></i>'))
+			.prependTo(_this.window.element.find('.manifest-info'));
+
+		// Turn off window's EDIT button
+		_this.window.element.find('.edit-mode-option').hide();
 
 	      if (_this.windowOptions.draggable) {
 	      	// Turn on dragging and sets handle to upper manifest-info strip
@@ -121,11 +131,16 @@ $.Edidor.prototype = {
 	      if(_this.windowOptions.resizable) {
 	      	_this.element.resizable();
 	      }
+      },
 
+      bindEvents: function() {
+      	this.window.element.find('.edit-mode-close-btn').on('click', function() {
+      		alert('Not implemented yet!');
+      	});
+      
+      },
 
-
-
-      }
+      closeEditor: function() {}
 };
 
 

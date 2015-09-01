@@ -715,12 +715,14 @@
 
         var _this = this;
 
-        _this.editor = new $.Edidor({
-              parent: _this, 
-              appendTo: _this.element,
-              canvasId: _this.currentCanvasID,
-        }); 
+        if (!_this.editor) {
 
+            _this.editor = new $.Edidor({
+                parent: _this, 
+                appendTo: _this.element,
+                canvasId: _this.currentCanvasID,
+            }); 
+        }
     },
 
     // template should be based on workspace type
