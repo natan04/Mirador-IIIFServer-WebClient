@@ -1,40 +1,27 @@
 [{
-    "name": "<Function Name>", 
-    "input": "<Input field>",
-    "output": "<output field>",
+    "name": "Binarize", 
+    "input": "Image",
+    "output": "Image",
     "classes": [
         {
-            "name": "<Class Name>",
-            "description": "<Class Description>",
-            "parameters": [
-                {
-                    "name":"<Parameter Name>",
-                    "type":"<Parameter Type>",
-                    "Description":"<Parameter Description",
-                    "value":"<Parameter Value(for requests)>"
-                },
-                {
-                    "name":"<Parameter Name>",
-                    "type":"<Parameter Type>",
-                    "Description":"<Parameter Description",
-                    "value":"<Parameter Value(for requests)>"
-
-                }]
+            "name": "Outso",
+            "description": "Outso!",
+            "parameters": []
         },
         {
-            "name": "<Class Name>",
-            "description": "<Class Description>",
+            "name": "Threshold",
+            "description": "Threshold description",
             "parameters": [
                 {
-                    "name":"<Parameter Name>",
-                    "type":"<Parameter Type>",
-                    "Description":"<Parameter Description",
+                    "name":"level",
+                    "type":"int",
+                    "Description":"level desc",
                     "value":"<Parameter Value(for requests)>"
                 },
                 {
-                    "name":"<Parameter Name>",
-                    "type":"<Parameter Type>",
-                    "Description":"<Parameter Description",
+                    "name":"reverse",
+                    "type":"bool",
+                    "Description":"esrever!",
                     "value":"<Parameter Value(for requests)>"
 
                 }]
