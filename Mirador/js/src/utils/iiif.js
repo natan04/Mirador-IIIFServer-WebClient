@@ -26,6 +26,11 @@
       return id;
     },
 
+    getImageIdByString: function(canvasId) {
+          var id = canvasId.replace(/.*\/IIIF\//g,"");
+          return id;
+    },
+
 
     getVersionFromContext: function(context) {
       if (context == "http://iiif.io/api/image/2/context.json") {

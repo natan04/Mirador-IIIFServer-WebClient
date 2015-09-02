@@ -25,8 +25,8 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 	FOR EVERY FUNCTION INVOKE(INSIDE EDITOR IMAGEVIEW):
 		1.User selects function/class/parameters
 		2.Mirador sends regular invokeRequest to invoker:
-				previewKey - index of current selected image (from thumbnails array)
-				baseImage - Original image id
+				index - index of current selected image (from thumbnails array)
+				images - image array
 		3.Invoker sends back new "edit mode" manifest	
 
  */
@@ -82,8 +82,7 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			type: 'preview',
 			invokes: {},
 			images: [],
-			baseImage: '',
-			previewKey: 0
+			index: 0
 		},options);
 
 	};
