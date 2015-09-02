@@ -9,7 +9,7 @@
 	
 	<context-param>
 		<param-name>ImageServerAddress</param-name>
-		<param-value>http://localhost:8080/digilib/Scaler/IIIF/</param-value>
+		<param-value>http://10.0.0.9:7080/digilib/Scaler/IIIF/</param-value>
 	</context-param>
 	<context-param>
 		<param-name>ImageFolder</param-name>
@@ -22,6 +22,11 @@
 	<context-param>
 		<param-name>ExePath</param-name>
 		<param-value>C:\Users\Natan\Desktop\java\bw.jar</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>JsonFunctions</param-name>
+		<param-value>C:\Users\Natan\OneDrive\git\project\functions_dummy.json</param-value>
 	</context-param>
 
     <servlet>

@@ -16,23 +16,25 @@ public class Preview {
 	}
 
 	
-	public static void removeFromVersion(Version v, int index, String sid)
+	//remove from version. exceptTo: not remove spacified index.
+	public static void removeFromVersion(Version v, int index, int exceptTo,  String sid)
 	{
 		if (index == v.currentIndex.get())
 			return;
 		
-		synchronized (v) {
 			
-			Global.mainLogger.info("Backtracking to index:" + index + ", on session:" + sid);
-			for (int i = index; i < v.fCanvas.length(); i++)
+			for (int i = v.fCanvas.length() - 1; i >= index; i--)
 			{
-				v.fCanvas.remove(i);
-				v.gTempInvokesCommendArray.remove(i);
+				if (i == exceptTo - 1)
+					continue;
+			
+			v.fCanvas.remove(i);
+				v.gTempInvokesCommendArray.remove(i - 1);
 			}
 			
 			 v.currentIndex.set(index);
 			 
-		}
+		
 		
 		return;
 		
@@ -43,8 +45,21 @@ public class Preview {
 		// will remove from preview table all instance of current session.
 
 		
-		 Global.InvokerPreviewBook.getNewVersion(sid); //destroying the former version and create a new one.
-
+		String[] fields = image.split("/");
+		String book 	= fields[0];
+		String version 	= fields[1];
+		String page 	= fields[2];
+		
+		String[] path =  { Global.filePath + Global.sep + book+ Global.sep + version + Global.sep  +page , image};
+		Version ver = Global.InvokerPreviewBook.getNewVersion(sid); //destroying the former version and create a new one.
+	
+		try {
+			ver.createPageToTemp(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Global.mainLogger.severe("Problem to initate edit");
+		
+		}
 		
 		//	
 //		Connection databaseConnection;
@@ -73,6 +88,32 @@ public class Preview {
 //		}
 		
 		
+	}
+
+
+	public static void handleIndexes(Version versionOfCurrentSession,
+			int currentIndex, String sessionId) {
+
+		Global.mainLogger.info("Derived index: " + versionOfCurrentSession.derivedFromIndex.get() + ", current index: " + currentIndex);
+		synchronized (versionOfCurrentSession) {
+
+		if (versionOfCurrentSession.derivedFromIndex.get() > currentIndex)
+		{
+
+			//we here if the index is lower from known derived index
+			removeFromVersion(versionOfCurrentSession, currentIndex, -1, sessionId);
+			versionOfCurrentSession.derivedFromIndex.set(currentIndex);
+
+			Global.mainLogger.info("Decreasing value of derived index to: " + currentIndex);
+		}
+		if (versionOfCurrentSession.derivedFromIndex.get() < currentIndex)
+		{
+			Preview.removeFromVersion(versionOfCurrentSession, versionOfCurrentSession.derivedFromIndex.get() , currentIndex, sessionId);
+			versionOfCurrentSession.derivedFromIndex.incrementAndGet();
+			versionOfCurrentSession.currentIndex.set(versionOfCurrentSession.derivedFromIndex.get());
+			Global.mainLogger.info("increasing value of derived index to: " + currentIndex);
+		}
+	}
 	}
 
 }

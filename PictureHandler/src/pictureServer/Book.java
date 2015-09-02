@@ -139,7 +139,13 @@ public synchronized void  removeVersion(String version)
 	
 public String toString() {
 		
-	return versionsJson.toString();
+	try {
+		return versionsJson.toString(4);
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return "problem";
 	}
 	
 	@Override
@@ -194,7 +200,7 @@ public String toString() {
 	{
 		Version search = new Version(idVersion);
 		int found = Collections.binarySearch(gVersions, search);
-		if (found > 0)
+		if (found >= 0)
 		{
 			gVersions.remove(found);
 		

@@ -37,7 +37,8 @@ public class Json extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Credentials", "true");
 		response.addHeader("Access-Control-Allow-Methods", "GET, POST");
 		response.addHeader("Access-Control-Allow-Headers ", "Content-Type, *");
-		
+		response.setContentType("application/json");
+
 		HttpSession session = request.getSession();
 		
 		String idOfBook = request.getParameter("id");

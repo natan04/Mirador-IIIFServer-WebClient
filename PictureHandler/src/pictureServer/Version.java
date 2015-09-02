@@ -27,7 +27,7 @@ public class Version implements Comparable<Version>, Comparator<Version> {
 	String iiifPathOfBaseImage; 
 	JSONArray gTempInvokesCommendArray;
 	AtomicInteger currentIndex = new AtomicInteger(0);
-	
+	AtomicInteger derivedFromIndex = new AtomicInteger(1);
 	
 	Version(String versionId)
 	{
@@ -94,7 +94,7 @@ public class Version implements Comparable<Version>, Comparator<Version> {
 			all.put("sequences", sequences);
 			all.put("attribution", "Default attribution");
 			all.put("@type", "sc:Manifest");
-			all.put("label",versionId);
+			all.put("label",gBookId);
 			
 			
 			
@@ -177,6 +177,8 @@ public synchronized void createPageToTemp(String[] pathFile) throws Exception {
 	
 	search.createJsonForTemp(p, pathFile[1]);
 	fCanvas.put(search.json);
+	
+	currentIndex.incrementAndGet();
 	
 }
 

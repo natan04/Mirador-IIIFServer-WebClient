@@ -46,9 +46,18 @@ public class Global extends HttpServlet {
     public static String tempFolderPath;    
     public static String tempFolderName = "temp";    
     public static String tempBookStr = tempFolderName;
+    public static String jsonFunctionPath ;
     public static AtomicInteger tempIndex = new AtomicInteger(0);
 	
 	//Codes:
+    
+	public static int invokerCmmnd = 0;
+	public static String invokerCmmndDesc = "Yeyyyyy";
+	
+	public static int invokerProblem = 0;
+	public static String invokerProblemDesc = "oops, do it again";
+	
+	
 	public static int imageUpload = 0;
 	public static String imageUploadDesc = "Success to upload image";
 	
@@ -125,6 +134,8 @@ public void init() throws ServletException
    logPath =  context.getInitParameter("LogPath");
    mainLogger.info("Starting picture server");
    ExePath = context.getInitParameter("ExePath");
+   jsonFunctionPath = context.getInitParameter("JsonFunctions");
+   
    tempFolderPath = filePath + sep + "temp";
 	/*****************Log initlize**************/
 	try {
@@ -139,7 +150,8 @@ public void init() throws ServletException
 	}
 	
 	
-	
+	mainLogger.info("json function path: "+ jsonFunctionPath );
+
 	mainLogger.info("Paramers: sep: " + sep +" , image folder: " + filePath + "server: " + ImageServerAddress );
 	gBooks = new ArrayList<Book>();
 	
@@ -154,19 +166,19 @@ public void init() throws ServletException
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	Invoker.HandleInvoke("{\"type\": \"preview\","
-			+ " \"invokes\": {\"0\": {\"Function\": \"Binarizer\",\"Class\": \"Threshold\",\"Parameters\": [ {\"name\": \"level\",\"value\": \"20\"}, {\"name\": \"reverse\",\"value\": \"True\" }]}  },"
-    + " \"images\": [\"jjj/default/20150419_225219.jpg\"] ,"
-    + "\"index\": 2}"
-    , "SESS_ID");
-	
-	
-	System.out.println(InvokerPreviewBook);
-	Version ver = InvokerPreviewBook.getVersion("SESS_ID");
-	System.out.println(ver.gTempInvokesCommendArray);
-	Preview.removeFromVersion(ver, 0, "SESS_ID");
-	System.out.println(ver.gTempInvokesCommendArray);
-	System.out.println(InvokerPreviewBook);
+//	Invoker.HandleInvoke("{\"type\": \"preview\","
+//			+ " \"invokes\": {\"0\": {\"Function\": \"Binarizer\",\"Class\": \"Threshold\",\"Parameters\": [ {\"name\": \"level\",\"value\": \"20\"}, {\"name\": \"reverse\",\"value\": \"True\" }]}  },"
+//    + " \"images\": [\"jjj/default/20150419_225219.jpg\"] ,"
+//    + "\"index\": 2}"
+//    , "SESS_ID");
+//	
+//	
+//	System.out.println(InvokerPreviewBook);
+//	Version ver = InvokerPreviewBook.getVersion("SESS_ID");
+//	System.out.println(ver.gTempInvokesCommendArray);
+//	Preview.removeFromVersion(ver, 0, "SESS_ID");
+//	System.out.println(ver.gTempInvokesCommendArray);
+//	System.out.println(InvokerPreviewBook);
 	
 }
 
