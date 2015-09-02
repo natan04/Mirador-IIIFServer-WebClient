@@ -9,6 +9,8 @@
 //TODO: Refactor INVOKE
 //BUG: Close button not working on first edit
 //BUG: On invoke - the selected canvas resets to 0
+//DONE: Preview-image marking
+//TODO: Every invoke - increase canvas ID
 
 (function($) {
 /**
@@ -173,6 +175,7 @@ $.Edidor.prototype = {
       bindEvents: function() {
       	var _this = this;
 
+      	// Close button
       	_this.window.element.find('.edit-mode-close-btn').on('click', function() {
       		_this.destroyEditor();
       	});
