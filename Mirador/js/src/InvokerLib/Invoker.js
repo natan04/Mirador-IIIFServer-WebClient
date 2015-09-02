@@ -218,7 +218,19 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			});
 
 		},
-		doInvoke: function() {}
+		doInvoke: function(options) {
+			invoke = new InvokerLib.Models.Invoke(options.funcName, options.className, options.params);
+			req = new InvokerLib.Models.InvokeRequest({index: options.index, images: options.images});
+			req.addInvoke(invoke);
+
+			this.sendRequest(req, function(json) {
+				jQuery.publish('Invoker.Invoke.Success', {json: json});
+			}, function(jq, err, exp) {
+				jQuery.publish('Invoker.Invoke.Fail', {err: err});
+			});
+
+
+		}
 	};
 
 

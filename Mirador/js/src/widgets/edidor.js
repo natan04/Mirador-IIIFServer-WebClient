@@ -7,6 +7,8 @@
 //TODO: Try to play with navigations (don't need up/down/home)
 //TODO: JQUERY UI Lib - fix with bower
 //TODO: Refactor INVOKE
+//BUG: Close button not working on first edit
+//BUG: On invoke - the selected canvas resets to 0
 
 (function($) {
 /**
@@ -33,9 +35,6 @@
                 }, options);
 
 
-                	this.element = jQuery('<div>')
-                    .addClass('editor-win')
-                    .appendTo(this.appendTo);
 
                 this.init();
 
@@ -47,9 +46,8 @@
 $.Edidor.prototype = {
 
 	init: function() {
-		var _this = this;
-
-
+	
+	var _this = this;
 
             console.log('Edidor: entering edit mode for canvasID ' + _this.currentCanvasID);
 
@@ -60,12 +58,18 @@ $.Edidor.prototype = {
                 
                 	_this.manifest = new $.Manifest();
                 	_this.manifest.jsonLd = json;
+                	_this.manifest.markCanvasesForPreview(json.previewImages);
 
                 	$.viewer.hideLoaderOverlay();
 
-   			_this.setUpEditorWin();
+                	_this.element = jQuery('<div>')
+                    		.addClass('editor-win')
+                    		.appendTo(_this.appendTo);
 
-   			_this.bindEvents();
+
+   		_this.setUpEditorWin();
+
+		_this.bindEvents();
 
 
                 	jQuery.unsubscribe('Invoker.Handshake.Success');
@@ -127,6 +131,15 @@ $.Edidor.prototype = {
 
 	// Turn off window's EDIT button
 	_this.window.element.find('.edit-mode-option').hide();
+
+
+	// Mark thumbnails as preview images
+	jQuery.each(_this.manifest.getCanvases(), function(index, canvas) {
+		if (canvas.previewImage) {
+			_this.window.bottomPanel.element.find('.thumbnail-image').eq(index).addClass('preview-image');
+		}
+	} );
+
       },
 
       setUpEditorWin: function() {
@@ -160,54 +173,75 @@ $.Edidor.prototype = {
       bindEvents: function() {
       	var _this = this;
 
-      	this.window.element.find('.edit-mode-close-btn').on('click', function() {
+      	_this.window.element.find('.edit-mode-close-btn').on('click', function() {
       		_this.destroyEditor();
       	});
 
 
-//      	jQuery.publish('Invoker.FuncsMenu.select', {funcName: el.attr('data-func-name'), clsName: el.attr('data-class-name')});
+      	// User selected func/class/params and clicked invoke
 	jQuery.subscribe('Invoker.FuncsMenu.select', function(ev, data) {
-		var imageIndex = $.getImageIndexById(_this.window.imagesList, _this.window.currentCanvasID);
-		var canvas = _this.window.manifest.getCanvasById(_this.window.currentCanvasID);
-		var baseImage = window.Mirador.Iiif.getImageId(canvas);
-
-		console.log('Edidor - sending invoke request for ' + _this.window.currentCanvasID + '      '+ baseImage + '       (' + imageIndex + ')');
-
-		invoke = new InvokerLib.Models.Invoke(data.funcName, data.clsName, []);
-		req = new InvokerLib.Models.InvokeRequest({index: imageIndex+1, images: [baseImage]});
-		req.addInvoke(invoke);
-
-		$.ServiceManager.services.invoker.sendRequest(req, function(json){
-				console.log('Edidor - invoke request SUCCESS. Received manifest: ');
-				console.log(JSON.stringify(json));
-				
-				_this.manifest = new $.Manifest();
-				_this.manifest.jsonLd = json;
-
-				_this.window.element.remove();
-				_this.window = null;
-
-
-				_this.setUpInnerWin(true);
-
-
-		}, function(jq,str,exp) {
-				console.log('Edidor - invoke request FAILED.     '+str);
-		});
+		_this.invoke(data.funcName, data.clsName, []);
 	});
+
+	// Invoke success - new manifest received
+	jQuery.subscribe('Invoker.Invoke.Success', function(ev,data){
+			console.log('Edidor - invoke request SUCCESS. Received manifest: ');
+			console.log(JSON.stringify(data.json));
+			
+			_this.update(data.json);
+	});
+
+	// Invoke failed
+	jQuery.subscribe('Invoker.Invoke.Fail', function(ev, data) {
+			console.log('Edidor - invoke request FAILED.     '+data.err);
+	});
+
 
       
       },
+      update: function(manifestJson) {
+      	var _this=this;
+
+      	_this.manifest = new $.Manifest();
+      	_this.manifest.jsonLd = manifestJson;
+      	_this.manifest.markCanvasesForPreview(manifestJson.previewImages);
+
+      	_this.window.element.remove();
+      	_this.window = null;
+
+      	_this.setUpInnerWin(true);
+      },
+
+      invoke: function(funcName, clsName, params) {
+      	var _this=this;
+
+	var imageIndex = $.getImageIndexById(_this.window.imagesList, _this.window.currentCanvasID);
+	var canvas = _this.window.manifest.getCanvasById(_this.window.currentCanvasID);
+	var baseImage = window.Mirador.Iiif.getImageId(canvas);
+
+	console.log('Edidor - sending invoke request for ' + _this.window.currentCanvasID + '      '+ baseImage + '       (' + imageIndex + ')');
+
+	$.ServiceManager.services.invoker.doInvoke({
+		funcName: funcName,
+		className: clsName,
+		params: params || [],
+		index: imageIndex + 1,
+		images: [baseImage]
+	});
+
+      },
 
       destroyEditor: function() {
-      	      this.window = null;
 
-      	      if (this.element) {
-      			this.toolbox.element.remove();
-      			this.element.remove();
-      			this.toolbox = null;
-      		}
-      		this.parent.editor = null;
+      	this.window = null;
+
+            if (this.element) {
+		this.toolbox.element.remove();
+		this.toolbox = null;
+		this.element.remove();
+		this.toolbox = null;
+	}
+      	this.parent.editor = null;
       }
 };
 

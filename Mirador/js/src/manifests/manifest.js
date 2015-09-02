@@ -201,7 +201,17 @@
         newManifest.currentVersionTitle = 'default';
         
         return newManifest;
-    }
+    },
+    markCanvasesForPreview: function(indicesArray) {
+          jQuery.each(this.getCanvases(), function(index, canvas){
+
+                  if (jQuery.inArray(index+1, indicesArray) > -1) {
+                            canvas.previewImage = true;
+                  } else {
+                            canvas.previewImage = false;
+                  }
+          } );
+    },
 
 
 
