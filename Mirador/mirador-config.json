@@ -1,8 +1,21 @@
 {
+  "customConfig": {
+              "annotationEndpoint": {
+                    "name": "Simple Annotation Store Endpoint",
+                    "module": "SimpleASEndpoint",
+                    "options": {
+                           "url": "http://10.100.102.2:7080/simpleAnnotationStore/annotation",
+                            "storeId": "comparison",
+                            "APIKey": "user_auth"
+                        }
+              }
+    },
+
+
   "services": [
     {
       "name": "PictureHandler",
-      "baseUrl": "http://10.0.0.9:8080"  ,
+      "baseUrl": "http://10.100.102.2:8080"  ,
       "cmds": {
         "list": "Json?id=all",
         "upload": "Upload",
@@ -10,9 +23,10 @@
       },
       "timeout": 2000
     },
+  
     {
       "name": "InvokerService",
-      "baseUrl": "http://10.0.0.9:8080",
+      "baseUrl": "http://10.100.102.2:8080",
       "cmds" : {},
       "timeout": 2000
     }

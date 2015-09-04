@@ -4,7 +4,11 @@ window.Mirador = window.Mirador || {};
 // DONE: Support for global Service Manager class
 (function($) {
 
-
+	$.customConfig = {
+		        "id": "viewer",
+		        "layout": "1x1",
+		        "windowObjects": []
+	};
 
 	$.launch = function(configUrl,customData) {
 		var manifests = [];
@@ -44,12 +48,9 @@ window.Mirador = window.Mirador || {};
 		// When Manifests parsing done: Load Mirador
 		loadManifests.done(function(manifests){
 			console.log("Mirador Launcher: Launching mirador...");
-			Mirador({
-		        "id": "viewer",
-		        "layout": "1x1",
-		        "data": manifests,
-		        "windowObjects": []
-		      });
+			$.customConfig.data = manifests;
+
+			Mirador($.customConfig);
 		});
 
 
@@ -76,6 +77,8 @@ window.Mirador = window.Mirador || {};
 	};
 
 	$.loadConfigFromJson = function(configJson) {
+			jQuery.extend(true, $.customConfig, configJson.customConfig);
+
 			/* Services config */
 			jQuery.each(configJson.services, function(idx, serviceJson) {
 				console.log("Mirador Launcher config: adding service - " + serviceJson.name);

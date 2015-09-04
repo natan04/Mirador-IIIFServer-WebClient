@@ -27,6 +27,7 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		2.Mirador sends regular invokeRequest to invoker:
 				index - index of current selected image (from thumbnails array)
 				images - image array
+				invoke - invoke object
 		3.Invoker sends back new "edit mode" manifest	
 
  */
@@ -80,26 +81,28 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 	$.InvokeRequest = function(options) {
 		jQuery.extend(true, this, {
 			type: 'preview',
-			invokes: {},
+			invoke: null,
 			images: [],
 			index: 0
 		},options);
 
 	};
 
+	// API changed to single Invoke per request
 	$.InvokeRequest.prototype = {
 		addInvoke: function(invoke) {
-			var max_key = Math.max.apply({},Object.keys(this.invokes));
+			this.invoke = invoke;
+			// var max_key = Math.max.apply({},Object.keys(this.invokes));
 
-			if (jQuery.isEmptyObject(this.invokes)) {
-				max_key = 0;
-			} else {
-				max_key = max_key + 1;
-			}
+			// if (jQuery.isEmptyObject(this.invokes)) {
+			// 	max_key = 0;
+			// } else {
+			// 	max_key = max_key + 1;
+			// }
 
-			this.invokes[max_key.toString()] = invoke;
+			// this.invokes[max_key.toString()] = invoke;
 
-			return this;
+			// return this;
 		}
 
 

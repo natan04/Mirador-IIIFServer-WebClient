@@ -41,6 +41,12 @@ window.InvokerLib.Views = window.InvokerLib.Views || {};
 
 				_this.setLayout();
 				_this.bindEvents();
+
+				jQuery.unsubscribe('Invoker.List.Success');
+			});
+
+			jQuery.unsubscribe('Invoker.List.Fail', function(ev, data) {
+				_this.element = null;
 			});
 
 			Mirador.ServiceManager.services.invoker.doList();
@@ -79,7 +85,9 @@ window.InvokerLib.Views = window.InvokerLib.Views || {};
 			_this.element.find('.class-list').menu();
 
 			_this.element.find('.func-list.ui-accordion-content').css('padding','3px');	
-			_this.element.find('.func-item.ui-accordion-content').css('padding','50px');
+			_this.element.find('.func-item.ui-accordion-content').css('padding','0');
+			_this.element.find('.func-item.ui-accordion-content').css('height','auto');
+
 			_this.element.css('top',_this.layoutOptions.top).css('left',_this.layoutOptions.left);
 
 			if (_this.layoutOptions.draggable) {

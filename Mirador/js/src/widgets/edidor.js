@@ -131,9 +131,9 @@ $.Edidor.prototype = {
 		.append(jQuery('<i class="fa fa-times fa-lg fa-fw"></i>'))
 		.prependTo(_this.window.element.find('.manifest-info'));
 
-	// Turn off window's EDIT button
+	// Turn off window's irrelivant buttons
 	_this.window.element.find('.edit-mode-option').hide();
-
+	_this.parent.element.find('.edit-mode-option').hide();
 
 	// Mark thumbnails as preview images
 	jQuery.each(_this.manifest.getCanvases(), function(index, canvas) {
@@ -141,6 +141,10 @@ $.Edidor.prototype = {
 			_this.window.bottomPanel.element.find('.thumbnail-image').eq(index).addClass('preview-image');
 		}
 	} );
+
+
+	_this.bindWindowEvents();
+
 
       },
 
@@ -175,11 +179,6 @@ $.Edidor.prototype = {
       bindEvents: function() {
       	var _this = this;
 
-      	// Close button
-      	_this.window.element.find('.edit-mode-close-btn').on('click', function() {
-      		_this.destroyEditor();
-      	});
-
 
       	// User selected func/class/params and clicked invoke
 	jQuery.subscribe('Invoker.FuncsMenu.select', function(ev, data) {
@@ -201,6 +200,14 @@ $.Edidor.prototype = {
 
 
       
+      },
+      bindWindowEvents: function() {
+      	// Close button
+      	var _this = this;
+
+      	_this.window.element.find('.edit-mode-close-btn').on('click', function() {
+      		_this.destroyEditor();
+      	});
       },
       update: function(manifestJson) {
       	var _this=this;
@@ -236,14 +243,21 @@ $.Edidor.prototype = {
 
       destroyEditor: function() {
 
+      	this.window.element.remove();
       	this.window = null;
 
             if (this.element) {
-		this.toolbox.element.remove();
-		this.toolbox = null;
 		this.element.remove();
 		this.toolbox = null;
 	}
+
+	jQuery.unsubscribe('Invoker.FuncsMenu.select');
+	jQuery.unsubscribe('Invoker.Invoke.Success');
+	jQuery.unsubscribe('Invoker.Invoke.Fail');
+
+	this.parent.element.find('.edit-mode-option').show();
+
+
       	this.parent.editor = null;
       }
 };
