@@ -3,11 +3,11 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 // DONE: Added Invoker models classes (Function,Parameter,Class, InvokeRequest, Invoke)
 // DONE: Added simple dummy requests functions
+//DONE: Style preview images
+
 
 //TODO: Batch doesn't save annotations.
 //TODO: Save/Load flow
-//TODO: Finalize option
-//TODO: Style preview images
 
 
 /*
@@ -80,6 +80,27 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		Response: Array of json flow objects:   { "id":"<id>", 
 							  "invokes":[<invoke1>,<invoke2>.....] 
 							 }
+
+
+	BATCH SERVICE WEB-SOCKET API
+
+		Request/Response format: JSON - normal InvokeRequest
+
+		Types: ("type" field):
+			"batch" -> Start batch request.
+				 		        field: "images": [<images>]
+							     "flowId": "<Flow Id>"
+							     "book": "<bookId>",
+							     "newVersion":"<versionId>"	
+
+			"progress" -> on every function exit:  fields:    "display":"<message to display>"
+									"currentImageIndex":"<current processed image index>"
+
+			"error" -> 			 	fields: "display": "<error message>"
+
+			"complete" -> field: empty.....
+			}
+
 
 
 
@@ -311,7 +332,25 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 		},
 		doLoadFlow: function(id) {},
-		doSaveFlow: function(id, overwrite) {}
+		doSaveFlow: function(id, index, imageId, overwrite) {
+			req = new InvokerLib.Models.InvokeRequest({type: 'save', index: index, id: id, images: [imageId] });
+
+			this.sendRequest(req, function(json) {
+				console.log('Invoker - Save flow SUCCESS, response: ');
+				console.log(JSON.stringify(json));
+
+				// Check for response error
+				if (json.constructor == Array && json[0] == "0") {
+					console.log('Invoker - Save flow  response ERROR: '+json[0] + ': ' +json[1]);
+					return;
+				}
+
+				jQuery.publish('Invoker.SaveFlow.Success', {json: json, id: id});
+			}, function(jq, err, exp) {
+				console.log('Invoker - Save flow FAILED. err: '+ err);
+				jQuery.publish('Invoker.SaveFlow.Fail', {err: err});
+			});
+		}
 	};
 
 

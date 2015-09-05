@@ -5,7 +5,8 @@ window.InvokerLib.Views = window.InvokerLib.Views || {};
 //TODO: Flows - fetch method - invoker.doList
 //TODO: Flows - update - erase inner elements + fetch + restyle
 //TODO: Flows - styling - every flow tooltip -> invokes list 
-
+//TODO: FuncsMenu - parameters styling fix
+//TODO: Flows - SAVE btn+Input + hide it when not in edit mode(batch)
 
 (function($,Mirador) {
 
@@ -264,6 +265,7 @@ $.paramView = function(paramObj) {
 	$.FlowLoadMenu = function(options) {
 
 		jQuery.extend(this, {
+			saveMode: true , // False = batch mode
 			appendTo: null,
 			flowsList: [],
 			element: null,
@@ -283,7 +285,7 @@ $.paramView = function(paramObj) {
 		init: function() {
 			var _this = this;
 
-			_this.element = jQuery(_this.template()).appendTo(_this.appendTo);
+			_this.element = jQuery(_this.template({saveMode: _this.saveMode })).appendTo(_this.appendTo);
 			
 			_this.element.accordion({heightStyle: 'content'});
 
@@ -298,9 +300,26 @@ $.paramView = function(paramObj) {
 			_this.updateView();
 
 
+
+
 		},
 		bindEvents: function () {
 			var _this = this;
+
+			_this.element.find('.flow-save-btn').on('click', function(ev) {
+				var id = _this.element.find('.flow-save-input').val();
+
+				// Check if flow exists with same id
+				jQuery.each(_this.flowsList, function(index, flowObj) {
+					if (id === flowObj.id) {
+						alert('Flow already exists with that id');
+						return;
+					}
+				});
+
+				jQuery.publish('Invoker.FlowList.Save', {id: id});
+
+			});
 
 		},
 
@@ -311,7 +330,6 @@ $.paramView = function(paramObj) {
 				_this.flowsList = data.flows;
 
 				var listEl = jQuery(_this.flowListTemplate(data));
-				console.log(JSON.stringify(data));
 
 				if (_this.element.find('.flows-list').length) { // Is it update or first time
 					_this.element.find('.flows-list').replaceWith(listEl); 
@@ -319,7 +337,6 @@ $.paramView = function(paramObj) {
 					listEl.appendTo(_this.element.find('> div'));
 				}
 
-				console.log(listEl);
 				jQuery.unsubscribe('Invoker.FlowList.Success');
 
 				// Bind Select event for every flow button
@@ -328,6 +345,8 @@ $.paramView = function(paramObj) {
 					console.log('FlowsMenu: selected flow: ' + selectId);
 					jQuery.publish('Invoker.FlowsMenu.select', {id: selectId});
 				});
+
+				_this.bindEvents();
 
 			});
 
@@ -340,6 +359,12 @@ $.paramView = function(paramObj) {
 			'<div class="flows-menu">',
 			'	<h3>Flows</h3>',
 			'	<div>',
+			'	{{#if saveMode}}',
+			'		<div class=\"flow-save-container\" >',
+			'			<input type=\"text\" placeholder=\"Flow name to save\" class=\"flow-save-input\">',
+			'			<button class=\"flow-save-btn\">SAVE</button>',
+			'		</div>',
+			'	{{/if}}',
 			'	</div>',
 			'</div>'
 			].join('')),

@@ -1731,3 +1731,29 @@ img.thumbnail-image.preview-image {
 .funcs-menu > .ui-accordion-content, .func-list .ui-accordion-content {
   padding: 5px !important;
 }
+
+.flows-menu > .ui-accordion-content {
+  padding: 10px 5px !important;
+}
+
+.flow-save-input {
+  margin-bottom: 10px;
+}
+
+.flow-save-container {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.flows-list {
+  border: 1px solid black;
+}
+
+.editor-win .window .content-container {
+  margin-top: 70px;
+}
+
+.editor-flow-title {
+  margin-left: 30px;
+  margin-top: 15px;
+}

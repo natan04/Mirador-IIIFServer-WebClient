@@ -11,6 +11,7 @@
 //BUG: On invoke - the selected canvas resets to 0
 //DONE: Preview-image marking
 //TODO: Every invoke - increase canvas ID
+//TODO: Current Flow Id in window header
 
 (function($) {
 /**
@@ -139,7 +140,11 @@ $.Edidor.prototype = {
 		.append(jQuery('<i class="fa fa-times fa-lg fa-fw"></i>'))
 		.prependTo(_this.window.element.find('.manifest-info'));
 
-	//
+	// Flow ID Title
+	jQuery('<h3>')
+		.addClass('editor-flow-title')
+		.appendTo(_this.window.element.find('.manifest-info'))
+		.text('Flow: ' + _this.currentFlowId);
 
 	// Turn off window's irrelivant buttons
 	_this.window.element.find('.edit-mode-option').hide();
@@ -151,6 +156,7 @@ $.Edidor.prototype = {
 			_this.window.bottomPanel.element.find('.thumbnail-image').eq(index).addClass('preview-image');
 		}
 	} );
+
 
 
 	_this.bindWindowEvents();
@@ -222,6 +228,19 @@ $.Edidor.prototype = {
 
 	});
 
+	//Flow Save click
+	jQuery.subscribe('Invoker.FlowList.Save', function(ev, data) {
+		_this.saveFlow(data.id);
+	});
+
+	//Flow Save success
+	jQuery.subscribe('Invoker.SaveFlow.Success', function(ev, data){
+		_this.currentFlowId = data.id;
+		_this.update(data.json);
+		jQuery.unsubscribe('Invoker.FlowSave.Success');
+	});
+
+
 
       
       },
@@ -267,6 +286,20 @@ $.Edidor.prototype = {
 
       },
 
+      saveFlow: function(flowId) {
+      	var _this = this;
+
+	var imageIndex = $.getImageIndexById(_this.window.imagesList, _this.window.currentCanvasID);
+	var canvas = _this.window.manifest.getCanvasById(_this.window.currentCanvasID);
+	var baseImage = window.Mirador.Iiif.getImageId(canvas);
+
+
+	console.log('Edidor - sending flow save request for '+ flowId);
+	$.ServiceManager.services.invoker.doSaveFlow(flowId, imageIndex,baseImage, true); //TODO: Currently always overwrite
+
+
+      },
+
       destroyEditor: function() {
 
       	this.window.element.remove();
@@ -279,6 +312,7 @@ $.Edidor.prototype = {
 	}
 
 	jQuery.unsubscribe('Invoker.FuncsMenu.select');
+	jQuery.unsubscribe('Invoker.FlowList.Save');
 	jQuery.unsubscribe('Invoker.FlowsMenu.select');
 	jQuery.unsubscribe('Invoker.Invoke.Success');
 	jQuery.unsubscribe('Invoker.Invoke.Fail');
