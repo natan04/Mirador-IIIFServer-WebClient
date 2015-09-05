@@ -4,6 +4,10 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 // DONE: Added Invoker models classes (Function,Parameter,Class, InvokeRequest, Invoke)
 // DONE: Added simple dummy requests functions
 
+//TODO: Batch doesn't save annotations.
+//TODO: Save/Load flow
+//TODO: Finalize option
+//TODO: Style preview images
 
 
 /*
