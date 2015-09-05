@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collections;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.juli.logging.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,8 +43,35 @@ public class Invoker extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Methods", "GET, POST");
 		response.addHeader("Access-Control-Allow-Headers ", "Content-Type, *");
 		response.setContentType("application/json");
-		    File srcFile = new File(Global.jsonFunctionPath);
-		    FileUtils.copyFile(srcFile, response.getOutputStream());
+		    
+		String cmmnd = request.getParameter("cmd");
+
+		if (cmmnd.equals("funcs"))
+		{
+			Global.mainLogger.info(String.format("Send funcs list to ip: %s", request.getRemoteAddr()));
+
+			File srcFile = new File(Global.jsonFunctionPath);
+			FileUtils.copyFile(srcFile, response.getOutputStream());
+		}
+
+		if (cmmnd.equals("flows"))
+		{
+			try {
+				Global.mainLogger.info(String.format("Send flow list to ip: %s", request.getRemoteAddr()));
+				JSONArray jsArray =  Preview.sqlFlowListJson();;
+					
+				PrintWriter printWriter  = response.getWriter();
+				printWriter.println(jsArray.toString());
+				
+			} catch (SQLException e) {
+
+				Global.mainLogger.severe("SQL: problem to send flows list");
+				e.printStackTrace();
+			} catch (JSONException e) {
+				Global.mainLogger.severe("JSON: problem to send flows list");
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
@@ -105,22 +136,31 @@ public class Invoker extends HttpServlet {
 			{
 						
 				JSONArray images = ((JSONArray) Json.get("images"));
+				String baseImg	= images.get(0).toString();
+				
+				String id	=  Json.getString("id");	//index of current photo. usefull for backtracking changes
+				
 				
 				if (images.length() == 0)
 					return Global.InvokerPreviewBook.getVersion(sessionId);
 			
-				String baseImg	= images.get(0).toString();
-				Preview.startEditMode(baseImg, sessionId);
+				Version ver = Preview.startEditMode(baseImg, sessionId);
 				
 				Global.mainLogger.info("Initiate edit mode for session: " + sessionId +" , with picture: " + baseImg);
-				return Global.InvokerPreviewBook.getVersion(sessionId);
+				if (id.length() > 0)
+				{
+					Preview.loadFromId(ver, id, images, sessionId);
+				}
+				
+				
+				return ver;
 			} 
 		
 				
 			//preview mode, batch
 			
 			JSONArray images 	= (JSONArray) Json.get("images");		//get image array
-			JSONObject invokeCmmnd	= (JSONObject) Json.get("invokes");	//get invokes cmmnds
+			JSONObject invokeCmmnd	= (JSONObject) Json.get("invoke");	//get invokes cmmnds
 			Global.mainLogger.info("Invoker cmmnd: \n"
 					+ " Type:    " + typeStr + "\n"
 					+ " invoke:  " + invokeCmmnd.toString() + " \n"
@@ -134,19 +174,38 @@ public class Invoker extends HttpServlet {
 			 */
 			if (typeStr.equals("preview"))
 			{
-
 				
 				int currentIndex	=  Json.getInt("index");	//index of current photo. usefull for backtracking changes
 				Global.mainLogger.info("Initiate preview mode for session: " + sessionId +" , with pictures: " + images + " , with index" + currentIndex );
 				Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion(sessionId);
 				
+
 				Preview.handleIndexes(versionOfCurrentSession, currentIndex, sessionId);
 				versionOfCurrentSession.gTempInvokesCommendArray.put(invokeCmmnd);
 				String[] iiifAndPath = (previewInvoke(invokeCmmnd, images, sessionId));
 				versionOfCurrentSession.createPageToTemp(iiifAndPath);
-			
+				
 			} 
-					
+			
+			if (typeStr.equals("save"))
+			{
+				
+				int currentIndex	=  Json.getInt("index");	//index of current photo. usefull for backtracking changes
+				String idToSave		=  Json.getString("id");	//id of current flow. usefull for backtracking changes
+				boolean overwrite	=  Json.getBoolean("overwrite");
+				
+				
+				Global.mainLogger.info("Initiate save mode for session: " + sessionId +"\nName: " + idToSave + "\nindex" + currentIndex  +"\noverwrite" + overwrite);
+				
+				Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion(sessionId);
+				
+				Preview.saveSession(versionOfCurrentSession, idToSave, currentIndex, overwrite, sessionId);
+
+				
+			} 
+				
+			
+			
 			
 		} catch (Exception e) {
 			return null;
@@ -163,7 +222,7 @@ public class Invoker extends HttpServlet {
 	 */
 	//preview take only one image.
 	//return base address of the new picture.
-	private static String[] previewInvoke(JSONObject invokeCmmnd, JSONArray images, String sessionId) throws JSONException {
+	public static String[] previewInvoke(JSONObject invokeCmmnd, JSONArray images, String sessionId) throws JSONException {
 		
 		String image = (String) images.get(0);
 		String newImagePath = null;
@@ -176,19 +235,18 @@ public class Invoker extends HttpServlet {
 		
 		String oldImage = Global.filePath + Global.sep + book + Global.sep + version + Global.sep + page;
 		
-		for (int i = 0; i < invokeCmmnd.length(); i++)
-		{
+
 			int newIndex = Global.tempIndex.getAndIncrement();
 			newImagePath 	=	Global.tempFolderPath + Global.sep + sessionId + Global.sep + newIndex  + ".jpg";
 			toReturnedIIIF 	=   Global.tempFolderName +"/" + sessionId + "/" + newIndex + ".jpg";
 			
-			JSONObject singleInvoke = (JSONObject) (invokeCmmnd.getJSONObject("" + i));
+			JSONObject singleInvoke = new JSONObject(invokeCmmnd.toString());
 			singleInvoke.put("input", oldImage);
 			singleInvoke.put("output", newImagePath);			
 			singleInvokeGateFunction(singleInvoke);
 			oldImage = newImagePath;		//chain: new->old
 			
-		}
+
 		
 		String[] willReturn = {newImagePath, toReturnedIIIF};
 		return willReturn;

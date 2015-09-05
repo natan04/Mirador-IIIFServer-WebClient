@@ -23,6 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
+
+
 import com.sun.java_cup.internal.runtime.Symbol;
 
 @SuppressWarnings("serial")
@@ -125,7 +128,21 @@ public static Book getBook(String id)
 
 public void init() throws ServletException
 {
-
+	JSONObject ob = new JSONObject();
+	try {
+		ob.put("type", "batch");
+		ob.put("images", (new JSONArray()).put("sfsdf/default/Untitled 1.jpg"));
+		ob.put("flowId", "Nat");
+		ob.put("book", "boo");
+		ob.put("newVersion", "ver");
+		System.out.println(ob.toString(4));
+		
+	} catch (JSONException e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+	}
+	
+	
    ServletContext context = getServletContext();
    ImageServerAddress = context.getInitParameter("ImageServerAddress");
    sep = File.separator;
@@ -223,6 +240,7 @@ public void databaseInit()
 		      String sMakeTable_Version = "CREATE TABLE Versions (serial_id_Version INTEGER primary key, version_name text, book_id text,  FOREIGN KEY(book_id) REFERENCES Books(name))";
 		      String sMakeTable_Pages = "CREATE TABLE Pages (serial_id_page INTEGER primary key, name text, version_id text, book_id text, FOREIGN KEY(version_id) REFERENCES Books(serial_id_Version))";
 		      String sMakeTable_Preview = "CREATE TABLE Preview (session_id text, current_picture text, json text, max_index INTEGER, json_cmmnd text)";
+		      String sMakeTable_flows = "CREATE TABLE flows (flow_id text, json_history text)";
 
 		      
 		      Statement stmt = databaseConnection.createStatement();
@@ -230,6 +248,7 @@ public void databaseInit()
 		      stmt.executeUpdate(sMakeTable_Version);
 		      stmt.executeUpdate(sMakeTable_Pages);
 		      stmt.executeUpdate(sMakeTable_Preview);
+		      stmt.executeUpdate(sMakeTable_flows);
 
 		      stmt.close();
     	  }
@@ -240,6 +259,8 @@ public void databaseInit()
 	
     mainLogger.info("Opened database successfully");
 }
+
+
 
 
 public static ResultSet sqlVersionsOfBook(String bookId)

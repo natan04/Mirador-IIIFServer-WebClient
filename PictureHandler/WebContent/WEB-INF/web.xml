@@ -9,7 +9,7 @@
 	
 	<context-param>
 		<param-name>ImageServerAddress</param-name>
-		<param-value>http://10.0.0.9:7080/digilib/Scaler/IIIF/</param-value>
+		<param-value>http://10.100.102.2:7080/digilib/Scaler/IIIF/</param-value>
 	</context-param>
 	<context-param>
 		<param-name>ImageFolder</param-name>

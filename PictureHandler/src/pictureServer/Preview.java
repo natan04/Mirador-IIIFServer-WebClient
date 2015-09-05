@@ -1,9 +1,12 @@
 package pictureServer;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Preview {
@@ -14,7 +17,6 @@ public class Preview {
 
 		
 	}
-
 	
 	//remove from version. exceptTo: not remove spacified index.
 	public static void removeFromVersion(Version v, int index, int exceptTo,  String sid)
@@ -40,7 +42,7 @@ public class Preview {
 		
 	}
 	
-	public static void startEditMode(String image, String sid) {
+	public static Version startEditMode(String image, String sid) {
 		// init edit mode, remove old preview and create new one.
 		// will remove from preview table all instance of current session.
 
@@ -61,33 +63,7 @@ public class Preview {
 		
 		}
 		
-		//	
-//		Connection databaseConnection;
-//		try {
-//			
-//			databaseConnection = Global.getDatabaseNewConnection();
-//			Statement stmt = databaseConnection.createStatement();
-//
-//			//delete if found another preview mode from this session
-//			String sqlDeleteSession = "DELETE FROM PREVIEW where session_id = \""+ sid + "\"";
-//			stmt.execute(sqlDeleteSession);
-//			
-//		    //add first edit mode for current session
-//			String addFirstSession = "INSERT INTO preview VALUES (\"" + sid + "\", \"" + image + "\", NULL, 0, NULL)";
-//			Global.mainLogger.info("init edit mode, sesId/baseImage: " + sid + "/" + image);
-//			stmt.execute(addFirstSession);
-//
-//		    	
-//		    stmt.close();
-//		    databaseConnection.close();
-//		
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			Global.mainLogger.severe("SQL: init editor mode problem");
-//			e.printStackTrace();
-//		}
-		
-		
+		return ver;
 	}
 
 
@@ -115,5 +91,123 @@ public class Preview {
 		}
 	}
 	}
+
+
+	public static void saveSession(Version versionOfCurrentSession,
+			String idToSave, int choseIndex, boolean overwrite, String sessionId) {
+
+		handleIndexes(versionOfCurrentSession, choseIndex, sessionId);			//arrange chose index
+		
+		
+		Connection databaseConnection;
+		try {
+			
+			databaseConnection = Global.getDatabaseNewConnection();
+			Statement stmt = databaseConnection.createStatement();
+
+			//remove any appearance of it.
+			if (overwrite)
+			{
+				//delete if found another preview mode from this session
+				String sqlDeleteSession = "DELETE FROM flows where flow_id = \""+ idToSave + "\"";
+				stmt.execute(sqlDeleteSession);
+			}
+			
+		    //add flow of current session
+			String flowHistory = versionOfCurrentSession.gTempInvokesCommendArray.toString();
+			String addFlow = "INSERT INTO flows VALUES (\"" + idToSave + "\", '" + flowHistory + "')";
+
+			System.out.println(addFlow);
+			stmt.execute(addFlow);
+
+		    	
+		    stmt.close();
+		    databaseConnection.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Global.mainLogger.severe("SQL:save mode problem");
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	
+	public static JSONArray sqlSpecificFlowJson(String id) throws SQLException, JSONException
+	{
+		String queryFlows = "SELECT json_history FROM flows	where flow_id == \"" + id + "\"";
+		Connection dc = Global.getDatabaseNewConnection();
+		Statement stmt = dc.createStatement();
+		ResultSet rs = stmt.executeQuery(queryFlows);  
+		JSONArray js =  null;
+	
+		while ( rs.next() )
+			 js =  new JSONArray(rs.getString("json_history"));					
+		
+		stmt.close();
+	    dc.close();
+		
+		return js;
+	}
+	
+	public static JSONArray sqlFlowListJson() throws SQLException, JSONException
+	{
+		String queryFlows = "SELECT * FROM flows;";
+		Connection dc = Global.getDatabaseNewConnection();
+		Statement stmt = dc.createStatement();
+		ResultSet rs = stmt.executeQuery(queryFlows);  
+		JSONArray jsArray = new JSONArray();
+		while ( rs.next() )
+		  {
+			JSONObject obj = new JSONObject();
+			obj.put("id",rs.getString("flow_id"));
+			
+			obj.put("invokes",new JSONArray(rs.getString("json_history")));					
+			jsArray.put(obj);
+		
+		  }
+
+		
+		stmt.close();
+	    dc.close();
+		
+		return jsArray;
+	}
+
+	public static void loadFromId(Version ver, String id, JSONArray  images, String sessionId) {
+		// TODO Auto-generated method stub
+		try {
+			JSONArray ar = sqlSpecificFlowJson(id);
+	
+			for (int i = 0; i < ar.length(); i++)
+			{
+				
+				String[] iiifAndPath = (Invoker.previewInvoke(ar.getJSONObject(i), images, sessionId));
+				ver.createPageToTemp(iiifAndPath);
+
+				//images is an array with iiif image. so we remove and add again,
+				images.remove(0);
+				images.put(iiifAndPath[0]);
+			}
+		
+			ver.gTempInvokesCommendArray = new JSONArray(ar.toString());
+
+		} catch (SQLException e) {
+			Global.mainLogger.severe("SQL: failed to load flow id: " + id);
+			e.printStackTrace();
+		} catch (JSONException e) {
+			Global.mainLogger.severe("Json: failed to load flow id: " + id);
+			e.printStackTrace();
+		}catch (Exception e) {
+			Global.mainLogger.severe("Create page to temp: failed to load flow id: " + id);
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	
+	
 
 }
