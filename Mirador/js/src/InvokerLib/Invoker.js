@@ -12,7 +12,9 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 /*
 	FUNCTIONS LIST:
-		Available at /Invoker service HTTP GET request
+		Request: InvokeRequest(GET) with parameter(url-encoded) "command=funcs"
+			Example: http://localhost:8000/PictureHandler/Invoker?cmd=funcs
+		Response: [Array of func-objects]
 
 	ENTER INTO EDIT MODE (HANDSHAKE):
 		1.User selects canvas(image) & clicks "EDIT"
@@ -26,13 +28,60 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 	
 		4.Mirador presents "edit mode" manifest on new imageView window
 
-	FOR EVERY FUNCTION INVOKE(INSIDE EDITOR IMAGEVIEW):
+	INVOKE: FOR EVERY FUNCTION INVOKE(INSIDE EDITOR IMAGEVIEW):
 		1.User selects function/class/parameters
 		2.Mirador sends regular invokeRequest to invoker:
 				index - index of current selected image (from thumbnails array)
 				images - image array
 				invoke - invoke object
 		3.Invoker sends back new "edit mode" manifest	
+		4.Manifest includes special field "previewImages" - array of images indices
+			Preview Images - "children" of a currently edited image, giving the ability to choose
+				between different versions for the same image with different invoke
+				MARKED AS RED.
+
+
+	SAVING CURRENT FLOW
+		1.User selects an image which he wants it to be the last image on the flow
+			(the image that best represents the user's final results )
+		1.User selects "save" option, fills name/id/label
+		2.Mirador sends invokeRequest to invoker:
+				type = "save"
+				id = <string id filled by user>
+				index = <index of last image> 
+				overwrite = <True/False>
+				(Invoker must know the current editing session's history)
+		3.Invoker responds with new manifest, like normal invoke (without preview images)
+		   OR ERROR response
+
+		---Summary---
+		Select last image -> "Save" button -> input id -> 
+		-> send invokeRequest: {"type":"save", "id":"<id>", "overwrite": true/false, "index":"<idx>"}
+		-> New manifest received & displayed
+
+	LOADING FLOW
+		1.User selects canvas/image
+		1.User selects specific flow from a list(from server) and clicks "LOAD"
+		2.Mirador sends HANDSHAKE InvokeRequest BUT with additional field "id"
+							("id" helps differentiate between pure handshake and
+							load requests.)
+		3.Invoker produces the same sequence, creates a manifest from it and sends back to mirador
+		4.Mirador presents manifest with let the user continue editing
+
+		---Summary---
+		Select image & flow -> Send HANDSHAKE req with field "id" 
+		-> Invoker produces the same image sequence -> edit mode manifest displayed
+
+
+	FLOW LIST
+		Request: InvokeRequest(GET) with parameter(url-encoded) "command=flows"
+				Example: http://localhost:8000/PictureHandler/Invoker?cmd=flows
+
+		Response: Array of json flow objects:   { "id":"<id>", 
+							  "invokes":[<invoke1>,<invoke2>.....] 
+							 }
+
+
 
  */
 
@@ -85,6 +134,7 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 	$.InvokeRequest = function(options) {
 		jQuery.extend(true, this, {
 			type: 'preview',
+			id: '',
 			invoke: null,
 			images: [],
 			index: 0
@@ -119,6 +169,8 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 
 (function($,ServiceManager) {
+
+	$.flowList = [];
 
 	$.createDummy = function(r_type) {
 		var req = new $.Models.InvokeRequest({type: r_type});
@@ -198,6 +250,8 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		doList: function() {
 			console.log('Invoker: Fetching functions list');
 
+			url = (this.baseUrl + '/' + this.servicePath + '?cmd=funcs');
+
 			this.sendRequest('', function(json){
 				console.log('Invoker: Functions list receive SUCCESS, response: ');
 				console.log(JSON.stringify(json));
@@ -207,13 +261,13 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			}, function(jq, err, exp){
 				console.log('Invoker: Functions list receive FAILED. err: ' + err);
 				jQuery.publish('Invoker.List.Fail', err);
-			}, '', 'GET', {xhrFields: {withCredentials: false } } );
+			}, url, 'GET', {xhrFields: {withCredentials: false } } );
 
 		},
-		doHandshake: function(manifest, canvasId) {
+		doHandshake: function(manifest, canvasId, flowId) {
 			var baseImage = window.Mirador.Iiif.getImageId(manifest.getCanvasById(canvasId));
 			
-			var req = new $.Models.InvokeRequest({type: 'edit', images: [baseImage] });
+			var req = new $.Models.InvokeRequest({type: 'edit', images: [baseImage], id: (flowId || '') });
 			
 			console.log('Invoker: Initiating Edit Handshake for ' + baseImage);
 			this.sendRequest(req, function(json){
@@ -237,7 +291,27 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			});
 
 
-		}
+		},
+
+		doFlowList: function(){
+			console.log('Invoker: Fetching functions list');
+
+			url = (this.baseUrl + '/' + this.servicePath + '?cmd=flows');
+
+			this.sendRequest('', function(json){
+				console.log('Invoker: Flows list receive SUCCESS, response: ');
+				console.log(JSON.stringify(json));
+
+				jQuery.publish('Invoker.FlowList.Success', {flows: json});
+
+			}, function(jq, err, exp){
+				console.log('Invoker: Flows list receive FAILED. err: ' + err);
+				jQuery.publish('Invoker.FlowList.Fail', err);
+			}, url, 'GET', {xhrFields: {withCredentials: false } } );
+
+		},
+		doLoadFlow: function(id) {},
+		doSaveFlow: function(id, overwrite) {}
 	};
 
 

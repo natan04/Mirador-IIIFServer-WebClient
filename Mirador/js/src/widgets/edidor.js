@@ -26,6 +26,8 @@
                         manifest: null,
                         window: null,
                         toolbox: null,
+                        flowMenu: null,
+                        currentFlowId: '-New Flow-',
                         windowOptions: {
                                 height: 500,
                                 width: 500,
@@ -33,7 +35,7 @@
                                 resizable: true
                         },
                         functionList: [],
-                        history: []
+                        flow: []
                 }, options);
 
 
@@ -79,6 +81,12 @@ $.Edidor.prototype = {
 
 		// Handshake FAIL Callback
 		jQuery.subscribe('Invoker.Handshake.Fail', function(ev, errStr) {
+			
+			// In case we already in editor
+			if (_this.element) {
+				return;
+			}
+
 			$.viewer.addLoaderOverlayMessage('<span style="color: red;">Request failed! reason: '+errStr+'</span>');
 
 			setTimeout(function() { 
@@ -131,6 +139,8 @@ $.Edidor.prototype = {
 		.append(jQuery('<i class="fa fa-times fa-lg fa-fw"></i>'))
 		.prependTo(_this.window.element.find('.manifest-info'));
 
+	//
+
 	// Turn off window's irrelivant buttons
 	_this.window.element.find('.edit-mode-option').hide();
 	_this.parent.element.find('.edit-mode-option').hide();
@@ -173,7 +183,9 @@ $.Edidor.prototype = {
 
 	//Create dynamic functions toolbox (menu)
 	_this.toolbox = new InvokerLib.Views.FuncsMenu({appendTo: _this.element});
-	      
+
+	//Create dynamic flows menu
+	_this.flowMenu = new InvokerLib.Views.FlowLoadMenu({appendTo: _this.element});      
       },
 
       bindEvents: function() {
@@ -182,7 +194,7 @@ $.Edidor.prototype = {
 
       	// User selected func/class/params and clicked invoke
 	jQuery.subscribe('Invoker.FuncsMenu.select', function(ev, data) {
-		_this.invoke(data.funcName, data.clsName, []);
+		_this.invoke(data.funcName, data.clsName, data.params);
 	});
 
 	// Invoke success - new manifest received
@@ -196,6 +208,18 @@ $.Edidor.prototype = {
 	// Invoke failed
 	jQuery.subscribe('Invoker.Invoke.Fail', function(ev, data) {
 			console.log('Edidor - invoke request FAILED.     '+data.err);
+	});
+
+	//Flow load
+	jQuery.subscribe('Invoker.FlowsMenu.select', function(ev, data){
+		jQuery.subscribe('Invoker.Handshake.Success', function(ev, json) {
+			_this.currentFlowId = data.id;
+			_this.update(json);
+			jQuery.unsubscribe('Invoker.Handshake.Success');
+		});
+
+		$.ServiceManager.services.invoker.doHandshake(_this.parent.manifest, _this.canvasId, data.id);
+
 	});
 
 
@@ -214,6 +238,8 @@ $.Edidor.prototype = {
 
       	_this.manifest = new $.Manifest();
       	_this.manifest.jsonLd = manifestJson;
+      	_this.flow = manifestJson.history;
+
       	_this.manifest.markCanvasesForPreview(manifestJson.previewImages);
 
       	_this.window.element.remove();
@@ -249,9 +275,11 @@ $.Edidor.prototype = {
             if (this.element) {
 		this.element.remove();
 		this.toolbox = null;
+		this.flowMenu = null;
 	}
 
 	jQuery.unsubscribe('Invoker.FuncsMenu.select');
+	jQuery.unsubscribe('Invoker.FlowsMenu.select');
 	jQuery.unsubscribe('Invoker.Invoke.Success');
 	jQuery.unsubscribe('Invoker.Invoke.Fail');
 

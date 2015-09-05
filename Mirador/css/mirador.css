@@ -1726,3 +1726,8 @@ div.loader-overlay .loader-icon {
 img.thumbnail-image.preview-image {
     border-bottom: 2px solid red;
 }
+
+
+.funcs-menu > .ui-accordion-content, .func-list .ui-accordion-content {
+  padding: 5px !important;
+}

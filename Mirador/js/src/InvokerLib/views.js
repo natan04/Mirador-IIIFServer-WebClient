@@ -1,8 +1,11 @@
 window.InvokerLib = window.InvokerLib || {};
 window.InvokerLib.Views = window.InvokerLib.Views || {};
 
-// FuncMenu: accordion style is messy
-// 
+//TODO: Flows - init method - create element+fetch data+styling
+//TODO: Flows - fetch method - invoker.doList
+//TODO: Flows - update - erase inner elements + fetch + restyle
+//TODO: Flows - styling - every flow tooltip -> invokes list 
+
 
 (function($,Mirador) {
 
@@ -24,7 +27,7 @@ $.paramView = function(paramObj) {
   // on - Object with event names as keys, handler functions as values
 	  var paramsConfig = {
 	    'bool': {
-	      template: Handlebars.compile('<button data-val="{{value}}">{{value}}</button>'),
+	      template: Handlebars.compile('<button data-val="{{value}}">{{{value}}}</button>'),
 	      widgetFunc: jQuery.fn.button,
 	      widgetOpts: function() { return {}; },
 	      on: {'click': function() {
@@ -35,7 +38,7 @@ $.paramView = function(paramObj) {
 	          }
 	    },
 	    'int': {
-	      template: Handlebars.compile('<div data-val="{{value}}"><div class="param-val">{{value}}</div></div>'),
+	      template: Handlebars.compile('<div data-val="{{value}}"><div class="param-val">{{{value}}}</div></div>'),
 	      widgetFunc: jQuery.fn.slider,
 	      widgetOpts: function() { return {value: this.value};},
 	      on: {'slide': function(ev, ui) { jQuery(this).attr('data-val',ui.value).find('.param-val').text(ui.value); } 
@@ -62,6 +65,7 @@ $.paramView = function(paramObj) {
 	  return container;
   
 };
+
 
 	$.FuncsMenu = function(options) {
 
@@ -137,7 +141,7 @@ $.paramView = function(paramObj) {
 				});
 
 
-				jQuery.publish('Invoker.FuncsMenu.select', {funcName: el.attr('data-func-name'), clsName: el.attr('data-class-name'), params: paramsEl});
+				jQuery.publish('Invoker.FuncsMenu.select', {funcName: funcName, clsName: clsName, params: paramsEl});
 
 
 			});
@@ -197,14 +201,13 @@ $.paramView = function(paramObj) {
 			// styling of every invoke button
 			jQuery('.invoke-btn').button();
 
-
-			_this.element.find('.funcs-menu .ui-accordion-content').css('padding','5px');	
-			_this.element.find('.func-list .ui-accordion-content').css('padding','5px');
+			_this.element.find('.funcs-menu .ui-accordion-content').css('padding','5px !important');	
+			_this.element.find('.func-list .ui-accordion-content').css('padding','5px !important');
 
 			_this.element.css('top',_this.layoutOptions.top).css('left',_this.layoutOptions.left);
 
 			if (_this.layoutOptions.draggable) {
-				_this.element.draggable();
+				_this.element.draggable({handle: 'h3.ui-accordion-header'});
 			}
 
 			_this.element.width(_this.width);
@@ -215,7 +218,7 @@ $.paramView = function(paramObj) {
 
 		template: Handlebars.compile(
 			['<div class=\"funcs-menu\">',
-			'    <h3 title=\"Click here to select functions\">Functions</h3>',
+			'    <h3 title=\"Click here to select functions\">Toolbox</h3>',
 			'    <div>',
 			'      <div class=\"func-list\">',
 			'      ',
@@ -230,7 +233,7 @@ $.paramView = function(paramObj) {
 			'              ',
 			'                 <ul class=\"param-list\">   ',
 			'                 {{#each this.parameters}}',
-			'                     <li title=\"{{this.Description}}\" class=\"param\">{{this.name}}',
+			'                     <li title=\"{{{this.Description}}}\" class=\"param\">{{{this.name}}}',
 			'                     <div class=\"param-container\" data-object=\"{{json this}}\">a</div>',
 			'                     </li>',
 			'                 {{/each}}',
@@ -257,6 +260,100 @@ $.paramView = function(paramObj) {
 
 	};
 
+
+	$.FlowLoadMenu = function(options) {
+
+		jQuery.extend(this, {
+			appendTo: null,
+			flowsList: [],
+			element: null,
+			width: 220,
+			layoutOptions: {
+				top: '-400px',
+				left: '400px',
+				draggable: true,
+
+			}
+		}, options);
+
+		this.init();
+	};
+
+	$.FlowLoadMenu.prototype = {
+		init: function() {
+			var _this = this;
+
+			_this.element = jQuery(_this.template()).appendTo(_this.appendTo);
+			
+			_this.element.accordion({heightStyle: 'content'});
+
+			_this.element.css('top',_this.layoutOptions.top).css('left',_this.layoutOptions.left);
+
+			if (_this.layoutOptions.draggable) {
+				_this.element.draggable({handle: 'h3.ui-accordion-header'});
+			}
+
+			_this.element.width(_this.width);
+
+			_this.updateView();
+
+
+		},
+		bindEvents: function () {
+			var _this = this;
+
+		},
+
+		updateView: function() {
+			var _this = this;
+
+			jQuery.subscribe('Invoker.FlowList.Success', function(ev,data) {
+				_this.flowsList = data.flows;
+
+				var listEl = jQuery(_this.flowListTemplate(data));
+				console.log(JSON.stringify(data));
+
+				if (_this.element.find('.flows-list').length) { // Is it update or first time
+					_this.element.find('.flows-list').replaceWith(listEl); 
+				} else {
+					listEl.appendTo(_this.element.find('> div'));
+				}
+
+				console.log(listEl);
+				jQuery.unsubscribe('Invoker.FlowList.Success');
+
+				// Bind Select event for every flow button
+				_this.element.find('a.flow-item').on('click', function(ev){
+					var selectId = jQuery(this).attr('data-flow-id');
+					console.log('FlowsMenu: selected flow: ' + selectId);
+					jQuery.publish('Invoker.FlowsMenu.select', {id: selectId});
+				});
+
+			});
+
+			Mirador.ServiceManager.services.invoker.doFlowList();
+
+		},
+
+
+		template: Handlebars.compile([
+			'<div class="flows-menu">',
+			'	<h3>Flows</h3>',
+			'	<div>',
+			'	</div>',
+			'</div>'
+			].join('')),
+
+		flowListTemplate: Handlebars.compile([
+			'<ul class="flows-list">',
+			'{{#each flows}}',
+			'	<li><a class="flow-item" href="#" data-flow-id="{{this.id}}">{{this.id}}</a></li>',
+			'{{/each}}',
+			'</ul>'
+			].join(''))
+	};
+
+	
 
 
 })(window.InvokerLib.Views, window.Mirador);
