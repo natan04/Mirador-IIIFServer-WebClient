@@ -124,10 +124,19 @@ $.paramView = function(paramObj) {
 			///////////// INVOKE BUTTON ///////////
 			jQuery('.invoke-btn').on('click', function(ev){
 				var el = jQuery(this);
+				var paramsArr = [];
 				  
 				var funcName = el.attr('data-func');
 				var clsName = el.attr('data-class');
-				    
+				
+				jQuery.each(jQuery(this).parent().find('.param-view'), function(index, paramEl){
+					var pEl = jQuery(paramEl);
+					var pObj = JSON.parse(pEl.attr('data-object'));
+					pObj.value = pEl.attr('data-val');
+					paramsArr.push(pObj);
+				});
+
+
 			  	var paramsEl = jQuery(this).parent().find('.param-view').map(function() {
 				        var pEl = jQuery(this);
 				        var pObj = JSON.parse(pEl.attr('data-object'));
@@ -137,12 +146,12 @@ $.paramView = function(paramObj) {
 				  });
 			  
 				console.log('FuncsMenu - func/class chosen: ' + funcName +' / ' +clsName + ' Params: ');
-				jQuery.each(paramsEl, function(index, paramObj) {
+				jQuery.each(paramsArr, function(index, paramObj) {
 					console.log('Param:  ' + paramObj.name + ' = ' + paramObj.value);
 				});
 
 
-				jQuery.publish('Invoker.FuncsMenu.select', {funcName: funcName, clsName: clsName, params: paramsEl});
+				jQuery.publish('Invoker.FuncsMenu.select', {funcName: funcName, clsName: clsName, params: paramsArr});
 
 
 			});
@@ -376,7 +385,21 @@ $.paramView = function(paramObj) {
 			'{{/each}}',
 			'</ul>'
 			].join(''))
+
 	};
+
+	$.InvokeViewTemplate = Handlebars.compile([
+  			'<table class="invoke-info">',
+			'	<tbody><th>{{function}}::{{class}}</th></tbody>',
+			'	{{#each parameters}}',
+			'		<tr>',
+			'			<td>{{this.name}}</td>',
+			'			<td>{{this.value}}</td>',
+			'		</tr>',
+			'	{{/each}}',
+			'</table>'
+			].join(''));
+
 
 	
 

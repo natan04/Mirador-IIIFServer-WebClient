@@ -157,7 +157,24 @@ $.Edidor.prototype = {
 		}
 	} );
 
+	// Set tooltip: invoke info for thumbnails
+	_this.window.bottomPanel.element.find('.thumbnail-image').tooltip({
+		content: function() {
+			var id = jQuery(this).attr('data-image-id');
+			var idx=Mirador.getImageIndexById(_this.window.imagesList, id) - 1;
 
+			if (_this.flow.length === 0) {
+				return '';
+			}
+			if (idx == -1) {
+				return 'Base Image';
+			}
+
+			var str = jQuery(InvokerLib.Views.InvokeViewTemplate(_this.flow[idx])).html();
+
+			return str;
+		}
+	});
 
 	_this.bindWindowEvents();
 
@@ -221,6 +238,7 @@ $.Edidor.prototype = {
 		jQuery.subscribe('Invoker.Handshake.Success', function(ev, json) {
 			_this.currentFlowId = data.id;
 			_this.update(json);
+			_this.flowMenu.updateView();
 			jQuery.unsubscribe('Invoker.Handshake.Success');
 		});
 

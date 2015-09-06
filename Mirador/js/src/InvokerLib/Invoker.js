@@ -333,7 +333,7 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		},
 		doLoadFlow: function(id) {},
 		doSaveFlow: function(id, index, imageId, overwrite) {
-			req = new InvokerLib.Models.InvokeRequest({type: 'save', index: index, id: id, images: [imageId] });
+			req = new InvokerLib.Models.InvokeRequest({type: 'save', index: index, id: id, images: [imageId], overwrite:overwrite });
 
 			this.sendRequest(req, function(json) {
 				console.log('Invoker - Save flow SUCCESS, response: ');
