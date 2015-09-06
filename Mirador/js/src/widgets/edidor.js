@@ -238,7 +238,6 @@ $.Edidor.prototype = {
 		jQuery.subscribe('Invoker.Handshake.Success', function(ev, json) {
 			_this.currentFlowId = data.id;
 			_this.update(json);
-			_this.flowMenu.updateView();
 			jQuery.unsubscribe('Invoker.Handshake.Success');
 		});
 
@@ -255,6 +254,7 @@ $.Edidor.prototype = {
 	jQuery.subscribe('Invoker.SaveFlow.Success', function(ev, data){
 		_this.currentFlowId = data.id;
 		_this.update(data.json);
+		_this.flowMenu.updateView();
 		jQuery.unsubscribe('Invoker.FlowSave.Success');
 	});
 

@@ -74,7 +74,7 @@ $.paramView = function(paramObj) {
 			appendTo: null,
 			funcList: [],
 			element: null,
-			width: 220,
+			width: 250,
 			classItemOptions: {
 				showIO: true,
 				showParams: true
@@ -136,14 +136,6 @@ $.paramView = function(paramObj) {
 					paramsArr.push(pObj);
 				});
 
-
-			  	var paramsEl = jQuery(this).parent().find('.param-view').map(function() {
-				        var pEl = jQuery(this);
-				        var pObj = JSON.parse(pEl.attr('data-object'));
-				        pObj.value = pEl.attr('data-val');
-				        console.log(this.toString());
-				        return pObj; 
-				  });
 			  
 				console.log('FuncsMenu - func/class chosen: ' + funcName +' / ' +clsName + ' Params: ');
 				jQuery.each(paramsArr, function(index, paramObj) {
@@ -162,12 +154,12 @@ $.paramView = function(paramObj) {
 			var _this = this;
 
 			// Update view with parameters views 
-			jQuery.each(_this.element.find('.param-container'), function(index, contEl) {
+			jQuery.each(_this.element.find('.param-col'), function(index, contEl) {
 				  var el = jQuery(contEl);
 				  var json = el.attr('data-object');
 				  var obj = JSON.parse(json);
 
-				  el.replaceWith($.paramView(obj) );
+				  el.append($.paramView(obj) );
 			});
 
 
@@ -241,16 +233,17 @@ $.paramView = function(paramObj) {
 			'              <div class=\"class-item\" title=\"{{this.description}}\">{{name}}</div>',
 			'              <div>',
 			'              ',
-			'                 <ul class=\"param-list\">   ',
+			'                 <table class=\"param-list\">   ',
 			'                 {{#each this.parameters}}',
-			'                     <li title=\"{{{this.Description}}}\" class=\"param\">{{{this.name}}}',
-			'                     <div class=\"param-container\" data-object=\"{{json this}}\">a</div>',
-			'                     </li>',
+			'	      	<tr title="{{this.Description}}">',
+			'			<td class="param">{{this.name}}</td>',
+			'			<td class="param-col" data-object="{{json this}}"></td>',
+			'		</tr>',
 			'                 {{/each}}',
 			'',
 			'             <a class=\"invoke-btn\" href=\"#\" data-func=\"{{../name}}\" data-class=\"{{name}}\">Invoke</a>',
 			'',
-			'                 </ul>',
+			'                 </table>',
 			'                 ',
 			'              </div>',
 			'          {{/each}}',
@@ -318,16 +311,18 @@ $.paramView = function(paramObj) {
 			_this.element.find('.flow-save-btn').on('click', function(ev) {
 				var id = _this.element.find('.flow-save-input').val();
 
+				var idExists = false;
 				// Check if flow exists with same id
 				jQuery.each(_this.flowsList, function(index, flowObj) {
 					if (id === flowObj.id) {
 						alert('Flow already exists with that id');
-						return;
+						idExists = true;
 					}
 				});
 
-				jQuery.publish('Invoker.FlowList.Save', {id: id});
-
+				if (!idExists) {
+					jQuery.publish('Invoker.FlowList.Save', {id: id});
+				}
 			});
 
 		},
