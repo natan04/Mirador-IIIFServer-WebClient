@@ -6,8 +6,9 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 //DONE: Style preview images
 
 
-//TODO: Batch doesn't save annotations.
-//TODO: Save/Load flow
+//BUG: Batch doesn't save annotations.
+//DONE: Save/Load flow
+
 
 
 /*
@@ -239,7 +240,9 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 			baseUrl: 'http://localhost:5000',
 			servicePath: 'PictureHandler/Invoker',
 			ajaxOpts: {type: "POST", dataType: "json", xhrFields: {withCredentials: true} },
-			timeout: 10000
+			timeout: 10000,
+			wsObject: null,	// WebSocket for BATCH
+			batcherUrl: ''
 		},options);
 
 	};
@@ -350,7 +353,52 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 				console.log('Invoker - Save flow FAILED. err: '+ err);
 				jQuery.publish('Invoker.SaveFlow.Fail', {err: err});
 			});
+		},
+		doBatch: function(flowId, verName, images, bookId) {
+			var _this = this;
+			var batchReq = {	type: "batch",	
+						images: images,
+						flowId: flowId,
+						book: bookId,
+						newVersion: verName};
+
+			console.log('Batcher - Opening websocket for '+this.batcherUrl);
+
+			this.wsObject = new WebSocket(this.batcherUrl);
+
+			this.wsObject.onopen = function(event) {
+				console.log('Batcher - connction opened. sending batch request');
+				_this.wsObject.send(JSON.stringify(batchReq));
+
+				window.Mirador.viewer.showLoaderOverlay('Initiating BATCH request.');
+			};
+
+			this.wsObject.onmessage = function(event) {
+				var obj = JSON.parse(event.data);
+
+				console.log('Batcher - message arrived: ');
+				console.log(event.data);
+				console.log(obj);
+
+				window.Mirador.viewer.addLoaderOverlayMessage(obj.display);
+			};
+
+			this.wsObject.onclose = function(event) {
+
+				console.log('Batcher - CLOSED. ');
+				jQuery.subscribe('Batcher.Closed. reason: ' + event.data);
+
+				setTimeout(function() { 
+		  		  	$.viewer.hideLoaderOverlay();
+		    		}, 
+		    		1000);
+
+			};
+
+
+
 		}
+
 	};
 
 

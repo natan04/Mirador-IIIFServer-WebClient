@@ -5,6 +5,8 @@
     jQuery.extend(this, {
       element:           null,
       editMode:           false, 
+      batchMode:        false,
+      batchFlowMenu: null,
       invokerService:     null, 
       scrollImageRatio:  0.9,
       manifest:          null,
@@ -678,6 +680,18 @@
         _this.enterEditMode();
     });
 
+    this.element.find('.edit-batch-option').on('click', function(){
+
+      if (!_this.batchMode) {
+          _this.enterBatchMode();
+      } else {
+          _this.exitBatchMode();
+      }
+
+      _this.batchMode = !_this.batchMode;
+
+    });
+
     this.element.find('.mirador-icon-metadata-view').on('click', function() {
       _this.toggleMetadataOverlay(_this.currentFocus);
     });
@@ -725,6 +739,74 @@
         }
     },
 
+    enterBatchMode: function() {
+        var _this = this;
+
+        console.log('Window: Entering batch selection mode');
+        _this.element.find('.edit-mode-option').hide();
+
+        _this.batchFlowMenu  = new InvokerLib.Views.FlowLoadMenu({
+                  appendTo: _this.element, 
+                  saveMode: false,
+                  layoutOptions: {top:'0',
+                                          left: '200px'}
+                });
+        
+        _this.element.find('.panel-listing-thumbs').selectable({filter: 'li'}); 
+        _this.bindBatchModeEventers();
+
+    },
+    exitBatchMode: function() {
+        var _this = this;
+
+        console.log('Window: Exiting batch mode');
+        _this.element.find('.edit-mode-option').show();
+
+        _this.batchFlowMenu.element.remove();
+        _this.batchFlowMenu = null;
+
+        _this.element.find('.panel-listing-thumbs').selectable("destroy"); 
+
+    },
+
+    bindBatchModeEventers: function() {
+        var _this = this;
+
+        jQuery.subscribe('Invoker.FlowsMenu.select', function(ev, data){
+              var flowId = data.id;
+              var verName = _this.element.find('#batch-version-input').val();
+              var images = _this.getSelectedImagesIds();
+              var bookId = _this.manifest.jsonLd.label;
+
+
+              console.log('Window - Batch - initiating batch processing: ');
+              console.log('                 FlowId: ' + flowId);
+              console.log('                 Images: '+images);
+              console.log('                 Version: '+verName);
+              console.log('                 BookId: '+bookId);
+
+              $.ServiceManager.services.invoker.doBatch(flowId, verName, images, bookId);
+        });
+    },
+
+    getSelectedImagesIds: function() {
+          var _this = this;
+          var selectedEls = _this.element.find('li.ui-selected img');
+          var selectedIDs = [];
+
+          jQuery.each(selectedEls, function(index, imgEl){
+            var id = jQuery(imgEl).attr('data-image-id');
+            var canvas = _this.manifest.getCanvasById(id);
+            var choppedId = window.Mirador.Iiif.getImageId(canvas);
+
+            selectedIDs.push(choppedId);
+
+          });
+
+          return selectedIDs;
+
+    },
+
     // template should be based on workspace type
     template: Handlebars.compile([
                                  '<div class="window">',
@@ -732,6 +814,10 @@
                                  '<div class="window-manifest-navigation">',
                                  '<a href="javascript:;" class="mirador-btn mirador-icon-edit-mode edit-mode-option"><i class="fa fa-pencil fa-lg fa-fw"></i>',
                                     '<span>EDIT</span>',
+                                 '</a>',
+                                 '<a href="javascript:;" class="mirador-btn mirador-icon-batch-mode edit-batch-option">',
+                                        '<i class="fa fa-database fa-lg fa-fw"></i>',
+                                        '<span>BATCH</span>',
                                  '</a>',
                                  '<a href="javascript:;" class="mirador-btn mirador-icon-image-view"><i class="fa fa-photo fa-lg fa-fw"></i>',
                                  '<ul class="dropdown image-list">',

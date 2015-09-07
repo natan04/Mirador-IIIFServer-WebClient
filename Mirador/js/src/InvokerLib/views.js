@@ -293,6 +293,10 @@ $.paramView = function(paramObj) {
 
 			_this.element.css('top',_this.layoutOptions.top).css('left',_this.layoutOptions.left);
 
+			if (!_this.saveMode) {
+				_this.element.css('position', 'absolute');
+			}
+
 			if (_this.layoutOptions.draggable) {
 				_this.element.draggable({handle: 'h3.ui-accordion-header'});
 			}
@@ -367,6 +371,11 @@ $.paramView = function(paramObj) {
 			'		<div class=\"flow-save-container\" >',
 			'			<input type=\"text\" placeholder=\"Flow name to save\" class=\"flow-save-input\">',
 			'			<button class=\"flow-save-btn\">SAVE</button>',
+			'		</div>',
+			'	{{else}}',
+			'		<div class="batch-form-container">',
+			'			<input id="batch-version-input" type="text" placeholder="Version name" >',
+			'			<label for="batch-version-input">Select a name for the new version</label>',
 			'		</div>',
 			'	{{/if}}',
 			'	</div>',
