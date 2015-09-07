@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.RemoteEndpoint.Basic;
+import javax.websocket.Session;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.juli.logging.Log;
@@ -177,7 +178,7 @@ public class Invoker extends HttpServlet {
 				Global.mainLogger.info("Initiate edit mode for session: " + sessionId +" , with picture: " + baseImg);
 				if (id.length() > 0)
 				{
-					Preview.loadFromId(null, null, ver, id, images, sessionId);
+					Preview.loadFromId(null, null, null, ver, id, images, sessionId);
 				}
 				
 				
@@ -208,7 +209,7 @@ public class Invoker extends HttpServlet {
 
 				Preview.handleIndexes(versionOfCurrentSession, currentIndex, sessionId);
 				versionOfCurrentSession.gTempInvokesCommendArray.put(invokeCmmnd);
-				String[] iiifAndPath = (previewInvoke(invokeCmmnd, images, sessionId));
+				String[] iiifAndPath = (previewInvoke(null, invokeCmmnd, images, sessionId, null));
 				versionOfCurrentSession.createPageToTemp(iiifAndPath);
 				
 			} 
@@ -248,7 +249,7 @@ public class Invoker extends HttpServlet {
 	 */
 	//preview take only one image.
 	//return base address of the new picture.
-	public static String[] previewInvoke(JSONObject invokeCmmnd, JSONArray images, String sessionId) throws JSONException {
+	public static String[] previewInvoke(Session session, JSONObject invokeCmmnd, JSONArray images, String sessionId, Basic basicRemote) throws JSONException {
 		
 		String image = (String) images.get(0);
 		String newImagePath = null;
@@ -269,7 +270,7 @@ public class Invoker extends HttpServlet {
 			JSONObject singleInvoke = new JSONObject(invokeCmmnd.toString());
 			singleInvoke.put("input", oldImage);
 			singleInvoke.put("output", newImagePath);			
-			singleInvokeGateFunction(singleInvoke);
+			singleInvokeGateFunction(session, singleInvoke, basicRemote);
 			oldImage = newImagePath;		//chain: new->old
 			
 
@@ -279,7 +280,7 @@ public class Invoker extends HttpServlet {
 	}
 
 	
-	public static void singleInvokeGateFunction(JSONObject singleInvoke) {
+	public static void singleInvokeGateFunction(Session session, JSONObject singleInvoke, Basic basicRemote) {
 		
 		try {
 	
@@ -294,6 +295,20 @@ public class Invoker extends HttpServlet {
 			outputfile.mkdirs();
 			ImageIO.write(imageOutput, "jpg", outputfile);
 
+			//on error:
+			if (basicRemote != null)
+			{
+				JSONObject err = new JSONObject();
+				err.put("display", "error: + blablabla");
+				session.close();
+			}
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return ;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -307,12 +322,13 @@ public class Invoker extends HttpServlet {
 	}
 
 	
-	public static void runBatchOnVersion(Basic basicRemote, String sessionId, String bookName,
+	public static void runBatchOnVersion(Session session, Basic basicRemote, String sessionId, String bookName,
 			String newVersionName, String flowId, JSONArray images) {
 		
 	
 		Book book = Global.getBook(bookName);
 		Version newVersion = book.getVersion(newVersionName);
+		newVersion.addToSql();
 		JSONObject toPrintOnUser = new JSONObject();
 		for (int i = 0; i < images.length(); i++)
 		{
@@ -324,7 +340,7 @@ public class Invoker extends HttpServlet {
 				 * And after that, insert the image to manifest page.
 				 */				
 				Version tempVer = Global.InvokerPreviewBook.getNewVersion(sessionId);	
-				String tempPathImageAddress[] = Preview.loadFromId(basicRemote, toPrintOnUser, tempVer, flowId, (new JSONArray()).put(image), sessionId);
+				String tempPathImageAddress[] = Preview.loadFromId(session,basicRemote, toPrintOnUser, tempVer, flowId, (new JSONArray()).put(image), sessionId);
 				newVersion.copyImageFromTempToManifest(tempPathImageAddress, toPrintOnUser.getString("imageName").split("/")[2]);
 				
 
@@ -337,6 +353,20 @@ public class Invoker extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		JSONObject finish = new JSONObject();
+		try {
+			finish.put("display", "error: + blablabla");
+			finish.put("currentImageIndex", -1);
+			basicRemote.sendText(finish.toString());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 	}
 	

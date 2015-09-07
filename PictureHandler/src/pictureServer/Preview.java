@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.websocket.RemoteEndpoint.Basic;
+import javax.websocket.Session;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -186,6 +187,7 @@ public class Preview {
 
 /**
  * This function loading to temp version, the image after run all the specified flow.
+ * @param session 
  * @param toPrintOnUser 
  * @param basicRemote 
  * @param tempVer A temp version that belong to session
@@ -194,7 +196,7 @@ public class Preview {
  * @param sessionId Session Id string
  * @return the last image paths(real and iiif)
  */
-	public static String[] loadFromId(Basic basicRemote, JSONObject toPrintOnUser, Version tempVer, String flowId, JSONArray  images, String sessionId) {
+	public static String[] loadFromId(Session session, Basic basicRemote, JSONObject toPrintOnUser, Version tempVer, String flowId, JSONArray  images, String sessionId) {
 		// TODO Auto-generated method stub
 		try {
 			JSONArray ar = sqlSpecificFlowJson(flowId);
@@ -213,7 +215,7 @@ public class Preview {
 					toPrintOnUser.put("display", String.format("image: %s. %s::%s. ",firstImage, invokeCmmnd.getString("function"),invokeCmmnd.getString("class")));
 					basicRemote.sendText(toPrintOnUser.toString());
 				}
-				iiifAndPath = (Invoker.previewInvoke(invokeCmmnd, images, sessionId));
+				iiifAndPath = (Invoker.previewInvoke(session, invokeCmmnd, images, sessionId, basicRemote));
 				tempVer.createPageToTemp(iiifAndPath);
 
 				//images is an array with iiif image. so we remove and add again,

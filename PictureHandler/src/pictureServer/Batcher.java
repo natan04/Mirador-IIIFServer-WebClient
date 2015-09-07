@@ -39,26 +39,37 @@ public class Batcher {
 			switch (ob.getString("type")){
 	        
 			case "batch":
-				handleBatch(session.getBasicRemote(), session.getId(), ob.getString("book"), ob.getString("newVersion"), ob.getString("flowId"),ob.getJSONArray("images") );
-			
-
+				handleBatch(session,session.getBasicRemote(), session.getId(), ob.getString("book"), ob.getString("newVersion"), ob.getString("flowId"),ob.getJSONArray("images") );
+				session.getBasicRemote().sendText((new JSONObject().put("display", "Success!")).toString());
+				
 			
 			}
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	try {
+			session.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     	return "ok";
     }
  
-    private void handleBatch(Basic basicRemote, String sessionId, String book, String version,
+    private void handleBatch(Session session, Basic basicRemote, String sessionId, String book, String version,
 			String flowId, JSONArray images) {
 		
     	System.out.println(String.format("book: %s, version: %s, flowId: %s, images %s", book, version, flowId, images.toString()));
     	try {
     		
 			basicRemote.sendText(String.format("book: %s, version: %s, flowId: %s, images %s", book, version, flowId, images.toString()));
-			Invoker.runBatchOnVersion(basicRemote, sessionId,book, version, flowId,  images);
+			Invoker.runBatchOnVersion(session, basicRemote, sessionId,book, version, flowId,  images);
+			
+		
     	} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
