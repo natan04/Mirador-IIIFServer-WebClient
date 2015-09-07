@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.websocket.RemoteEndpoint.Basic;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,6 +153,12 @@ public class Preview {
 		return js;
 	}
 	
+	/**
+	 * 
+	 * @return JSONarray of flows and ids
+	 * @throws SQLException
+	 * @throws JSONException
+	 */
 	public static JSONArray sqlFlowListJson() throws SQLException, JSONException
 	{
 		String queryFlows = "SELECT * FROM flows;";
@@ -175,35 +183,59 @@ public class Preview {
 		return jsArray;
 	}
 
-	public static void loadFromId(Version ver, String id, JSONArray  images, String sessionId) {
+
+/**
+ * This function loading to temp version, the image after run all the specified flow.
+ * @param toPrintOnUser 
+ * @param basicRemote 
+ * @param tempVer A temp version that belong to session
+ * @param flowId	The flow we want to run on the image
+ * @param images	Json array of one image
+ * @param sessionId Session Id string
+ * @return the last image paths(real and iiif)
+ */
+	public static String[] loadFromId(Basic basicRemote, JSONObject toPrintOnUser, Version tempVer, String flowId, JSONArray  images, String sessionId) {
 		// TODO Auto-generated method stub
 		try {
-			JSONArray ar = sqlSpecificFlowJson(id);
-	
+			JSONArray ar = sqlSpecificFlowJson(flowId);
+			String[] iiifAndPath = null;
+			String firstImage = images.getString(0);
 			for (int i = 0; i < ar.length(); i++)
 			{
 				
-				String[] iiifAndPath = (Invoker.previewInvoke(ar.getJSONObject(i), images, sessionId));
-				ver.createPageToTemp(iiifAndPath);
+
+				JSONObject invokeCmmnd = ar.getJSONObject(i);
+				
+				//printing on client
+				if(toPrintOnUser != null)
+				{
+					toPrintOnUser.put("imageName", firstImage);
+					toPrintOnUser.put("display", String.format("image: %s. %s::%s. ",firstImage, invokeCmmnd.getString("function"),invokeCmmnd.getString("class")));
+					basicRemote.sendText(toPrintOnUser.toString());
+				}
+				iiifAndPath = (Invoker.previewInvoke(invokeCmmnd, images, sessionId));
+				tempVer.createPageToTemp(iiifAndPath);
 
 				//images is an array with iiif image. so we remove and add again,
 				images.remove(0);
-				images.put(iiifAndPath[0]);
+				images.put(iiifAndPath[1]);
 			}
 		
-			ver.gTempInvokesCommendArray = new JSONArray(ar.toString());
-
+			tempVer.gTempInvokesCommendArray = new JSONArray(ar.toString());
+			
+			return iiifAndPath;
+			
 		} catch (SQLException e) {
-			Global.mainLogger.severe("SQL: failed to load flow id: " + id);
+			Global.mainLogger.severe("SQL: failed to invoke flow id: " + flowId);
 			e.printStackTrace();
 		} catch (JSONException e) {
-			Global.mainLogger.severe("Json: failed to load flow id: " + id);
+			Global.mainLogger.severe("Json: failed to load flow id: " + flowId);
 			e.printStackTrace();
 		}catch (Exception e) {
-			Global.mainLogger.severe("Create page to temp: failed to load flow id: " + id);
+			Global.mainLogger.severe("Create page to temp: failed to load flow id: " + flowId);
 			e.printStackTrace();
 		}
-		
+		return null;
 		
 	}
 

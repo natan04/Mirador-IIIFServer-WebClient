@@ -1,6 +1,5 @@
 package pictureServer;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -17,64 +16,66 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Json")
 public class Json extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Json() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public Json() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-		
-		response.addHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+//configure headers
+		response.addHeader("Access-Control-Allow-Origin",
+				"http://localhost:8000");
 		response.addHeader("Access-Control-Allow-Credentials", "true");
 		response.addHeader("Access-Control-Allow-Methods", "GET, POST");
 		response.addHeader("Access-Control-Allow-Headers ", "Content-Type, *");
 		response.setContentType("application/json");
 
 		HttpSession session = request.getSession();
-		
-		String idOfBook = request.getParameter("id");
-		Global.mainLogger.info("Get Json request from session:" + session.getId());
-		PrintWriter printWriter  = response.getWriter();
-		
-		if (idOfBook == null)
-		{
 
+		String idOfBook = request.getParameter("id");
+		Global.mainLogger.info("Get Json request from session:"
+				+ session.getId());
+		PrintWriter printWriter = response.getWriter();
+
+		if (idOfBook == null) 
 			return;
-		}
-		
-		if (idOfBook.compareTo("all") ==0)
+
+		if (idOfBook.compareTo("all") == 0) 
 		{
-			Global.mainLogger.info("send Json base array to:" + request.getRemoteAddr());
+			Global.mainLogger.info("send Json base array to:"
+					+ request.getRemoteAddr());
 			printWriter.println(Global.getListOfBook());
-		}
+		} 
 		else
 		{
 			Book book = Global.getIfHaveBook(idOfBook);
-			if (book != null)
-			{
-				Global.mainLogger.info("send  database book" + book.gBookId + " to:" + session);
+			if (book != null) {
+				Global.mainLogger.info("send  database book" + book.gBookId
+						+ " to:" + session);
 				printWriter.println(book.toString());
-			}
-			else
-			{
-				Global.respond(printWriter, Global.bookArentExists, Global.bookArentExistsDesc);
+			} else {
+				Global.respond(printWriter, Global.bookArentExists,
+						Global.bookArentExistsDesc);
 			}
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 	}
 

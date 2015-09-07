@@ -1,6 +1,8 @@
 package pictureServer;
 
 import java.io.File;
+import static java.nio.file.StandardCopyOption.*;
+import java.nio.file.Files;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -133,12 +135,6 @@ public void addToSql()
 	
 }
 
-public void removeMe()
-{
-	
-
-	Global.sqlRemoveVersion(gVersionId, gBookId);
-}
 
 	//creating the file and page, assuming the page not exists
 public synchronized void createPage(FileItem fileUpdate, String fileName) throws Exception {
@@ -175,10 +171,40 @@ public synchronized void createPageToTemp(String[] pathFile) throws Exception {
 	int found = Collections.binarySearch(gPages, search);
 	gPages.add(-found-1, search);	//keeping the sorted array
 	
-	search.createJsonForTemp(p, pathFile[1]);
+	search.createJsonFromIiifPath(p, pathFile[1]);
 	fCanvas.put(search.json);
 	
 	currentIndex.incrementAndGet();
+	
+}
+
+/*
+ * fileName: string array. 	first element: real path of the page.
+ * 							second element: iiif path (BOOK/VERSION/PAGE)
+ */
+public synchronized void copyImageFromTempToManifest( String[] pathFile,String imageName) throws Exception {
+	
+	
+
+	File pOld = new File(pathFile[0]);	//old File Path
+	
+	String pathNewFile = (Global.filePath + Global.sep + gBookId + Global.sep + gVersionId + Global.sep + imageName);
+	File pNew = new File(pathNewFile);
+	pNew.mkdirs();
+
+	Files.copy(pOld.toPath(),  pNew.toPath(), REPLACE_EXISTING );
+
+	
+	Page 	search = new Page(imageName, gBookId, gVersionId);
+
+	search.addPageToDatabase();
+
+	int found = Collections.binarySearch(gPages, search);
+	gPages.add(-found-1, search);	//keeping the sorted array
+	
+	search.createJsonFromIiifPath(pNew, gBookId +"/" + gVersionId + "/" + imageName);
+	fCanvas.put(search.json);
+	
 	
 }
 
