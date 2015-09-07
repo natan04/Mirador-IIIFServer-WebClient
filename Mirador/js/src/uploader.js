@@ -19,6 +19,7 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 // TODO: Handle of new manifest
 // TODO: Change name of menu to "Admin" or something
 // TODO: Change this to a global manifests editting admin panel (add,delete,append page etc.)
+// BUG: Manifest in list not updated when uploading to existing manifest(append image)
 (function($,mInst) {
 	
 	/**

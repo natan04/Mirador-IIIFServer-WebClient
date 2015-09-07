@@ -4,7 +4,7 @@
                     "name": "Simple Annotation Store Endpoint",
                     "module": "SimpleASEndpoint",
                     "options": {
-                           "url": "http://93.173.225.205:7080/simpleAnnotationStore/annotation",
+                           "url": "http://10.0.0.9:7080/simpleAnnotationStore/annotation",
                             "storeId": "comparison",
                             "APIKey": "user_auth"
                         }
@@ -15,7 +15,7 @@
   "services": [
     {
       "name": "PictureHandler",
-      "baseUrl": "http://93.173.225.205:8080"  ,
+      "baseUrl": "http://10.0.0.9:8080"  ,
       "cmds": {
         "list": "Json?id=all",
         "upload": "Upload",
@@ -26,9 +26,10 @@
   
     {
       "name": "InvokerService",
-      "baseUrl": "http://93.173.225.205:8080",
+      "baseUrl": "http://10.0.0.9:8080",
       "cmds" : {},
-      "timeout": 2000
+      "timeout": 2000,
+      "batcherUrl": "ws://10.0.0.9:8080/PictureHandler/Batcher"
     }
 
   ]

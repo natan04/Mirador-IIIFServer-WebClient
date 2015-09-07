@@ -11,8 +11,9 @@
 //BUG: On invoke - the selected canvas resets to 0
 //DONE: Preview-image marking
 //TODO: Every invoke - increase canvas ID
-//TODO: Current Flow Id in window header
-
+//DONE: Current Flow Id in window header
+//TODO: On BATCH finish - update current manifest and switch to new version
+//TODO: Manifest versions ordering in Manifest Panel
 (function($) {
 /**
  * Wrapper class for editor Window
