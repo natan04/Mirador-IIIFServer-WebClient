@@ -1,0 +1,202 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebGTModel;
+using System.Text;
+using System.IO;
+
+public partial class tempExport : System.Web.UI.Page
+{
+    protected int collectionID
+    {
+        get { return Convert.ToInt32(ddlCollection.SelectedValue); }
+    }
+
+    protected int manuscriptID
+    {
+        get { return Convert.ToInt32(ddlManuscript.SelectedValue); }
+    }
+
+    protected int pageID
+    {
+        get { return Convert.ToInt32(ddlSelectDoc.SelectedValue); }
+    }
+
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Utils.CurrentUser == null || Utils.CurrentUser.ID!=1)
+            Response.Redirect(".");
+
+        if (!IsPostBack)
+        {
+            LoadCollections();
+        }
+    }
+
+
+
+    private void LoadCollections()
+    {
+        if (ddlCollection.Items.Count > 0)
+            ddlCollection.Items.Clear();
+
+        ddlCollection.Items.Add(new ListItem("select collection", "0"));
+        foreach (Collection c in Utils.Model.Collections)
+            ddlCollection.Items.Add(new ListItem(c.Title, c.ID.ToString()));
+    }
+
+    protected void lbExportToCsv_Click(object sender, EventArgs e)
+    {
+        var ret = Utils.Model.DocElements.Where(el => el.documentID == pageID && el.TypeID == (int)DocElement.DocElementType.Character);
+        StringBuilder sb = new StringBuilder();
+        foreach (DocElement el in ret)
+        { 
+            //threshold char x y w h clickx clicky
+            sb.AppendFormat("{0},{1},{2},{3},{4},{5},{6},{7}{8}",
+                el.Threshold??0,
+                0,//Convert.ToInt32(el.Transcript[0]), 
+                el.X, 
+                el.Y, 
+                el.Width, 
+                el.Height,
+                el.OriginX??0,
+                el.OriginY??0,
+                Environment.NewLine);
+        }
+        Response.ClearContent();
+        
+        
+        string attachment = "attachment; filename=gtChars.csv";
+        Response.Clear();
+        Response.ClearHeaders();
+        Response.ClearContent();
+        Response.AddHeader("content-disposition", attachment);
+        Response.ContentType = "text/csv";
+        Response.AddHeader("Pragma", "public");
+        Response.Write(sb.ToString());
+        Response.End();
+    }
+
+    protected void lbImportFromCsv_Click(object sender, EventArgs e)
+    {
+        StreamReader sr = new StreamReader(FileUpload1.FileContent);
+        Utils.Model.DocElements.Where(el => el.documentID == pageID).ToList().ForEach(Utils.Model.DocElements.DeleteObject);
+        Utils.Model.SaveChanges();
+        int elementsAdded = 0;
+
+        while (!sr.EndOfStream)
+        {
+            string line = sr.ReadLine();
+            string[] vals = line.Split(",".ToCharArray());
+            DocElement el = new DocElement();
+            if (vals[0] != "" && vals[0] != "0") el.Threshold = Convert.ToInt32(vals[0]);
+            if (vals[1] != "" && vals[1] != "0") el.Transcript = Convert.ToChar(Convert.ToInt32(vals[1])).ToString();
+            el.X = Convert.ToInt32(vals[2]);
+            el.Y = Convert.ToInt32(vals[3]);
+            el.Width = Convert.ToInt32(vals[4]);
+            el.Height = Convert.ToInt32(vals[5]);
+            if (vals[6] != "" && vals[6] != "0") el.OriginX = Convert.ToInt32(vals[6]);
+            if (vals[7] != "" && vals[7] != "0") el.OriginY = Convert.ToInt32(vals[7]);
+            //el.Created = DateTime.Now;
+            el.documentID = pageID;
+            el.ElementType = DocElement.DocElementType.Character;
+
+            Utils.Model.DocElements.AddObject(el);
+            elementsAdded++;
+        }
+
+        Utils.Model.SaveChanges();
+        lbMsg.Text = elementsAdded.ToString() + " elements added.";
+    }
+    protected void ddlSelectDoc_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lbUploadImage_Click(object sender, EventArgs e)
+    {
+        string imgFile =
+            string.Format("{0}{1}.png",
+            System.Configuration.ConfigurationManager.AppSettings["ImagesFolder"],
+            pageID);
+        fuDocImage.SaveAs(imgFile);
+        lbMsg.Text = "file uploaded.";
+    }
+
+    protected void ddlCollection_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ddlManuscript.Items.Clear();
+        ddlManuscript.Items.Add(new ListItem("select manuescript", "0"));
+        foreach (Manuscript ms in Utils.Model.Manuscripts.Where(ms => ms.CollectionID== collectionID))
+            ddlManuscript.Items.Add(new ListItem(ms.Title, ms.ID.ToString()));
+    }
+
+    protected void ddlManuscript_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ddlSelectDoc.Items.Clear();
+        foreach (ManuscriptPage p in Utils.Model.ManuscriptPages.Where(mp=>mp.ManuscriptID==manuscriptID))
+            ddlSelectDoc.Items.Add(new ListItem(p.Title, p.ID.ToString()));
+    }
+
+    protected void lbCreate_Click(object sender, EventArgs e)
+    {
+        ManuscriptPage page = new ManuscriptPage();
+        page.ManuscriptID = manuscriptID;
+        if (!string.IsNullOrEmpty(tbTitle.Text))
+            page.Title = tbTitle.Text;
+        else
+            page.Title = fuNewPage.FileName.Substring(0, fuNewPage.FileName.LastIndexOf('.'));
+
+        Utils.Model.ManuscriptPages.AddObject(page);
+        Utils.Model.SaveChanges();
+
+        string imgFile =
+            string.Format("{0}{1}.png",
+            System.Configuration.ConfigurationManager.AppSettings["ImagesFolder"],
+            page.ID);
+        fuNewPage.SaveAs(imgFile);
+        lbMsg.Text = "page created.";
+        tbTitle.Text = "";
+    }
+    protected void lbCreateCollection_Click(object sender, EventArgs e)
+    {
+        if (tbCollectionTitle.Text == "")
+        {
+            lbMsg.Text = "Please provide collection title";
+            return;
+        }
+
+        Collection collection = new Collection();
+        collection.Title = tbCollectionTitle.Text;
+        string userName = tbOwnerUserName.Text;
+        var user = Utils.Model.Users.SingleOrDefault(u => u.Email == userName);
+        if (user==null)
+        {
+            lbMsg.Text = "error setting owner user.";
+            return;
+        }
+        collection.OwnerID = user.ID;
+        collection.AddUser(user);
+        collection.TaggingSchemeID = 1;
+        Utils.Model.Collections.AddObject(collection);
+        Utils.Model.SaveChanges();
+        LoadCollections();
+        lbMsg.Text = "Collection added";
+    }
+    protected void lbSetPass_Click(object sender, EventArgs e)
+    {
+        User user = Utils.Model.Users.SingleOrDefault(u => u.Email == tbSetPassUserName.Text);
+        if (user == null)
+        {
+            lbMsg.Text = "user not found";
+            return;
+        }
+        user.SetPassword(tbSetPassPassword.Text);
+        Utils.Model.SaveChanges();
+    }
+}

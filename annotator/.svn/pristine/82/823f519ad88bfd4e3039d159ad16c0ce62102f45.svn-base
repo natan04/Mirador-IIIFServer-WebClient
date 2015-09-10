@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebGTModel
+{
+
+    /// <summary>
+    /// Summary description for ManuscriptPage
+    /// </summary>
+    public partial class ManuscriptPage
+    {
+        public object AssignedToUser
+        {
+            get
+            {
+                return new { ID = AssignedToID, Name = AssignedTo.FirstName + " " + AssignedTo.LastName};
+            }
+        }
+
+        
+    }
+}

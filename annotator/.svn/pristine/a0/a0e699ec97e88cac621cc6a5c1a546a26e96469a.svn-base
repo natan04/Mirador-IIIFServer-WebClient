@@ -1,0 +1,240 @@
+﻿
+function documentManager(mainDiv, tagDocDiv) {
+    this._UserName = "Undefined";
+    this._allUsers = 0;
+    this._schemes = 0;
+    this._collections = 0;
+    this._mainDiv = mainDiv;
+    this._tagDocDiv = tagDocDiv;
+    var _self = this;
+
+    this.init = function () {
+        //this._mainDiv.text("HI!");
+
+        ajaxCall('docService', 'GetCurrentUserName', function (userNameResp) { _self.retrieveUserName(userNameResp); });
+        ajaxCall('docService', 'GetAllUsers', function (usersResp) { _self.retrieveAllUsers(usersResp); });
+        ajaxCall('docService', 'GetUserDocuments', function (resp) { _self.showDocuments(resp); });
+        ajaxCall('docService', 'GetAllSchemes', function (schemesResp) { _self.retrieveSchemes(schemesResp); });
+    }
+
+
+    this.showDocuments = function (resp) {
+
+        var accDiv = this._mainDiv.find('#acc1');
+        this._collections = resp.d;
+
+
+        for (var i = 0; i < resp.d.length; i++) {
+            var collectionBlock = this.addCollection(resp.d[i]);
+            accDiv.append(collectionBlock);
+        }
+
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function () {
+
+            $("#acc1").accordion({
+                el: ".h",
+                head: "h4, h5",
+                next: "div",
+                initShow: "div.outer:eq(1)"
+            });
+
+            $("#main .accordion").expandAll({
+                trigger: ".h",
+                ref: "h4.h",
+                cllpsEl: "div.outer",
+                speed: 200,
+                oneSwitch: false,
+                instantHide: true
+            });
+
+            $("html").removeClass("js");
+        });
+
+        var activeUsrDiv = newTag("div");
+        activeUsrDiv.addClass("activeUsr");
+        activeUsrDiv.text("Welcome " + this._UserName);
+        $(this._mainDiv.find('#header')).append(activeUsrDiv);
+
+        CollectionDefaultProperties(this._mainDiv, this._schemes);
+    }
+
+
+    this.addCollection = function (collection) {
+        collectionBlock = newTag("li");
+        h4_tag = newTag("h4");
+        ul_tag = newTag("ul");
+
+        var innerDiv = newTag("div");
+        innerDiv.addClass("inner");
+
+        if (collection.IsManager) {
+            var buttonsDiv = newTag("div");
+            buttonsDiv.addClass("collButtons");
+            buttonsDiv.attr("id", "collButtons");
+            innerDiv.append(buttonsDiv);
+            
+            manageCollectionDiv = this.CreateManageCollectionDiv(collection);
+            collectionBlock.append(manageCollectionDiv);
+            h4_tag.text(collection.Title + " (Manager)");
+        }
+        else {
+            h4_tag.text(collection.Title + " (Regular User)");
+        }
+
+        for (var i = 0; i < collection.Manuscripts.length; i++) {
+            msBlock = this.addManuscript(collection.Manuscripts[i], collection);
+            ul_tag.append(msBlock);
+        }
+
+
+        innerDiv.append(ul_tag);
+        collectionBlock.append(h4_tag);
+        collectionBlock.append(innerDiv);
+
+        return collectionBlock;
+    }
+
+
+    this.addManuscript = function (manuscript, collection) {
+        msBlock = newLI();
+        h5_tag = newTag("h5");
+        h5_tag.text(manuscript.Title);
+
+        var innerDiv = newTag("div");
+        innerDiv.addClass("inner");
+        innerDiv.data('manuscript', manuscript);
+
+        var buttonsDiv = newTag("div");
+        buttonsDiv.addClass("ctrlButtons");
+        buttonsDiv.attr("id", "msButtons");
+        innerDiv.append(buttonsDiv);
+
+        table = newTag("table");
+        var tableID = "msTable_" + manuscript.Title;
+        table.attr("id", tableID);
+        table.addClass("tablesorter");
+        tableHead = newTag("thead");
+        tableTrHead = newTag("tr");
+        tableTH1 = newTag("th").text("Page Title");
+        tableTH2 = newTag("th").text("Assigned User");
+        tableTH3 = newTag("th").text("Status");
+        if (collection.IsManager) {
+            tableTH4 = newTag("th").text("Change assigned User?");
+        }
+        tableBody = newTag("tbody");
+        tableTrHead.append(tableTH1);
+        tableTrHead.append(tableTH2);
+        tableTrHead.append(tableTH3);
+        if (collection.IsManager) {
+            tableTrHead.append(tableTH4);
+        }
+        tableHead.append(tableTrHead);
+        table.append(tableHead);
+
+
+        for (var i = 0; i < manuscript.ManuscriptPages.length; i++) {
+            var pageDiv = this.addManuscriptPage(manuscript.ManuscriptPages[i], collection);
+            var tableTR = newTag("tr");
+            var tableTD1 = newTag("td");
+            tableTD1.append(pageDiv);
+
+            var tableTD2 = newTag("td").text(manuscript.ManuscriptPages[i].AssignedToUser.Name);
+            var tableTD3 = newTag("td").text(manuscript.ManuscriptPages[i].Status);
+            if (collection.IsManager) {
+                var tableTD4 = newTag("td");
+                var dropDownList = newTag("select");
+                dropDownList.attr("id", "dropDownListUser_" + manuscript.ManuscriptPages[i].Title);
+                for (j = 0; j < this._allUsers.length; j = j + 1) {
+                    if (manuscript.ManuscriptPages[i].AssignedToID != this._allUsers[j].ID) {
+                        optionTag = newTag("option");
+                        optionTag.text(this._allUsers[j].Name);
+                        optionTag.attr("value", this._allUsers[j].ID);
+                        dropDownList.append(optionTag);
+                    }
+                }
+                var clicknum = 0;
+                dropDownList.click(function () {
+                    clicknum++;
+                    if (clicknum == 2) {
+                        var userID = $(this).val();
+                        ajaxCall('docService', 'updateAssignedUserID', function (resp) { alert(resp.d) }, ['pageID', manuscript.ManuscriptPages[i].ID, 'userID', userID]);
+                        clicknum = 0;
+                    } 
+                }); 
+                tableTD4.append(dropDownList);
+            }
+            tableTR.append(tableTD1);
+            tableTR.append(tableTD2);
+            tableTR.append(tableTD3);
+            if (collection.IsManager) {
+                tableTR.append(tableTD4);
+            }
+            tableBody.append(tableTR);
+        }
+
+        table.append(tableBody);
+        innerDiv.append(table);
+
+        msBlock.append(h5_tag);
+        msBlock.append(innerDiv);
+
+        return msBlock;
+    }
+
+
+    this.addManuscriptPage = function (page, collection) {
+
+        pageDiv = newTag("div");
+        pageDiv.addClass("clickable");
+        pageDiv.addClass("msPages");
+        pageDiv
+                .click(function () {
+                    var gte = new GTEditor(_self, collection.Scheme, _self._tagDocDiv, $(this).data('page'));
+                    gte.Load();
+                })
+            .data("page", page)
+            .text(page.Title);
+
+        return pageDiv;
+    }
+
+    this.CreateManageCollectionDiv = function (collection) {
+        var div = newTag("div")
+        .addClass("divCollectionManager");
+        //div.append(CollectionDefaultProperties(collection));
+        return div;
+    }
+
+    this.hide = function (callback) {
+        this._mainDiv.fadeOut('slow', callback);
+    }
+
+    this.show = function (callback) {
+        this._mainDiv.fadeIn('slow', callback);
+    }
+
+    this.retrieveUserName = function (userNameResp) {
+        this._UserName = userNameResp.d;
+    }
+
+    this.retrieveSchemes = function (schemesResp) {
+        this._schemes = schemesResp.d;
+    }
+
+    this.retrieveAllUsers = function (usersResp) {
+        this._allUsers = usersResp.d;
+    }
+
+    this.getSelectedItem = function (dropDownList) {
+        for (k = 0; k < dropDownList.options.length; k++) {
+            if (dropDownList.options[k].selected == true) {
+                return dropDownList.options[k].value;
+            }
+        }
+    }
+}
+
+
+

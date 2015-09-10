@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebGTModel
+{
+    /// <summary>
+    /// Summary description for TaggingScheme
+    /// </summary>
+    public class TaggingScheme
+    {
+        private static TaggingScheme[] _schemes = null;
+
+        public static TaggingScheme GetScheme(int idx)
+        {
+            if (_schemes == null)
+                InitSchemes();
+            return _schemes[idx];
+        }
+
+        public static int GetNumOfSchemes()
+        {
+            if (_schemes == null)
+                InitSchemes();
+            return _schemes.Length;
+        }
+
+        private static void InitSchemes()
+        {
+            TaggingScheme scm1 = new TaggingScheme { Name = "Heb1" };
+            scm1.Types = new DocElement.DocElementType[] { DocElement.DocElementType.Character,DocElement.DocElementType.Word, DocElement.DocElementType.Line,DocElement.DocElementType.Section};
+            scm1.BaseTypes = new DocElement.DocElementType[] { DocElement.DocElementType.Character };
+            scm1.TypesAggregators = new int[]{0,0,0,0,0,0};
+            scm1.TypesAggregators[(int)DocElement.DocElementType.Character] = (int)DocElement.DocElementType.Word;
+            scm1.TypesAggregators[(int)DocElement.DocElementType.Word] = (int)DocElement.DocElementType.Line;
+            scm1.TypesAggregators[(int)DocElement.DocElementType.Line] = (int)DocElement.DocElementType.Section;
+            scm1.TranscriptMultiCharMode = false;
+
+            TaggingScheme scm2 = new TaggingScheme { Name = "Arb1" };
+            scm2.Types = new DocElement.DocElementType[] { DocElement.DocElementType.PartOfWord, DocElement.DocElementType.Word, DocElement.DocElementType.Line, DocElement.DocElementType.Section };
+            scm2.BaseTypes = new DocElement.DocElementType[] { DocElement.DocElementType.PartOfWord };
+            scm2.TypesAggregators = new int[] { 0, 0, 0, 0, 0, 0 };
+            scm2.TypesAggregators[(int)DocElement.DocElementType.PartOfWord] = (int)DocElement.DocElementType.Word;
+            scm2.TypesAggregators[(int)DocElement.DocElementType.Word] = (int)DocElement.DocElementType.Line;
+            scm2.TypesAggregators[(int)DocElement.DocElementType.Line] = (int)DocElement.DocElementType.Section;
+            scm2.TranscriptMultiCharMode = true;
+
+            _schemes = new TaggingScheme[3];
+            _schemes[1] = scm1;
+            _schemes[2] = scm2;
+        }
+
+        private TaggingScheme()
+        {
+        }
+
+        public DocElement.DocElementType[] BaseTypes
+        {
+            get;
+            private set;
+        }
+
+        //public int[] BaseTypesIDs
+        //{
+        //    get
+        //    {
+        //        return BaseTypes.Select(t => Convert.ToInt32(t)).ToArray();
+        //    }
+        //}
+
+        public DocElement.DocElementType[] Types
+        {
+            get;
+            private set;
+        }
+
+        public string Name { get; private set; }
+        public string[] TypesNames
+        {
+            get
+            {
+                return Types.Select(t => (t.ToString())).ToArray();
+            }
+        }
+
+        public int[] TypesAggregators
+        {
+            get;
+            private set;
+        }
+
+        public bool TranscriptMultiCharMode
+        {
+            get;
+            private set;
+        }
+    }
+}

@@ -1,0 +1,104 @@
+﻿
+
+
+- buttons on green background in login page
+- plus minus icos of accordion (GET http://localhost:49379/WebGT/css/images/plus.gif 404 (Not Found) jquery-1.7.2.min.js:4, GET http://localhost:49379/WebGT/css/images/minus.gif 404 (Not Found) )
+- make the textboxes editable in the manuscript proeprties dialog boxes
+- The delay issue 
+- selecting a PAW in Arabic without a rectangle but rather by a single click
+
+
+
+
+
+
+
+
+
+
+GTEditor
+---------
+
+
+
+(* not for now)
+- handle zooming
+- zoom problem in manual adjustment
+- 'loading document' while loading...
+- try to activate in ie and ff
+- reload doc gt if fails to load
+- order in parent
+- undo and redo 
+- more suphisticated element navigation (order in image/ words/lines order...)
+- indication for data updated on server (or only if not updated?)
+
+
+DocManager
+----------
+
+
+
+Notes
+------
+icons set: http://www.iconfinder.com/search/1/?q=iconset%3Afatcow
+
+
+DONE
+----
+- seperating line and connecting line
+- delete last
+- +- threshold
+- save ground truth to server
+- improve line drawing
+- upper user panel, shows current state, and includes all functions
+- letter selection
+- show line while dragging
+- mouse marker on line selection
+- manual selection
+- add transcription
+- start with the scheme
+- on click on agregate, the type will change to the type which can group current type by collection scheme
+- selected type in front
+- z index by type
+- take 1 px over internal elements
+- dont alow grouping elements with parent
+- update selection on group diminish
+- take final group only when mouse leaves
+- use class "groupCandidate" ? if so , see it is removed
+- validate that no elements which have parents allready are selected.
+- save groups to db
+- delete group element
+- solve hiding letters problem on grouping - try selecting with events
+- mark for agregation only valid types elements
+- check on agregation only valid types elements
+- see that middle and right mouse button will not generate group
+- esc on group mode
+- validate type(smaller) on grouping 
+- highlight on hover elements
+- select with right click
+- handle element type
+- join to elements
+- only current type is selectable?
+- delete element on merge mode
+- deal with basic elements of width/height = 0
+- navigate elements using arraws(+shift?)(+ backspace in transcription)
+- dont alow transcription to non basic elements
+- fix menu seperators
+- exit from grouping, back to prev element type
+- m shortcut on merge mode
+- transcript multi char mode
+- manual adjustment
+- browsers check - (only chrome for now)
+- change alert to message all over for user messages.
+- fix selection shift
+- improve icons on buttons
+- change also +10,+2-10-2 to icon images
+-split line ?
+- order code (+ make menu items shortcuts avialable also in other modes than main)
+- split line, split to elements
+- prevent big selection 
+- center collections management
+- remove header from do GT Edit page
+- on grouping transcription is selectable
+- header top margin on login page
+- documents link font size on hover

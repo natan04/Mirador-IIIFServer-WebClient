@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebGTModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WebGTModelStoreContainer">
+          <EntitySet Name="CollectionDocDefaultProperties" EntityType="WebGTModel.Store.CollectionDocDefaultProperties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CollectionManagers" EntityType="WebGTModel.Store.CollectionManagers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Collections" EntityType="WebGTModel.Store.Collections" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DocElement" EntityType="WebGTModel.Store.DocElement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DocProperties" EntityType="WebGTModel.Store.DocProperties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManuscriptPages" EntityType="WebGTModel.Store.ManuscriptPages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManuscriptProperties" EntityType="WebGTModel.Store.ManuscriptProperties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Manuscripts" EntityType="WebGTModel.Store.Manuscripts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="WebGTModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ColectionManagers_Collections" Association="WebGTModel.Store.FK_ColectionManagers_Collections">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="CollectionManagers" EntitySet="CollectionManagers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColectionManagers_Users" Association="WebGTModel.Store.FK_ColectionManagers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CollectionManagers" EntitySet="CollectionManagers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CollectionDocDefaultProperties_Collections" Association="WebGTModel.Store.FK_CollectionDocDefaultProperties_Collections">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="CollectionDocDefaultProperties" EntitySet="CollectionDocDefaultProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CollectionDocDefaultProperties_ManuscriptProperties" Association="WebGTModel.Store.FK_CollectionDocDefaultProperties_ManuscriptProperties">
+            <End Role="DocProperties" EntitySet="DocProperties" />
+            <End Role="CollectionDocDefaultProperties" EntitySet="CollectionDocDefaultProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collections_Users" Association="WebGTModel.Store.FK_Collections_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Collections" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocElement_DocElement" Association="WebGTModel.Store.FK_DocElement_DocElement">
+            <End Role="DocElement" EntitySet="DocElement" />
+            <End Role="DocElement1" EntitySet="DocElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocElement_ManuscriptPages" Association="WebGTModel.Store.FK_DocElement_ManuscriptPages">
+            <End Role="ManuscriptPages" EntitySet="ManuscriptPages" />
+            <End Role="DocElement" EntitySet="DocElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocElement_Users" Association="WebGTModel.Store.FK_DocElement_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DocElement" EntitySet="DocElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manuescripts_Collections" Association="WebGTModel.Store.FK_Manuescripts_Collections">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="Manuscripts" EntitySet="Manuscripts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptPages_Manuescripts" Association="WebGTModel.Store.FK_ManuscriptPages_Manuescripts">
+            <End Role="Manuscripts" EntitySet="Manuscripts" />
+            <End Role="ManuscriptPages" EntitySet="ManuscriptPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptPages_Users" Association="WebGTModel.Store.FK_ManuscriptPages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ManuscriptPages" EntitySet="ManuscriptPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptProperties_DocProperties" Association="WebGTModel.Store.FK_ManuscriptProperties_DocProperties">
+            <End Role="DocProperties" EntitySet="DocProperties" />
+            <End Role="ManuscriptProperties" EntitySet="ManuscriptProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptProperties_Manuescripts" Association="WebGTModel.Store.FK_ManuscriptProperties_Manuescripts">
+            <End Role="Manuscripts" EntitySet="Manuscripts" />
+            <End Role="ManuscriptProperties" EntitySet="ManuscriptProperties" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CollectionDocDefaultProperties">
+          <Key>
+            <PropertyRef Name="CollectionID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="CollectionID" Type="int" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CollectionManagers">
+          <Key>
+            <PropertyRef Name="CollectionID" />
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="CollectionID" Type="int" Nullable="false" />
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Collections">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="ShowDocsByManuscript" Type="bit" Nullable="false" />
+          <Property Name="TaggingSchemeID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocElement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="documentID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="tinyint" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="X" Type="int" />
+          <Property Name="Y" Type="int" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Threshold" Type="int" />
+          <Property Name="OriginX" Type="int" />
+          <Property Name="OriginY" Type="int" />
+          <Property Name="Transcript" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocProperties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ManuscriptPages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManuscriptID" Type="int" Nullable="false" />
+          <Property Name="InScriptIndex" Type="int" />
+          <Property Name="AssignedToID" Type="int" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ReductionRatio" Type="decimal" />
+        </EntityType>
+        <EntityType Name="ManuscriptProperties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ManuscriptID" Type="int" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Manuscripts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="CollectionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="EnableCreateCollection" Type="bit" Nullable="false" />
+          <Property Name="Institute" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="LastDocID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_ColectionManagers_Collections">
+          <End Role="Collections" Type="WebGTModel.Store.Collections" Multiplicity="1" />
+          <End Role="CollectionManagers" Type="WebGTModel.Store.CollectionManagers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collections">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CollectionManagers">
+              <PropertyRef Name="CollectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColectionManagers_Users">
+          <End Role="Users" Type="WebGTModel.Store.Users" Multiplicity="1" />
+          <End Role="CollectionManagers" Type="WebGTModel.Store.CollectionManagers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CollectionManagers">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CollectionDocDefaultProperties_Collections">
+          <End Role="Collections" Type="WebGTModel.Store.Collections" Multiplicity="1" />
+          <End Role="CollectionDocDefaultProperties" Type="WebGTModel.Store.CollectionDocDefaultProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collections">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CollectionDocDefaultProperties">
+              <PropertyRef Name="CollectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CollectionDocDefaultProperties_ManuscriptProperties">
+          <End Role="DocProperties" Type="WebGTModel.Store.DocProperties" Multiplicity="1" />
+          <End Role="CollectionDocDefaultProperties" Type="WebGTModel.Store.CollectionDocDefaultProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocProperties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CollectionDocDefaultProperties">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collections_Users">
+          <End Role="Users" Type="WebGTModel.Store.Users" Multiplicity="1" />
+          <End Role="Collections" Type="WebGTModel.Store.Collections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Collections">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocElement_DocElement">
+          <End Role="DocElement" Type="WebGTModel.Store.DocElement" Multiplicity="0..1" />
+          <End Role="DocElement1" Type="WebGTModel.Store.DocElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocElement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocElement1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocElement_ManuscriptPages">
+          <End Role="ManuscriptPages" Type="WebGTModel.Store.ManuscriptPages" Multiplicity="1" />
+          <End Role="DocElement" Type="WebGTModel.Store.DocElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManuscriptPages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocElement">
+              <PropertyRef Name="documentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocElement_Users">
+          <End Role="Users" Type="WebGTModel.Store.Users" Multiplicity="0..1" />
+          <End Role="DocElement" Type="WebGTModel.Store.DocElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocElement">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manuescripts_Collections">
+          <End Role="Collections" Type="WebGTModel.Store.Collections" Multiplicity="1" />
+          <End Role="Manuscripts" Type="WebGTModel.Store.Manuscripts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collections">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Manuscripts">
+              <PropertyRef Name="CollectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptPages_Manuescripts">
+          <End Role="Manuscripts" Type="WebGTModel.Store.Manuscripts" Multiplicity="1" />
+          <End Role="ManuscriptPages" Type="WebGTModel.Store.ManuscriptPages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manuscripts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptPages">
+              <PropertyRef Name="ManuscriptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptPages_Users">
+          <End Role="Users" Type="WebGTModel.Store.Users" Multiplicity="0..1" />
+          <End Role="ManuscriptPages" Type="WebGTModel.Store.ManuscriptPages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptPages">
+              <PropertyRef Name="AssignedToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptProperties_DocProperties">
+          <End Role="DocProperties" Type="WebGTModel.Store.DocProperties" Multiplicity="1" />
+          <End Role="ManuscriptProperties" Type="WebGTModel.Store.ManuscriptProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocProperties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptProperties">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptProperties_Manuescripts">
+          <End Role="Manuscripts" Type="WebGTModel.Store.Manuscripts" Multiplicity="1" />
+          <End Role="ManuscriptProperties" Type="WebGTModel.Store.ManuscriptProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manuscripts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptProperties">
+              <PropertyRef Name="ManuscriptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebGTModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WebGTEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Collections" EntityType="WebGTModel.Collection" />
+          <EntitySet Name="DocElements" EntityType="WebGTModel.DocElement" />
+          <EntitySet Name="DocProperties" EntityType="WebGTModel.DocProperty" />
+          <EntitySet Name="ManuscriptPages" EntityType="WebGTModel.ManuscriptPage" />
+          <EntitySet Name="ManuscriptProperties" EntityType="WebGTModel.ManuscriptProperty" />
+          <EntitySet Name="Manuscripts" EntityType="WebGTModel.Manuscript" />
+          <AssociationSet Name="FK_Manuescripts_Collections" Association="WebGTModel.FK_Manuescripts_Collections">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="Manuscripts" EntitySet="Manuscripts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocElement_DocElement" Association="WebGTModel.FK_DocElement_DocElement">
+            <End EntitySet="DocElements" Role="DocElement" />
+            <End EntitySet="DocElements" Role="DocElement1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocElement_ManuscriptPages" Association="WebGTModel.FK_DocElement_ManuscriptPages">
+            <End EntitySet="ManuscriptPages" Role="ManuscriptPages" />
+            <End EntitySet="DocElements" Role="DocElement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptProperties_DocProperties" Association="WebGTModel.FK_ManuscriptProperties_DocProperties">
+            <End Role="DocProperties" EntitySet="DocProperties" />
+            <End Role="ManuscriptProperties" EntitySet="ManuscriptProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptPages_Manuescripts" Association="WebGTModel.FK_ManuscriptPages_Manuescripts">
+            <End EntitySet="Manuscripts" Role="Manuscripts" />
+            <End EntitySet="ManuscriptPages" Role="ManuscriptPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptProperties_Manuescripts" Association="WebGTModel.FK_ManuscriptProperties_Manuescripts">
+            <End Role="Manuscripts" EntitySet="Manuscripts" />
+            <End Role="ManuscriptProperties" EntitySet="ManuscriptProperties" />
+          </AssociationSet>
+          <AssociationSet Name="CollectionDocDefaultProperties" Association="WebGTModel.CollectionDocDefaultProperties">
+            <End Role="Collections" EntitySet="Collections" />
+            <End Role="DocProperties" EntitySet="DocProperties" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="WebGTModel.User" />
+          <AssociationSet Name="FK_Collections_Users" Association="WebGTModel.FK_Collections_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Collection" EntitySet="Collections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocElement_Users" Association="WebGTModel.FK_DocElement_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DocElement" EntitySet="DocElements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManuscriptPages_Users" Association="WebGTModel.FK_ManuscriptPages_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ManuscriptPage" EntitySet="ManuscriptPages" />
+          </AssociationSet>
+          <AssociationSet Name="CollectionManagers" Association="WebGTModel.CollectionManagers">
+            <End Role="Collection" EntitySet="Collections" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <Property Name="ShowDocsByManuscript" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Manuscripts" Relationship="WebGTModel.FK_Manuescripts_Collections" FromRole="Collections" ToRole="Manuscripts" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="DocProperties" Relationship="WebGTModel.CollectionDocDefaultProperties" FromRole="Collections" ToRole="DocProperties" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <Property Type="Byte" Name="TaggingSchemeID" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="WebGTModel.FK_Collections_Users" FromRole="Collection" ToRole="User" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Users" Relationship="WebGTModel.CollectionManagers" FromRole="Collection" ToRole="User" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="DocElement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="documentID" Nullable="false" Type="Int32" />
+          <Property Name="TypeID" Nullable="false" Type="Byte" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="X" Type="Int32" />
+          <Property Name="Y" Type="Int32" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Threshold" Type="Int32" />
+          <Property Name="Transcript" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="DocElement1" a:GetterAccess="Internal" a:SetterAccess="Internal" Relationship="WebGTModel.FK_DocElement_DocElement" FromRole="DocElement" ToRole="DocElement1" />
+          <NavigationProperty xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="DocElement2" a:GetterAccess="Internal" a:SetterAccess="Internal" Relationship="WebGTModel.FK_DocElement_DocElement" FromRole="DocElement1" ToRole="DocElement" />
+          <NavigationProperty xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="ManuscriptPage" a:GetterAccess="Internal" a:SetterAccess="Internal" Relationship="WebGTModel.FK_DocElement_ManuscriptPages" FromRole="DocElement" ToRole="ManuscriptPages" />
+          <Property Name="OriginX" Type="Int32" />
+          <Property Name="OriginY" Type="Int32" />
+          <Property Type="DateTime" Name="Created" Nullable="false" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="User" Relationship="WebGTModel.FK_DocElement_Users" FromRole="DocElement" ToRole="User" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="DocProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ManuscriptProperties" Relationship="WebGTModel.FK_ManuscriptProperties_DocProperties" FromRole="DocProperties" ToRole="ManuscriptProperties" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Collections" Relationship="WebGTModel.CollectionDocDefaultProperties" FromRole="DocProperties" ToRole="Collections" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="ManuscriptPage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Title" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ManuscriptID" Nullable="false" Type="Int32" />
+          <Property Name="InScriptIndex" Type="Int32" />
+          <Property Name="AssignedToID" Type="Int32" />
+          <Property Name="Status" Nullable="false" Type="Byte" />
+          <NavigationProperty xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="DocElements" a:GetterAccess="Internal" a:SetterAccess="Internal" Relationship="WebGTModel.FK_DocElement_ManuscriptPages" FromRole="ManuscriptPages" ToRole="DocElement" />
+          <NavigationProperty xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="Manuscript" a:GetterAccess="Internal" a:SetterAccess="Internal" Relationship="WebGTModel.FK_ManuscriptPages_Manuescripts" FromRole="ManuscriptPages" ToRole="Manuscripts" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <NavigationProperty Name="AssignedTo" Relationship="WebGTModel.FK_ManuscriptPages_Users" FromRole="ManuscriptPage" ToRole="User" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Internal" />
+          <Property Type="Decimal" Name="ReductionRatio" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ManuscriptProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManuscriptID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DocProperty" Relationship="WebGTModel.FK_ManuscriptProperties_DocProperties" FromRole="ManuscriptProperties" ToRole="DocProperties" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Manuscript" Relationship="WebGTModel.FK_ManuscriptProperties_Manuescripts" FromRole="ManuscriptProperties" ToRole="Manuscripts" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Manuscript">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CollectionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Collection" Relationship="WebGTModel.FK_Manuescripts_Collections" FromRole="Manuscripts" ToRole="Collections" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="ManuscriptPages" a:GetterAccess="Public" a:SetterAccess="Internal" Relationship="WebGTModel.FK_ManuscriptPages_Manuescripts" FromRole="Manuscripts" ToRole="ManuscriptPages" />
+          <NavigationProperty Name="ManuscriptProperties" Relationship="WebGTModel.FK_ManuscriptProperties_Manuescripts" FromRole="Manuscripts" ToRole="ManuscriptProperties" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <Association Name="FK_Manuescripts_Collections">
+          <End Role="Collections" Type="WebGTModel.Collection" Multiplicity="1" />
+          <End Role="Manuscripts" Type="WebGTModel.Manuscript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collections">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Manuscripts">
+              <PropertyRef Name="CollectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocElement_DocElement">
+          <End Type="WebGTModel.DocElement" Multiplicity="0..1" Role="DocElement" />
+          <End Type="WebGTModel.DocElement" Multiplicity="*" Role="DocElement1" />
+          <ReferentialConstraint>
+            <Principal Role="DocElement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocElement1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocElement_ManuscriptPages">
+          <End Type="WebGTModel.ManuscriptPage" Multiplicity="1" Role="ManuscriptPages" />
+          <End Type="WebGTModel.DocElement" Multiplicity="*" Role="DocElement" />
+          <ReferentialConstraint>
+            <Principal Role="ManuscriptPages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocElement">
+              <PropertyRef Name="documentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptProperties_DocProperties">
+          <End Role="DocProperties" Type="WebGTModel.DocProperty" Multiplicity="1" />
+          <End Role="ManuscriptProperties" Type="WebGTModel.ManuscriptProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocProperties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptProperties">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptPages_Manuescripts">
+          <End Type="WebGTModel.Manuscript" Multiplicity="1" Role="Manuscripts" />
+          <End Type="WebGTModel.ManuscriptPage" Multiplicity="*" Role="ManuscriptPages" />
+          <ReferentialConstraint>
+            <Principal Role="Manuscripts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptPages">
+              <PropertyRef Name="ManuscriptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptProperties_Manuescripts">
+          <End Role="Manuscripts" Type="WebGTModel.Manuscript" Multiplicity="1" />
+          <End Role="ManuscriptProperties" Type="WebGTModel.ManuscriptProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manuscripts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptProperties">
+              <PropertyRef Name="ManuscriptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CollectionDocDefaultProperties">
+          <End Role="Collections" Type="WebGTModel.Collection" Multiplicity="*" />
+          <End Role="DocProperties" Type="WebGTModel.DocProperty" Multiplicity="*" />
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="EnableCreateCollection" Nullable="false" />
+          <Property Type="String" Name="Institute" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Notes" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="LastDocID" />
+          <NavigationProperty Name="Collections" Relationship="WebGTModel.FK_Collections_Users" FromRole="User" ToRole="Collection" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Internal" />
+          <NavigationProperty Name="DocElements" Relationship="WebGTModel.FK_DocElement_Users" FromRole="User" ToRole="DocElement" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Internal" />
+          <NavigationProperty Name="ManuscriptPages" Relationship="WebGTModel.FK_ManuscriptPages_Users" FromRole="User" ToRole="ManuscriptPage" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Internal" />
+          <NavigationProperty Name="Collections1" Relationship="WebGTModel.CollectionManagers" FromRole="User" ToRole="Collection" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Internal" />
+        </EntityType>
+        <Association Name="FK_Collections_Users">
+          <End Type="WebGTModel.User" Role="User" Multiplicity="1" />
+          <End Type="WebGTModel.Collection" Role="Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocElement_Users">
+          <End Type="WebGTModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebGTModel.DocElement" Role="DocElement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocElement">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManuscriptPages_Users">
+          <End Type="WebGTModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebGTModel.ManuscriptPage" Role="ManuscriptPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManuscriptPage">
+              <PropertyRef Name="AssignedToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CollectionManagers">
+          <End Type="WebGTModel.Collection" Role="Collection" Multiplicity="*" />
+          <End Type="WebGTModel.User" Role="User" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebGTModelStoreContainer" CdmEntityContainer="WebGTEntities1">
+          <EntitySetMapping Name="Collections"><EntityTypeMapping TypeName="WebGTModel.Collection"><MappingFragment StoreEntitySet="Collections">
+            <ScalarProperty Name="TaggingSchemeID" ColumnName="TaggingSchemeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+            <ScalarProperty Name="ShowDocsByManuscript" ColumnName="ShowDocsByManuscript" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DocElements"><EntityTypeMapping TypeName="WebGTModel.DocElement"><MappingFragment StoreEntitySet="DocElement">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="OriginY" ColumnName="OriginY" />
+                <ScalarProperty Name="OriginX" ColumnName="OriginX" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="documentID" ColumnName="documentID" />
+            <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+            <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+            <ScalarProperty Name="X" ColumnName="X" />
+            <ScalarProperty Name="Y" ColumnName="Y" />
+            <ScalarProperty Name="Width" ColumnName="Width" />
+            <ScalarProperty Name="Height" ColumnName="Height" />
+            <ScalarProperty Name="Threshold" ColumnName="Threshold" />
+            <ScalarProperty Name="Transcript" ColumnName="Transcript" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DocProperties"><EntityTypeMapping TypeName="WebGTModel.DocProperty"><MappingFragment StoreEntitySet="DocProperties">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ManuscriptPages"><EntityTypeMapping TypeName="WebGTModel.ManuscriptPage"><MappingFragment StoreEntitySet="ManuscriptPages">
+            <ScalarProperty Name="ReductionRatio" ColumnName="ReductionRatio" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="ManuscriptID" ColumnName="ManuscriptID" />
+            <ScalarProperty Name="InScriptIndex" ColumnName="InScriptIndex" />
+            <ScalarProperty Name="AssignedToID" ColumnName="AssignedToID" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ManuscriptProperties"><EntityTypeMapping TypeName="WebGTModel.ManuscriptProperty"><MappingFragment StoreEntitySet="ManuscriptProperties">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="ManuscriptID" ColumnName="ManuscriptID" />
+            <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Manuscripts"><EntityTypeMapping TypeName="WebGTModel.Manuscript"><MappingFragment StoreEntitySet="Manuscripts">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="CollectionDocDefaultProperties" TypeName="WebGTModel.CollectionDocDefaultProperties" StoreEntitySet="CollectionDocDefaultProperties">
+            <EndProperty Name="Collections">
+              <ScalarProperty Name="ID" ColumnName="CollectionID" />
+            </EndProperty>
+            <EndProperty Name="DocProperties">
+              <ScalarProperty Name="ID" ColumnName="PropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WebGTModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LastDocID" ColumnName="LastDocID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Institute" ColumnName="Institute" />
+                <ScalarProperty Name="EnableCreateCollection" ColumnName="EnableCreateCollection" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CollectionManagers" TypeName="WebGTModel.CollectionManagers" StoreEntitySet="CollectionManagers">
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="ManagerID" />
+            </EndProperty>
+            <EndProperty Name="Collection">
+              <ScalarProperty Name="ID" ColumnName="CollectionID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="WebGTModel">
+        <EntityTypeShape EntityType="WebGTModel.Collection" Width="1.5" PointX="0.75" PointY="7" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebGTModel.DocElement" PointX="9.125" PointY="8.375" Width="1.5" Height="4.2879036458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebGTModel.DocProperty" Width="1.875" PointX="3" PointY="4" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebGTModel.ManuscriptPage" PointX="6.125" PointY="8.375" Width="1.5" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebGTModel.ManuscriptProperty" Width="2.125" PointX="8.875" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebGTModel.Manuscript" Width="1.5" PointX="3" PointY="6.625" Height="2.1725878906249987" IsExpanded="true" />
+        <AssociationConnector Association="WebGTModel.FK_Manuescripts_Collections" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.8987939453125" />
+          <ConnectorPoint PointX="3" PointY="7.8987939453125" />
+        </AssociationConnector>
+        <AssociationConnector ManuallyRouted="false" Association="WebGTModel.FK_DocElement_DocElement">
+          <ConnectorPoint PointX="9.6569230769230767" PointY="12.855205078125001" />
+          <ConnectorPoint PointX="9.6569230769230767" PointY="13.105205078125003" />
+          <ConnectorPoint PointX="10.103461538461538" PointY="13.105205078125003" />
+          <ConnectorPoint PointX="10.103461538461538" PointY="12.855205078125001" />
+        </AssociationConnector>
+        <AssociationConnector ManuallyRouted="false" Association="WebGTModel.FK_DocElement_ManuscriptPages">
+          <ConnectorPoint PointX="7.625" PointY="10.014043782552083" />
+          <ConnectorPoint PointX="9.125" PointY="10.014043782552083" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebGTModel.FK_ManuscriptProperties_DocProperties" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="5.3026432291666659" />
+          <ConnectorPoint PointX="8.875" PointY="5.3026432291666659" />
+        </AssociationConnector>
+        <AssociationConnector ManuallyRouted="false" Association="WebGTModel.FK_ManuscriptPages_Manuescripts">
+          <ConnectorPoint PointX="4.5" PointY="8.5862939453125" />
+          <ConnectorPoint PointX="6.125" PointY="8.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebGTModel.FK_ManuscriptProperties_Manuescripts" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.5550444453125" />
+          <ConnectorPoint PointX="10.03125" PointY="7.5550444453125" />
+          <ConnectorPoint PointX="10.03125" PointY="6.797587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebGTModel.CollectionDocDefaultProperties" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="7" />
+          <ConnectorPoint PointX="1.5" PointY="4.9901432291666659" />
+          <ConnectorPoint PointX="3" PointY="4.9901432291666659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WebGTModel.User" Width="1.5" PointX="3.5" PointY="9.625" Height="3.7109993489583317" />
+        <AssociationConnector Association="WebGTModel.FK_Collections_Users" >
+          <ConnectorPoint PointX="3.5" PointY="11.542746268229166" />
+          <ConnectorPoint PointX="1.5" PointY="11.542746268229166" />
+          <ConnectorPoint PointX="1.5" PointY="9.7494921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebGTModel.FK_DocElement_Users" >
+          <ConnectorPoint PointX="5" PointY="12.117249348958335" />
+          <ConnectorPoint PointX="9.125" PointY="12.117249348958335" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebGTModel.FK_ManuscriptPages_Users" >
+          <ConnectorPoint PointX="5" PointY="10.470896809895834" />
+          <ConnectorPoint PointX="6.125" PointY="10.470896809895834" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebGTModel.CollectionManagers" >
+          <ConnectorPoint PointX="2.25" PointY="9.2425434453125" />
+          <ConnectorPoint PointX="4.78125" PointY="9.2425434453125" />
+          <ConnectorPoint PointX="4.78125" PointY="9.625" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

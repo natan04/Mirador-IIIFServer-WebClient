@@ -1,0 +1,69 @@
+﻿//function CollectionDefaultProperties(collection) {
+//    div = newDiv();
+//    div.data("collectionID", collection.ID);
+//    buttonDiv =
+//    newDiv()
+//        .text("set default properties")
+//        .addClass("openPropDialog")
+//        .addClass("clickable")
+//        .click(div,function (d) { ShowPropertiesDialog(d); })
+//        .appendTo(div);
+//    return div;
+//}
+
+//function ShowPropertiesDialog(e) {
+//    var div = e.data;
+//    div.find(".openPropDialog").hide("slow",
+//        function () {
+//            newDiv()
+//                .html("bbdddddddddddb<br>bbdddddddddddb<br>bbdddddddddddb<br>bbdddddddddddb<br>")
+//                .css("visible","false")
+//                .appendTo(div)
+//                .addClass('dialog')
+//                .addClass("clickable")
+//                .click(div,function (d) { HidePropertiesDialog(d); })
+//                .show("slow");
+//        });
+
+//    //div.text(div.data("collectionID"));
+//}
+
+
+//function HidePropertiesDialog(e) {
+//    var div = e.data;
+//    div.find(".dialog").hide("slow");
+//    div.find(".openPropDialog").show("slow");
+//}
+var defaultPropertiesDialog;
+
+function initCollectionDefaultProperties(parentDiv) {
+    defaultPropertiesDialog = newDiv();
+    defaultPropertiesDialog
+    //        .text('aaaaaaadfdsf fdsa fd af dasf dsa f')
+            .attr('title','Available Manuscripts')
+    //        .addClass('dialog');
+
+    parentDiv.append(defaultPropertiesDialog);
+
+    defaultPropertiesDialog.dialog({
+        autoOpen: false,
+        height: 300,
+        width: 350,
+        modal: true,
+        buttons: {
+            "Confirm": function () { $(this).dialog("close"); },
+            Cancel: function () { $(this).dialog("close"); }
+        }
+
+    });
+
+    var tmp = newDiv();
+    tmp.text('Assign');
+    tmp
+			.button()
+			.click(function () {
+			    defaultPropertiesDialog.dialog("open");
+			});
+    tmp.appendTo(parentDiv);
+
+}

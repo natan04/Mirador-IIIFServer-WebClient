@@ -1,0 +1,71 @@
+﻿body {
+}
+
+/**.unselectable {*/
+div{
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+#header 
+{
+    padding-top: 20px;
+	width: 1021px;
+	height: 100px;
+	margin: 0 auto;
+	background:  url(css/images/Logo.jpg) no-repeat;
+}
+
+.collection
+{
+        
+}
+
+.collection .title
+{
+    float:left;
+}
+
+.divCollectionManager
+{
+    float:left;
+    
+    background:#dddddd;
+}
+
+.manuscript
+{
+    padding: 0 0 5px 10px;
+    clear:both;
+}
+
+.manuscriptPage
+{
+    padding:0 0 0px 15px;
+    clear:both;
+}
+
+.clickable:hover
+{
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+
+.dialog
+{
+    background-color:#aaa;
+    border:1px dotted blue;
+}
+
+
+
+/* ---------------------------------------------- */
+				
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
+/* ---------------------------------------------- */

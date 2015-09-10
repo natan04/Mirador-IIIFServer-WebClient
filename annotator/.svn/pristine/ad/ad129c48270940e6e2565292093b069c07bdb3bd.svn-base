@@ -1,0 +1,8 @@
+﻿-- 19/2/12 - ofer
+
+ALTER TABLE dbo.Collections ADD
+	TaggingSchemeID tinyint NOT NULL CONSTRAINT DF_Collections_TaggingSchemeID DEFAULT 1;
+ALTER TABLE dbo.Collections
+	DROP CONSTRAINT DF_Collections_BaseDocElementTypeID;
+ALTER TABLE dbo.Collections
+	DROP COLUMN BaseDocElementTypeID;

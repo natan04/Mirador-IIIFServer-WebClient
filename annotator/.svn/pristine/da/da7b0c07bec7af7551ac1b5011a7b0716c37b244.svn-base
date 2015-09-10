@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebGTModel
+{
+
+    /// <summary>
+    /// Summary description for Collection
+    /// </summary>
+    public partial class Collection
+    {
+        public bool IsManager
+        {
+            get {
+                User mngr = Users.SingleOrDefault(u => u.ID == Utils.CurrentUser.ID);
+                return mngr != null;
+                //return Users.Contains<User>(Utils.CurrentUser);
+            }
+        }
+
+        public TaggingScheme Scheme
+        {
+            get { return TaggingScheme.GetScheme(TaggingSchemeID); }
+        }
+        //public DocElement[] ElementTypes
+        //{
+        //    get
+        //    {
+        //        return ElementTypes.ToArray();
+        //    }
+        //}
+    }
+}

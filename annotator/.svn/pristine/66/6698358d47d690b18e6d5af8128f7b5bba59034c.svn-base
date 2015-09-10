@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/CollectionDefaultProperties.js"></script>
+    <script type="text/javascript" src="js/manageDocuments.js"></script>
+    <script type="text/javascript" src="js/relative2DArray.js"></script>
+    <script type="text/javascript" src="js/ImageData.js"></script>
+    <script type="text/javascript" src="js/GTEditor.js"></script>
+    
+    <script type="text/javascript">
+        var img;
+        $(document).ready(function () {
+            img = new DocImage();
+            img.load('http://localhost:49379/WebGT/docImgs/4.png', function () { imgLoaded(img); });
+        });
+
+        function imgLoaded(img) {
+            //            alert('loaded');
+            var xFrom = urlParam('xFrom') == null ? 200 : Number(urlParam('xFrom'));
+            var yFrom = urlParam('yFrom') == null ? 200 : Number(urlParam('yFrom')); 
+            var vec = [166, 240];
+            var xTo = xFrom + vec[0];
+            var yTo = yFrom + vec[1];
+            var newLen = 3;
+            var pt = {
+                X: urlParam('cx') == null ? 50 : Number(urlParam('cx')) , 
+                Y: urlParam('cy') == null ? 50 : Number(urlParam('cy'))  };
+
+            img.drawLine(xFrom, yFrom, xTo, yTo, 'black');
+
+            img.setpixval(pt.X, pt.Y,0);
+
+            var mashikY = xTo - xFrom;
+            var mashikX = -(yTo - yFrom);
+            len = Math.sqrt(mashikY * mashikY + mashikX * mashikX);
+            //img.drawLine(xFrom, yFrom, xFrom + (mashikX * newLen / len), yFrom + (mashikY * newLen / len), 'black');
+            //img.drawLine(xFrom, yFrom, xFrom - (mashikX * newLen / len), yFrom - (mashikY * newLen / len), 'black');
+
+            var ret = img.findSeedForSeperatingLine(xFrom, yFrom, xTo, yTo, pt);
+            //img.drawLine(ret[0], ret[1], ret[0]+5, ret[1]+5,'white');
+            img.setpixval(ret.X, ret.Y, 255);
+            
+            img.draw($('#t1'));
+            
+
+        }
+    </script>
+    <!-- google analytics code -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-44571095-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <style type="text/css">
+    #t1
+    {
+        /*
+        background-color:Blue;
+        width:100px;
+        height:100px;
+        */
+    }
+    </style>
+</head>
+<body>
+    <div id='t1'></div>
+</body>
+</html>

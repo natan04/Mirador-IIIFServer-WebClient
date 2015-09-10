@@ -1,0 +1,167 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using WebGTModel;
+using System.Data.Objects;
+
+/// <summary>
+/// Summary description for docService
+/// </summary>
+[WebService(Namespace = "http://webGT.bgu.ac.il/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
+public class docService : System.Web.Services.WebService {
+
+    public docService () {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+    [WebMethod(enableSession:true)]
+    public List<Collection> GetUserDocuments() {
+        //var ret = from c in Utils.Model.Collections
+        //          select new
+        //          {
+        //              ID = c.ID,
+        //              Title = c.Title
+        //          };
+        //return ret.ToList<object>();
+        return Utils.CurrentUser.GetDocuments();
+           
+    }
+
+    [WebMethod(enableSession: true)]
+    public string GetCurrentUserName()
+    {
+        
+        return Utils.CurrentUser.FirstName + " " + Utils.CurrentUser.LastName;
+
+    }
+
+    [WebMethod(enableSession: true)]
+    public void updateAssignedUserID(int pageID, int userID)
+    {
+        ManuscriptPage page = Utils.Model.ManuscriptPages.SingleOrDefault(mp=>mp.ID == pageID);
+        page.AssignedToID = userID;
+        Utils.Model.SaveChanges();
+    }
+
+    [WebMethod(enableSession: true)]
+    public object[] GetAllUsers()
+    {
+
+        return Utils.Model.Users
+            .Select(u=>new {Name = u.FirstName + " " + u.LastName, ID = u.ID})
+                .ToArray();
+
+    }
+
+    [WebMethod(enableSession: true)]
+    public TaggingScheme[] GetAllSchemes()
+    {
+        //TODO: Load scheme from Database.
+        TaggingScheme[] schemes = new TaggingScheme[TaggingScheme.GetNumOfSchemes()];
+        for (int i = 0; i < schemes.Length; i++)
+        {
+            schemes[i] = TaggingScheme.GetScheme(i);
+        }
+        return schemes;
+    }
+
+    [WebMethod(enableSession: true)]
+    public List<DocElement> GetDocumentElements(int docID)
+    {
+        var page = Utils.Model.ManuscriptPages.SingleOrDefault(mp => mp.ID == docID);
+        return page.DocElements.ToList(); 
+    }
+
+    [WebMethod(enableSession: true)]
+    public DocElement UpdateDocElement(DocElement docElement)
+    {
+        if (docElement.ID == 0)
+        {
+            Utils.Model.DocElements.AddObject(docElement);
+            if (docElement.documentID == 0 || docElement.documentID != Utils.CurrentUser.CurrentlyEditImageID)
+                throw new Exception("Fail to insert doc element due to pageID mismatch.");
+            docElement.UserID = Utils.CurrentUser.ID;
+            //docElement.Created = DateTime.Now;
+        }
+        else
+        {
+            //TODO: try alternative implementation?
+            DocElement elemFromDb = Utils.Model.DocElements.SingleOrDefault(de => de.ID == docElement.ID);
+            if (elemFromDb == null)
+                throw new Exception("Error updating DB.");
+
+
+            elemFromDb.UpdateData(docElement);
+        }
+        
+        Utils.Model.SaveChanges();
+
+        return docElement;
+    }
+
+    [WebMethod(enableSession: true)]
+    public DocElement UpdateDocGroupElement(DocElement docElement, int[] childElementIds)
+    {
+        if (docElement.ID == 0)
+        {
+            Utils.Model.DocElements.AddObject(docElement);
+            if (docElement.documentID == 0 || docElement.documentID != Utils.CurrentUser.CurrentlyEditImageID)
+                throw new Exception("Fail to insert doc element due to pageID mismatch.");
+            docElement.UserID = Utils.CurrentUser.ID;
+            //docElement.Created = DateTime.Now;
+            Utils.Model.SaveChanges();
+
+            Utils.Model.DocElements.Where(de => childElementIds.Contains(de.ID)).ToList().ForEach(c=>c.ParentID = docElement.ID);
+        }
+        else
+        {
+            //TODO: try alternative implementation?
+            //DocElement elemFromDb = Utils.Model.DocElements.SingleOrDefault(de => de.ID == docElement.ID);
+            //if (elemFromDb == null)
+            //    throw new Exception("Error updating DB.");
+
+
+            //elemFromDb.UpdateData(docElement);
+        }
+        
+        Utils.Model.SaveChanges();
+
+        return docElement;
+    }
+
+   [WebMethod(enableSession: true)]
+    public bool RemoveDocumentElement(DocElement docElement)
+    {
+        if (docElement.ID == 0)
+        {
+            throw new Exception("Fail to delete element");
+        }
+        else
+        {
+            if (docElement.documentID == 0 || docElement.documentID != Utils.CurrentUser.CurrentlyEditImageID)
+                throw new Exception("Fail to insert doc element due to pageID mismatch.");
+            DocElement elemFromDb = Utils.Model.DocElements.SingleOrDefault(de => de.ID == docElement.ID);
+            if (elemFromDb == null)
+                throw new Exception("Error updating DB.");
+            Utils.Model.DeleteObject(elemFromDb);
+        }
+
+        try
+        {
+            Utils.Model.SaveChanges();
+        }
+        catch
+        {
+            //TODO:log
+            return false;
+        }
+        return true;
+    }    
+}

@@ -1,0 +1,738 @@
+
+function GTEditor(docsManager, scheme, editorDiv, page) {
+    var _docsManager = docsManager;
+    var _editorDiv = editorDiv;
+    var _documentDiv = newDiv().appendTo(_editorDiv);
+    var _page = page;
+    var _self = this;
+    var _threshold = 100;
+    var _linesCanvas;
+    var _docImageData;
+    var _controlPanel;
+    var _selected;
+    var _elementsCount=0;
+    var _inputMode;
+    var _resizing = false;
+    this._tagScheme = scheme;
+    this.imgSrc = 'Image.ashx?ID=' + _page.ID + '&' + (new Date().getTime());
+
+    this.Load = function (loadedCallback) {
+        var linesCanvas = $('<canvas></canvas>');
+        _editorDiv.append(linesCanvas);
+        _documentDiv.attr('id', 'documentDiv');
+        linesCanvas.attr('id', 'linesCanvas');
+        _linesCanvas = linesCanvas.get(0);
+        this.initPanel();
+        //_docsManager.hide();
+        _docImageData = new DocImage();
+        _docImageData.load(this.imgSrc, function () { loadedCallback(); });
+        ajaxCall('docService', 'GetDocumentElements', function (resp) {
+                _self.docElementsLoaded(resp); 
+            }, ['docID', page.ID]);
+    }
+
+
+    this.show = function () {
+        _editorDiv.css({
+            'background-image': 'url(' + _docImageData.src + ')',
+            'background-position': '2px 2px',
+            'width': _docImageData.width,
+            'height': _docImageData.height
+        });
+
+        _documentDiv
+            .css('width', _docImageData.width)
+            .css('height', _docImageData.height);
+        _linesCanvas.width = _docImageData.width;
+        _linesCanvas.height = _docImageData.height;
+        _self.setInputMode('autoSelection');
+        _editorDiv.fadeIn('slow');
+    }
+
+    this.docElementsLoaded = function (resp) {
+        if (_documentDiv.children().length > 0)
+            _documentDiv.empty();
+        $.each(resp.d, function (ind, elem) { _self.markElement(elem); });
+        _self.updateStatusLine();
+    }
+
+    this.initPanel = function () {
+        _controlPanel = newDiv().addClass('controlPanel').appendTo(_editorDiv);
+        var typesDdl = $('<select id="docElementTypeSelect"></select>');
+        $.each(this._tagScheme.Types,
+            function (ind, typeID) {
+                typesDdl.append($('<option></option>').text(_self._tagScheme.TypesNames[ind]).attr('value', typeID));
+            });
+
+        _controlPanel.append(newTag('div').addClass('arrow-left').click(_self.togglePanel));
+
+        _controlPanel.append(
+            newDiv().addClass('button').attr('title', 'back to document manager')
+                .addClass('backIcon')
+                .click(function () { _editorDiv.fadeOut('slow', function (e) { _docsManager.show(); _editorDiv.empty(); delete (_self); }) }),
+            newDiv().addClass('button').attr('title', 'logout')
+                .addClass('logoutIcon')
+                .click(function () { _editorDiv.fadeOut('slow', function (e) { window.location = '/default.aspx'; }) }),
+            newDiv().addClass('button').attr('title', 'logout')
+                .addClass('helpIcon')
+                .click(function () { _self.showHelp(); }),
+            newDiv().addClass('seperator'),
+            newDiv().addClass('button').attr('title', 'add splitting line (x)')
+                .addClass('splitLineIcon')
+                .click(function () { _self.setInputMode('splitLine'); }),
+            newDiv().addClass('button').attr('title', 'add seperating line (v)')
+                .addClass('seperatingLineIcon')
+                .click(function () { _self.setInputMode('seperatingLine'); }),
+            newDiv().addClass('button').attr('title', 'add connecting Line (c)')
+                .addClass('connectingLineIcon')
+                .click(function () { _self.setInputMode('connectingLine'); }),
+            newDiv().addClass('button').attr('title', 'automatic selection (q)')
+                .addClass('automaticSelectionIcon')
+                .click(function () { _self.setInputMode('autoSelection'); }),
+            newDiv().addClass('button').attr('title', 'manual selection (w)')
+                .addClass('manualSelectionIcon')
+                .click(function () { _self.setInputMode('manualSelection'); }),
+            newDiv().addClass('button').attr('title', 'add transcription (t)')
+                .addClass('transcriptionIcon')
+                .click(function () { _self.setInputMode('transcription'); }),
+            newDiv().addClass('button').attr('title', 'remove selected element (r)')
+                .addClass('deleteIcon')
+                .click(function () { _self.removeLastSelected(); }),
+            newDiv().addClass('seperator'),
+            newDiv().addClass('button').attr('title', 'threshold -10 (a)')
+                .addClass('minus10Icon')
+                .click(function () { _self.adjustThreshold(-10); }),
+            newDiv().addClass('button').attr('title', 'threshold -2 (s)')
+                .addClass('minus2Icon')
+                .click(function () { _self.adjustThreshold(-2); }),
+            newDiv().addClass('button').attr('title', 'threshold 2 (d)')
+                .addClass('plus2Icon')
+                .click(function () { _self.adjustThreshold(2); }),
+            newDiv().addClass('button').attr('title', 'threshold 10 (f)')
+                .addClass('plus10Icon')
+                .click(function () { _self.adjustThreshold(10); }),
+            newDiv().addClass('seperator'),
+            newDiv().addClass('button').attr('title', 'group elements')
+                .addClass('mergeIcon')
+                .click(function () { _self.setInputMode('mergeElements'); }),
+            newDiv().addClass('dropDown').append(typesDdl)
+                .attr('title', 'Current element type (e)'),
+            newDiv().addClass('statusLine')
+            );
+
+        _controlPanel.selectedElementType = function () { return _controlPanel.find('#docElementTypeSelect').val(); };
+        _controlPanel.toggleElementType = function () {
+            var ddl = _controlPanel.find('#docElementTypeSelect');
+            var next = ddl.find('option:selected').next().get(0);
+            if (next == null)
+                next = ddl.find('option').get(0);
+            next.selected = true;
+            ddl.change();
+        }
+
+        typesDdl//.focus(function(){($(this)).data('prev',this.value);})
+            .change(
+                function (e) {
+                    _documentDiv.removeClass(); //_documentDiv.removeClass("typeActive_" + $(this).data('prev'));
+                    _documentDiv.addClass("typeActive_" + $(this).val());
+                });
+        typesDdl.change();
+        _controlPanel.children('.button').mouseup(function (e) { e.stopPropagation(); });
+    }
+
+    this.togglePanel = function () {
+        if (_controlPanel.data('isFolded') != true) {
+            $(this).removeClass('arrow-left');
+            $(this).addClass('arrow-right');
+            _controlPanel.find('*:not(:first-child)')
+            .hide(
+                'fast',
+                function () {
+                    _controlPanel.stop().animate({ width: '0' });
+                    _controlPanel.data('isFolded', true)
+                }
+            );
+        } else {
+            $(this).removeClass('arrow-right');
+            $(this).addClass('arrow-left');
+            _controlPanel.stop().animate({ width: '95%' },
+            function () {
+                _controlPanel.find('*').show('fast');
+                _controlPanel.data('isFolded', false);
+            }
+        );
+        }
+    }
+
+    this.setInputMode = function (mode) {
+        _inputMode = mode;
+        _documentDiv
+            .unbind('click')
+            .unbind('mousedown')
+            .unbind('mouseup');
+        $('body')
+            .unbind('keyup')
+            .unbind('keypress')
+            .unbind('keydown');
+
+        if (mode == 'autoSelection')
+            this.setAutoSelectionModeEvents();
+        else if (mode == 'seperatingLine' || mode == 'connectingLine' || mode == 'splitLine')
+            this.setLineModeEvents();
+        else if (mode == 'manualSelection')
+            this.setManualSelectionModeEvents();
+        else if (mode == 'transcription')
+            this.setTranscriptionModeEvents();
+        else if (mode == 'mergeElements')
+            this.setMergeModeEvents();
+        else
+            message('not supported yet');
+
+        $('body').keyup(function (e) { _self.mainKeyHandler(e) });
+        _self.updateStatusLine();
+    }
+
+    this.mainKeyHandler = function (e) {
+        //modes: autoSelection, seperatingLine, manualSelection, transcription, mergeElements
+        var key = e.which;
+        if (key == 37) _self.selectNext();
+        if (key == 39) _self.selectPrev();
+        if (e.which == 27 || e.which == 81) _self.setInputMode('autoSelection');
+        if (_inputMode == 'transcription') return;
+
+        if (key == 86) _self.setInputMode('seperatingLine');
+        if (key == 67) _self.setInputMode('connectingLine');
+        if (key == 88) _self.setInputMode('splitLine');
+        if (key == 87) _self.setInputMode('manualSelection');
+        if (key == 84) _self.setInputMode('transcription');
+        if (key == 71) _self.setInputMode('mergeElements');
+
+        if (_inputMode == 'autoSelection') {
+            if (key == 70) _self.adjustThreshold(10);
+            if (key == 68) _self.adjustThreshold(2);
+            if (key == 65) _self.adjustThreshold(-10);
+            if (key == 83) _self.adjustThreshold(-2);
+        }
+        if (key == 82 || key == 46) _self.removeLastSelected();
+        if (key == 69) _controlPanel.toggleElementType();
+    }
+
+    this.setAutoSelectionModeEvents = function ()
+    {
+        _documentDiv.mouseup(
+                        function (e) {
+                            if (e.button != 0) return;
+                            if (_resizing) return;
+                            pos = _self.getClickInDocPosition(e);
+                            _self.markByClick(pos[0], pos[1]);
+                        }
+                        );
+    }
+
+    this.setManualSelectionModeEvents = function () {
+        _documentDiv.mousedown(function (eFrom) {
+            if (eFrom.button != 0) return;
+            var posFrom = _self.getClickInDocPosition(eFrom);
+            var tmpDiv = newDiv().addClass('docElementRect').css({ 'top': posFrom[1], 'left': posFrom[0], 'width': 1, 'height': 1 }).appendTo(_documentDiv);
+            _documentDiv.mousemove(function (eMove) {
+                var posMove = _self.getClickInDocPosition(eMove);
+
+                tmpDiv.css({
+                    'left': Math.min(posMove[0], posFrom[0]),
+                    'top': Math.min(posMove[1], posFrom[1]),
+                    'width': Math.abs(posMove[0] - posFrom[0]),
+                    'height': Math.abs(posMove[1] - posFrom[1])
+                });
+            });
+            $(this).mouseup(function (eTo) {
+
+                _documentDiv.unbind('mousemove');
+                var selection = {
+                    'X': Math.round(tmpDiv.css('left').replace('px', '')),
+                    'Y': Math.round(tmpDiv.css('top').replace('px', '')),
+                    'Width': Math.round(tmpDiv.width()),
+                    'Height': Math.round(tmpDiv.height()),
+                    'documentID': _page.ID,
+                    'TypeID': _controlPanel.selectedElementType()
+                };
+                tmpDiv.remove();
+                if (_self._tagScheme.BaseTypes.filter(function (t) { return t == _controlPanel.selectedElementType(); }).length == 0) {
+                    message("please change element type to one of the basic types.");
+                    return;
+                }
+                var div = _self.markElement(selection);
+                _self.updateElement(selection, div);
+                _self.updateStatusLine();
+                _self.setInputMode('autoSelection');
+            });
+        });
+    }
+
+    this.setLineModeEvents = function () {
+        _selected.resizable("destroy");
+        _documentDiv.mousedown(function (eFrom) {
+            if (eFrom.button != 0) return;
+            var posFrom = _self.getClickInDocPosition(eFrom);
+            _documentDiv.mousemove(function (eMove) {
+                var movePosition = _self.getClickInDocPosition(eMove);
+                _self.drawLine(posFrom[0], posFrom[1], movePosition[0], movePosition[1], _inputMode == 'connectingLine' ? 'black' : 'white', true);
+            });
+            $(this).mouseup(function (eTo) {
+                _self.setDocLine(eFrom, eTo, _inputMode);
+                _documentDiv.unbind('mousemove');
+            });
+        });
+    }
+
+    this.setTranscriptionModeEvents = function () {
+        $('body')
+            .keypress(function (e) {
+                var dataElement = _selected.data('element');
+                if (_self._tagScheme.BaseTypes.filter(function (tid) { return (tid == dataElement.TypeID); }).length == 0) {
+                    message('Only base elements can have transcription.');
+                    return;
+                }
+
+                if (e.which == 13) {
+                    _self.selectNext();
+                    return;
+                } else {
+                    if (_self._tagScheme.TranscriptMultiCharMode) {
+                        if (dataElement.Transcript == null) dataElement.Transcript = '';
+                        dataElement.Transcript += String.fromCharCode(e.keyCode);
+                        _self.updateElementMark(_selected);
+                        _self.updateElement(dataElement, _selected);
+                    } else {
+                        dataElement.Transcript = String.fromCharCode(e.keyCode);
+                        _self.updateElementMark(_selected);
+                        _self.updateElement(dataElement, _selected);
+                        _self.selectNext();
+                    }
+                }
+            })
+            .keydown(function (e) {
+                if (e.which == 8) {
+                    e.preventDefault();
+                    if (_self._tagScheme.TranscriptMultiCharMode) {
+                        var dataElement = _selected.data('element');
+                        dataElement.Transcript = dataElement.Transcript.substr(0, dataElement.Transcript.length - 1);
+                        if (dataElement.Transcript.length == 0) dataElement.Transcript = null;
+                        _self.updateElementMark(_selected);
+                        _self.updateElement(_selected.data('element'), _selected);
+
+                    } else {
+                        _self.selectPrev();
+                        _selected.data('element').Transcript = null;
+                        _self.updateElementMark(_selected);
+                        _self.updateElement(_selected.data('element'), _selected);
+                    }
+                    e.stopPropagation();
+                } else if (e.which == 46) {
+                    _selected.data('element').Transcript = null;
+                    _self.updateElementMark(_selected);
+                    _self.updateElement(_selected.data('element'), _selected);
+                } 
+                
+              })
+    }
+
+    this.setMergeModeEvents = function () {
+        var prevType = _controlPanel.selectedElementType();
+        _controlPanel.find('#docElementTypeSelect').val(this._tagScheme.TypesAggregators[_controlPanel.selectedElementType()]).change();
+
+        _documentDiv
+            .mousedown(function (eFrom) {
+                if (eFrom.button != 0) return;
+                var posFrom = _self.getClickInDocPosition(eFrom);
+
+                if (eFrom.ctrlKey) {
+                    $.each(_self._tagScheme.TypesAggregators,
+
+                                function (typeID, aggrID) {
+                                    if (aggrID == _controlPanel.selectedElementType())
+                                        _documentDiv.children('.docElementOfType_' + typeID)
+                                            .each(
+                                                function () {
+                                                    if (isPtInRect({ X: posFrom[0], Y: posFrom[1] }, $(this))) {
+                                                        if ($(this).data('element').ParentID == null)
+                                                            _self.addElementToGroup($(this)); //.addClass('groupCandidate')
+                                                    }
+                                                });
+                                });
+                    return;
+                }
+
+
+                var tmpDiv = newDiv().addClass('groupSelectionDiv').css({ 'top': posFrom[1], 'left': posFrom[0], 'width': 1, 'height': 1 }).appendTo(_documentDiv);
+
+                _documentDiv.mousemove(function (eMove) {
+                    var posMove = _self.getClickInDocPosition(eMove);
+                    tmpDiv.css({
+                        'left': Math.min(posMove[0], posFrom[0]),
+                        'top': Math.min(posMove[1], posFrom[1]), //posFrom[1],
+                        'width': Math.abs(posMove[0] - posFrom[0]),
+                        'height': Math.abs(posMove[1] - posFrom[1])//1
+                    });
+
+                    $.each(_self._tagScheme.TypesAggregators,
+
+                                function (typeID, aggrID) {
+                                    if (aggrID == _controlPanel.selectedElementType())
+                                        _documentDiv.children('.docElementOfType_' + typeID)
+                                            .removeClass('groupCandidate')
+                                            .each(
+                                                function () {
+                                                    if (isInRect($(this), tmpDiv)) {
+                                                        if ($(this).data('element').ParentID == null)
+                                                            $(this).addClass('groupCandidate')
+                                                    }
+                                                });
+                                });
+                })
+                .mouseup(function (eTo) {
+                    _documentDiv.unbind('mousemove').unbind('mouseup');
+                    tmpDiv.remove();
+                    _self.groupDocElements(tmpDiv);
+                    _self.updateStatusLine();
+                })
+            });
+    }
+
+    this.addElementToGroup = function (element) {
+        var groupElementData = _selected.data('element');
+        var newElementData = element.data("element");
+
+        if (_self._tagScheme.TypesAggregators[newElementData.TypeID] != groupElementData.TypeID)
+            return;
+        if (newElementData.ParentID != null)
+            return;
+
+
+        var xStart = Math.min(groupElementData.X, newElementData.X);
+        var yStart = Math.min(groupElementData.Y, newElementData.Y);
+        var xEnd = Math.max(groupElementData.X + groupElementData.Width, newElementData.X + newElementData.Width);
+        var yEnd = Math.max(groupElementData.Y + groupElementData.Height, newElementData.Y + newElementData.Height);
+        groupElementData.X = xStart;
+        groupElementData.Y = yStart;
+        groupElementData.Width = xEnd - xStart;
+        groupElementData.Height = yEnd - yStart;
+
+        this.updateElementMark(_selected);
+
+        ajaxCall('docService', 'UpdateDocGroupElement',
+            function (resp) {
+                _selected.data('element', resp.d);
+                newElementData.ParentID = resp.d.ID;//$.each(candidates, function (ind, el) { el.data('element').ParentID = resp.d.ID; });
+            },
+            ['docElement', groupElementData, 'childElementIds', [newElementData.ID]]);
+    }
+
+    this.groupDocElements = function (boundingDiv) {
+        var candidates = [];
+
+        $.each(_self._tagScheme.TypesAggregators,
+            function (typeID, aggrID) {
+                if (aggrID == _controlPanel.selectedElementType())
+                    _documentDiv.children('.docElementOfType_' + typeID)
+                        .removeClass('groupCandidate')
+                        .each(
+                            function () {
+                                if (isInRect($(this), boundingDiv)) {
+                                    if ($(this).data('element').ParentID==null)
+                                        candidates.push($(this));
+                                }
+                            });
+            });
+
+        if (candidates.length == 0) return;
+        var minX = _documentDiv.width(), maxX = 0, minY = _documentDiv.height(), maxY = 0;
+        var groupType = _controlPanel.selectedElementType();
+
+        $.each(candidates, function (ind, el) {
+            var left = Math.round(el.css('left').replace('px', ''));
+            var top = Math.round(el.css('top').replace('px', ''));
+            var right = left + el.width();
+            var bottom = top + el.height();
+            if (left < minX) minX = left;
+            if (right > maxX) maxX = right;
+            if (top < minY) minY = top;
+            if (bottom > maxY) maxY = bottom;
+        });
+
+        groupData = {
+            'Y': Math.round(minY) - 2,
+            'Height': Math.round(maxY - minY) + 4,
+            'X': Math.round(minX) - 2,
+            'Width': Math.round(maxX - minX) + 4,
+            'TypeID': _controlPanel.selectedElementType(),
+            'documentID': _page.ID
+        };
+        var groupDiv = this.markElement(groupData);
+        var childElementIds = [];
+        $.each(candidates, function (ind, el) {
+            el.addClass('inGroup');
+            childElementIds.push(el.data('element').ID);
+        });
+
+        ajaxCall('docService', 'UpdateDocGroupElement',
+            function (resp) {
+                groupDiv.data('element', resp.d);
+                $.each(candidates, function (ind, el) { el.data('element').ParentID = resp.d.ID; });
+            },
+            ['docElement', groupData, 'childElementIds', childElementIds]);
+
+    }
+
+    this.setDocLine = function (eFrom, eTo, type) {
+        posFrom = _self.getClickInDocPosition(eFrom);
+        posTo = _self.getClickInDocPosition(eTo);
+        var seed = null;
+        color = 'white';
+        if (type == 'connectingLine')
+            color = 'black';
+        if (type == 'splitLine')
+            seed = _docImageData.findSeedForSeperatingLine(posFrom[0], posFrom[1], posTo[0], posTo[1], _threshold,
+                {
+                    'X': _selected.data('element').OriginX,
+                    'Y': _selected.data('element').OriginY
+                });
+
+        _docImageData.drawLine(posFrom[0], posFrom[1], posTo[0], posTo[1], color);
+        this.adjustSelected();
+        this.drawLine(posFrom[0], posFrom[1], posTo[0], posTo[1], color);
+        if (type == 'splitLine')
+            _self.markByClick(seed.X, seed.Y);
+
+        this.setSelected(_selected); // in order to restore default behaviors
+        this.setInputMode('autoSelection');
+    }
+
+
+    this.drawLine = function (xFrom, yFrom, xTo, yTo, color, clearFirst) {
+        ctx = _linesCanvas.getContext('2d');
+        if (clearFirst) {
+            var clearFromX = Math.min(xFrom, xTo) - 4;
+            var clearFromY = Math.min(yFrom, yTo) - 4;
+            var clearW = Math.abs(xTo - xFrom) + 8;
+            var clearH = Math.abs(yTo - yFrom) + 8;
+            ctx.clearRect(clearFromX, clearFromY, clearW, clearH);
+        }
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(xFrom, yFrom);
+        ctx.lineTo(xTo, yTo);
+        ctx.stroke();
+    }
+
+    this.getClickInDocPosition =  function (e) {
+        pos = [0, 0];
+        pos[0] = e.offsetX; 
+        pos[1] = e.offsetY; 
+        var elem=e.target;
+        while (elem != _documentDiv.get(0)){
+            var elemPos = $(elem).position();
+            pos[0] += Math.round(elemPos.left);
+            pos[1] += Math.round(elemPos.top);
+            elem = elem.parentElement;
+        }
+        return pos;
+    }
+
+    this.markByClick = function (x, y) {
+        if (_self._tagScheme.BaseTypes.filter(function(t){return t==_controlPanel.selectedElementType();}).length==0){
+            message("please change element type to one of the basic types.");
+            return;
+        }        
+        var bb = _docImageData.getComponentBB(x, y, _threshold);
+        if (bb.Height==0 || bb.Width==0)
+            return;
+        bb.OriginX = x;
+        bb.OriginY = y;
+        bb.documentID = _page.ID;
+        bb.Threshold = _threshold;
+        bb.TypeID = _controlPanel.selectedElementType();
+        var div = this.markElement(bb);
+        this.updateElement(bb, div);
+        _self.updateStatusLine();
+    }
+
+    this.updateElement = function (docElement,elementPresentation) {
+        ajaxCall('docService', 'UpdateDocElement',
+            function (resp) {
+                elementPresentation.data('element', resp.d);
+            }, 
+            ['docElement', docElement]);
+    }
+
+    this.adjustSelected = function () {
+        div = _selected; 
+        dataElement = div.data('element');
+        if (dataElement.OriginX == null || dataElement.OriginY == null)
+            return;
+        var bb = _docImageData.getComponentBB(dataElement.OriginX, dataElement.OriginY, _threshold);
+        dataElement.X = bb.X;
+        dataElement.Y = bb.Y;
+        dataElement.Width = bb.Width;
+        dataElement.Height = bb.Height;
+        dataElement.Threshold = _threshold;
+        this.updateElementMark(div);
+        this.updateElement(dataElement, div);
+    }
+
+    this.markElement = function (docElement) {
+        div = newDiv();
+        div.addClass('docElementRect');
+        div.addClass('docElementOfType_' + docElement.TypeID);
+        if (docElement.ParentID != null)
+            div.addClass('inGroup');
+        div.data('element', docElement);
+        div.prependTo(_documentDiv);
+        _self.updateElementMark(div);
+        _self.setSelected(div);
+        div.mouseup(function (e) { 
+            if (e.button == 2) 
+            {
+                _self.setSelected($(this)); 
+                e.stopPropagation()
+            }
+        });
+        _elementsCount++;
+        return div;
+    }
+
+    this.updateElementMark = function (markDiv) {
+        var docElement = markDiv.data('element');
+        markDiv.css('top', docElement.Y); // + pos.top);
+        markDiv.css('left', docElement.X); // + pos.left);
+        markDiv.css('width', docElement.Width);
+        markDiv.css('height', docElement.Height);
+        markDiv.children().remove();
+        if (docElement.Transcript != null) {
+            var transDiv = newDiv().addClass('transcription');
+            markDiv.append(transDiv);
+            transDiv.text(docElement.Transcript);           
+        }
+    }
+
+
+
+    this.adjustThreshold = function (amount) {
+        _threshold += amount;
+        if (_threshold < 0 || _threshold > 255) {
+            message('threshold ' + _threshold + ' is not in the allowed limit.');
+            _threshold -= amount;
+            return;
+        }
+        this.adjustSelected();
+        _self.updateStatusLine();
+    }
+
+    this.removeLastSelected = function () {
+        dataElement = _selected.data('element');
+        ajaxCall('docService', 'RemoveDocumentElement',
+            function (resp) {
+                var div = _selected;
+                _self.selectPrev();
+                div.remove();
+            },
+            ['docElement', dataElement]);
+        _elementsCount--;
+        _self.updateStatusLine();
+
+        // handle children on group element
+        $.each(_self._tagScheme.TypesAggregators,
+            function (typeID, aggrID) {
+                if (aggrID == dataElement.TypeID)
+                    _documentDiv.children('.docElementOfType_' + typeID)
+                        .each(
+                            function () {
+                                if ($(this).data('element').ParentID == dataElement.ID) {
+                                    $(this).removeClass('inGroup');
+                                    $(this).data('element').ParentID = null;
+                                }
+                            });
+            });
+    }
+
+    this.updateStatusLine = function () {
+        var str = 'page:{2}, threshold:{0}, elements:{1} '.format(_threshold, _elementsCount, _page.Title);
+            str = str + ', mode:{0}'.format(_inputMode);
+        _controlPanel.children('.statusLine').text(str);
+    }
+
+    this.setSelected = function (div) {
+        if (_selected != null) {
+            _selected.removeClass('selected');
+            _selected.resizable("destroy");
+        }
+        div.addClass('selected');
+        _selected = div;
+        _selected.resizable({
+            handles: 'n, s, e, w',
+            start: function (event, ui) { _resizing = true; },
+            stop: function (event, ui) {
+                _resizing = false;
+                var elementData = $(this).data('element');
+                elementData.X = Math.round($(this).css('left').replace('px', ''));
+                elementData.Y = Math.round($(this).css('top').replace('px', ''));
+                elementData.Width = Math.round($(this).width());
+                elementData.Height = Math.round($(this).height());
+                _self.updateElement(elementData, $(this));
+            }
+        });
+
+    }
+
+    this.selectNext = function () {
+        var newSelected = _selected;
+        do {
+            newSelected = newSelected.prev();
+            if (newSelected == null || newSelected.data('element')==null) {
+                //message('no previous element.');
+                return;
+            }
+        } while (newSelected.data('element').TypeID != _controlPanel.selectedElementType());
+        _self.setSelected(newSelected);
+    }
+
+    this.selectPrev = function () {
+        var newSelected = _selected;
+        do {
+            newSelected = newSelected.next();
+            if (newSelected == null || newSelected.data('element')==null) {
+                //message('no additional element.');
+                return;
+            }
+        } while (newSelected.data('element').TypeID != _controlPanel.selectedElementType());
+        _self.setSelected(newSelected);
+    }
+
+    this.showHelp = function () {
+        var helpDlg = newTag("div");
+
+        helpDlg.attr('title', 'Help');
+        //        addMsDlg.append(
+        //            newTag("div").css('clear', 'both').text('Manuscript Title:')
+        //                .append(
+        //                    newTag('div').text('bla bla bla')
+        //                ));
+
+        helpDlg.dialog({
+            draggable: true,
+            autoOpen: false,
+           // height: 200,
+            width: 500,
+            modal: true,
+            buttons: {
+                "Close": function () { $(this).dialog("close"); }
+            }
+        });
+
+        helpDlg.load('/help.htm', function () {
+            helpDlg.dialog("open");
+        });
+
+    }
+
+}

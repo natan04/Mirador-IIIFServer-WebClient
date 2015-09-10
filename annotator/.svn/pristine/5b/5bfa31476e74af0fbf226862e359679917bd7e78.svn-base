@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebGTModel;
+
+public partial class utilPages_ActivateUser : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Utils.CurrentUser == null || !Utils.IsSuperAdmin)
+            Response.Redirect(".");
+
+        if (!IsPostBack)
+            LoadUsers();
+            
+        
+    }
+
+    protected void LoadUsers()
+    {
+        rptUsrs.DataSource = Utils.Model.Users.Where(u => !u.IsActive);
+        rptUsrs.DataBind();
+    }
+
+    protected void rptUsrs_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+
+    }
+
+    protected void ActivateUser(object source, EventArgs e)
+    {
+        int uid = Convert.ToInt32((source as LinkButton).Attributes["uid"]);
+        WebGTModel.User user = Utils.Model.Users.SingleOrDefault(u => u.ID == uid);
+        user.IsActive = true;
+        Collection userDefaultCollection = new Collection();
+        userDefaultCollection.OwnerID = uid;
+        userDefaultCollection.AddUser(user);
+        userDefaultCollection.Title = "Collection 1";
+        userDefaultCollection.TaggingSchemeID = 1;
+        Utils.Model.Collections.AddObject(userDefaultCollection);
+        Utils.Model.SaveChanges();
+        LoadUsers();
+        tbImpersonateUserName.Text = user.Email;
+    }
+
+
+
+    protected void lbImpersonate_Click(object sender, EventArgs e)
+    {
+        string email = tbImpersonateUserName.Text;
+        WebGTModel.User user = Utils.Model.Users.SingleOrDefault(u => u.Email==email);
+        if (user != null)
+        {
+            Utils.Clear();
+            Utils.SetCurrentUser(user);
+            Response.Redirect("../main.htm");
+        }
+    }
+}

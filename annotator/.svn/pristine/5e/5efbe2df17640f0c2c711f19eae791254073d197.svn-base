@@ -1,0 +1,356 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using WebGTModel;
+using System.Data.Objects;
+
+/// <summary>
+/// Summary description for docService
+/// </summary>
+[WebService(Namespace = "http://webGT.bgu.ac.il/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
+public class docService : System.Web.Services.WebService {
+
+    public docService () {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+    [WebMethod(enableSession:true)]
+    public List<Collection> GetUserDocuments() {
+        //var ret = from c in Utils.Model.Collections
+        //          select new
+        //          {
+        //              ID = c.ID,
+        //              Title = c.Title
+        //          };
+        //return ret.ToList<object>();
+        return Utils.CurrentUser.GetDocuments();
+           
+    }
+
+    [WebMethod(enableSession: true)]
+    public string GetCurrentUserName()
+    {
+        
+        return Utils.CurrentUser.FirstName + " " + Utils.CurrentUser.LastName;
+
+    }
+
+    [WebMethod(enableSession: true)]
+    public void updateAssignedUserID(int pageID, int userID)
+    {
+        ManuscriptPage page = Utils.Model.ManuscriptPages.SingleOrDefault(mp=>mp.ID == pageID);
+        if (userID == -1)
+        {
+            page.AssignedToID = null;
+        }
+        else
+        {
+            page.AssignedToID = userID;
+        }
+        
+        Utils.Model.SaveChanges();
+    }
+
+     [WebMethod(enableSession: true)]
+    public void updateStatus(int pageID, byte status)
+    {
+        ManuscriptPage page = Utils.Model.ManuscriptPages.SingleOrDefault(mp=>mp.ID == pageID);
+        if (page.IsDeleted)
+            throw new Exception("Can not updated deleted page.");
+        page.Status = status;
+        Utils.Model.SaveChanges();
+    }
+
+    
+    [WebMethod(enableSession: true)]
+    public object[] GetAllUsers()
+    {
+
+        return Utils.Model.Users
+            .Select(u=>new {Name = u.FirstName + " " + u.LastName, ID = u.ID, IsActive = u.IsActive})
+                .ToArray();
+
+    }
+    
+    [WebMethod(enableSession: true)]
+    public object[] GetAllDocProperties()
+    {
+
+        return Utils.Model.DocProperties
+            .Select(u => new { PropertyName = u.Name, PropertyID = u.ID })
+                .ToArray();
+
+    }
+    
+    [WebMethod(enableSession: true)]
+    public object[] GetManuProperties(int msID)
+    {
+
+        Manuscript ms = Utils.Model.Manuscripts.SingleOrDefault(u => u.ID == msID);
+        return ms.ManuscriptProperties
+            .Select(u => new { Name = u.DocProperty.Name, PropertyID = u.PropertyID, value = u.Value }).ToArray();
+
+    }
+     
+     [WebMethod(enableSession: true)]
+    public void updateMsPropValues(int msID, WebGTModel.ManuscriptProperty[] updatesPkg)
+    {
+        int len = updatesPkg.Length;
+        for (int i = 0; i < len; i++)
+        {
+            int propID = updatesPkg[i].ID;
+            ManuscriptProperty msProp = Utils.Model.ManuscriptProperties.FirstOrDefault(u => u.ManuscriptID == msID && u.PropertyID ==  propID);
+            msProp.Value = updatesPkg[i].Value;
+            Utils.Model.SaveChanges();
+        }
+         
+    }
+
+    
+    [WebMethod(enableSession: true)]
+    public void addNewPropToMs(int msID, int[] propertyIDs)
+    {
+        int i;
+        for (i = 0; i < propertyIDs.Length; i++)
+        {
+            int propID = propertyIDs[i];
+            ManuscriptProperty entry = Utils.Model.ManuscriptProperties.FirstOrDefault(u => u.ManuscriptID == msID && u.PropertyID == propID);
+            if (entry == null)
+            {
+                ManuscriptProperty mp = new ManuscriptProperty();
+                mp.ManuscriptID = msID;
+                mp.PropertyID = propertyIDs[i];
+                mp.Value = "Empty";
+                Utils.Model.AddToManuscriptProperties(mp);
+            }
+        }
+        Utils.Model.SaveChanges();
+    }
+
+    [WebMethod(enableSession: true)]
+    public void addNewPropToColl(int collID, int[] propertyIDs)
+    {
+        //Delete all the properties of the collection collID
+        Collection collection = Utils.Model.Collections.SingleOrDefault(u => u.ID == collID);
+        
+        // TODO: trying to delete MS properties <----------------------------------
+
+        //IEnumerable<Manuscript> msColl = Utils.Model.Manuscripts.Where(u => u.CollectionID == collID);
+        //foreach (Manuscript ms in msColl)
+            //ms.ManuscriptProperties.Clear();
+        collection.DocProperties.Clear();
+
+        for (int i = 0; i < propertyIDs.Length; i++)
+        {
+            int propID = propertyIDs[i];
+            DocProperty property = Utils.Model.DocProperties.SingleOrDefault(u => u.ID == propID );
+            collection.DocProperties.Add(property);
+           
+        }
+
+        Utils.Model.SaveChanges();
+
+    }
+
+    [WebMethod(enableSession: true)]
+    public void addDefPropOfColltoMs(int msID, int collID)
+    {
+
+        Collection coll = Utils.Model.Collections.SingleOrDefault(u => u.ID == collID);
+        Manuscript ms = Utils.Model.Manuscripts.SingleOrDefault(v => v.ID == msID);
+
+        IEnumerable<DocProperty> properties = coll.DocProperties.AsEnumerable();
+        foreach (DocProperty dp in properties)
+        {    
+            if (!dp.ManuscriptProperties.Any(u=> u.ManuscriptID == msID)){
+                ManuscriptProperty mp = new ManuscriptProperty();
+                mp.ManuscriptID = msID;
+                mp.PropertyID = dp.ID;
+                mp.Value = "Empty";
+                Utils.Model.AddToManuscriptProperties(mp);
+            }
+        }
+
+        Utils.Model.SaveChanges();
+    }
+
+
+    
+    
+    [WebMethod(enableSession: true)]
+    public TaggingScheme[] GetAllSchemes()
+    {
+        //TODO: Load scheme from Database.
+        TaggingScheme[] schemes = new TaggingScheme[TaggingScheme.GetNumOfSchemes()];
+        for (int i = 0; i < schemes.Length; i++)
+        {
+            schemes[i] = TaggingScheme.GetScheme(i);
+        }
+        return schemes;
+    }
+
+    [WebMethod(enableSession: true)]
+    public TaggingScheme GetCurTagScheme(int collID)
+    {
+        Collection coll = Utils.Model.Collections.SingleOrDefault(u => u.ID == collID);
+        return TaggingScheme.GetScheme(coll.TaggingSchemeID);
+    }
+
+    [WebMethod(enableSession: true)]
+    public void SetCollectionScheme(int collectionID, string schemeName)
+    {
+        
+        Collection collection = Utils.Model.Collections.SingleOrDefault(ci => ci.ID == collectionID);
+
+        if (schemeName.Equals("Arb1", StringComparison.Ordinal))
+        { 
+            collection.TaggingSchemeID = 2;
+        }
+        else if (schemeName.Equals("Heb1", StringComparison.Ordinal))
+        {
+            collection.TaggingSchemeID = 1;
+        }
+       
+
+        Utils.Model.SaveChanges();
+    }
+
+    [WebMethod(enableSession: true)]
+    public List<DocElement> GetDocumentElements(int docID)
+    {
+        var page = Utils.Model.ManuscriptPages.SingleOrDefault(mp => mp.ID == docID);
+        if (page.IsDeleted)
+            throw new Exception("Page deleted.");
+        Utils.CurrentUser.LastDocID = docID;
+        Utils.Model.SaveChanges();
+        return page.DocElements.ToList(); 
+    }
+
+    [WebMethod(enableSession: true)]
+    public DocElement UpdateDocElement(DocElement docElement)
+    {
+        if (docElement.ID == 0)
+        {
+            Utils.Model.DocElements.AddObject(docElement);
+            if (docElement.documentID == 0 || docElement.documentID != Utils.CurrentUser.CurrentlyEditImageID)
+                throw new Exception(String.Format("Fail to insert doc element due to pageID mismatch.({0},{1})",docElement.documentID,Utils.CurrentUser.CurrentlyEditImageID));
+            docElement.UserID = Utils.CurrentUser.ID;
+            docElement.Created = DateTime.Now;
+        }
+        else
+        {
+            //TODO: try alternative implementation?
+            DocElement elemFromDb = Utils.Model.DocElements.SingleOrDefault(de => de.ID == docElement.ID);
+            if (elemFromDb == null)
+                throw new Exception("Error updating DB.");
+
+
+            elemFromDb.UpdateData(docElement);
+        }
+        
+        Utils.Model.SaveChanges();
+
+        return docElement;
+    }
+
+    [WebMethod(enableSession: true)]
+    public DocElement UpdateDocGroupElement(DocElement docElement, int[] childElementIds)
+    {
+        if (docElement.ID == 0)
+        {
+            Utils.Model.DocElements.AddObject(docElement);
+            if (docElement.documentID == 0 || docElement.documentID != Utils.CurrentUser.CurrentlyEditImageID)
+                throw new Exception(String.Format("Fail to insert doc element due to pageID mismatch.({0},{1})", docElement.documentID, Utils.CurrentUser.CurrentlyEditImageID));
+            docElement.UserID = Utils.CurrentUser.ID;
+            docElement.Created = DateTime.Now;
+            Utils.Model.SaveChanges();
+
+            Utils.Model.DocElements.Where(de => childElementIds.Contains(de.ID)).ToList().ForEach(c=>c.ParentID = docElement.ID);
+        }
+        else
+        {
+            //TODO: try alternative implementation?
+            DocElement elemFromDb = Utils.Model.DocElements.SingleOrDefault(de => de.ID == docElement.ID);
+            if (elemFromDb == null)
+                throw new Exception("Error updating DB.");
+
+            elemFromDb.UpdateData(docElement);
+            Utils.Model.DocElements.Where(de => childElementIds.Contains(de.ID)).ToList().ForEach(c => c.ParentID = docElement.ID);
+        }
+        
+        Utils.Model.SaveChanges();
+
+        return docElement;
+    }
+
+   [WebMethod(enableSession: true)]
+    public bool RemoveDocumentElement(DocElement docElement)
+    {
+        if (docElement.ID == 0)
+        {
+            throw new Exception("Fail to delete element");
+        }
+        else
+        {
+            if (docElement.documentID == 0 || docElement.documentID != Utils.CurrentUser.CurrentlyEditImageID)
+                throw new Exception(String.Format("Fail to insert doc element due to pageID mismatch.({0},{1})", docElement.documentID, Utils.CurrentUser.CurrentlyEditImageID));
+            DocElement elemFromDb = Utils.Model.DocElements.SingleOrDefault(de => de.ID == docElement.ID);
+            if (elemFromDb == null)
+                throw new Exception("Error updating DB.");
+            Utils.Model.DeleteObject(elemFromDb);
+        }
+
+        try
+        {
+            Utils.Model.SaveChanges();
+        }
+        catch
+        {
+            //TODO:log
+            return false;
+        }
+        return true;
+    }
+
+   [WebMethod(enableSession: true)]
+   public bool DeletePage(int docID)
+   {
+       var page = Utils.Model.ManuscriptPages.SingleOrDefault(mp => mp.ID == docID);
+       if (page.IsDeleted)
+           throw new Exception("Page already deleted.");
+
+       if (!page.Manuscript.Collection.IsManager)
+           throw new Exception("Fail to delete page");
+
+       page.IsDeleted = true;
+
+       Utils.Model.SaveChanges();
+
+       return true;
+   }
+    
+   [WebMethod(enableSession: true)]
+   public Manuscript CreateManuscript(int collectionID, string title)
+   {
+       Collection collection = Utils.Model.Collections.SingleOrDefault(c => c.ID == collectionID);
+       if (collection == null)
+           throw new Exception("collection not found " + collectionID.ToString());
+       if (!collection.IsManager)
+           throw new Exception("no permissions");
+
+       Manuscript ms = new Manuscript();
+       ms.CollectionID = collectionID;
+       ms.Title = title;
+       Utils.Model.Manuscripts.AddObject(ms);
+       Utils.Model.SaveChanges();
+
+       return ms;
+   }
+}

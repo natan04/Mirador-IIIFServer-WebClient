@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web Ground Truth tool - demo</title>
+    
+    
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/relative2DArray.js"></script>
+    <script type="text/javascript" src="js/ImageData.js"></script>
+    <script type="text/javascript" src="js/GTEditor.js"></script>
+   
+    
+ <script type="text/javascript">
+
+     function ajaxCall(serviceName, funcName, success, args) {
+         success({ d: {} });
+     }
+
+     var gte = null;
+
+     $(document).ready(function () {
+         gte = new GTEditor(
+            null,
+            {"BaseTypes":[1],"Types":[1,4,5,6],"Name":"Heb1","TypesNames":["Character","Word","Line","Section"],"TypesAggregators":[0,4,0,0,5,6],"TranscriptMultiCharMode":false}, 
+            $('#divTagDoc'),
+            { ID: 0 });
+
+         gte.updateElement = function (docElement, elementPresentation) {
+             elementPresentation.data('element', docElement);
+        }
+     });
+
+     function playWithSystem() {
+         
+         gte.imgSrc = 'demoDoc.png';
+         gte.Load(function () { $('#selection').hide('slow',function(){ gte.show();}) });
+     }
+
+     var tutorial = {};
+
+     function startTutorial() {
+         tutorial.CurrentStep = -1;
+         tutorial.TextPane = $('#textPanel');
+         tutorial.Steps =
+         [
+            { img: 'demoDoc.png', text: 'Before we start, it is recomended to put your right hand on the mouse and your left on the keyboard in the default position(asdf).</BR>All actions can be done using the buttons on the top, but we recomend using the keyboard shortcuts whenever posible.' },
+            { img: null, text: 'Mark the letters of the first three words(top line, from right to left), by clicking each of thier letters one by one.</br> Last letter of the third word only partially selected? Move to the next stage...' },
+            { img: null, text: 'Adjust the selection threshold using the buttons on the top(-10,-2,+2,+10) or(even better) using the keyboard (a:-10 s:-2 d:+2 f:+10).</br>Adjust the threshold so the letter is properly selected.</br>Select the first letter of the forth word. Three letters selected? Move next...' },
+            { img: 'demoDoc.png', text: 'step 3' },
+            { img: 'demoDoc.png', text: 'step 4' }
+         ];
+         $('#selection').hide('slow', function () { tutorial.NextStep(); })
+            
+
+     }
+
+     tutorial.NextStep = function () {
+
+         this.CurrentStep++;
+         if (this.CurrentStep >= this.Steps.length)
+             window.location.href = "Default.aspx";
+         this.TextPane.find('#text').html(this.Steps[this.CurrentStep].text);
+         this.TextPane.show('slow');
+         if (this.Steps[this.CurrentStep].img != null) {
+             gte.imgSrc = this.Steps[this.CurrentStep].img;
+             gte.Load(function () { gte.show(); });
+             if (this.CurrentStep == this.Steps.length - 1) {
+                 this.TextPane.find('#nextBtn').text('Finish');
+             }
+         }
+     }
+     
+     
+</script>
+       
+<link href="css/GTEditor.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+
+<style type='text/css'>
+
+#header 
+{
+    padding-top: 20px;
+	width: 1100px;
+	height: 120px;
+	margin: 0 auto;
+	background:  url(css/images/Logo.jpg) no-repeat;
+}
+
+#selection
+{
+    font-size:xx-large;
+    margin:40px 20px 0px 20px;
+}
+#textPanel {
+    font-size: xx-large;
+    margin-top: 10%;
+    height: auto;
+    width: 30%;
+    padding:20px;
+}
+
+#textPanel .button
+{
+    width:auto;
+    height:auto;
+    vertical-align:bottom;
+    float:right;
+    padding:5px;
+}
+
+#selection .button {
+    background-color: #9CACEB;
+    border-radius: 3px;
+    box-shadow: 4px 4px 4px black;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
+
+</head>
+
+<body  oncontextmenu="return false;">
+<div id='selection'>
+    Would you like to take a <a class='button' onclick='startTutorial()'>short tutorial</a> or just <a class='button' onclick='playWithSystem()'>play with the system</a>?
+</div>
+<div id='textPanel' class="controlPanel" style="display:none">
+    <div id='text'></div>
+    <div style='clear:both;width:200px;height:30px;'>  </div>
+    <div id='nextBtn' class="button" onclick="tutorial.NextStep();">Next</div>
+</div>
+<div id='divTagDoc' style="display:none"></div>
+</body>
+</html>
+

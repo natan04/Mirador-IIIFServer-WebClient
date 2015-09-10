@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        tbEmail.Focus();
+        Utils.Clear();
+    }
+    protected void lbLogin_Click(object sender, EventArgs e)
+    {
+        WebGTModel.User user = WebGTModel.User.GetUser(tbEmail.Text, tbPassword.Text);
+        if (user == null)
+            lblMsg.Text = "Failed to load user.";
+        else
+        {
+            Utils.Clear();
+            Utils.SetCurrentUser(user);
+            Response.Redirect("main.htm");
+        }
+        //WebGTModel.User u = new WebGTModel.User();
+        //u.Email = tbEmail.Text;
+        ////u.Password = ...
+        //Utils.Model.Users.Attach(u);
+        //Utils.Model.SaveChanges();
+
+    }
+}

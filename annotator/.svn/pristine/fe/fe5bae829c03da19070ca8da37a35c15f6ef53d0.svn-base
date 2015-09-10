@@ -1,0 +1,104 @@
+﻿<%@ WebHandler Language="C#" Class="docElementsXml" %>
+
+using System;
+using System.Web;
+using System.Linq;
+
+using System.Collections.Generic;
+using WebGTModel;
+using System.Data.Objects;
+
+
+public class docElementsXml : IHttpHandler, System.Web.SessionState.IReadOnlySessionState {
+
+    public void ProcessRequest(HttpContext context)
+    {
+        int docID = Convert.ToInt32(context.Request["ID"]);
+        string format = context.Request["format"];
+
+        WebGTModel.User u = Utils.CurrentUser; //context.Session["user"] as WebGTModel.User;
+        if (u == null)
+        {
+            //TODO: log image request with no user
+            context.Response.Write("no user");
+            return;
+        }
+        if (!Utils.CurrentUser.CanViewImage(docID))
+        {
+            //TODO: log image request with no permissions
+            context.Response.Write("no permissions");
+            return;
+        }
+
+        ManuscriptPage doc = Utils.Model.ManuscriptPages.SingleOrDefault(mp => mp.ID == docID);
+        var docElements = doc.GetDocElements();
+        decimal reductionRatio = 1;
+        if (doc.ReductionRatio != null)
+            reductionRatio = doc.ReductionRatio.Value;
+        
+        var outObjects = from de in docElements
+                         select new DocumentElement
+                         {
+                             ID = de.ID,
+                             ParentID = de.ParentID,
+                             ElementType = de.ElementType.ToString(),
+                             X = Convert.ToInt32(de.X * reductionRatio),
+                             Y = Convert.ToInt32(de.Y * reductionRatio),
+                             Width = Convert.ToInt32(de.Width * reductionRatio),
+                             Height = Convert.ToInt32(de.Height * reductionRatio),
+                             Transcript = de.Transcript,
+                             Threshold = de.Threshold,
+                             OriginX = Convert.ToInt32(de.OriginX * reductionRatio),
+                             OriginY = Convert.ToInt32(de.OriginY * reductionRatio)
+                         };
+
+        
+        if (format == "csv")
+        {
+            context.Response.ContentType = "text/csv";
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (DocumentElement el in outObjects)
+                sb.AppendFormat("{0},{1},{2},{3},{4},{5},{6},{7},{8}{9}",
+                    el.Threshold ?? 0,
+                    (el.Transcript==null|| el.Transcript.Length==0)?0:Convert.ToInt32(el.Transcript[0]), 
+                    el.X,
+                    el.Y,
+                    el.Width,
+                    el.Height,
+                    el.OriginX ?? 0,
+                    el.OriginY ?? 0,
+                    el.ParentID,
+                    Environment.NewLine);              
+            context.Response.Write(sb.ToString());
+            //context.Response.Cache.SetExpires(DateTime.Now.AddDays(1));
+        }else
+        {
+            var outList = outObjects.ToList();
+            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(outList.GetType());
+            context.Response.ContentType = "text/xml";
+            ser.Serialize(context.Response.OutputStream, outList);
+        } 
+
+    }
+    
+    public bool IsReusable {
+        get {
+            return false;
+        }
+    }
+    
+    public class DocumentElement
+    {
+        public int ID;
+        public int? ParentID;
+        public string ElementType;
+        public int? X;
+        public int? Y;
+        public int? Width;
+        public int? Height;
+        public string Transcript;
+        public int? Threshold;
+        public int? OriginX;
+        public int? OriginY;
+    }
+}

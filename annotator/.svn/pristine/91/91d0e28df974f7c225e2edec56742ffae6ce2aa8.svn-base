@@ -1,0 +1,70 @@
+﻿var dropDownList;
+function CollectionDefaultProperties(collectionID, PossibleSchemes) {
+
+    var clicknum = 0;
+    var SchemeSelection = newTag("div");
+    SchemeSelection.text("Please choose a scheme:");
+    SchemeSelection.attr('title', 'Scheme Selection');
+
+    var schemeDiv = newTag("div");
+    schemeDiv.append($("<label style=margin-right:2em;>Scheme:</label>"));
+    dropDownList = newTag("select");
+    dropDownList.attr("id", "dropdown1")
+
+    for (iterator = 1; iterator <= 2; iterator = iterator + 1) {
+        optionTag = newTag("option");
+        optionTag.text(PossibleSchemes[iterator].Name);
+        optionTag.attr("value", PossibleSchemes[iterator].Name);
+        dropDownList.append(optionTag);
+    }
+
+    schemeDiv.append(dropDownList);
+    SchemeSelection.append(schemeDiv);
+    SchemeSelection.dialog({
+        autoOpen: false,
+        height: 300,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Confirm": function () {
+
+                var schemeName = getSelectedItem(dropDownList);
+                ajaxCall('docService', 'SetCollectionScheme',
+                function () {
+
+                    SchemeSelection.dialog("destroy");
+
+                    schemeUpdateMessage = newTag("div");
+                    schemeUpdateMessage.text("Congrats! Scheme has been changed succesfully (" + schemeName + ").").css("font-weight", "bold");
+                    schemeUpdateMessage.attr('title', 'Scheme Update');
+                    
+                    schemeUpdateMessage.dialog({
+                        autoOpen: true,
+                        modal: true,
+                        buttons: {
+                            Ok: function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }, ['collectionID', collectionID, 'schemeName', schemeName]);
+            },
+            Cancel: function () { $(this).dialog("close"); }
+        }
+
+    });
+
+    
+    SchemeSelection.dialog("open");
+
+
+    this.getSelectedItem = function (dropDownList) {
+        for (var k = 0; k <= dropDownList.length; k++) {
+            if (dropDownList[0][k].selected == true) {
+                c = k;
+            }
+            dropDownList[0][k].selected = false;
+        }
+        return dropDownList[0][c].value;
+    }
+}

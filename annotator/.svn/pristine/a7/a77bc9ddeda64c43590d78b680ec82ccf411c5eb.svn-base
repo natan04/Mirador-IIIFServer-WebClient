@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web Ground Truth tool - demo</title>
+    
+    
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.21.custom.min.js"></script>
+    <script type="text/javascript" src="../js/utils.js"></script>
+    <script type="text/javascript" src="../js/relative2DArray.js"></script>
+    <script type="text/javascript" src="../js/ImageData.js"></script>
+    <script type="text/javascript" src="../js/GTEditor.js"></script>
+   
+    
+ <script type="text/javascript">
+
+     function ajaxCall(serviceName, funcName, success, args) {
+         success({ d: {} });
+     }
+
+     var gte = null;
+
+     $(document).ready(function () {
+         gte = new GTEditor(
+            $('#stubDocManager'),
+            { "BaseTypes": [1], "Types": [1, 4, 5, 6], "Name": "Heb1", "TypesNames": ["Character", "Word", "Line", "Section"], "TypesAggregators": [0, 4, 0, 0, 5, 6], "TranscriptMultiCharMode": false },
+            $('#divTagDoc'),
+            { ID: 0 });
+
+         gte.updateElement = function (docElement, elementPresentation) {
+             elementPresentation.data('element', docElement);
+         }
+
+         startTutorial();
+     });
+
+     function playWithSystem() {
+         
+         gte.imgSrc = 'demoDoc.png';
+         gte.Load(function () { $('#selection').hide('slow',function(){ gte.show();}) });
+     }
+
+     var tutorial = {};
+
+     function startTutorial() {
+         tutorial.CurrentStepInd = -1;
+         tutorial.TextPane = $('#textPanel');
+         tutorial.Steps =
+         [
+            { img: 'demoDoc.png', text: 'Before we start, it is recommended to put your right hand on the mouse and your left on the keyboard in the default position(asdf).</BR>All actions can be done using the buttons on the top, but we recommend using the keyboard shortcuts whenever possible.' },
+            { img: null, text: 'Mark the letters of the first three words(top line, from right to left), by clicking each of their letters one by one.</br>Notice you can click on a letter to capture it even if it is being shaded by rectangle of previously selected letter.</br> Last letter of the third word only partially selected?</br><img src="taf.png"/></br> Move to the next stage...' },
+            { img: null, text: 'Adjust the selection threshold using the buttons on the top(-10,-2,+2,+10) or(even better) using the keyboard (a:-10 s:-2 d:+2 f:+10).</br>Adjust the threshold so the letter is properly selected.</br>Select the first letter of the forth word. Three letters selected? Move next...' },
+            { img: null, text: 'Note: fixing the selection by adjusting the threshold, when possible, is the best way to do so.</br>In this case, we will use separating line. Click the separating line button, or use the shortcut key (v). Then click and drag with the mouse to create a line which will separate the first two letters.</br>The selection is automatically updated.' },
+            { img: null, text: 'Click on the next letter, now two letters are selected. We will split the letters into separate components by using the split line (x). Separate the two letters by drawing a line between them.</br>Separating line would trim the element on the left of the line, while split adds a new selection box around it. ' },
+            { img: null, width: 600,text: 'In the second line, try to select the first letter(right click on it) of the forth word (Kuf).</br><img src="kuf.png"/></br>The letter contains two components. First Select the upper part by clicking on it, and now draw a connecting line (shortcut- c) starting from the upper component to the lower component. The selection should be updated to include them both in one element. Now some threshold adjustments might be required (use the keys: a s d f). ' },
+            { img: null, width: 500, text: 'In some cases, it is better to select manually, click on manual selection(w) and draw a box by dragging to capture the first letter of the third line. Click w again and manually select the second letter. Click w again for manually selecting the third letter. Click on the forth to select it automatically.</br>You can select any of the marked letters using right click, and adjust them by dragging their boundaries.' },
+            { img: null, text: 'You can also delete an element, by right clicking it, then click eraser button (or use r as shortcut).' },
+            { img: null, text: 'Lets add transcription to the first line.</br>Select the first letter, then move to transcription mode by clicking the transcription button (or t as shortcut). Now start typing a character for each letter.</br> According to configuration of the document, the system can attach more than one character per element.</br>Click Esc button to exit transcription mode.' },
+            { img: null, text: 'Lets group the letters in to words.</br>Click on the group button(g). Notice the element type has changed into words. Now select all the elements of the first word (first 6 characters on the right of the top line).</br>Drag a rectangle using the mouse to include these letters.</br>To group some words to a line, you can click the group button again, then select the words you want to group.' },
+            { img: null, width:1000 , text: 'Some notes:<ul><li>You can see the short cut key for each button on its tool tip.</li><li>The upper pane contains a status line which include the current mode(auto selection/ manual/ transcription/ grouping...). It contains also element count, current selection threshold and page name.</li><li>During the process the state is being continuously sent to the server, and saved on a data base.</li><li>Creating a use in the system lets you create document collections, upload documents, and manage the multi users tagging process.</li></ul></BR>You can now continue exploring the system here, or go back to <a href="../default.aspx">main page and create a user</a>. </BR>Enjoy!' }
+        ];
+         $('#selection').hide('slow', function () { tutorial.MoveToNextStep(); })
+            
+
+     }
+
+     tutorial.CurrentStep = function () {
+         return this.Steps[this.CurrentStepInd];
+     }
+
+     tutorial.MoveToNextStep = function () {
+
+         this.CurrentStepInd++;
+         if (this.CurrentStepInd >= this.Steps.length) {
+             this.TextPane.hide('slow');
+             return;
+         }
+
+         this.TextPane.slideUp('slow', function () {
+             var currentStep = tutorial.CurrentStep();
+             $(this).find('#text').html(currentStep.text);
+             if (currentStep.img != null) {
+                 gte.imgSrc = currentStep.img;
+                 gte.Load(function () { gte.show(); });
+             }
+             if (currentStep != null) {
+                 $(this).width(currentStep.width);
+             }
+             if (tutorial.CurrentStepInd == tutorial.Steps.length - 1) {
+                 $(this).find('#nextBtn').text('Finish');
+             }
+             $(this).slideDown('slow');
+         });
+     }
+     
+     
+</script>
+       
+<link href="../css/GTEditor.css" rel="stylesheet" type="text/css" />
+<link href="../css/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+
+<style type='text/css'>
+
+#header 
+{
+    padding-top: 20px;
+	width: 1100px;
+	height: 120px;
+	margin: 0 auto;
+	background:  url(css/images/Logo.jpg) no-repeat;
+}
+
+#selection
+{
+    font-size:xx-large;
+    margin:40px 20px 0px 20px;
+}
+#textPanel {
+    font-size: xx-large;
+    margin-top: 10%;
+    height: auto;
+    width: 520px;
+    padding:20px;
+}
+
+#textPanel .button
+{
+    width:auto;
+    height:auto;
+    vertical-align:bottom;
+    float:right;
+    padding:5px;
+}
+#textPanel ul
+{
+    margin:5px 3px 5px 10px
+}
+
+#textPanel img
+{
+}
+#selection .button {
+    background-color: #9CACEB;
+    border-radius: 3px;
+    box-shadow: 4px 4px 4px black;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
+
+</head>
+
+<body  oncontextmenu="return false;">
+<div id='selection' style="display:none;">
+    Would you like to take a <a class='button' onclick='startTutorial()'>short tutorial</a> or just <a class='button' onclick='playWithSystem()'>play with the system</a>?
+</div>
+<div id='stubDocManager' style="display:none">The document manager is not avialable in Demo mode. Please <a href='/'>register</a>  to enable document manager.</br> <a href='/'>Back</a></div>
+<div id='textPanel' class="controlPanel" style="display:none">
+    <div id='text'></div>
+    <div style='clear:both;width:200px;height:30px;'>  </div>
+    <div id='nextBtn' class="button" onclick="tutorial.MoveToNextStep();">Next</div>
+</div>
+<div id='divTagDoc' style="display:none"></div>
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="css/login_page.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+    
+<div id="wrapper">
+<!-- start header -->
+<div id="header">
+	<p></p>
+</div>
+<!-- end header -->
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<hr/>
+		<form id="form1" runat="server">
+        <asp:Panel ID="Panel1" runat="server" DefaultButton="lbLogin">
+            <div>
+            <p class="meta">
+              <font color="green"><b> Email:</b> </font><asp:TextBox runat="server" ID="tbEmail" TabIndex="1"></asp:TextBox>
+               <font color='green'> <b> Password: </b> </font><asp:TextBox runat="server" ID="tbPassword" 
+                    TextMode="Password" TabIndex="2"></asp:TextBox>
+                <asp:Button runat="server" ID="lbLogin" onclick="lbLogin_Click" TabIndex="3" Text="login"></asp:Button>
+                <asp:Label ID="lblMsg" runat="server"></asp:Label>
+            </p>
+            </div>
+        </asp:Panel>
+    
+		
+		
+		<hr/>
+		
+		<div class="post">
+			<div class="entry" align="center">
+			
+				<div class='temp'><img  align='left' hspace="50" vspace="40" width='40%' src="css/images/img01.jpg" alt="History!" /></div>	
+				<div id="entry_right">
+				<h1><font color='#FFFF00'>Sign Up</font></h1>
+				<h2><font color='#FFFF00'>It's free and anyone can join ..</font></h2>
+		 			<table>
+			 		
+                    <tr><td> <b>Email:</b></td>
+			  		<td><input type="text" id="name_register" size="30"/></td></tr>
+		     		
+                    <tr><td> <b> Password:</b></td>
+			  		<td> <input type="password" id="password_register" size="30"/> </td></tr>
+			  		
+                    <tr><td><b> Affiliation: </b></td>
+			  		<td><input type="text" id="username_register" size="30"/></td></tr>
+                    
+                    <tr><td> <b> Country:</b></td>
+			  		<td> <input type="text" id="email_register" size="30"/> </td></tr>
+			 		
+                    </table>
+					</div>
+                    
+					<div id="footer_right_register">
+		     		    <asp:Button runat="server" ID="rgstrButton"  Text="Register"></asp:Button> 
+		     		</div>
+               	
+			</div>
+		</div>
+        </form>
+	</div>
+   </div>
+  </div>
+
+</body>
+</html>

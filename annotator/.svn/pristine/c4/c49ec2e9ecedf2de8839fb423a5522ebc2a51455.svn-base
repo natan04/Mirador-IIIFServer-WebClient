@@ -1,0 +1,122 @@
+﻿//function CollectionDefaultProperties(collection) {
+//    div = newDiv();
+//    div.data("collectionID", collection.ID);
+//    buttonDiv =
+//    newDiv()
+//        .text("set default properties")
+//        .addClass("openPropDialog")
+//        .addClass("clickable")
+//        .click(div,function (d) { ShowPropertiesDialog(d); })
+//        .appendTo(div);
+//    return div;
+//}
+
+//function ShowPropertiesDialog(e) {
+//    var div = e.data;
+//    div.find(".openPropDialog").hide("slow",
+//        function () {
+//            newDiv()
+//                .html("bbdddddddddddb<br>bbdddddddddddb<br>bbdddddddddddb<br>bbdddddddddddb<br>")
+//                .css("visible","false")
+//                .appendTo(div)
+//                .addClass('dialog')
+//                .addClass("clickable")
+//                .click(div,function (d) { HidePropertiesDialog(d); })
+//                .show("slow");
+//        });
+
+//    //div.text(div.data("collectionID"));
+//}
+
+
+//function HidePropertiesDialog(e) {
+//    var div = e.data;
+//    div.find(".dialog").hide("slow");
+//    div.find(".openPropDialog").show("slow");
+//}
+var ManuscriptProperties;
+var SchemeSelection;
+
+function CollectionDefaultProperties(mainDiv, schemes) {
+
+    var collButtonsDiv = mainDiv.find('#collButtons');
+    var msButtonsDiv = mainDiv.find('#msButtons');
+
+    SchemeSelection = newDiv();
+    SchemeSelection.text("Please choose a scheme:");
+    SchemeSelection.attr('title', 'Scheme Selection');
+    SchemeSelection.dialog({
+        autoOpen: false,
+        height: 300,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Confirm": function () {var retVal = getSelectedItem(document.getElementById("dropdown1")); alert(retVal); },
+            Cancel: function () { $(this).dialog("close"); }
+        }
+
+    });
+
+    var schemeDiv = newTag("div");
+    schemeDiv.append($("<label style=margin-right:2em;>Scheme:</label>"));
+    selectTag = newTag("select");
+    selectTag.attr("id","dropdown1");
+    for (iterator = 1; iterator <= 2; iterator = iterator + 1) {
+        optionTag = newTag("option");
+        optionTag.text(schemes[iterator].Name);
+        optionTag.attr("value",schemes[iterator].Name);
+        selectTag.append(optionTag);
+    }
+
+    schemeDiv.append(selectTag);
+    SchemeSelection.append(schemeDiv);
+
+    ManuscriptProperties = newDiv();
+    ManuscriptProperties.text("Please set the following properties:");
+    ManuscriptProperties.attr('title', 'Manuscript Properties');
+    ManuscriptProperties.dialog({
+        autoOpen: false,
+        height: 300,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Save": function () { $(this).dialog("close"); },
+             Cancel: function () { $(this).dialog("close"); }
+        }
+
+    });
+
+     for (iterator = 1; iterator < 3; iterator = iterator + 1) {
+         ManuscriptProperties
+                        .append(newDiv()
+                             .append($('<label style="margin-right:2em;">Property 1:</label><input type="text" value="empty" ></input>'))
+                                );
+     }
+
+     var collButton = newDiv();
+     collButton.text('Set Scheme');
+     collButton
+			.button()
+			.click(function () {
+			    SchemeSelection.dialog("open");
+			});
+	collButton.appendTo(collButtonsDiv);
+
+
+    var msButton = newDiv();
+    msButton.text('Set Properties');
+    msButton
+			.button()
+			.click(function () {
+			    ManuscriptProperties.dialog("open");
+			});
+	msButton.appendTo(msButtonsDiv);
+
+	this.getSelectedItem = function (dropDownList) {
+	    for (k = 0; k < dropDownList.options.length; k++) {
+	        if (dropDownList.options[k].selected == true) {
+	            return dropDownList.options[k].value;
+	        }
+	    }
+	}
+}

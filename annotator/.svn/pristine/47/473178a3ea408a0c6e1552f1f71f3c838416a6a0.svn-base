@@ -1,0 +1,67 @@
+﻿<table style='text-align:left;padding:10px;' cellpadding="3px";>
+    <tr style="font-weight:bold;">
+        <td style="width:80px;">Button</td>
+        <td style="width:350px;">Action</td>
+        <td style="width:70px;">shortcut</td>
+    </tr>
+    <tr>
+        <td><div class='helpListIcon splitLineIcon'></div></td>
+        <td>add splitting line</td>
+        <td>x</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon seperatingLineIcon'></div></td>
+        <td>add seperating line </td>
+        <td>v</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon connectingLineIcon'></div></td>
+        <td>add connecting Line</td>
+        <td>c</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon automaticSelectionIcon'></div></td>
+        <td>automatic selection</td>
+        <td>q</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon manualSelectionIcon'></div></td>
+        <td>manual selection </td>
+        <td>w</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon transcriptionIcon'></div></td>
+        <td>add transcription</td>
+        <td>t</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon deleteIcon'></div></td>
+        <td>remove selected element</td>
+        <td>r</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon mergeIcon'></div></td>
+        <td>group elements</td>
+        <td>g</td>
+    </tr>  
+    <tr>
+        <td><div class='helpListIcon minus10Icon'></div></td>
+        <td>change selection threshold, -10</td>
+        <td>a</td>
+    </tr>  
+     <tr>
+        <td><div class='helpListIcon minus2Icon'></div></td>
+        <td>change selection threshold, -2</td>
+        <td>s</td>
+    </tr> 
+    <tr>
+        <td><div class='helpListIcon plus2Icon'></div></td>
+        <td>change selection threshold, +2</td>
+        <td>d</td>
+    </tr> 
+    <tr>
+        <td><div class='helpListIcon plus10Icon'></div></td>
+        <td>change selection threshold, +10</td>
+        <td>f</td>
+    </tr>           
+</table>

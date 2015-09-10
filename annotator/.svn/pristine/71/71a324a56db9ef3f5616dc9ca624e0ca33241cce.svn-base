@@ -1,0 +1,138 @@
+/* --------
+  The CSS rules offered here are just an example. You can style the 'accordion' in any way you like.
+  The styles for the Page Structure are needed just for the purpose of this demo page.
+  If you decide to use the CSS rules in 'Accordion' (see below) as a base, 
+  be sure to rename the selectors as to satisfy the elements in your site.
+ --------- */
+* {margin:0; padding:0}
+/* --- Page Structure  --- */
+html {height:100%}
+body {
+  min-width:480px;
+  width:100%;
+  height:101%;
+  background:#fff;
+  color:#333;
+  font:76%/1.6 verdana,geneva,lucida,'lucida grande',arial,helvetica,sans-serif;
+  text-align:center
+}
+#wrapper{
+  margin-bottom:30px;
+  padding:10px 2.5%;
+  border-top:0.1em solid #ccc;
+  background:#fff;
+  text-align:left;
+  overflow:hidden;
+  margin: 0 auto;
+  width: 1021px;
+}
+#container {
+  float:left;
+  width:100%;
+  margin-right:-19em;
+  padding:0 0 1em;
+  position:relative;
+  min-height:0
+}
+#main{
+  margin-right:0em;
+  position:relative; 
+  min-height:0
+}
+#side{
+  float:right;
+  display:inline;
+  width:18em;
+  padding-bottom:1.3em;
+  position:relative;
+  color:#e3e3e3;
+  overflow:hidden
+}
+p {margin: 0 10px 1em}
+.strong{font-weight:700}
+.clear {clear:both}
+
+/* --- Headings --- */
+h1 {font-family:georgia,'times new roman',times,serif; font-size:2.5em; font-weight:normal; color:#f60}
+
+h1, h2, h3 {margin-bottom:1em}
+
+h2, h3, h4 a, h5 a {padding:5px 10px}
+
+h2, h3, h4, h5 {font-size:1.3em}
+
+#main h2 {background-color:#f0f0f0}
+
+#side, #side h2, #side h3 {background:#000; color:#e3e3e3}
+
+#side h2 {border-bottom:1px solid #484b51}
+
+/* --- Links --- */
+a {padding:1px; border:3px solid #e0e0e0; color:#05b}
+
+a:hover, a:focus, a:active {border-color:#bcd; text-decoration:none; outline:0 none}
+
+#side a {display:block; border-width:0 0 1px; border-color:#445; color:#f0f0f0}
+
+#side a:hover, #side a:active, #side a:focus {background-color:#334}
+
+/* --- Accordion --- */
+.js #main .accordion {visibility:hidden}
+
+.js #side .accordion {display:none}
+
+.accordion {margin:0; padding:0 10px}
+
+.accordion li {list-style-type:none}
+
+.accordion li.last-child {margin-left:19px; list-style-type:disc}
+
+#side ul.accordion ul {margin:0; padding:0 0 0 20px;}
+
+.accordion .outer {border:1px solid #dadada; border-width:0 1px 1px; background: #fff}
+
+.accordion .inner {margin-bottom:0; padding:.5em 20px 1em; position:relative; overflow:hidden}
+
+.accordion .inner .inner {padding-bottom:0}
+
+.accordion .h {padding-top: 1.3em} /* vertical padding instead of vertical margin (ie8) */
+
+.accordion p {margin:.5em 1px 1em}
+
+.clickable:hover
+{
+    text-decoration:underline;
+    cursor:pointer;
+    color:Blue;
+    /*font-size: 1.6em;*/
+}
+
+.msPages
+{
+    font-size:1.2em;
+}
+
+.ctrlButtons
+{
+    width: 50px;
+    height: 20px;
+    margin: 0em 0px 0em 70em;
+}
+/*  
+  Add styles for all links in the 'accordion':
+.accordion a {...}
+*/    
+
+a.trigger {padding-left:20px; background-image: url(images/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+
+a.trigger.open {background-image: url(images/minus.gif)}
+
+.last-child a.trigger{padding-left:1px; background-image:none; font-weight:normal}
+
+#main a.trigger {background-color:#f0f0f0}
+
+#main a.trigger.open {border-color:#0B579E; background-color:#97A3CA}
+
+#main a:hover.trigger.open, #main a:focus.trigger.open, #main a:active.trigger.open {border-color:#bcd}
+
+#side a.active{font-weight:700; color:#f72; text-decoration:none}

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web Ground Truth tool</title>
+    
+    
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.nestedAccordion.js"></script>
+    <script type="text/javascript" src="js/expand.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/CollectionDefaultProperties.js"></script>
+    <script type="text/javascript" src="js/ManuscriptDefaultProperties.js"></script>
+    <script type="text/javascript" src="js/manageDocuments.js"></script>
+    <script type="text/javascript" src="js/relative2DArray.js"></script>
+    <script type="text/javascript" src="js/ImageData.js"></script>
+    <script type="text/javascript" src="js/GTEditor.js"></script>
+   
+    
+ <script type="text/javascript">
+
+        $(document).ready(function () {
+            docManager = new documentManager($('#divDocMng'),$('#divTagDoc'));
+            docManager.init();
+        });
+
+//--------- Accordion Code snippet ----------
+
+
+</script>
+       
+<link href="css/tablesorter.css" rel="stylesheet" type="text/css" />
+<link href="css/GTEditor.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+<link href="css/acc_style.css" rel="stylesheet" type="text/css" />
+
+<style type='text/css'>
+
+#header 
+{
+    padding-top: 20px;
+	width: 1100px;
+	height: 120px;
+	margin: 0 auto;
+	background:  url(css/images/Logo.jpg) no-repeat;
+}
+
+</style>
+
+</head>
+
+<body  id="nested-accordion-demo" class="jquery" oncontextmenu="return false;">
+
+<div id='divTagDoc' style="display:none"></div>
+<div id='divDocMng'>
+    <div id="header"></div>
+    <div id="wrapper"> 
+        <div id="content">  
+            <div id="container">
+                <div id="main">           
+                     <ul id="acc1" class="accordion">
+                        
+                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

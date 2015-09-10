@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebGTModel;
+
+public partial class AddPage : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            ViewState["src"] = Request.UrlReferrer;
+
+            try
+            {
+                int msid = Convert.ToInt32(Request["msid"]);
+                Manuscript manuscript = Utils.Model.Manuscripts.SingleOrDefault(ms => ms.ID == msid);
+                Collection collection = Utils.Model.Collections.SingleOrDefault(c=>c.ID==manuscript.CollectionID);
+                lblTitle.Text = string.Format("Add pages to manuscript: {0}, in collection: {1}", manuscript.Title, collection.Title);
+                if (!collection.IsManager)
+                    throw new Exception("User is not autohrized");
+                Repeater1.DataSource = Enumerable.Range(1, 20);
+                Repeater1.DataBind();
+            }
+            catch (Exception)
+            {
+                Response.Redirect(ViewState["src"].ToString());
+            }
+
+        }
+    }
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        int counter = 0;
+        int msid = Convert.ToInt32(Request["msid"]);
+        Manuscript manuscript = Utils.Model.Manuscripts.SingleOrDefault(ms => ms.ID == msid);
+        List<ManuscriptPage> pagesToAdd = new List<ManuscriptPage>();
+        for (int i = 0; i < 20; i++)
+        {
+            FileUpload fuNewPage = Repeater1.Items[i].FindControl("fuImg") as FileUpload;
+            TextBox tbTitle = Repeater1.Items[i].FindControl("tbTitle") as TextBox;
+            if (fuNewPage == null || tbTitle == null) continue;
+            if (fuNewPage.HasFile)
+            {
+                ManuscriptPage page = new ManuscriptPage();
+                page.ManuscriptID = msid;
+                if (!string.IsNullOrEmpty(tbTitle.Text))
+                    page.Title = tbTitle.Text;
+                else
+                    page.Title = fuNewPage.FileName.Substring(0, fuNewPage.FileName.LastIndexOf('.'));
+
+                var oldPageWithThatName = manuscript.ManuscriptPages.SingleOrDefault(msp => msp.Title == page.Title);
+                var newPageWithThatName = pagesToAdd.SingleOrDefault(msp => msp.Title == page.Title);
+                if (oldPageWithThatName != null || newPageWithThatName != null)
+                {
+                    lblMsg.Text = string.Format("Operation fail. Repeted names in manuscript({0})", page.Title);
+                    return;
+                }
+
+                pagesToAdd.Add(page);
+                
+
+                string imgFile =
+                    string.Format("{0}{1}.png",
+                    System.Configuration.ConfigurationManager.AppSettings["ImagesFolder"],
+                    page.ID);
+                fuNewPage.SaveAs(imgFile);                
+            }
+        }
+
+        foreach (ManuscriptPage page in pagesToAdd)
+            Utils.Model.ManuscriptPages.AddObject(page);
+
+        Utils.CurrentUser.LastDocID = manuscript.ManuscriptPages.First().ID;
+        Utils.Model.SaveChanges();
+        Response.Redirect(ViewState["src"].ToString());
+    }
+}

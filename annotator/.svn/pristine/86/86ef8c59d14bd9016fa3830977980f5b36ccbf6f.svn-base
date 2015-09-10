@@ -1,0 +1,140 @@
+﻿
+function documentManager(mainDiv, tagDocDiv) {
+    this._collections = 0;
+    this._mainDiv = mainDiv;
+    this._tagDocDiv = tagDocDiv;
+    var _self = this;
+
+    this.init = function () {
+        //this._mainDiv.text("HI!");
+        ajaxCall('docService', 'GetUserDocuments', function (resp) { _self.showDocuments(resp); });
+    }
+
+
+    this.showDocuments = function (resp) {
+
+        var accDiv = this._mainDiv.find('#acc1');
+        this._collections = resp.d;
+
+        for (var i = 0; i < resp.d.length; i++) {
+            var collectionBlock = this.addCollection(resp.d[i]);
+            accDiv.append(collectionBlock);
+        }
+
+        $("html").addClass("js");
+        $.fn.accordion.defaults.container = false;
+        $(function () {
+
+            $("#acc1").accordion({
+                el: ".h",
+                head: "h4, h5",
+                next: "div",
+                initShow: "div.outer:eq(1)"
+            });
+
+            $("#main .accordion").expandAll({
+                trigger: ".h",
+                ref: "h4.h",
+                cllpsEl: "div.outer",
+                speed: 200,
+                oneSwitch: false,
+                instantHide: true
+            });
+
+            $("html").removeClass("js");
+        });
+
+        var buttonsDiv = this._mainDiv.find('#buttons');
+        initCollectionDefaultProperties(buttonsDiv);
+    }
+
+
+    this.addCollection = function (collection) {
+        collectionBlock = newLI();
+        h4_tag = $("<h4></h4>");
+        h4_tag.text(collection.Title);
+        ul_tag = newUL();
+
+        var innerDiv = newDiv();
+        innerDiv.addClass("inner");
+
+        buttonsDiv = newDiv();
+        buttonsDiv.addClass("ctrlButtons");
+        buttonsDiv.attr("id", "buttons");
+        innerDiv.append(buttonsDiv);
+
+
+        if (collection.IsManager) {
+            manageCollectionDiv = this.CreateManageCollectionDiv(collection);
+            collectionBlock.append(manageCollectionDiv);
+        }
+
+        for (var i = 0; i < collection.Manuscripts.length; i++) {
+            msBlock = this.addManuscript(collection.Manuscripts[i], collection);
+            ul_tag.append(msBlock);
+
+        }
+
+        innerDiv.append(ul_tag);
+        //h4_tag.click(function () { innerDiv.toggle('slow'); });
+        //h4_tag.addClass('clickable');
+        collectionBlock.append(h4_tag);
+        collectionBlock.append(innerDiv);
+
+        return collectionBlock;
+    }
+
+
+    this.addManuscript = function (manuscript, collection) {
+        msBlock = newLI();
+        h5_tag = $("<h5></h5>");
+        h5_tag.text(manuscript.Title);
+
+        var innerDiv = newDiv();
+        innerDiv.addClass("inner");
+        innerDiv.data('manuscript', manuscript);
+
+        for (var i = 0; i < manuscript.ManuscriptPages.length; i++) {
+            var pageDiv = this.addManuscriptPage(manuscript.ManuscriptPages[i], collection);
+            innerDiv.append(pageDiv);
+        }
+
+        msBlock.append(h5_tag);
+        msBlock.append(innerDiv);
+
+        return msBlock;
+    }
+
+
+    this.addManuscriptPage = function (page, collection) {
+
+        pageDiv = newDiv();
+        pageDiv.addClass("clickable");
+        pageDiv.addClass("msPages");
+        pageDiv
+                .click(function () {
+                    var gte = new GTEditor(_self, collection.Scheme, _self._tagDocDiv, $(this).data('page'));
+                    gte.Load();
+                })
+            .data("page", page)
+            .text(page.Title);
+
+        return pageDiv;
+    }
+
+    this.CreateManageCollectionDiv = function (collection) {
+        var div = newDiv()
+        .addClass("divCollectionManager");
+        //div.append(CollectionDefaultProperties(collection));
+        return div;
+    }
+
+    this.hide = function (callback) {
+        this._mainDiv.fadeOut('slow',callback);
+    }
+
+    this.show = function (callback) {
+        this._mainDiv.fadeIn('slow', callback);
+    }
+
+}

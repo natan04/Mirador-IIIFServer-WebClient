@@ -1,0 +1,339 @@
+﻿*
+{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#divTagDoc
+{
+    position:relative;
+    padding:0px;
+}
+
+.docElementRect
+{
+    border-width:2px;
+    border-style:solid;
+    position:absolute;
+    width:100px;
+    height:100px;
+    z-index:100;
+    float:left;
+    clear:both;
+    opacity:0.5;
+      
+}
+
+.docElementRect:hover
+{
+    box-shadow: 0 0 5px rgba(0, 0, 255, 1);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, 1); 
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 255, 1); 
+}
+
+.inGroup .transcription
+{
+    color:#009933;
+}
+
+#documentDiv
+{
+    z-index:80;
+    position:relative;
+    left:0;
+    top:0;
+}
+
+#linesCanvas
+{
+    z-index:50;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.docElementOfType_1
+{
+    border-color:Orange;
+    z-index:100;    
+}
+
+.docElementOfType_2
+{
+    z-index:101;
+}
+
+.docElementOfType_3
+{
+    border-color:Red;
+    z-index:102;
+}
+
+.docElementOfType_4
+{
+    border-color: Green;
+    z-index:103;
+}
+
+.docElementOfType_5
+{
+    border-color: Purple;
+    z-index:104;
+}
+
+.docElementOfType_6
+{
+    z-index:105;
+}
+
+.typeActive_1 .docElementOfType_1 {z-index:200 !important; }
+.typeActive_2 .docElementOfType_2 {z-index:200 !important; }
+.typeActive_3 .docElementOfType_3 {z-index:200 !important; }
+.typeActive_4 .docElementOfType_4 {z-index:200 !important; }
+.typeActive_5 .docElementOfType_5 {z-index:200 !important; }
+.typeActive_6 .docElementOfType_6 {z-index:200 !important; }
+
+.docElementRect .transcription
+{
+    text-align: center;
+    font-weight: 900;
+    font-size: 30px;
+    position:relative;
+    top:-40px;
+    color: #3399CC
+}
+
+.smallTranscription .docElementRect .transcription
+{
+    font-size:8px;
+    font-weight:normal;
+    color:Blue;
+    top:-10px;
+}
+
+.groupSelectionDiv
+{
+    border-style:solid;
+    border-bottom-width:thin;
+    border-color:Green;
+    position:absolute;
+    z-index:100;
+    float:left;
+    clear:both;
+    opacity:0.5;    
+}
+
+.groupCandidate
+{
+    background-color:#aaffaa !important;
+}
+
+.groupDiv
+{
+    border-style:solid;
+    border-bottom-width:thin;
+    border-color:Green;
+    position:absolute;
+    z-index:100;
+    float:left;
+    clear:both;
+    opacity:0.5;      
+}
+
+
+/*.divGlowOnHover:hover*/
+.selected
+{
+    background-color:#bb99bb;
+    opacity:0.4;
+}
+
+
+.controlPanel
+{
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 300;
+    background: #FAE1F4;
+    border: 3px solid rgba(221, 187, 217, 0.95);
+    border-radius: 5px;
+    opacity: 0.95;
+    padding: 0.2% 12px 0 3px;
+    width:95%;
+    height:5%;
+}
+
+.controlPanel .button {
+    height: 70%;
+    width: 3%;
+    background-color: #9CACEB;
+    border-radius: 3px;
+    box-shadow: 4px 4px 4px black;
+    padding: 0.05%;
+    margin: 0.2% 0.4% 0.4% 0.4%;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.controlPanel .button:hover
+{
+    box-shadow:4px 4px 4px #0A248B;
+}
+
+.controlPanel .button:active 
+{
+    box-shadow:3px 3px 5px #000000;
+}
+
+.controlPanel .backIcon
+{
+    background-image:url('images/back.png');
+}
+
+.logoutIcon
+{
+    background-image:url('images/logout.png');
+}
+
+.splitLineIcon
+{
+    background-image:url('images/splitLine.png');
+}
+
+.seperatingLineIcon
+{
+    background-image:url('images/seperatingLine.png');
+}
+
+.connectingLineIcon
+{
+    background-image:url('images/connectingLine.png');
+}
+
+.automaticSelectionIcon
+{
+    background-image:url('images/automaticSelection.png');
+}
+
+.manualSelectionIcon
+{
+    background-image:url('images/manualSelection.png');
+}
+
+.transcriptionIcon
+{
+    background-image:url('images/transcription.png');
+}
+
+.deleteIcon
+{
+    background-image:url('images/delete.png');
+}
+
+.mergeIcon
+{
+    background-image:url('images/merge.png');
+}
+
+.plus2Icon
+{
+    background-image:url('images/plus2.png');
+}
+.plus10Icon
+{
+    background-image:url('images/plus10.png');
+}
+.minus2Icon
+{
+    background-image:url('images/minus2.png');
+}
+.minus10Icon
+{
+    background-image:url('images/minus10.png');
+}
+.mergeIcon
+{
+    background-image:url('images/merge.png');
+}
+
+.helpIcon
+{
+    background-image:url('images/help.png');
+}
+.controlPanel .seperator {
+    height: 70%;
+    width: 0.3%;
+    float: left;
+    background-color: #4B6AE7;
+    border-radius: 3px;
+    margin: 0.4%;
+}
+
+.controlPanel .statusLine
+{
+    float:right;
+    padding:0;
+    font-size:small;
+    width:25%;
+}
+
+
+.controlPanel .dropDown {
+    float: left;
+    height: 60%;
+    padding: 0.6%;
+    width: 11%;
+}
+
+.controlPanel .dropDown select {
+    height: 100%;
+    width: 100%;
+    font-size: large;
+    border: none;
+    border-radius: 3px;
+    background-color: #4B6AE7;
+    box-shadow: 5px 5px 5px black;
+}
+
+.ui-resizable 
+{
+    position:absolute !important;
+}
+
+.helpListIcon
+{
+    background-repeat:no-repeat;
+    width:32px;
+    height:32px;
+}
+
+.controlPanel .arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 8px solid rgba(221, 187, 217, 0.95);
+    float: left;
+    cursor: pointer;
+    margin-top:4px;
+}
+
+.controlPanel .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 8px solid rgba(221, 187, 217, 0.95);
+    float: left;
+    cursor: pointer;
+    margin-top:4px;
+}
