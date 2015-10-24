@@ -139,6 +139,7 @@ public class Invoker extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(js);
 				out.println(js);
 		}
 	
@@ -270,7 +271,8 @@ public class Invoker extends HttpServlet {
 			JSONObject singleInvoke = new JSONObject(invokeCmmnd.toString());
 			singleInvoke.put("input", oldImage);
 			singleInvoke.put("output", newImagePath);			
-			singleInvokeGateFunction(session, singleInvoke, basicRemote);
+			if (!singleInvokeGateFunction(session, singleInvoke, basicRemote))
+				return null;
 			oldImage = newImagePath;		//chain: new->old
 			
 
@@ -280,7 +282,7 @@ public class Invoker extends HttpServlet {
 	}
 
 	
-	public static void singleInvokeGateFunction(Session session, JSONObject singleInvoke, Basic basicRemote) {
+	public static boolean singleInvokeGateFunction(Session session, JSONObject singleInvoke, Basic basicRemote) {
 		
 		try {
 	
@@ -295,21 +297,22 @@ public class Invoker extends HttpServlet {
 			outputfile.mkdirs();
 			ImageIO.write(imageOutput, "jpg", outputfile);
 
-			//on error:
-			if (basicRemote != null)
-			{
-				JSONObject err = new JSONObject();
-				err.put("display", "error: + blablabla");
-				session.close();
-			}
-			
+//			//on error:
+//			if (basicRemote != null)
+//			{
+//				JSONObject err = new JSONObject();
+//				err.put("display", "error: + blablabla");
+//				err.put("currentImageIndex", "2");
+//
+//				session.close();
+//			}
+//			
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return ;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -318,6 +321,7 @@ public class Invoker extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		return true;
 		
 	}
 
@@ -341,6 +345,9 @@ public class Invoker extends HttpServlet {
 				 */				
 				Version tempVer = Global.InvokerPreviewBook.getNewVersion(sessionId);	
 				String tempPathImageAddress[] = Preview.loadFromId(session,basicRemote, toPrintOnUser, tempVer, flowId, (new JSONArray()).put(image), sessionId);
+			if (tempPathImageAddress == null)
+				return;
+				
 				newVersion.copyImageFromTempToManifest(tempPathImageAddress, toPrintOnUser.getString("imageName").split("/")[2]);
 				
 

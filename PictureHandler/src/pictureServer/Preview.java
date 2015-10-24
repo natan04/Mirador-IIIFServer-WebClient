@@ -216,8 +216,13 @@ public class Preview {
 					basicRemote.sendText(toPrintOnUser.toString());
 				}
 				iiifAndPath = (Invoker.previewInvoke(session, invokeCmmnd, images, sessionId, basicRemote));
+				if (iiifAndPath == null)
+					return null;
+					
 				tempVer.createPageToTemp(iiifAndPath);
 
+				tempVer.currentIndex.incrementAndGet();
+				tempVer.derivedFromIndex.incrementAndGet();
 				//images is an array with iiif image. so we remove and add again,
 				images.remove(0);
 				images.put(iiifAndPath[1]);

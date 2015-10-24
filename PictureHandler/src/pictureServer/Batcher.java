@@ -41,7 +41,7 @@ public class Batcher {
 			case "batch":
 				handleBatch(session,session.getBasicRemote(), session.getId(), ob.getString("book"), ob.getString("newVersion"), ob.getString("flowId"),ob.getJSONArray("images") );
 				session.getBasicRemote().sendText((new JSONObject().put("display", "Success!")).toString());
-				
+				session.close();
 			
 			}
 		} catch (JSONException e1) {
@@ -51,12 +51,7 @@ public class Batcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	try {
-			session.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    
     	return "ok";
     }
  
