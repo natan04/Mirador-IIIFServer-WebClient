@@ -43,5 +43,20 @@ Data are also save on SQL database for easily restore after showdown.
   
 ![alt tag](https://raw.githubusercontent.com/natan04/MiradorAndIIIFServer/master/support/datastructurePictureHandler.PNG)
 
+**Storage**
 
+Images are store on "ImageFolder" folder in format of:  IMAGE_FOLDER/Book/Version/Page
+
+SQL Picture database are stored in: IMAGE_FOLDER/Picture.db
+
+Temp folder For preview invoking are located at: IMAGE_FOLDER/temp
+
+
+**Servlets:**
+
+* Json: displaying IIIF information that compatible with Mirador. Working by GET request.
+* Upload: Uploading image, and create Json accordantly.
+* Invoker: Previewing image cmmnd by calling the third side application, and create the image inside temp folder, and update the preview book.
+* Batcher: Web socket for running Batch command by third side application, and feed progress information to Mirador.
+ 
 
