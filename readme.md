@@ -20,5 +20,6 @@ The image server contain Three Web applications:
 The client running the mirador
 
 
-#Diagram
+**Diagram**
+
 ![alt tag](https://raw.githubusercontent.com/natan04/MiradorAndIIIFServer/master/support/server%20diagram.png)
