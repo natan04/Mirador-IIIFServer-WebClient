@@ -4,3 +4,4 @@
 * Mirador Viewer (GitHub) - https://github.com/IIIF/mirador
 * Digilib - https://github.com/jlerouge/digilib-pivaj
 
+![alt tag](https://raw.githubusercontent.com/natan04/MiradorAndIIIFServer/master/support/server%20diagram.png)
