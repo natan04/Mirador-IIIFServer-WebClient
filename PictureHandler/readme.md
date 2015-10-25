@@ -35,12 +35,12 @@ Any Third side application that want to integrate with Picture handler for furth
 ```
 
 
-#To-do:
+**Data Structure**
 
-* connection between third side application to PictureHandler
-* remove book option
-
-
+The data are stored in hierarchical order: Book -> Version -> Page.
+The data are saved on SQL database for easily restore after showdown server.
+  
+![alt tag](https://raw.githubusercontent.com/natan04/MiradorAndIIIFServer/master/support/datastructurePictureHandler.PNG)
 
 
 
