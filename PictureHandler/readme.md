@@ -38,7 +38,8 @@ Any Third side application that want to integrate with Picture handler for furth
 **Data Structure**
 
 The data are stored in hierarchical order: Book -> Version -> Page.
-The data are saved on SQL database for easily restore after showdown server.
+
+Data are also save on SQL database for easily restore after showdown.
   
 ![alt tag](https://raw.githubusercontent.com/natan04/MiradorAndIIIFServer/master/support/datastructurePictureHandler.PNG)
 
