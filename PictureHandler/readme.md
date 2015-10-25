@@ -52,11 +52,15 @@ SQL Picture database are stored in: IMAGE_FOLDER/Picture.db
 Temp folder For preview invoking are located at: IMAGE_FOLDER/temp
 
 
+
 **Servlets:**
 
 * Json: displaying IIIF information that compatible with Mirador. Working by GET request.
+
 * Upload: Uploading image, and create Json accordantly.
+
 * Invoker: Previewing image cmmnd by calling the third side application, and create the image inside temp folder, and update the preview book.
+
 * Batcher: Web socket for running Batch command by third side application, and feed progress information to Mirador.
  
 
