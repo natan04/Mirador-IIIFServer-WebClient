@@ -1,15 +1,32 @@
 window.Mirador = window.Mirador || {};
-
-// DONE: Launcher - Encode URL
-// DONE: Support for global Service Manager class
+/**
+ * @namespace window.Mirador
+ */
 (function($) {
 
+	/**
+	 * Default config for launching mirador. can be overriden by external config-json
+	 * @memberof window.Mirador
+	 * @type {Object}
+	 */
 	$.customConfig = {
 		        "id": "viewer",
 		        "layout": "1x1",
 		        "windowObjects": []
 	};
 
+	/**
+	 * Launches mirador with given config-json URL and custom manifests data. the loading sequence is synchronous:<br>
+	 * ** 1) Loads config-json from configUrl<br>
+	 * ** 2) Parses config-json and adds the relevant config(mostly services parameters) to global mirador config<br>
+	 * ** 3) Loads remote manifests  descriptions from PictureHandler and add to global mirador config<br>
+	 * ** 4) Launch Mirador with loaded config(manifests & services)<br>
+	 * @param  {string} configUrl  - URL to config-json
+	 * @param  {Object[]} customData - array of manifest description objects for entering external manifests (not from PictureHandler)
+	 * @param {string} customData[].manifestUri - full URL to manifest
+	 * @param {string} customData[].location - Manifest institution (example: "Harvard University", "Stanford University")
+	 * @memberof window.Mirador
+	 */
 	$.launch = function(configUrl,customData) {
 		var manifests = [];
 		var opts = {};
@@ -62,6 +79,12 @@ window.Mirador = window.Mirador || {};
 
 	};
 
+	/**
+	 * Parses manifest IDs and constructs a list of manifest description objects
+	 * @param  {string[]} manifests_arr - Array of manifests IDs (located in PictureHandler)
+	 * @return {Object[]} Array of manifest description objects
+	 * @memberof window.Mirador
+	 */
 	$.parseAndAddManifestsURIs = function(manifests_arr) {
 			manifests = [];
 
@@ -76,6 +99,12 @@ window.Mirador = window.Mirador || {};
 			return manifests;
 	};
 
+	/**
+	 * Adds services to global mirador services object from given config-json
+	 * @param  {Object} configJson - config-json JSON object
+	 * @return {} nothing
+	 * @memberof window.Mirador
+	 */
 	$.loadConfigFromJson = function(configJson) {
 			jQuery.extend(true, $.customConfig, configJson.customConfig);
 

@@ -1,10 +1,20 @@
 window.Mirador = window.Mirador || {};
+
+/**
+ * ServiceManager library/namespace. holds Service class and global services object.
+ * @namespace
+ */
 window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 
-// DONE: Add global manifest service manager
-// DONE: Service Manager - Move initial config to somewhere else(in mirador-config.json)
+
 (function($){
 
+	/**
+	 * Represents a remote service
+	 * @memberOf window.Mirador.ServiceManager
+	 * @constructor
+	 * @param {Object} options - describes config for the service.  default ones: "name", "baseUrl". every service has its own parameters.
+	 */
 	$.Service = function(options) {
 		jQuery.extend(true, this, {
 			name: '',
@@ -20,6 +30,11 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 	};
 
 	$.Service.prototype = {
+		/**
+		 * get full url for given command name
+		 * @param  {string} cmd - command name
+		 * @return {string}  full URL string for given command
+		 */
 		getUrlForCommand: function(cmd) {
 			return this.baseUrl + '/' + this.name + '/' + this.cmds[cmd];
 		}
@@ -30,14 +45,31 @@ window.Mirador.ServiceManager = window.Mirador.ServiceManager || {};
 		return $.services[service].getUrlForCommand(cmd);
 	};
 
+	/**
+	 *  Add service to the global services object
+	 * @memberof  window.Mirador.ServiceManager
+	 * @param {string} name  - service name
+	 * @param {string} baseUrl - service baseUrl
+	 * @param {Object[]} cmds - service commands (array of cmd objects)
+	 */
 	$.addService = function(name,baseUrl,cmds) {
 		$.services[name] = new $.Service(name,baseUrl,cmds);
 	};
 
+	/**
+	 * Parse given JSON to service object and add it to global services object
+	 * @memberof  window.Mirador.ServiceManager
+	 * @param {Object} serviceJson
+	 */
 	$.addServiceFromJson = function(serviceJson) {
 		$.addService(serviceJson.name, serviceJson.baseUrl,serviceJson.cmds);
 	};
 
+	/**
+	 * Global services object. used for centralizing all the services in one place for easy access.
+	 * @memberOf window.Mirador.ServiceManager
+	 * @type {Object}
+	 */
 	$.services = {};
 
 
