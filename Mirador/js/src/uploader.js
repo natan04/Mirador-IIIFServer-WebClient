@@ -1,34 +1,23 @@
 window.Mirador = window.Mirador || {};
+
+/**
+ * Uploader form and Dynamic combobox
+ * @namespace
+ */
 window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 
-// DONE: Handlebars Template
-// DONE: Fixed bug: form shows by default at startup!
-// DONE: option for base URL for manifestService
-// DONE: Upload function
-// DONE: Dynamic combo
-// DONE: Option for refreshing
-// DONE: Close button
-// DONE: Fixed Bug with form field id (Expects ID uppercase)
-// DONE: Support for global Service Manager class
-
-// TODO: Upload API response handling - array [ErrCode, Desc] (success = 0)
-// TODO: Checkbox for file overwrite (name: overwriteFlag)
-// TODO: Multifiles support
-// TODO: Handle failure on combo fetching
-// TODO: Handle of new manifest
-// TODO: Change name of menu to "Admin" or something
-// TODO: Change this to a global manifests editting admin panel (add,delete,append page etc.)
-// BUG: Manifest in list not updated when uploading to existing manifest(append image)
 (function($,mInst) {
 	
 	/**
 	 * UploaderForm class constructor
-	 * @param {Object} options:  {  baseUrl  (String)  base url for manifest service 
-	 *                           	show (Boolean) if true => form is visible
-	 *                           	AppendTo (DOM element) Element to append the form to 
-	 *                           	id (String) HTML Element id for form DIV
-	 *                           	cls (String) like id}
+	 * @constructor
+	 * @param {Object} options - config for UploaderForm
+	 * @param {string} options.baseUrl - base url for manifest service (PictureHandler) - depreciated
+	 * @param {boolean} options.show - if true => form is visible
+	 * @param {DOMElement} options.AppendTo - Element to append the form to
+	 * @param {string} options.id - HTML Element id for form DIV element
+	 * @param {string} options.cls - same as id but for CSS Class
 	 */
 	$.UploaderForm = function(options) {
 
@@ -58,7 +47,6 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 
 	};
 
-	// TODO: Upload form is messed up - add some borders, colors etc
 	$.UploaderForm.prototype = {
 		template: Handlebars.compile(
 					["<div id={{id}} class={{cls}}>",
@@ -73,13 +61,15 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 					 "</div>"
 					 ].join('')),
 
-		// Binds global events:
-		// uploadFormVisible.set - called when user clicks on menu item
-		// uploadForm.chooseId - when choosing manifest id from combobox
-		// uploadForm.msg - for messaging/error reporting
-		// refBtn a onClick - refresh button click
-		// input file change - whenever user chooses file
-		// submit - form submit
+		/**
+		* Binds global events: <br>
+		* uploadFormVisible.set - called when user clicks on menu item<br>
+		* uploadForm.chooseId - when choosing manifest id from combobox<br>
+		* uploadForm.msg - for messaging/error reporting<br>
+		* refBtn a onClick - refresh button click<br>
+		* input file change(DOM Event) - whenever user chooses file<br>
+		* submit(DOM Event) - form submit
+		*/
 		bindEvents: function() {
 			var _this = this;
 			// Show form event
@@ -104,6 +94,10 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 			});
 			_this.element.on('submit',_this,_this.sendFile);
 		},
+		/**
+		 * Change form visible (according to given parameter)
+		 * @param  {boolean} sh - True -> show form, False -> hide form
+		 */
 		showForm: function(sh) {
 			if(sh === undefined) 
 				sh = !this.show;
@@ -118,6 +112,10 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 			else
 				this.element.hide(params);
 		},
+		/**
+		 * Sends the chosen file to PictureHandler's Uploader service
+		 * @param  {Object} event - DOM Event related to the sending (used by form submit)
+		 */
 		sendFile: function(event) {
 			event.stopPropagation();
 			event.preventDefault();
@@ -157,16 +155,15 @@ window.Mirador.Uploader = window.Mirador.Uploader || {};
 		}
 	};
 
-
-
-// ================== Dynamic Combobox ==========================
 /**
- * Dynamic combobox for dynamically update from string arrays(JSON, Fetched)
- * @param { urlToFetch (string) url to webservice that returns JSON array of strings
- *          id (string) HTML id 
- *          cls (string) same as id
- *          autoExtend (Boolean) if true, extends combobox automatically as option list grows 
- *         }
+ * Constructs DynamicCombo (fetches entries from specific url - used for Manifests List)
+ * @constructor
+ * @param {Object} options - Config for DynCombo
+ * @param {string} options.urlToFetch - URL for list items fetching (expects JSON Array of strings)
+ * @param {string} options.id - ID for DynCombo's HTML Element
+ * @param {string} options.cls - Same as id but for CSS class
+ * @param {DOMElement} options.appendTo - DOM Element to append DynCombo to
+ * @param {boolean} options.autoExtend - if true - DynCombo size changes according to items count
  */
 $.DynamicCombo = function(options) {
 		jQuery.extend(true, this,
@@ -192,6 +189,10 @@ $.DynamicCombo.prototype = {
 		"<select id='{{id}}' name='{{id}}' class='{{clsname}}'></select>"
 		].join('')),
 
+	/**
+	 * Binds global events: <br>
+	 * dynCombo.refresh - whenever items need to be refetched from server
+	 */
 	bindEvents: function() {
 		var _this = this;
 		_this.element.change(function() {
@@ -203,13 +204,19 @@ $.DynamicCombo.prototype = {
 		});
 	},
 
-
+	/**
+	 * Clears all items
+	 */
 	clearAll: function() {
 		this.element.html('');
 		this.data = [];
 		this.element[0].size = 0;
 	},
 
+	/**
+	 * Adds an item (checks first if already exists)
+	 * @param {string} text - text to add to DynCombo
+	 */
 	addItem: function(text) {
 		// Check if item exists
 		var res = jQuery.grep(this.data,function(el,idx){
@@ -229,6 +236,9 @@ $.DynamicCombo.prototype = {
 		jQuery.publish('dynCombo.dataAdded',text);
 
 	},
+	/**
+	 * Fetches items from server and updates DynCombo
+	 */
 	fetchData: function() {
 		var _this = this;
 
