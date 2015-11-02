@@ -1,15 +1,12 @@
+/**
+ * @namespace
+ */
 window.InvokerLib = window.InvokerLib || {};
+
+/**
+ * @namespace
+ */
 window.InvokerLib.Models = window.InvokerLib.Models || {};
-
-// DONE: Added Invoker models classes (Function,Parameter,Class, InvokeRequest, Invoke)
-// DONE: Added simple dummy requests functions
-//DONE: Style preview images
-
-
-//BUG: Batch doesn't save annotations.
-//DONE: Save/Load flow
-
-
 
 /*
 	FUNCTIONS LIST:
@@ -116,6 +113,13 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 
 (function($,ServiceManager) {
 
+	/**
+	 * Represents a parameter object 
+	 * @constructor
+	 * @param {string} name - parameter name
+	 * @param {string} type - parameter type (int/float/bool)
+	 * @param {string} description - parameter description
+	 */
 	$.Parameter = function(name, type, description) {
 		return {
 			name: name,
@@ -124,6 +128,13 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
+	/**
+	 * Represents specific function class
+	 * @constructor
+	 * @param {string} name - function-class name
+	 * @param {string} description - function-class description
+	 * @param {Parameter[]} parameters  - array of Parameter that this class offers
+	 */
 	$.Class = function(name, description, parameters) {
 		return {
 			name: name,
@@ -132,6 +143,14 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
+	/**
+	 * Represents collection of function-classes
+	 * @constructor
+	 * @param {string} name - function name
+	 * @param {string} input - input
+	 * @param {string} output  - output
+	 * @param {Class[]} classes - array of Classes under the same function
+	 */
 	$.Function = function(name, input, output, classes) {
 		return {
 			name: name,
@@ -141,10 +160,14 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
-	/*
-		
-	 */
 
+	/**
+	 * Represents single invoke command
+	 * @constructor
+	 * @param {string} func_name  - function name
+	 * @param {string} class_name - function-class name
+	 * @param {Parameter[]} parameters - Array of parameters (with value field)
+	 */
 	$.Invoke = function(func_name, class_name, parameters){
 		return {
 			function: func_name,
@@ -153,6 +176,16 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 		};
 	};
 
+	/**
+	 * Represents Invoke JSON Request
+	 * @constructor
+	 * @param {Object} options - invoke request parameters
+	 * @param {string} options.type - Request Type (preview / edit / save)
+	 * @param {string} options.id - Invoke Identifier (label)
+	 * @param {Invoke} options.invoke - Invoke instance
+	 * @param {string[]} options.images - Array of IIIF URIs for images to process
+	 * @param {int} options.index -  Image index
+	 */
 	$.InvokeRequest = function(options) {
 		jQuery.extend(true, this, {
 			type: 'preview',
@@ -168,17 +201,6 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 	$.InvokeRequest.prototype = {
 		addInvoke: function(invoke) {
 			this.invoke = invoke;
-			// var max_key = Math.max.apply({},Object.keys(this.invokes));
-
-			// if (jQuery.isEmptyObject(this.invokes)) {
-			// 	max_key = 0;
-			// } else {
-			// 	max_key = max_key + 1;
-			// }
-
-			// this.invokes[max_key.toString()] = invoke;
-
-			// return this;
 		}
 
 
@@ -371,27 +393,40 @@ window.InvokerLib.Models = window.InvokerLib.Models || {};
 				_this.wsObject.send(JSON.stringify(batchReq));
 
 				window.Mirador.viewer.showLoaderOverlay('Initiating BATCH request.');
+				jQuery('#loader-overlay-progbar').progressbar();
 			};
 
 			this.wsObject.onmessage = function(event) {
 				var obj = JSON.parse(event.data);
+				var idx = obj.currentImageIndex;
+
+				var perc = (idx/images.length)*100;
 
 				console.log('Batcher - message arrived: ');
 				console.log(event.data);
 				console.log(obj);
+				console.log(perc);
 
-				window.Mirador.viewer.addLoaderOverlayMessage(obj.display);
+				if (idx === -1) {
+					window.Mirador.viewer.addLoaderOverlayMessage('<span style="color: red;">'+obj.display+'</span>');
+				} else {
+					window.Mirador.viewer.addLoaderOverlayMessage(obj.display);
+					jQuery('#loader-overlay-progbar').progressbar({value: perc });
+				}
 			};
 
 			this.wsObject.onclose = function(event) {
+				var closeCode = event.code;
 
-				console.log('Batcher - CLOSED. ');
-				jQuery.subscribe('Batcher.Closed. reason: ' + event.data);
+				console.log('Batcher - CLOSED. code: ' + closeCode);
+				window.Mirador.viewer.addLoaderOverlayMessage('BATCH Closed: ' + closeCode);
+
+				jQuery.subscribe('Batcher.Closed');
 
 				setTimeout(function() { 
-		  		  	$.viewer.hideLoaderOverlay();
+		  		  	window.Mirador.viewer.hideLoaderOverlay();
 		    		}, 
-		    		1000);
+		    		1500);
 
 			};
 

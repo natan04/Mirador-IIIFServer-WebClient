@@ -1,22 +1,16 @@
-//DONE: Editor Window setup
-//DONE: Close button - implement functionality
-//TODO: Close window - alert if history is full
-//DONE: Resize
-//DONE: Disable annotation icon
-//DONE: Disable all other view options
-//TODO: Try to play with navigations (don't need up/down/home)
-//TODO: JQUERY UI Lib - fix with bower
-//TODO: Refactor INVOKE
-//BUG: Close button not working on first edit
-//BUG: On invoke - the selected canvas resets to 0
-//DONE: Preview-image marking
-//TODO: Every invoke - increase canvas ID
-//DONE: Current Flow Id in window header
-//TODO: On BATCH finish - update current manifest and switch to new version
-//TODO: Manifest versions ordering in Manifest Panel
 (function($) {
 /**
  * Wrapper class for editor Window
+ * @constructor
+ * @param {Object} options - initial config for editor window
+ * @param {Object} options.parent - Parent window that holds this edidor instance
+ * @param {DOMElement} options.canvasId - parent window's canvasId that represents current working image
+ * @param {DOMElement} options.appendTo - element to append this window to
+ * @param {Object} options.windowOptions - edidor window layout options
+ * @param {int} options.windowOptions.height - window's initial height
+ * @param {int} options.windowOptions.width - window's initial width
+ * @param {boolean} options.windowOptions.draggable - if true, window is draggable
+ * @param {boolean} options.windowOptions.resizable - if true, window is resizable
  */
         $.Edidor = function(options) {
 
@@ -40,8 +34,6 @@
                         flow: []
                 }, options);
 
-
-
                 this.init();
 
 
@@ -51,6 +43,12 @@
 
 $.Edidor.prototype = {
 
+	/**
+	 * Edidor initialization: <br>
+	 * ** Send edit handshake request to Invoker Service <br>
+	 * ** Creates edidor HTML element & layout <br>
+	 * ** Bind events <br>
+	 */
 	init: function() {
 	
 	var _this = this;
@@ -106,7 +104,9 @@ $.Edidor.prototype = {
 
       },
 
-
+      /**
+       * Init inner edidor's window
+       */
       setUpInnerWin: function(refresh) {
       	var _this = this;
 
@@ -182,6 +182,9 @@ $.Edidor.prototype = {
 
       },
 
+      /**
+       * Inits layout options + toolbox & flows menu instatiation
+       */
       setUpEditorWin: function() {
 	var _this = this;
 
@@ -212,6 +215,15 @@ $.Edidor.prototype = {
 	_this.flowMenu = new InvokerLib.Views.FlowLoadMenu({appendTo: _this.element});      
       },
 
+      /**
+       * Binds events for edidor window: <br>
+       * ** Invoker.FuncsMenu.select - User invoked specific function/class/parameters<br>
+       * ** Invoker.Invoke.Success - When invoke request succeed<br>
+       * ** Invoker.Invoke.Fail - When invoke request failed<br>
+       * ** Invoker.FlowsMenu.select - User chooses to load existing flow<br>
+       * ** Invoker.FlowList.Save - User saves current flow into Invoker Service<br>
+       * ** Invoker.SaveFlow.Success - Flow save request succeed<br>
+       */
       bindEvents: function() {
       	var _this = this;
 
@@ -263,6 +275,9 @@ $.Edidor.prototype = {
 
       
       },
+      /**
+       * Binds events for inner edidor's window
+       */
       bindWindowEvents: function() {
       	// Close button
       	var _this = this;
@@ -271,6 +286,10 @@ $.Edidor.prototype = {
       		_this.destroyEditor();
       	});
       },
+      /**
+       * Reload new manifest & update view
+       * @param  {Object} manifestJson - JSON Formatted manifest(multi-version)
+       */
       update: function(manifestJson) {
       	var _this=this;
 
@@ -286,6 +305,12 @@ $.Edidor.prototype = {
       	_this.setUpInnerWin(true);
       },
 
+      /**
+       * Sends invoke command to Invoker Service with given options and for selected image
+       * @param  {string} funcName - Function name
+       * @param  {string} clsName  Function Class name
+       * @param  {Paremeter[]} params - Array of Parameters to invoke with. @
+       */
       invoke: function(funcName, clsName, params) {
       	var _this=this;
 
@@ -305,6 +330,10 @@ $.Edidor.prototype = {
 
       },
 
+      /**
+       * Sends Flow Save request to Invoker service with given flowId
+       * @param  {string} flowId flowId(label) to identify the flow in Invoker Service
+       */
       saveFlow: function(flowId) {
       	var _this = this;
 
@@ -319,6 +348,9 @@ $.Edidor.prototype = {
 
       },
 
+      /**
+       * Take care of deleting instances, removing HTML Elements and unsubscribing events
+       */
       destroyEditor: function() {
 
       	this.window.element.remove();
