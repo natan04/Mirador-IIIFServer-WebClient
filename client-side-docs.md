@@ -8,6 +8,9 @@ This custom version of Mirador has the following features:
 
 # Classes and components
 The following list consists of the new extensions only. For core-mirador components documentation please see Mirador's repository.
+* miradorLauncher - global component to launch Mirador with custom JSON based config.
+* serviceManager - global container object which keeps track of all services(PictureHandler, Invoker, etc.) and their config.
+* Uploader - widget which adds uploader form popup & dynamic combobox to choose updated manifest that exists on server. 
+* Invoker
 
 # Protocol description
-
