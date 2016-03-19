@@ -47,6 +47,13 @@ The following list consists of the new extensions only. For core-mirador compone
 
 #### Getting list of available functions
 
+1. User enters into edit mode (By clicking edit button)
+2. GET request to PictureHandler (Invoker service) - LIST command
+3. PictureHandler responses with JSON array of functions/classes/parameters
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-function-list.jpeg)
+
+
 #### Initiating editing mode (Handshake)
 
 #### Invoking function on image
