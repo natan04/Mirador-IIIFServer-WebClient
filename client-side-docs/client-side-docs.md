@@ -24,7 +24,7 @@ The following list consists of the new extensions only. For core-mirador compone
 4. PictureHandler responses with manifest list 
 5. Mirador populates inner manifest lists for future loading (late AJAX)
 6. Mirador viewer & workspace is loaded.
-[aaa](protocol-launch.jpeg)
+![](protocol-launch.jpeg)
 
 #### Uploading / Creating new manifest on server
 #### Getting list of available functions
