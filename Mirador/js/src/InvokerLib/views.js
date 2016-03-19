@@ -1,12 +1,6 @@
 window.InvokerLib = window.InvokerLib || {};
 window.InvokerLib.Views = window.InvokerLib.Views || {};
 
-//TODO: Flows - init method - create element+fetch data+styling
-//TODO: Flows - fetch method - invoker.doList
-//TODO: Flows - update - erase inner elements + fetch + restyle
-//TODO: Flows - styling - every flow tooltip -> invokes list 
-//TODO: FuncsMenu - parameters styling fix
-//TODO: Flows - SAVE btn+Input + hide it when not in edit mode(batch)
 
 (function($,Mirador) {
 

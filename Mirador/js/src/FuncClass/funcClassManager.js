@@ -1,12 +1,7 @@
 window.Mirador = window.Mirador || {};
 window.Mirador.FuncClass = window.Mirador.FuncClass || {};
 window.Mirador.FuncClass.Utils = window.Mirador.FuncClass.Utils || {};
-// NOTE: FC = Function Classes (Manuscript manipulation c++ lib)
-// TODO: FC - All - Options defaults
-// 
-// DONE: FC - Parameter - makeFromXML(xmlString)
-// DONE: FC - class - makeFromXML
-// DONE: FC - function - makeFromXML
+
 (function($) {
 
 	/**
@@ -99,7 +94,6 @@ window.Mirador.FuncClass.Utils = window.Mirador.FuncClass.Utils || {};
 	};
 
 
-	// TODO: FC - FCManager
 	$.FCManager = function() {
 		this.funcs = [];
 	};

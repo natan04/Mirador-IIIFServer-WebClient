@@ -11,6 +11,18 @@ The following list consists of the new extensions only. For core-mirador compone
 * miradorLauncher - global component to launch Mirador with custom JSON based config.
 * serviceManager - global container object which keeps track of all services(PictureHandler, Invoker, etc.) and their config.
 * Uploader - widget which adds uploader form popup & dynamic combobox to choose updated manifest that exists on server. 
-* Invoker
+* Invoker Library - This component is responsible for the whole editing protocol management + views for representation of function/class/paraemters when invoking.
+* Edidor - Responsible for the whole editing views and logic
+
+# Function/Class/Parameter model
 
 # Protocol description
+* On launch
+* Uploading / Creating new manifest on server
+* Getting list of available functions
+* Initiating editing mode (Handshake)
+* Invoking function on image
+* Flow saving
+* Flow loading
+* Getting flow list
+* Batch invoking
