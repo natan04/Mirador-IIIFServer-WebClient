@@ -11,7 +11,8 @@
 
 ***
 
-# Description
+
+# <a id="desc"></a> Description
 The client-side is a customized version of [**Mirador**](https://github.com/IIIF/mirador), a web-based images organizer and viewer that works with [**IIIF**](http://iiif.io/technical-details/) protocol specification. The viewer component itself is an instance of [**OpenSeaDragon**](https://openseadragon.github.io/).
 
 
@@ -267,3 +268,9 @@ A parameter is self-explanatory
 ![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/protocol-batch.jpeg)
 
 
+# <a id="links"></a> External links
+* [Mirador core repository](https://github.com/IIIF/mirador)
+* [IIIF specification](http://iiif.io/technical-details/)
+* [OpenSeaDragon](http://openseadragon.github.io/)
+* [OpenAnnotation protocol specification](http://www.openannotation.org/spec/core/)
+* [SimpleAnnotationServer repository](https://github.com/glenrobson/SimpleAnnotationServer)
