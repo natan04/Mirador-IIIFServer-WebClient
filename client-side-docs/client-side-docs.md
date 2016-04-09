@@ -26,10 +26,65 @@ The following list consists of the new extensions only. For core-mirador compone
 
 
 ***
+# Launcher config
+Mirador launcher config is a JSON file that allows centeralized customization for mirador options without recompiling or redeploying the project
+
+**it consists of two primary keys:**
+* **"customConfig"** - mirador core global object config. please advise mirador's repository for list of options(default settings are in [**settings.js**](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/Mirador/js/src/settings.js).
+* **"services"** - list of service config objects - each one represents different ServiceManager service config (URLs, name, commands etc.)
+
+##### Example:
+```json
+{
+  "customConfig": {
+  			"layout": "1x1",
+            "id": "viewer",
+            "annotationEndpoint": {
+                    "name": "Simple Annotation Store Endpoint",
+                    "module": "SimpleASEndpoint",
+                    "options": {
+                           "url": "http://10.0.0.9:7080/simpleAnnotationStore/annotation",
+                            "storeId": "comparison",
+                            "APIKey": "user_auth"
+                        }
+              }
+    },
+
+
+  "services": [
+    {
+      "name": "PictureHandler",
+      "baseUrl": "http://10.0.0.9:8080"  ,
+      "cmds": {
+        "list": "Json?id=all",
+        "upload": "Upload",
+        "get": "Json?id="
+      },
+      "timeout": 2000
+    },
+  
+    {
+      "name": "InvokerService",
+      "baseUrl": "http://10.0.0.9:8080",
+      "cmds" : {},
+      "timeout": 2000,
+      "batcherUrl": "ws://10.0.0.9:8080/PictureHandler/Batcher"
+    }
+
+  ]
+}
+```
+
+
+
+
+
+
+***
 
 # Function/Class/Parameter model
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/model-funclass.png)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/model-funclass.png.png)
 
 
 
@@ -194,3 +249,5 @@ A parameter is self-explanatory
 10. User can exit batch mode or continue another process.
 
 ![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/protocol-batch.jpeg)
+
+
