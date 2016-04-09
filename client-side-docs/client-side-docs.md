@@ -5,6 +5,7 @@ This custom version of Mirador has the following features:
 * Support for server-side image editing
 * Annotation support (using external Open Annotation server)
 * Support of multiple versions for single manifest (using an extended IIIF manifest specification)
+* Batch processing of flow for all images in a manifest (thus creating new version for that manifest)
 ***
 
 # Classes and components
@@ -106,3 +107,16 @@ The following list consists of the new extensions only. For core-mirador compone
 
 
 #### Batch invoking
+
+1.User enters batch mode (in viewer window)
+2.Floating flow ID menu is loaded.
+3.User selects images to processs (could be from one image to All)
+4.User selects flow ID to process.
+5.Invoker service sends(POST) batch request (InvokeRequest.type = "batch")  with flow ID, manifest version, image list, parent manifest ID(book id).
+6.Invoker opens WebSocket connection in order to handle asynchronous workflow with Batcher server.
+7.For every processed image - image index is sent to the WebSocket - progress bar is updated.
+8.Batch processing is done and WebSocket is closed.
+9.New manifest version is created.
+10.User can exit batch mode or continue another process.
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-batch.jpeg)
