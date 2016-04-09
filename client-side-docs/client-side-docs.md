@@ -84,7 +84,7 @@ Mirador launcher config is a JSON file that allows centeralized customization fo
 
 # Function/Class/Parameter model
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/model-funclass.png.png)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/model-funclass.png)
 
 
 
