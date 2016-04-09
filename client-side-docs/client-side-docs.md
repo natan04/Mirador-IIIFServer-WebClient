@@ -1,4 +1,7 @@
 The client-side is a customized version of [**Mirador**](https://github.com/IIIF/mirador), a web-based images organizer and viewer that works with [**IIIF**](http://iiif.io/technical-details/) protocol specification. The viewer component itself is an instance of [**OpenSeaDragon**](https://openseadragon.github.io/).
+
+
+## Features
 This custom version of Mirador has the following features:
 * Custom configuration(JSON based)
 * Image uploading & creation of new manuscripts/images groups (By PictureHandler component)
