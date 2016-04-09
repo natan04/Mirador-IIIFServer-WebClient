@@ -33,7 +33,7 @@ The following list consists of the new extensions only. For core-mirador compone
 5. Mirador populates inner manifest lists for future loading (late AJAX)
 6. Mirador viewer & workspace is loaded.
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-launch.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-launch.jpeg)
 
 #### Uploading / Creating new manifest on server
 
@@ -43,7 +43,7 @@ The following list consists of the new extensions only. For core-mirador compone
 4. POST request sent to PictureHandler upload servlet with manifest ID & image file binary chunks.
 5. PictureHandler responses with **OK** (JSON Array [0, ""]), or **ERROR** (JSON Array [(error code), (error msg)]
  
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-upload.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-upload.jpeg)
 
 
 #### Getting list of available functions
@@ -52,7 +52,7 @@ The following list consists of the new extensions only. For core-mirador compone
 2. GET request to PictureHandler (Invoker service) - LIST command
 3. PictureHandler responses with JSON array of functions/classes/parameters
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-function-list.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-function-list.jpeg)
 
 
 #### Initiating edit mode (Handshake)
@@ -63,7 +63,7 @@ The following list consists of the new extensions only. For core-mirador compone
 4. Invoker responses with new temporary json manifest for future editing + session cookie is sent.
 5. Edidor marks first image for editing & loading is done.
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-handshake.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-handshake.jpeg)
 
 
 #### Invoking function on image 
@@ -74,7 +74,7 @@ The following list consists of the new extensions only. For core-mirador compone
 4. Invoker responses with new json manifest that points to the new images.
 5. Edidor reinit the window with the new manifest + marks given previewed images (by index)
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-invoke.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-invoke.jpeg)
 
 
 #### Flow saving
@@ -84,7 +84,7 @@ The following list consists of the new extensions only. For core-mirador compone
 3. Invoker responses with flow ID and manifest.
 4. Edidor updates its view.
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-flow-save.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-flow-save.jpeg)
 
 
 
@@ -95,7 +95,7 @@ The following list consists of the new extensions only. For core-mirador compone
 3. Invoker responses with new temporary json manifest (like a normal handshake)
 4. Edidor reinit its view and internals.
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-flow-load.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-flow-load.jpeg)
 
 
 #### Getting flow list
@@ -103,7 +103,7 @@ The following list consists of the new extensions only. For core-mirador compone
 1. Invoker service sends(GET) request for flow list command URL
 2. Invoker responses with json list of flow IDs
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-flow-list.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-flow-list.jpeg)
 
 
 #### Batch invoking
@@ -119,4 +119,4 @@ The following list consists of the new extensions only. For core-mirador compone
 9. New manifest version is created.
 10. User can exit batch mode or continue another process.
 
-![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-batch.jpeg)
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/jpeg/protocol-batch.jpeg)
