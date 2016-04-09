@@ -1,3 +1,5 @@
+## For client-side documentation [click here](https://github.com/natan04/Mirador-IIIFServer-WebClient/blob/master/client-side-docs/client-side-docs.md)
+
 #Sources
 * Manuscript library SVN - https://svn.riouxsvn.com/manuscriptvc/
 * IIIF Protocol API - http://iiif.io/api/image/2.0/
