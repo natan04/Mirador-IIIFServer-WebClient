@@ -54,14 +54,55 @@ The following list consists of the new extensions only. For core-mirador compone
 ![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-function-list.jpeg)
 
 
-#### Initiating editing mode (Handshake)
+#### Initiating edit mode (Handshake)
 
-#### Invoking function on image
+1.User clicks "EDIT" button on viewer
+2.Edidor component initializing for current image (Setup by inner canvas ID)
+3.Invoker service sends(POST) HANDSHAKE request(InvokeRequest.type = "edit") with info about manifest ID/Image ID and flow ID(if its a flow loading action)
+4.Invoker responses with new temporary json manifest for future editing + session cookie is sent.
+5.Edidor marks first image for editing & loading is done.
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-handshake.jpeg)
+
+
+#### Invoking function on image 
+
+1.User selects base image (from edidor bottom image list) to be the root for future edits.
+2.User selects function, func class and parameter values in floating functions menu.
+3.Invoker service sends(POST) normal invoke request (InvokeRequest.type = "preview") with image ID, function/class name, array of parameter values.
+4.Invoker responses with new json manifest that points to the new images.
+5.Edidor reinit the window with the new manifest + marks given previewed images (by index)
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-invoke.jpeg)
+
 
 #### Flow saving
 
+1.User enters flow ID / User selects flow ID from floating flow list menu (for overwriting)
+2.Invoker service sends(POST) flow save invoke request (InvokeRequest.type = "save") with flow ID, image ID
+3. Invoker responses with flow ID and manifest.
+4.Edidor updates its view.
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-flow-save.jpeg)
+
+
+
 #### Flow loading
 
+1.User selects flow ID from floating flow list menu
+2.Invoker service sends(POST) HANDSHAKE request with selected flow ID
+3.Invoker responses with new temporary json manifest (like a normal handshake)
+4.Edidor reinit its view and internals.
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-flow-load.jpeg)
+
+
 #### Getting flow list
+
+1.Invoker service sends(GET) request for flow list command URL
+2.Invoker responses with json list of flow IDs
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/protocol-flow-list.jpeg)
+
 
 #### Batch invoking

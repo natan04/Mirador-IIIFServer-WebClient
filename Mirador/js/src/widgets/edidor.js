@@ -343,7 +343,7 @@ $.Edidor.prototype = {
 
 
 	console.log('Edidor - sending flow save request for '+ flowId);
-	$.ServiceManager.services.invoker.doSaveFlow(flowId, imageIndex,baseImage, true); //TODO: Currently always overwrite
+	$.ServiceManager.services.invoker.doSaveFlow(flowId, imageIndex,baseImage, true);
 
 
       },
