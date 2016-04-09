@@ -1,0 +1,33 @@
+@startuml
+
+title Function/Class/Parameter model hierarchy
+
+node Function as f1 {
+    node Class as c1 {
+        node "Parameter" as p1 {
+        }
+        
+        node "Parameter" as p2 {
+        }
+
+        node "Parameter" as p3 {
+        }
+
+
+    
+    }
+
+
+    node Class as c2 {
+        node "Parameter" as p4 {
+        }
+        
+
+    }
+    
+
+}
+
+
+
+@enduml

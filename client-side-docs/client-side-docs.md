@@ -13,11 +13,11 @@ This custom version of Mirador has the following features:
 
 # Classes and components (only our project's extensions)
 The following list consists of the new extensions only. For core-mirador components documentation please see [Mirador's repository](https://github.com/IIIF/mirador).
-* miradorLauncher - global component to launch Mirador with custom JSON based config.
-* serviceManager - global container object which keeps track of all services(PictureHandler, Invoker, etc.) and their config.
-* Uploader - widget which adds uploader form popup & dynamic combobox to choose updated manifest that exists on server. 
-* Invoker Library - This component is responsible for the whole editing protocol management + views for representation of function/class/paraemters when invoking.
-* Edidor - Responsible for the whole editing views and logic
+* **miradorLauncher** - global component to launch Mirador with custom JSON based config.
+* **serviceManager** - global container object which keeps track of all services(PictureHandler, Invoker, etc.) and their config.
+* **Uploader** - widget which adds uploader form popup & dynamic combobox to choose updated manifest that exists on server. 
+* **Invoker Library** - This component is responsible for the whole editing protocol management + views for representation of function/class/paraemters when invoking.
+* **Edidor** - Responsible for the whole editing views and logic
 
 
 ![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/components-core.png)
@@ -28,6 +28,71 @@ The following list consists of the new extensions only. For core-mirador compone
 ***
 
 # Function/Class/Parameter model
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/model-funclass.png)
+
+
+
+
+### Function
+
+A function represents a type of image manipulation process
+(For example: **Binarizer**)
+
+##### Fields:
+* Name
+* Input type
+* Output type
+
+##### JSON Representation:
+```json
+{
+    "name": "<Function Name>", 
+    "input": "<Input field>",
+    "output": "<output field>",
+    "classes": [Array of Class objects]
+}
+```
+
+### Class
+
+A Function Class represents a specific implementation for a function
+(For example: **Threshold Binarizer**, **Otsu Binarizer**)
+
+##### Fields:
+* Name
+* Description
+* Paremeters
+
+##### JSON Representation:
+```json
+{
+    "name": "<Class Name>",
+    "description": "<Class Description>",
+	"parameters": [Array of Parameter objects]
+}
+```
+
+### Paremeter
+
+A parameter is self-explanatory
+
+##### Fields:
+* Name
+* Type (Boolean/Float/Int etc.)
+* Description
+* Value (applicable only for invoke requests)
+
+##### JSON Representation:
+```json
+{
+    "name":"<Parameter Name>",
+    "type":"<Parameter Type>",
+    "Description":"<Parameter Description",
+	"value":"<Parameter Value(for requests)>"
+}
+```
+
 
 ***
 
