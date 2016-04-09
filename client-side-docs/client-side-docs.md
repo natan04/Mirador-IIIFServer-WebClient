@@ -1,13 +1,13 @@
 # Extended Mirador client side documentation
 
 ## Table of contents
-* #### [Description](#desc)
-* #### [Features](#features)
-* #### [Components](#classes)
-* #### [Launcher config](#config)
-* #### [Function/Class/Parameter model](#funclass)
-* #### [Protocol description](#protocol)
-* #### [External links](#links)
+#### [Description](#desc)
+#### [Features](#features)
+#### [Components](#classes)
+#### [Launcher config](#config)
+#### [Function/Class/Parameter model](#funclass)
+#### [Protocol description](#protocol)
+#### [External links](#links)
 
 ***
 
