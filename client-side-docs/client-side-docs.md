@@ -1,7 +1,23 @@
+# Extended Mirador client side documentation
+
+## Table of contents
+* #### [Description](#desc)
+* #### [Features](#features)
+* #### [Components](#classes)
+* #### [Launcher config](#config)
+* #### [Function/Class/Parameter model](#funclass)
+* #### [Protocol description](#protocol)
+* #### [External links](#links)
+
+***
+
+# Description
 The client-side is a customized version of [**Mirador**](https://github.com/IIIF/mirador), a web-based images organizer and viewer that works with [**IIIF**](http://iiif.io/technical-details/) protocol specification. The viewer component itself is an instance of [**OpenSeaDragon**](https://openseadragon.github.io/).
 
 
-## Features
+***
+
+# <a id="features"></a>Features 
 This custom version of Mirador has the following features:
 * Custom configuration(JSON based)
 * Image uploading & creation of new manuscripts/images groups (By PictureHandler component)
@@ -11,7 +27,7 @@ This custom version of Mirador has the following features:
 * Batch processing of flow for all images in a manifest (thus creating new version for that manifest)
 ***
 
-# Classes and components (only our project's extensions)
+# <a id="classes"></a> Classes and components (only our project's extensions)
 The following list consists of the new extensions only. For core-mirador components documentation please see [Mirador's repository](https://github.com/IIIF/mirador).
 * **miradorLauncher** - global component to launch Mirador with custom JSON based config.
 * **serviceManager** - global container object which keeps track of all services(PictureHandler, Invoker, etc.) and their config.
@@ -26,7 +42,7 @@ The following list consists of the new extensions only. For core-mirador compone
 
 
 ***
-# Launcher config
+# <a id="config"></a> Launcher config
 Mirador launcher config is a JSON file that allows centeralized customization for mirador options without recompiling or redeploying the project
 
 **it consists of two primary keys:**
@@ -82,7 +98,7 @@ Mirador launcher config is a JSON file that allows centeralized customization fo
 
 ***
 
-# Function/Class/Parameter model
+# <a id="funclass"></a>Function/Class/Parameter model
 
 ![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/model-funclass.png)
 
@@ -151,7 +167,7 @@ A parameter is self-explanatory
 
 ***
 
-# Protocol description
+# <a id="protocol"></a> Protocol description
 
 #### On launch
 
