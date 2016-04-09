@@ -1,0 +1,12 @@
+CL : Client, PH : "Picture Handler (Invoker)";
+
+CL note CL : User clicks "EDIT";
+CL note CL : Edidor inits gui;
+CL => PH : POST InvokeRequest JSON;
+CL note PH : type = "edit"\n
+			 Base image ID\nmanifest ID\n
+             Flow ID (if in flow load action);
+PH => CL : New temp manifest JSON;
+CL note CL : Edidor loading is done(with loaded temp manifest);
+
+

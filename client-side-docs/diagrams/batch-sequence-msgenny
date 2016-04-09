@@ -1,0 +1,30 @@
+CL : Client, PH : "Picture Handler (Batcher)";
+
+CL note CL : User enters BATCH mode;
+CL note CL : User selects images to process & flow ID;
+CL => PH : POST InvokeRequest JSON\n
+			(WebSocket);
+CL note PH : \n
+			type = "batch"\n
+            flow ID\n
+            Manifest ID(book ID)\n
+            Manifest Ver.\n
+            Array of image IDs\n;
+PH note PH : new manifest version is created in storage;
+PH note PH : process Image 0;
+PH => CL : "0";
+CL note CL : progress update(0).;
+
+PH note PH : process Image 1;
+PH => CL : "1";
+CL note CL : progress update(1).;
+PH note PH : process Image 2;
+PH => CL : "2";
+CL note CL : progress update(2).;
+
+CL note PH : "...";
+
+CL note PH : WebSocket connection is closed;
+CL note CL : Manifest version is updated in client;
+
+CL note CL : User chooses to continue with another process OR exit BATCH mode;

@@ -1,0 +1,44 @@
+@startuml
+
+title Mirador core components (without our project's extensions)
+
+component "Mirador core" as global {
+
+    ["Annotations helpers"] as annolib
+    ["IIIF Manifest model"] as manifestlib
+    ["OpenSeaDragon" viewer"] as osdlib
+
+    component "Viewer" as viewer {
+        
+        ["Manifest list panel"]
+        ["Main menu (top)"]
+        ["Workspaces panel"]
+        
+        component "Workspace" as workspace {
+        
+            component "Window" as window {
+                node "Widgets" {
+                    ["Annotation Layer"] as annolayer
+                    ["Book View"]
+                    ["Image View"] as imgview
+                    ["Metadata View"]
+                    ["Thumbnails View"]
+                }
+                
+                component "Viewport" as viewport
+            }
+        
+        }
+    
+    
+    }
+
+
+}
+
+window - manifestlib
+annolayer - annolib
+viewport - imgview
+imgview - osdlib
+
+@enduml

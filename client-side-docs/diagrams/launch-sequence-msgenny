@@ -1,0 +1,9 @@
+CL : Client, H: "HTTP Server", PH: Picture Handler;
+
+CL => H : GET mirador-config.json;
+H => CL : mirador-config.json;
+CL note CL: Resolving Services URLs;
+CL => PH : GET list of manifests;
+PH => CL : JSON Array with manifest IDs;
+CL note CL: Load viewer & workspace;
+CL note CL: Asynchronously load manifest infos.;

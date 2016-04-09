@@ -1,0 +1,9 @@
+CL : Client, PH : "Picture Handler (Invoker)";
+
+CL note CL : User selects flow ID;
+CL => PH : POST InvokeRequest JSON;
+CL note PH : \n
+			**** AS IN HANDSHAKE ****\n
+            with flow ID\n;
+PH => CL : temporary manifest JSON;
+CL note CL : Edidor reloads (like normal handshake);

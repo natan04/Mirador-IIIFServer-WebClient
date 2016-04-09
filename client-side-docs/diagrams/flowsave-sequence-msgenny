@@ -1,0 +1,12 @@
+CL : Client, PH : "Picture Handler (Invoker)";
+
+CL note CL : User selects flow ID;
+CL note CL : OR User enters new flow ID;
+CL => PH : POST InvokeRequest JSON;
+CL note PH : \n
+			 type = "save"\n
+			 Base image ID(selected image)\n
+             function id\n
+             flow ID\n;
+PH => CL : flow ID / manifest ID;
+CL note CL : Edidor updates \nflow list;

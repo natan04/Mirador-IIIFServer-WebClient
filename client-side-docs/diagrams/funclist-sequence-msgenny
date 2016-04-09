@@ -1,0 +1,5 @@
+CL : Client, PH : "Picture Handler (Invoker)";
+
+CL note CL : User enters edit mode;
+CL => PH : GET ?cmd=list;
+PH => CL : JSON Array of function objects;

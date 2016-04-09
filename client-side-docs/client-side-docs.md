@@ -8,13 +8,19 @@ This custom version of Mirador has the following features:
 * Batch processing of flow for all images in a manifest (thus creating new version for that manifest)
 ***
 
-# Classes and components
+# Classes and components (only our project's extensions)
 The following list consists of the new extensions only. For core-mirador components documentation please see [Mirador's repository](https://github.com/IIIF/mirador).
 * miradorLauncher - global component to launch Mirador with custom JSON based config.
 * serviceManager - global container object which keeps track of all services(PictureHandler, Invoker, etc.) and their config.
 * Uploader - widget which adds uploader form popup & dynamic combobox to choose updated manifest that exists on server. 
 * Invoker Library - This component is responsible for the whole editing protocol management + views for representation of function/class/paraemters when invoking.
 * Edidor - Responsible for the whole editing views and logic
+
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/components-core.png)
+
+![](https://raw.githubusercontent.com/natan04/Mirador-IIIFServer-WebClient/master/client-side-docs/diagrams/images/components-extensions.png)
+
 
 ***
 

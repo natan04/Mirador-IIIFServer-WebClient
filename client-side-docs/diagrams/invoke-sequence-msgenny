@@ -1,0 +1,15 @@
+CL : Client, PH : "Picture Handler (Invoker)";
+
+CL note CL : User selects image (from bottom list);
+CL note CL : Users selects Function/Class/Parameter values;
+CL => PH : POST InvokeRequest JSON;
+CL note PH : \n
+			 type = "preview"\n
+			 Base image ID(selected image)\n
+             function id\n
+             class id\n
+             array of parameter values\n
+             manifest ID\n;
+PH => CL : temp manifest JSON;
+CL note CL : Edidor reinit with temp manifest JSON;
+CL note CL : Edidor view refresh;

@@ -1,0 +1,5 @@
+CL : Client, PH : "Picture Handler (Upload)";
+
+CL note CL : User selects manifest ID & image file;
+CL => PH : POST with ID and file chunks;
+PH => CL : OK or ERROR;

@@ -1,0 +1,5 @@
+CL : Client, PH : "Picture Handler (Invoker)";
+
+CL => PH : GET ?cmd=flows;
+PH => CL : array of flow IDs;
+

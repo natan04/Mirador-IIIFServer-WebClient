@@ -1,0 +1,51 @@
+@startuml
+
+title Components with our project's extensions
+
+["Mirador Launcher"] as launcher
+["Function/class model"] as funclass
+["Service Manager"] as servicemgr
+["Edidor - edit mode window"] as edidor
+["Uploader form widget"] as uploader
+
+component "Invoker service lib" as invokerlib {
+    ["Core invoker service"]
+    ["Function list menu"] as funclist
+    ["Flow list menu"] as flowlist
+}
+
+
+component "Mirador core" as global {
+
+    ["IIIF Manifest model"] as manifestlib
+
+    component "Viewer" as viewer {
+        
+        ["Manifest list panel"] as manifestlist
+        ["Main menu (top)"] as mainmenu
+
+        component "Workspace" as workspace {
+        
+            component "Window" as window {
+            }
+        
+        }
+    
+    
+    }
+
+
+}
+
+window - manifestlib
+launcher - global
+funclass - invokerlib
+servicemgr - invokerlib
+uploader - mainmenu
+uploader - manifestlist
+edidor - invokerlib
+edidor - window
+
+
+
+@enduml
