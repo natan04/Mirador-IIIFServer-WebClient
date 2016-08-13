@@ -10,3 +10,4 @@ Mirador/bower_components
 .project
 .pydevproject
 phandler_test
+npm-debug.log
