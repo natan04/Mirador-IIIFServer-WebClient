@@ -79,7 +79,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
  * @param addToDatabase tell if need insert it to sql database
  */
 	public void createNewBook(String bookid, boolean addToDatabase) {
-		Global.mainLogger.info("creating book: " + bookid);
+		Global.mainLogger.info("* BOOK * creating book: \"" + bookid + "\"");
 
 		// creating first default folder.
 		Version ver = new Version(bookid, Global.defaultUploadFolder, false);
@@ -106,7 +106,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 	 * @param bookid name of book
 	 */
 	public void restoreBookFromSql(String bookid) {
-		Global.mainLogger.info("Restoreing book: " + gBookId);
+		Global.mainLogger.info("* BOOK * Restoring book: \"" + gBookId + "\"");
 
 		ResultSet rs = Global.sqlVersionsOfBook(bookid);
 		try {
@@ -180,7 +180,7 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 			Version newVersion = new Version(gBookId, idVersion, false);
 			gVersions.add(-found - 1, newVersion); // keeping the array sorted
 
-			Global.mainLogger.info("creating version: Book/Version: " + gBookId
+			Global.mainLogger.info("* BOOK * creating version: Book/Version: " + gBookId
 					+ "/" + idVersion);
 
 			try {
@@ -233,8 +233,8 @@ public class Book implements Comparable<Book>, Comparator<Book> {
 		int found = Collections.binarySearch(gVersions, search);
 		if (found < 0) {
 
-			Global.mainLogger.severe("Problem return base version of book: "
-					+ gBookId);
+			Global.mainLogger.severe("* BOOK * Problem return base version of book: \""
+					+ gBookId + "\"");
 			return null;
 		}
 

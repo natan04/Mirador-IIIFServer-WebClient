@@ -211,14 +211,14 @@ public class Global extends HttpServlet {
 			if (f.exists()) {
 				databaseConnection = DriverManager.getConnection("jdbc:sqlite:"
 						+ sqlDatabase);
-				Global.mainLogger.info("database exists, starting to restore");
+				Global.mainLogger.info("* GLOBAL * database exists, starting to restore");
 				recoverPictureHandler();
 			}
 
 			else {
 
 				Global.mainLogger
-						.info("database doesn't exists, creating database...");
+						.info("* GLOBAL * database doesn't exists, creating database...");
 				databaseConnection = DriverManager.getConnection("jdbc:sqlite:"
 						+ sqlDatabase);
 
@@ -242,7 +242,7 @@ public class Global extends HttpServlet {
 			System.exit(0);
 		}
 
-		mainLogger.info("Opened database successfully");
+		mainLogger.info("* GLOBAL * Opened database successfully");
 	}
 
 	/**
@@ -340,10 +340,10 @@ public class Global extends HttpServlet {
 			try {
 				Statement stmt = Global.databaseConnection.createStatement();
 				stmt.executeUpdate(sqlBook);
-				Global.mainLogger.info("add to database:" + bookid);
+				Global.mainLogger.info("* GLOBAL * Adding book to database: \"" + bookid + "\"");
 
 			} catch (SQLException e) {
-				Global.mainLogger.severe("Problem adding to sql");
+				Global.mainLogger.severe("* GLOBAL * Problem adding to sqlite DB");
 
 				e.printStackTrace();
 			}
@@ -366,7 +366,7 @@ public class Global extends HttpServlet {
 			try {
 				Statement stmt = Global.databaseConnection.createStatement();
 				stmt.executeUpdate(sqlVersion);
-				Global.mainLogger.info("add to database version/book:"
+				Global.mainLogger.info("* GLOBAL * add to database version/book:"
 						+ version + "/" + book);
 
 			} catch (SQLException e) {
@@ -397,7 +397,7 @@ public class Global extends HttpServlet {
 				Statement stmt = Global.databaseConnection.createStatement();
 				stmt.executeUpdate(sqlPage);
 				Global.mainLogger
-						.info("add page to database [page/version/book]:"
+						.info("* GLOBAL * add page to database [page/version/book]:"
 								+ pageName + "/" + versionName + "/" + bookName);
 
 			} catch (SQLException e) {

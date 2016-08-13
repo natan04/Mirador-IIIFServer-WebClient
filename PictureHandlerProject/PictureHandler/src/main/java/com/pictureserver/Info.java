@@ -31,9 +31,11 @@ public class Info extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        Global.mainLogger.info(String.format("* INFO * GET Request received. dumping config parameters (HTML Formatted). ip: %s", request.getRemoteAddr()));
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");

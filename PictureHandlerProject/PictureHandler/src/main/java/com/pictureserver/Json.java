@@ -43,7 +43,7 @@ public class Json extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String idOfBook = request.getParameter("id");
-		Global.mainLogger.info("Get Json request from session:"
+		Global.mainLogger.info("* JSON * Json request from session:"
 				+ session.getId());
 		PrintWriter printWriter = response.getWriter();
 
@@ -52,7 +52,7 @@ public class Json extends HttpServlet {
 
 		if (idOfBook.compareTo("all") == 0) 
 		{
-			Global.mainLogger.info("send Json base array to:"
+			Global.mainLogger.info("* JSON * \"ALL\" id received. sending Json base array to:"
 					+ request.getRemoteAddr());
 			printWriter.println(Global.getListOfBook());
 		} 
@@ -60,8 +60,8 @@ public class Json extends HttpServlet {
 		{
 			Book book = Global.getIfHaveBook(idOfBook);
 			if (book != null) {
-				Global.mainLogger.info("send  database book" + book.gBookId
-						+ " to:" + session);
+				Global.mainLogger.info("* JSON * sending database book \"" + book.gBookId
+						+ "\" to: " + session);
 				printWriter.println(book.toString());
 			} else {
 				Global.respond(printWriter, Global.bookArentExists,

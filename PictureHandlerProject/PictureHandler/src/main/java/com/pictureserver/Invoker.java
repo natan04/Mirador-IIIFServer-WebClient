@@ -68,7 +68,7 @@ public class Invoker extends HttpServlet {
 	 */
 	public void sendFuncsList(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		Global.mainLogger.info(String.format("Send funcs list to ip: %s", request.getRemoteAddr()));
+		Global.mainLogger.info(String.format("* INVOKER * Sending functions list.  ip: %s", request.getRemoteAddr()));
 
 		File srcFile = new File(Global.jsonFunctionPath);
 		FileUtils.copyFile(srcFile, response.getOutputStream());
@@ -83,7 +83,7 @@ public class Invoker extends HttpServlet {
 	public void sendFlowsList(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		try {
-			Global.mainLogger.info(String.format("Send flow list to ip: %s", request.getRemoteAddr()));
+			Global.mainLogger.info(String.format("* INVOKER * Sending flow list. ip: %s", request.getRemoteAddr()));
 			JSONArray jsArray =  Preview.sqlFlowListJson();;
 				
 			PrintWriter printWriter  = response.getWriter();
@@ -91,10 +91,10 @@ public class Invoker extends HttpServlet {
 			
 		} catch (SQLException e) {
 
-			Global.mainLogger.severe("SQL: problem to send flows list");
+			Global.mainLogger.severe("* INVOKER * SQL: problem to send flows list");
 			e.printStackTrace();
 		} catch (JSONException e) {
-			Global.mainLogger.severe("JSON: problem to send flows list");
+			Global.mainLogger.severe("* INVOKER * JSON: problem to send flows list");
 			e.printStackTrace();
 		}
 	}
@@ -103,7 +103,7 @@ public class Invoker extends HttpServlet {
 	{
 		
         HttpSession session = request.getSession();
-		Global.mainLogger.info("Get invoker command from session:" + session.getId());
+		Global.mainLogger.info("* INVOKER * Invoker POST command from session: " + session.getId());
 
 		response.addHeader("Access-Control-Allow-Origin", "http://localhost:8000");
 		response.addHeader("Access-Control-Allow-Credentials", "true");
@@ -175,7 +175,7 @@ public class Invoker extends HttpServlet {
 			
 				Version ver = Preview.startEditMode(baseImg, sessionId);
 				
-				Global.mainLogger.info("Initiate edit mode for session: " + sessionId +" , with picture: " + baseImg);
+				Global.mainLogger.info("* INVOKER * Initiating EDIT mode. session: " + sessionId +" , with picture: " + baseImg);
 				if (id.length() > 0)
 				{
 					Preview.loadFromId(null, null, null, ver, id, images, sessionId);
@@ -189,7 +189,7 @@ public class Invoker extends HttpServlet {
 			//preview mode, batch
 			
 			JSONArray images 	= (JSONArray) Json.get("images");		//get image array
-			Global.mainLogger.info("Invoker cmmnd: \n"
+			Global.mainLogger.info("* INVOKER * Invoker cmd: \n"
 					+ " Type:    " + typeStr + "\n"
 					);		
 				
@@ -203,7 +203,7 @@ public class Invoker extends HttpServlet {
 				
 				JSONObject invokeCmmnd	= (JSONObject) Json.get("invoke");	//get invokes cmmnds
 				int currentIndex	=  Json.getInt("index");	//index of current photo. usefull for backtracking changes
-				Global.mainLogger.info("Initiate preview mode for session: " + sessionId +" , with pictures: " + images + " , with index" + currentIndex );
+				Global.mainLogger.info("* INVOKER * Initiating PREVIEW mode. session: " + sessionId +" , with pictures: " + images + " , with index" + currentIndex );
 				Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion(sessionId);
 				
 
@@ -222,7 +222,7 @@ public class Invoker extends HttpServlet {
 				boolean overwrite	=  Json.getBoolean("overwrite");
 				
 				
-				Global.mainLogger.info("Initiate save mode for session: " + sessionId +"\nName: " + idToSave + "\nindex " + currentIndex  +"\noverwrite " + overwrite);
+				Global.mainLogger.info("* INVOKER * Initiating SAVE mode. session: " + sessionId +"\nName: " + idToSave + "\nindex " + currentIndex  +"\noverwrite " + overwrite);
 				
 				Version versionOfCurrentSession = Global.InvokerPreviewBook.getVersion(sessionId);
 				
@@ -352,10 +352,10 @@ public class Invoker extends HttpServlet {
 
 				
 			} catch (JSONException e) {
-				Global.mainLogger.severe("Coudn't extract image string from array of images");
+				Global.mainLogger.severe("* INVOKER * Coudn't extract image string from array of images");
 				e.printStackTrace();
 			} catch (Exception e) {
-				Global.mainLogger.severe("Coudn't copy imag from temp to manifest");
+				Global.mainLogger.severe("* INVOKER * Coudn't copy imag from temp to manifest");
 				e.printStackTrace();
 			}
 		}
