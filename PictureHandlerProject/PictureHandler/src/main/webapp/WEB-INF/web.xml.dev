@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>Global</servlet-name>
+        <servlet-class>com.pictureserver.Global</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Global</servlet-name>
+        <url-pattern>/Global</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <context-param>
+        <param-name>ImageServerAddress</param-name>
+        <param-value>http://imagesrv:8080/digilib/Scaler/IIIF/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ImageFolder</param-name>
+        <param-value>/Users/roykalony/images-info/store</param-value>
+    </context-param>
+    <context-param>
+        <param-name>LogPath</param-name>
+        <param-value>/Users/roykalony/images-info/logs/handler.log</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ExePath</param-name>
+        <param-value>/Users/roykalony/images-info/bw.jar</param-value>
+    </context-param>
+    <context-param>
+        <param-name>JsonFunctions</param-name>
+        <param-value>/Users/roykalony/images-info/functions_dummy.json</param-value>
+    </context-param>
+</web-app>
