@@ -12,3 +12,5 @@ Mirador/bower_components
 phandler_test
 npm-debug.log
 /PictureHandlerProject/PictureHandler/target/
+node/
+target/
