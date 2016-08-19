@@ -1,7 +1,0 @@
-*.[oa]
-*.fcgi
-*~
-Makefile
-Makefile.in
-config.*
-doc/html
