@@ -778,6 +778,16 @@
               var images = _this.getSelectedImagesIds();
               var bookId = _this.manifest.jsonLd.label;
 
+              if (!verName.trim().length) {
+                alert('Please enter version name.');
+                return;
+              }
+
+              if (!images.length) {
+                alert('Please select at least one image. (You can multi-select with CTRL)');
+                return;
+              }
+
 
               console.log('Window - Batch - initiating batch processing: ');
               console.log('                 FlowId: ' + flowId);

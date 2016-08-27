@@ -309,6 +309,11 @@ $.paramView = function(paramObj) {
 			_this.element.find('.flow-save-btn').on('click', function(ev) {
 				var id = _this.element.find('.flow-save-input').val();
 
+				if (!id.trim().length) {
+					alert('Please enter flow name.');
+					return;
+				}
+
 				var idExists = false;
 				// Check if flow exists with same id
 				jQuery.each(_this.flowsList, function(index, flowObj) {
