@@ -4,7 +4,7 @@
                     "name": "Simple Annotation Store Endpoint",
                     "module": "SimpleASEndpoint",
                     "options": {
-                           "url": "http://imagesrv:7080/simpleAnnotationStore/annotation",
+                           "url": "${mirador.anno.url}",
                             "storeId": "comparison",
                             "APIKey": "user_auth"
                         }
@@ -15,7 +15,7 @@
   "services": [
     {
       "name": "PictureHandler",
-      "baseUrl": "http://imagesrv:8080"  ,
+      "baseUrl": "${mirador.picturehandler.base}"  ,
       "cmds": {
         "list": "Json?id=all",
         "upload": "Upload",
@@ -26,10 +26,10 @@
   
     {
       "name": "InvokerService",
-      "baseUrl": "http://imagesrv:8080",
+      "baseUrl": "${mirador.invoker.base}",
       "cmds" : {},
       "timeout": 2000,
-      "batcherUrl": "ws://imagesrv:8080/PictureHandler/Batcher"
+      "batcherUrl": "${mirador.batcher.url}"
     }
 
   ]

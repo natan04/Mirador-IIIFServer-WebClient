@@ -7,7 +7,8 @@
   <name>imagesrv-integration</name>
   <packaging>war</packaging>
   <properties>
-    <main.prop.file>../imagesrv.properties</main.prop.file>
+    <env></env>
+    <main.prop.file>../imagesrv.properties${env}</main.prop.file>
   </properties>
   <dependencies>
     <dependency>

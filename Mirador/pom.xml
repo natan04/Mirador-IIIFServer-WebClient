@@ -5,14 +5,50 @@
     <artifactId>mirador</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
+    <properties>
+        <env></env>
+        <main.prop.file>../imagesrv.properties${env}</main.prop.file>
+    </properties>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${main.prop.file}</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <warSourceDirectory>${basedir}</warSourceDirectory>
-                    <warSourceIncludes>index.html,mirador-config.json, build/**</warSourceIncludes>
+                    <webResources>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>mirador-config.json</include>
+                                <include>index.html</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>build/**</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
@@ -32,7 +68,7 @@
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <!-- Use the latest released version:
-                                                                                https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+                                                                                                                                https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
                 <version>1.0</version>
                 <executions>
                     <execution>

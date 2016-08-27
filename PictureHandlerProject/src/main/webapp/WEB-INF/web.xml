@@ -16,22 +16,22 @@
     </session-config>
     <context-param>
         <param-name>ImageServerAddress</param-name>
-        <param-value>http://imagesrv:8080/digilib/Scaler/IIIF/</param-value>
+        <param-value>${picturehandler.digilib.url}</param-value>
     </context-param>
     <context-param>
         <param-name>ImageFolder</param-name>
-        <param-value>/Users/roykalony/images-info/store</param-value>
+        <param-value>${images.folder}</param-value>
     </context-param>
     <context-param>
         <param-name>LogPath</param-name>
-        <param-value>/Users/roykalony/images-info/logs/handler.log</param-value>
+        <param-value>${picturehandler.log.path}</param-value>
     </context-param>
     <context-param>
         <param-name>ExePath</param-name>
-        <param-value>/Users/roykalony/images-info/bw.jar</param-value>
+        <param-value>${picturehandler.exe.path}</param-value>
     </context-param>
     <context-param>
         <param-name>JsonFunctions</param-name>
-        <param-value>/Users/roykalony/images-info/functions_dummy.json</param-value>
+        <param-value>${picturehandler.funcs.json}</param-value>
     </context-param>
 </web-app>
