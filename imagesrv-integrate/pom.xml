@@ -5,12 +5,10 @@
   <artifactId>imagesrv</artifactId>
   <version>1.0</version>
   <name>imagesrv-integration</name>
-  <packaging>pom</packaging>
-
-<properties>
-  <main.prop.file>../imagesrv.properties</main.prop.file>
-</properties>
-
+  <packaging>war</packaging>
+  <properties>
+    <main.prop.file>../imagesrv.properties</main.prop.file>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>digilib</groupId>
@@ -29,6 +27,7 @@
       <groupId>mirador</groupId>
       <artifactId>mirador</artifactId>
       <version>1.0</version>
+      <type>war</type>
     </dependency>
   </dependencies>
   <build>
@@ -37,13 +36,44 @@
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven2-plugin</artifactId>
         <version>1.5.0</version>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>        
         <configuration>
-        <container>
-          <containerId>${app.server.type}</containerId>
-        </container>
-      </configuration>
+          <container>
+            <containerId>${app.server.type}</containerId>
+          </container>
+          <deployables>
+            <deployable>
+              <artifactId>digilib-webapp</artifactId>
+              <groupId>digilib</groupId>
+              <classifier>srv3</classifier>
+              <properties>
+                <context>/digilib</context>
+              </properties>
+            </deployable>
+            <deployable>
+              <artifactId>PictureHandler</artifactId>
+              <groupId>com.pictureserver</groupId>
+              <properties>
+                <context>/PictureHandler</context>
+              </properties>
+            </deployable>
+            <deployable>
+              <groupId>mirador</groupId>
+              <artifactId>mirador</artifactId>
+              <properties>
+                <context>/mirador</context>
+              </properties>
+            </deployable>
+          </deployables>
+        </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>properties-maven-plugin</artifactId>
@@ -63,7 +93,5 @@
         </executions>
       </plugin>
     </plugins>
-
   </build>
-
 </project>

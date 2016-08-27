@@ -16,7 +16,7 @@
     </session-config>
     <context-param>
         <param-name>ImageServerAddress</param-name>
-        <param-value>http://132.73.204.65:7080/digilib/Scaler/IIIF/</param-value>
+        <param-value>http://imagesrv:8080/digilib/Scaler/IIIF/</param-value>
     </context-param>
     <context-param>
         <param-name>ImageFolder</param-name>
@@ -28,7 +28,7 @@
     </context-param>
     <context-param>
         <param-name>ExePath</param-name>
-        <param-value>C:\Users\Natan\Desktop\java\bw.jar</param-value>
+        <param-value>/Users/roykalony/images-info/bw.jar</param-value>
     </context-param>
     <context-param>
         <param-name>JsonFunctions</param-name>

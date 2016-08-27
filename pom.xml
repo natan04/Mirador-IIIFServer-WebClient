@@ -13,7 +13,7 @@
                 <module>digilib</module>
                 <module>PictureHandlerProject</module>
                 <module>Mirador</module>
-    <!--module>imagesrv</module-->
+                 <module>imagesrv-integrate</module>
   </modules>
 
 </project>
