@@ -21,14 +21,14 @@
         "upload": "Upload",
         "get": "Json?id="
       },
-      "timeout": 2000
+      "timeout": ${mirador.services.timeout}
     },
   
     {
       "name": "InvokerService",
       "baseUrl": "${mirador.invoker.base}",
       "cmds" : {},
-      "timeout": 2000,
+      "timeout": ${mirador.services.timeout},
       "batcherUrl": "${mirador.batcher.url}"
     }
 

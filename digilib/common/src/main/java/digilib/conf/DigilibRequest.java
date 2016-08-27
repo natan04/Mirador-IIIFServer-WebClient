@@ -401,6 +401,7 @@ public class DigilibRequest extends ParameterMap {
             }
         }
 
+        logger.debug("### PARSED PARAMS: \n\tID: " + identifier + "\n\tREGION: " + region + "\n\tSIZE: "+size+"\n\tROTATION: "+rotation+"\n\tQUALITY: "+quality+"\n\tFORMAT: "+format);
         // set request with these parameters
         return setWithIiifParams(identifier, region, size, rotation, quality, format);        
     }
