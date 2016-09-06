@@ -16,13 +16,13 @@
                     "name":"level",
                     "type":"int",
                     "Description":"level desc",
-                    "value":"<Parameter Value(for requests)>"
+                    "value": 50
                 },
                 {
                     "name":"reverse",
                     "type":"bool",
                     "Description":"esrever!",
-                    "value":"<Parameter Value(for requests)>"
+                    "value": false
 
                 }]
         }]
