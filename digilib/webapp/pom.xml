@@ -49,6 +49,7 @@
 								<filtering>true</filtering>
 								<directory>src/main/webapp</directory>
 								<include>**/digilib-config.xml</include>
+								<include>**/log4j-config.xml</include>
 							</resource>
 						</webResources>
 					</configuration>

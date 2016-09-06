@@ -1,7 +1,7 @@
 app.server.type=tomcat8x
 app.server.port=8080
 app.server.ip=localhost
-picturehandler.log.path=/gimagesrv/PictureHandler/logs/handler.log
+picturehandler.log.path=/imagesrv/PictureHandler/logs/handler.log
 picturehandler.exe.path=/imagesrv/PictureHandler/BW.jar
 picturehandler.funcs.json=/imagesrv/PictureHandler/functions_dummy.json
 picturehandler.digilib.url=http://imagesrv:8080/digilib/Scaler/IIIF/
@@ -10,5 +10,6 @@ mirador.anno.url=http://imagesrc:7080/simpleAnnotationStore/annotation
 mirador.picturehandler.base=http://imagesrv:8080
 mirador.invoker.base=http://imagesrv:8080
 mirador.batcher.url=ws://imagesrv:8080/PictureHandler/Batcher
-mirador.services.timeout=5000
-
+mirador.services.timeout=9000
+digilib.log.path=/imagesrv/PictureHandler/logs/digilib.log
+digilib.log.level=debug

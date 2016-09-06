@@ -10,4 +10,6 @@ mirador.anno.url=http://localhost:7080/simpleAnnotationStore/annotation
 mirador.picturehandler.base=http://localhost:8080
 mirador.invoker.base=http://localhost:8080
 mirador.batcher.url=ws://localhost:8080/PictureHandler/Batcher
-mirador.services.timeout=5000
+mirador.services.timeout=9000
+digilib.log.path=/Users/roykalony/images-info/logs/digilib.log
+digilib.log.level=debug
