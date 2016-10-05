@@ -32,7 +32,7 @@
 		</init-param>
 		<init-param>
 			<param-name>data_dir</param-name>
-		    <param-value>/mnt/hgfs/Server/annotation</param-value>
+            <param-value>${anno.server.store.path}</param-value>
 		    <description>Sets the directory containing TDB RDF database</description>
 		</init-param>
 		<load-on-startup>1</load-on-startup> <!-- this needs to be the first one to start -->

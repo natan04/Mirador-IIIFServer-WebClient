@@ -13,3 +13,4 @@ mirador.batcher.url=ws://imagesrv:8080/PictureHandler/Batcher
 mirador.services.timeout=9000
 digilib.log.path=/imagesrv/PictureHandler/logs/digilib.log
 digilib.log.level=debug
+anno.server.store.path=/imagesrv/PictureHandler/annotation-store/
